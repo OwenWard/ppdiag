@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+export(drawHPIntensity)
+export(drawUniMMHPIntensity)
+export(mmhp)
+
+importFrom("graphics", "curve", "legend", "plot", "points", "segments")
