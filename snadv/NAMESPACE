@@ -6,6 +6,7 @@ export(simulatehp)
 export(simulatemmhp)
 export(HPIntensity)
 export(UniMMHPIntensity)
+export(rescaled)
 
 importFrom(graphics, curve, legend, plot, points, segments)
-importFrom(stats, runif, rexp)
+importFrom(stats, runif, rexp, integrate)
