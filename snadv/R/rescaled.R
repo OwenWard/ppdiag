@@ -9,12 +9,12 @@
 
 
 
-rescaled <- function(lambda,tau){
+rescaled <- function(lambda, tau) {
   rescaled_tau <- vector()
   rescaled_tau[1] <- 0
   m <- length(tau)
-  for(i in 1 : (m - 1)){
-    rescaled_tau[i+1]<-stats::integrate(lambda,tau[i],tau[i+1])$value
+  for (i in 1:(m - 1)) {
+    rescaled_tau[i + 1] <- stats::integrate(lambda, tau[i], tau[i + 1])$value
   }
   return(rescaled_tau)
 }

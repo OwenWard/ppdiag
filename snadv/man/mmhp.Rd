@@ -29,6 +29,6 @@ Create a Markov-modulated Hawkes Process(MMHP) model according to the given para
 If event time tau is missing, then it means that data will be added later(e.g. simulated)
 }
 \examples{
-Q = matrix(c(-0.4,0.4,0.2,-0.2),ncol = 2,byrow = TRUE)
-mmhp(Q, delta = c( 1/3, 2/3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 }

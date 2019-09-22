@@ -11,9 +11,9 @@
 
 #' @return simulated Hawkes Process
 #' @export
-simulatehp <- function(lambda0, alpha, beta, start, horizon, history){
+simulatehp <- function(lambda0, alpha, beta, start, horizon, history) {
   j0 <- length(history) + 1
-  lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + alpha * sum(exp(-beta * (rep(start,j0 - 2) - history[2:(j0 - 1)]))))
+  lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + alpha * sum(exp(-beta * (rep(start, j0 - 2) - history[2:(j0 - 1)]))))
   lambda.max <- lambda.star
   t <- numeric(10)
   n <- 1
@@ -21,7 +21,7 @@ simulatehp <- function(lambda0, alpha, beta, start, horizon, history){
   s <- -log(U) / lambda.star
   ti <- start + s
   repeat {
-    if (ti > horizon){
+    if (ti > horizon) {
       break
     }
 
@@ -35,7 +35,7 @@ simulatehp <- function(lambda0, alpha, beta, start, horizon, history){
       ti <- start + s
       lambda.s <- lambda0 + alpha * sum(exp(-beta * c(rep(ti, n) - t[1:n], rep(ti, j0 - 1) - history[1:j0 - 1])))
       D <- runif(1)
-      if(D <= lambda.s / lambda.star){
+      if (D <= lambda.s / lambda.star) {
         lambda.star <- lambda.s
         lambda.max <- ifelse(lambda.max > lambda.star, lambda.max, lambda.star)
         break
@@ -47,5 +47,5 @@ simulatehp <- function(lambda0, alpha, beta, start, horizon, history){
     n <- n + 1
   }
 
-  return(list(t = t[1:(n-1)], lambda.max = lambda.max))
+  return(list(t = t[1:(n - 1)], lambda.max = lambda.max))
 }

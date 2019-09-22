@@ -14,9 +14,9 @@
 #' @return mmhp object
 #' @export
 #' @examples
-#' Q = matrix(c(-0.4,0.4,0.2,-0.2),ncol = 2,byrow = TRUE)
-#' mmhp(Q, delta = c( 1/3, 2/3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
-mmhp <- function (Q, delta, tau=NULL, lambda0, lambda1, alpha, beta) {
+#' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+#' mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+mmhp <- function(Q, delta, tau = NULL, lambda0, lambda1, alpha, beta) {
   y <- c(list(Q = Q, delta = delta, tau = tau, lambda0 = lambda0, lambda1 = lambda1, alpha = alpha, beta = beta))
   class(y) <- "mmhp"
   return(y)

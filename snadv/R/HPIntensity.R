@@ -14,47 +14,47 @@
 #' @export
 
 
-HPIntensity <- function (lambda, i, alpha, beta, start, end, history, hawkes_time) {
+HPIntensity <- function(lambda, i, alpha, beta, start, end, history, hawkes_time) {
   n <- length(hawkes_time)
   m <- length(history)
-  intensity <- function(x){
+  intensity <- function(x) {
     y <- 0
-    if(n == 0){
-      if(i == 1){
-        if(x >= start & x <= end){
+    if (n == 0) {
+      if (i == 1) {
+        if (x >= start & x <= end) {
           y <- lambda
         }
-      } else{
+      } else {
         lambda.n <- function(s) lambda + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        if(x >= start & x <= end){
+        if (x >= start & x <= end) {
           y <- new.lambda.n(x)
         }
       }
-    }else{
-      if(i == 1){
-        if(x >= start & x < hawkes_time[1]){
+    } else {
+      if (i == 1) {
+        if (x >= start & x < hawkes_time[1]) {
           y <- lambda
         }
-      } else{
-        lambda.n <- function(s) lambda + alpha * sum(exp(-beta * (rep(s ,m) - history)))
+      } else {
+        lambda.n <- function(s) lambda + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        if(x >= start & x < hawkes_time[1]){
+        if (x >= start & x < hawkes_time[1]) {
           y <- new.lambda.n(x)
         }
       }
-      if(n > 1){
-        for(j in 1:(n-1)){
+      if (n > 1) {
+        for (j in 1:(n - 1)) {
           lambda.n <- function(s) lambda + alpha * sum(exp(-beta * (rep(s, m + j) - c(history, hawkes_time[1:j]))))
           new.lambda.n <- Vectorize(lambda.n)
-          if(x >= hawkes_time[j] & x < hawkes_time[j + 1]){
+          if (x >= hawkes_time[j] & x < hawkes_time[j + 1]) {
             y <- new.lambda.n(x)
           }
         }
       }
       lambda.n <- function(s) lambda + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, hawkes_time[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
-      if(x >= hawkes_time[n] & x <= end){
+      if (x >= hawkes_time[n] & x <= end) {
         y <- new.lambda.n(x)
       }
     }

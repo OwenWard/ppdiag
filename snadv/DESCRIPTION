@@ -11,3 +11,5 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
     graphics
+Suggests: 
+    testthat (>= 2.1.0)

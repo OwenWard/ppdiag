@@ -24,8 +24,8 @@ drawUniMMHPIntensity(mmhp, simulation, yupper = 10, add = FALSE,
 Take a mmhp object and draw its intensity accordingly
 }
 \examples{
-Q = matrix(c(-0.4,0.4,0.2,-0.2),ncol = 2,byrow = TRUE)
-x<-mmhp(Q, delta = c( 1/3, 2/3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
-y<-simulatemmhp(x)
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+y <- simulatemmhp(x)
 drawUniMMHPIntensity(x, y)
 }
