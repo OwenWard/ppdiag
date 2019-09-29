@@ -6,6 +6,7 @@
 #' @param nsim number of points to simulate.
 #' @param seed seed for the random number generator.
 #' @param ... other arguments.
+#' @importFrom stats rexp
 #'
 #' @return simulated Markov Modulated Hawkes Process, including states of Markov Process, time of each transition of Markoc Process, state at each event, times of Poisson events.
 #' @export

@@ -1,0 +1,13 @@
+exportPattern("^[[:alpha:]]+")
+export(drawHPIntensity)
+export(drawUniMMHPIntensity)
+export(mmhp)
+export(simulatehp)
+export(simulatemmhp)
+export(HPIntensity)
+export(UniMMHPIntensity)
+export(rescaled)
+export(mmhpNegLogLik)
+
+importFrom(graphics, curve, legend, plot, points, segments)
+importFrom(stats, runif, rexp, integrate)

@@ -8,6 +8,7 @@
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
 #' @param horizon end time of the Hawkes process.
+#' @importFrom stats runif
 
 #' @return simulated Hawkes Process
 #' @export
