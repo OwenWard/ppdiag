@@ -4,7 +4,7 @@
 #'
 #' @param lambda intensity function of point process models
 #' @param tau event times
-
+#' @importFrom stats integrate
 #' @export
 
 

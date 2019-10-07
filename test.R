@@ -1,17 +1,4 @@
-object <- list(lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2, q1 = 0.4, q2 = 0.2, delta = c( 1/3, 2/3))
-Q <- matrix(c(-0.4,0.4,0.2,-0.2),ncol=2,byrow=TRUE)
 
-#object <- list(lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2, q1 = 0.4, q2 = 0.2, delta = c( 1, 0))
-
-simulation<-simulatemmhp(object)
-state<-simulation$z
-state_time<-simulation$x
-tau<-simulation$tau
-mmhp(Q,delta = c( 1/3, 2/3),lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)->x
-simulatemmhp(x)->y
-drawUniMMHPIntensity(x,y)
-
-Q = matrix(c(-0.4,0.4,0.2,-0.2),ncol = 2,byrow = TRUE)
 ####start from here
 Q = matrix(c(-0.4,0.4,0.2,-0.2),ncol = 2,byrow = TRUE)
 x1<-mmhp(Q, delta = c( 1/3, 2/3), lambda0 = 1, lambda1 = 1.6, alpha = 0.8, beta = 1.2)
