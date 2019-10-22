@@ -23,6 +23,7 @@ mmhpNegLogLik <- function(mmhp, t = NULL) {
   if (!is.null(mmhp$tau)) {
     t <- mmhp$tau
   }
+
   n <- length(t) - 1
   interevent <- t[-1] - t[-(n + 1)]
 
