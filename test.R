@@ -20,7 +20,8 @@ integrate(z,0,y1$tau[2])$value
 r<-rescaled(z,y1$tau)
 r
 qqexp(r)
-mmhpNegLogLik(x1,y1$tau)
+negloglik.mmhp(x1,y1$tau)
+
 
 y1
 
