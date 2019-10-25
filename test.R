@@ -19,8 +19,10 @@ curve(z,y1$x[1],y1$x[m])
 integrate(z,0,y1$tau[2])$value
 r<-rescaled(z,y1$tau)
 r
+r<-compensator(x1,t=y1$tau,pzt=NULL)
+r
 qqexp(r)
-negloglik.mmhp(x1,y1$tau)
+negloglik(x1,y1$tau)
 
 
 y1
