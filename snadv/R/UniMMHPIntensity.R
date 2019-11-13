@@ -12,14 +12,14 @@
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 #' y <- simulatemmhp(x)
 #' z <- UniMMHPIntensity(x, y)
-UniMMHPIntensity <- function(mmhp, event,method= "function") {
+UniMMHPIntensity <- function(mmhp, event, method = "function") {
   t <- event$tau
   lambda0 <- mmhp$lambda0
   lambda1 <- mmhp$lambda1
   alpha <- mmhp$alpha
   beta <- mmhp$beta
   n <- length(t)
-  if(method=="function"){
+  if (method == "function") {
     state <- event$z
     state_time <- event$x
     m <- length(state)
@@ -43,29 +43,31 @@ UniMMHPIntensity <- function(mmhp, event,method= "function") {
       return(y)
     }
     return(Vectorize(intensity))
-  }else if(method =="numeric"){
-    time.vec<-event$time_segment
+  } else if (method == "numeric") {
+    time.vec <- event$time_segment
     latent.vec <- event$latent_mean
-    lambda1.t <- HPIntensity(lambda=lambda1,alpha=alpha,
-                                                      beta=beta, t=t, time.vec=time.vec, method= "numeric")
-    lambda.t <- lambda1.t*latent.vec + lambda0*(1-latent.vec)
+    lambda1.t <- HPIntensity(
+      lambda = lambda1, alpha = alpha,
+      beta = beta, t = t, time.vec = time.vec, method = "numeric"
+    )
+    lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
-  }else if(method == "atevent"){
+  } else if (method == "atevent") {
     latent_z <- event$z
-    if(t[1]==0){
+    if (t[1] == 0) {
       t <- t[-1]
     }
-    if(length(latent_z)==(length(t)+1)){
+    if (length(latent_z) == (length(t) + 1)) {
       latent_z <- latent_z[-1]
     }
-    lambda.t <- rep(lambda0,length(t))
+    lambda.t <- rep(lambda0, length(t))
     r <- 0
-    for(i in c(1:length(t))){
-      if(i>1){
-        r <- exp(-beta*(t[i]-t[i-1]))*(1+r)
+    for (i in c(1:length(t))) {
+      if (i > 1) {
+        r <- exp(-beta * (t[i] - t[i - 1])) * (1 + r)
       }
-      if(latent_z[i]==1){
-        lambda.t[i]<-lambda1+alpha*r
+      if (latent_z[i] == 1) {
+        lambda.t[i] <- lambda1 + alpha * r
       }
     }
     return(lambda.t)

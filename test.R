@@ -43,5 +43,6 @@ UniMMHPIntensity(haha,method = "numeric",
            event = list(tau = current_event_time,time_segment=time_segment,
                         latent_mean=latent_mean))
 rawresidual(haha, t=current_event_time, time.vec=time_segment,latent.vec=latent_mean)
+pearsonresidual(haha, t=current_event_time, time.vec=time_segment,latent.vec =latent_mean,latent_event = latent_event)
 
 

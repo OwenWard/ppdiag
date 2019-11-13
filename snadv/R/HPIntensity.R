@@ -17,8 +17,8 @@
 #' @export
 
 
-HPIntensity <- function(lambda, alpha, beta, i=NULL, start=NULL, end=NULL, history=NULL, hawkes_time=NULL,method =  "function",time.vec=NULL,t=NULL) {
-  if(method =="function"){
+HPIntensity <- function(lambda, alpha, beta, i = NULL, start = NULL, end = NULL, history = NULL, hawkes_time = NULL, method = "function", time.vec = NULL, t = NULL) {
+  if (method == "function") {
     n <- length(hawkes_time)
     m <- length(history)
     intensity <- function(x) {
@@ -65,29 +65,27 @@ HPIntensity <- function(lambda, alpha, beta, i=NULL, start=NULL, end=NULL, histo
       return(y)
     }
     return(Vectorize(intensity))
-  }else if(method =="numeric"){
-
-    lambda1.t <- rep(0,length(time.vec))
+  } else if (method == "numeric") {
+    lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
 
     r <- 0
-    for(i in c(1:length(time.vec))){
+    for (i in c(1:length(time.vec))) {
       current.t <- time.vec[i]
-      if(event.idx < length(t)){
-        if(current.t>t[event.idx+1]){
+      if (event.idx < length(t)) {
+        if (current.t > t[event.idx + 1]) {
           event.idx <- event.idx + 1
-          r <- exp(-beta*(t[event.idx]-t[event.idx-1]))*(1+r)
+          r <- exp(-beta * (t[event.idx] - t[event.idx - 1])) * (1 + r)
         }
       }
 
-      if(current.t<=t[1]){
-        lambda1.t[i]<-lambda
-      }else{
-        lambda1.t[i]<-lambda+alpha*exp(-beta*(current.t-t[event.idx]))*(1+r)
+      if (current.t <= t[1]) {
+        lambda1.t[i] <- lambda
+      } else {
+        lambda1.t[i] <- lambda + alpha * exp(-beta * (current.t - t[event.idx])) * (1 + r)
       }
     }
 
     return(lambda1.t)
-
   }
 }

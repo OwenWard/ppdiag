@@ -73,6 +73,6 @@ compensator.mmhp <- function(object, t, pzt) {
     A <- 1 + exp(-beta * (interevent[i - 1])) * A
     Lambda[i] <- lambda1 * (interevent[i]) + alpha / beta * (1 - exp(-beta * interevent[i])) * A
   }
-  Lambda_mixed <- Lambda*pzt + lambda0*interevent*(1-pzt)
+  Lambda_mixed <- Lambda * pzt + lambda0 * interevent * (1 - pzt)
   return(Lambda_mixed)
 }
