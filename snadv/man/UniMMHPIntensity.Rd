@@ -4,12 +4,14 @@
 \alias{UniMMHPIntensity}
 \title{Return the intensity function of the Markov-modulated Hawkes Process(MMHP)}
 \usage{
-UniMMHPIntensity(mmhp, simulation)
+UniMMHPIntensity(mmhp, event, method = "function")
 }
 \arguments{
 \item{mmhp}{a mmhp object including its state, state_time, tau, lambda0, lambda1, beta and alpha.}
 
-\item{simulation}{the simulated Markov-modulated Hawkes Process(MMHP)}
+\item{event}{the observed/simulated Markov-modulated Hawkes Process(MMHP)}
+
+\item{method}{the method used to calculate the MMHP intensity. The candidates are: `function`, `numeric`, and `atevent`, default to `function`.}
 }
 \description{
 Take a mmhp object and generate its intensity function accordingly

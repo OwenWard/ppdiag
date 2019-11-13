@@ -4,15 +4,10 @@
 \alias{mmhp}
 \title{Create a Markov-modulated Hawkes Process(MMHP) model}
 \usage{
-mmhp(Q, delta, tau = NULL, lambda0, lambda1, alpha, beta)
+mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL,
+  tau = NULL)
 }
 \arguments{
-\item{Q}{transition probability matrix.}
-
-\item{delta}{initial state probability.}
-
-\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
-
 \item{lambda0}{parameters for homogeneous Poisson process.}
 
 \item{lambda1}{parameters for Hawkes process.}
@@ -20,6 +15,12 @@ mmhp(Q, delta, tau = NULL, lambda0, lambda1, alpha, beta)
 \item{alpha}{parameters for Hawkes process.}
 
 \item{beta}{parameters for Hawkes process.}
+
+\item{Q}{transition probability matrix.}
+
+\item{delta}{initial state probability.}
+
+\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 mmhp object

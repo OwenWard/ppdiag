@@ -4,16 +4,18 @@
 \alias{HPIntensity}
 \title{Return the intensity function of Hawkes Process}
 \usage{
-HPIntensity(lambda, i, alpha, beta, start, end, history, hawkes_time)
+HPIntensity(lambda, alpha, beta, i = NULL, start = NULL, end = NULL,
+  history = NULL, hawkes_time = NULL, method = "function",
+  time.vec = NULL, t = NULL)
 }
 \arguments{
 \item{lambda}{parameters for Hawkes process}
 
-\item{i}{state number}
-
 \item{alpha}{parameters for Hawkes process}
 
 \item{beta}{parameters for Hawkes process}
+
+\item{i}{state number}
 
 \item{start}{the start time of current state}
 
@@ -22,6 +24,12 @@ HPIntensity(lambda, i, alpha, beta, start, end, history, hawkes_time)
 \item{history}{the past event times}
 
 \item{hawkes_time}{the event times happened in this state}
+
+\item{method}{the method used to calculate the MMHP intensity. The candidates are: `function` and `numeric`, default to `function`.}
+
+\item{time.vec}{time segment to calculate the intensity for `numeric` method}
+
+\item{t}{the observed true event time}
 }
 \description{
 Return the intensity function of Hawkes Process, a helper function for 'UniMMHPIntensity'

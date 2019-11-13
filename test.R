@@ -33,3 +33,15 @@ use_test("mmhp")
 
 
 simulatemmhp(x1,nsim=5,given_state = T,states=list(x=y1$x,z=y1$z,ending = max(y1$tau)))
+
+#####ignore the following
+haha<-mmhp(lambda0=mean(sim_mmhp_sep$lambda0[,pair]),
+           lambda1=mean(sim_mmhp_sep$lambda1[,pair]),
+           alpha=mean(sim_mmhp_sep$alpha[,pair]),
+           beta=mean(sim_mmhp_sep$beta[,pair]))
+UniMMHPIntensity(haha,method = "numeric",
+           event = list(tau = current_event_time,time_segment=time_segment,
+                        latent_mean=latent_mean))
+rawresidual(haha, t=current_event_time, time.vec=time_segment,latent.vec=latent_mean)
+
+
