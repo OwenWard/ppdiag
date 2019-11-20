@@ -11,7 +11,11 @@ UniMMHPIntensity(mmhp, event, method = "function")
 
 \item{event}{the observed/simulated Markov-modulated Hawkes Process(MMHP)}
 
-\item{method}{the method used to calculate the MMHP intensity. The candidates are: `function`, `numeric`, and `atevent`, default to `function`.}
+\item{method}{the method used to calculate the MMHP intensity.
+The candidates are: `function`, `numeric`, and `atevent`, default to `function`.}
+}
+\value{
+The intensity function of MMHP
 }
 \description{
 Take a mmhp object and generate its intensity function accordingly

@@ -4,8 +4,9 @@
 #'
 #' @param mmhp a mmhp object including its state, state_time, tau, lambda0, lambda1, beta and alpha.
 #' @param event the observed/simulated Markov-modulated Hawkes Process(MMHP)
-#' @param method the method used to calculate the MMHP intensity. The candidates are: `function`, `numeric`, and `atevent`, default to `function`.
-
+#' @param method the method used to calculate the MMHP intensity.
+#'   The candidates are: `function`, `numeric`, and `atevent`, default to `function`.
+#' @return The intensity function of MMHP
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
