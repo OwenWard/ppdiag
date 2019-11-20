@@ -13,19 +13,19 @@
 #' @importFrom stats integrate
 #' @export
 
-pearsonresidual <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event=NULL) {
+pearsonresidual <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   UseMethod("pearsonresidual")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.default <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event=NULL) {
+pearsonresidual.default <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   cat("please input the right model")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event=NULL) {
+pearsonresidual.mmhp <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   N <- length(t)
   est.intensity <- intensity(object,
     event = list(
@@ -46,7 +46,7 @@ pearsonresidual.mmhp <- function(object, t, termination, time.vec=NULL, latent.v
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hp <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event=NULL) {
+pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta

@@ -14,7 +14,6 @@
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 #' y <- simulatemmhp(x)
 #' z <- intensity(x, y)
-
 intensity <- function(object, event, method = "function") {
   UseMethod("intensity")
 }
@@ -46,9 +45,9 @@ intensity.mmhp <- function(object, event, method = "function") {
           hawkes_time <- t[t >= state_time[i] & t < state_time[i + 1]]
           if (i == 1) hawkes_time <- hawkes_time[-1]
           history <- t[t < state_time[i]]
-          hp_object<- hp(lambda0 = lambda1,alpha, beta)
-          hp_event<-list(start =state_time[i], end =state_time[i + 1], history = history[-1], hawkes_time =hawkes_time)
-          HPfunc <- intensity.hp(object=hp_object,event=hp_event)
+          hp_object <- hp(lambda0 = lambda1, alpha, beta)
+          hp_event <- list(start = state_time[i], end = state_time[i + 1], history = history[-1], hawkes_time = hawkes_time)
+          HPfunc <- intensity.hp(object = hp_object, event = hp_event)
           if (x >= state_time[i] & x <= state_time[i + 1]) {
             y <- HPfunc(x)
           }
@@ -62,16 +61,16 @@ intensity.mmhp <- function(object, event, method = "function") {
     }
     return(Vectorize(intensity))
   } else if (method == "numeric") {
-    #return the numeric intensity value at each time segment
+    # return the numeric intensity value at each time segment
     time.vec <- event$time_segment
     latent.vec <- event$latent_mean
-    hp_object<- hp(lambda1,alpha,beta)
-    hp_event<-list(t=t,time.vec=time.vec)
+    hp_object <- hp(lambda1, alpha, beta)
+    hp_event <- list(t = t, time.vec = time.vec)
     lambda1.t <- intensity.hp(hp_object, event, method = "numeric")
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } else if (method == "atevent") {
-    #return the intensity evaluates at event times (output is an vector)
+    # return the intensity evaluates at event times (output is an vector)
     latent_z <- event$z
     if (t[1] == 0) {
       t <- t[-1]
@@ -90,7 +89,7 @@ intensity.mmhp <- function(object, event, method = "function") {
       }
     }
     return(lambda.t)
-  } #else if (method =="attime"){
+  } # else if (method =="attime"){
   # return intensity evaluates at event times (output is an vector)
   #   events<-event$tau
   #   latent_z <-event$z
@@ -103,13 +102,13 @@ intensity.mmhp <- function(object, event, method = "function") {
 #' @export
 intensity.hp <- function(object, event, method = "function") {
   if (method == "function") {
-    lambda<-object$lambda0
-    alpha<-object$alpha
-    beta<-object$beta
-    start<-event$start
-    end<-event$end
-    history<-event$history
-    hawkes_time<-event$hawkes_time
+    lambda <- object$lambda0
+    alpha <- object$alpha
+    beta <- object$beta
+    start <- event$start
+    end <- event$end
+    history <- event$history
+    hawkes_time <- event$hawkes_time
     n <- length(hawkes_time)
     m <- length(history)
     intensity <- function(x) {
@@ -157,8 +156,8 @@ intensity.hp <- function(object, event, method = "function") {
     }
     return(Vectorize(intensity))
   } else if (method == "numeric") {
-    time.vec<-event$time.vec
-    t<-event$t
+    time.vec <- event$time.vec
+    t <- event$t
     lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
 
@@ -180,34 +179,34 @@ intensity.hp <- function(object, event, method = "function") {
     }
 
     return(lambda1.t)
-  }else if (method == "integral"){
-    #This function is used to compute \int_0^T \lambda(u) du
-      # input object: parameters for Hawkes process, include lambda0, alpha, beta
-      #       events: vector of event happening time
-      #       T: termination time
-      # output result: \int_0^T \lambda(u) du
+  } else if (method == "integral") {
+    # This function is used to compute \int_0^T \lambda(u) du
+    # input object: parameters for Hawkes process, include lambda0, alpha, beta
+    #       events: vector of event happening time
+    #       T: termination time
+    # output result: \int_0^T \lambda(u) du
 
     lambda0 <- object$lambda0
     alpha <- object$alpha
     beta <- object$beta
-    events<-event$t
-    termination <-event$termination
-    N<-length(events)
-    r<-0
+    events <- event$t
+    termination <- event$termination
+    N <- length(events)
+    r <- 0
 
-    if(N>1){
-      for(i in 2:N){
-        r <- exp(-beta*(events[i]-events[i-1]))*(r+1)
+    if (N > 1) {
+      for (i in 2:N) {
+        r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
       }
 
 
-    if(N==0){
-      result <- lambda0*termination
-    }else{
-      result <- lambda0*termination+alpha/beta*(N-(1+r)*exp(-beta*(termination-events[N])))
-    }
+      if (N == 0) {
+        result <- lambda0 * termination
+      } else {
+        result <- lambda0 * termination + alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
+      }
 
-    return(result)
+      return(result)
     }
   }
 }
@@ -216,9 +215,9 @@ intensity.hp <- function(object, event, method = "function") {
 #' @export
 intensity.mmpp <- function(object, event, method = "function") {
   ## latent.vec is vector with same length as time.vec, each entry is the probability at state 1
-  lambda0<-object$lambda0
-  c<-object$c
-  latent.vec<-event$latent.vec
-  lambda.t <- lambda0*(1+c)*latent.vec + lambda0*(1-latent.vec)
+  lambda0 <- object$lambda0
+  c <- object$c
+  latent.vec <- event$latent.vec
+  lambda.t <- lambda0 * (1 + c) * latent.vec + lambda0 * (1 - latent.vec)
   return(lambda.t)
 }
