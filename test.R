@@ -11,7 +11,7 @@ y1<-simulatemmhp(x1,nsim=5)
 y2<-simulatemmhp(x1,nsim=5,given_state = T,states=list(x=y1$x,z=y1$z,ending = max(y1$tau)))
 
 
-UniMMHPIntensity(x1,y1)->z
+intensity(x1,y1)->z
 drawUniMMHPIntensity(x1,y1)
 y1
 m<-length(y1$x)

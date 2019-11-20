@@ -4,18 +4,18 @@
 \alias{mmpp}
 \title{Create a Markov-modulated Poisson Process(MMPP) model}
 \usage{
-mmpp(lambda0, c, tau = NULL, q1, q2)
+mmpp(lambda0, c, q1, q2, tau = NULL)
 }
 \arguments{
 \item{lambda0}{parameters for Poisson process.}
 
 \item{c}{the proportion of intensity 1 over intensity 2}
 
-\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
-
 \item{q1}{transition probability}
 
 \item{q2}{transition probability}
+
+\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 mmpp object

@@ -1,6 +1,6 @@
 #' Simulate Hawkes process during active state
 #'
-#' Simulate Hawkes process during active state (including all the histoty), a helper function for "simulation.mmhp"
+#' Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
 #'
 #' @param lambda0 parameters for Hawkes process.
 #' @param beta parameters for Hawkes process.

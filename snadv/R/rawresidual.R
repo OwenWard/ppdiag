@@ -50,7 +50,7 @@ rawresidual.hp <- function(object, t, termination, time.vec, latent.vec) {
 #' @export
 rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
   N <- length(t)
-  est.intensity <- UniMMHPIntensity(object,
+  est.intensity <- intensity(object,
     event = list(
       tau = t,
       time_segment = time.vec,

@@ -4,15 +4,20 @@
 \alias{pearsonresidual}
 \alias{pearsonresidual.default}
 \alias{pearsonresidual.mmhp}
+\alias{pearsonresidual.hp}
 \title{Compute Pearson residuals for social network models}
 \usage{
-pearsonresidual(object, t, termination, time.vec, latent.vec, latent_event)
+pearsonresidual(object, t, termination, time.vec = NULL,
+  latent.vec = NULL, latent_event = NULL)
 
-\method{pearsonresidual}{default}(object, t, termination, time.vec,
-  latent.vec, latent_event)
+\method{pearsonresidual}{default}(object, t, termination,
+  time.vec = NULL, latent.vec = NULL, latent_event = NULL)
 
-\method{pearsonresidual}{mmhp}(object, t, termination, time.vec,
-  latent.vec, latent_event)
+\method{pearsonresidual}{mmhp}(object, t, termination, time.vec = NULL,
+  latent.vec = NULL, latent_event = NULL)
+
+\method{pearsonresidual}{hp}(object, t, termination, time.vec = NULL,
+  latent.vec = NULL, latent_event = NULL)
 }
 \arguments{
 \item{object}{social network model contating the parameters}

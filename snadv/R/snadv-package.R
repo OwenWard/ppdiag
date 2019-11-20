@@ -1,7 +1,16 @@
-#' snadv: Perform diagnosis and visualizations for social network analysis
+#' snadv: A package for diagnosis and visualizations in social network analysis
 #'
 #' The model checking process is an important part in the social network analysis.
-#' This package includes multiple methods to plot the model as well as the true data, to compare the model fit and model performace.
+#' sandv provides a flexible grammar of social network model diagnosis. It focus on visualization tools,
+#' intensity calculation, inspection of log likelihhood and pearson residuals.
+#'
+#' @section main goals:
+#'  - Check the model fit by visualizing pearson residuals, qq plots on rescaled time events and intensity
+#'    plots.
+#'
+#'  - Evaluate the model by calculating the log likelihood and residuals.
+#'
+#'  - Simulate MMHP/HP process for given parameter.
 #'
 #' @name snadv
 #' @docType package

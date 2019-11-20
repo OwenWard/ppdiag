@@ -23,5 +23,5 @@ simulatehp(lambda0, alpha, beta, start, horizon, history)
 simulated Hawkes Process
 }
 \description{
-Simulate Hawkes process during active state (including all the histoty), a helper function for "simulation.mmhp"
+Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
 }
