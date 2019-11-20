@@ -11,18 +11,18 @@
 
 ksplot <- function(r, ...) {
   par <- list(...)
-  if (title %in% par) {
-    title <- title
+  if ("title" %in% names(par)) {
+    title <- par$title
   } else {
     title <- "KSplot"
   }
-  if (xlab %in% par) {
-    xlab <- xlab
+  if ("xlab" %in% names(par)) {
+    xlab <- par$xlab
   } else {
     xlab <- "rescaled residuals"
   }
-  if (ylab %in% par) {
-    ylab <- ylab
+  if ("ylab" %in% names(par)) {
+    ylab <- par$ylab
   } else {
     ylab <- "CDF"
   }
