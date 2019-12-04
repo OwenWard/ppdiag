@@ -66,7 +66,7 @@ intensity.mmhp <- function(object, event, method = "function") {
     latent.vec <- event$latent_mean
     hp_object <- hp(lambda1, alpha, beta)
     hp_event <- list(t = t, time.vec = time.vec)
-    lambda1.t <- intensity.hp(hp_object, event, method = "numeric")
+    lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } else if (method == "atevent") {
@@ -158,8 +158,12 @@ intensity.hp <- function(object, event, method = "function") {
   } else if (method == "numeric") {
     time.vec <- event$time.vec
     t <- event$t
+    lambda<-object$lambda0
+    beta<-object$beta
+    alpha<-object$alpha
     lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
+
 
     r <- 0
     for (i in c(1:length(time.vec))) {
@@ -221,3 +225,4 @@ intensity.mmpp <- function(object, event, method = "function") {
   lambda.t <- lambda0 * (1 + c) * latent.vec + lambda0 * (1 - latent.vec)
   return(lambda.t)
 }
+

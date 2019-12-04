@@ -61,3 +61,4 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
   all_Lambda <- sum(est.intensity) * (time.vec[2] - time.vec[1])
   return(N - all_Lambda)
 }
+
