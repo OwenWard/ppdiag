@@ -3,7 +3,6 @@
 \docType{package}
 \name{snadv}
 \alias{snadv}
-\alias{snadv-package}
 \title{snadv: A package for diagnosis and visualizations in social network analysis}
 \description{
 The model checking process is an important part in the social network analysis.

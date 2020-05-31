@@ -4,8 +4,17 @@
 \alias{drawHPIntensity}
 \title{Draw the intensity of Hawkes Process}
 \usage{
-drawHPIntensity(lambda0, i, alpha, beta, start, end, history, hawkes_time,
-  color = 1)
+drawHPIntensity(
+  lambda0,
+  i,
+  alpha,
+  beta,
+  start,
+  end,
+  history,
+  hawkes_time,
+  color = 1
+)
 }
 \arguments{
 \item{lambda0}{parameters for Hawkes process}

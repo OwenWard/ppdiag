@@ -1,4 +1,4 @@
 library(testthat)
-library(snadv)
+library(ppdiag)
 
-test_check("snadv")
+test_check("ppdiag")

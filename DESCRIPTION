@@ -1,4 +1,4 @@
-Package: snadv
+Package: ppdiag
 Type: Package
 Title: Diagnosis and visualizations for social network analysis
 Version: 0.1.0
@@ -8,7 +8,7 @@ Description: The focus on social network analysis require decent visualizations 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Imports: 
     graphics
 Suggests: 
