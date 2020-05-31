@@ -4,8 +4,14 @@
 \alias{drawUniMMHPIntensity}
 \title{Draw the intensity of the Markov-modulated Hawkes Process(MMHP)}
 \usage{
-drawUniMMHPIntensity(mmhp, simulation, yupper = 10, add = FALSE,
-  color = 1, given_main = "Intensity Plot of MMHP")
+drawUniMMHPIntensity(
+  mmhp,
+  simulation,
+  yupper = 10,
+  add = FALSE,
+  color = 1,
+  given_main = "Intensity Plot of MMHP"
+)
 }
 \arguments{
 \item{mmhp}{a mmhp object including its state, state_time, tau, lambda0, lambda1, beta and alpha.}

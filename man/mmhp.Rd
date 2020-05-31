@@ -4,8 +4,7 @@
 \alias{mmhp}
 \title{Create a Markov-modulated Hawkes Process(MMHP) model}
 \usage{
-mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL,
-  tau = NULL)
+mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, tau = NULL)
 }
 \arguments{
 \item{lambda0}{parameters for homogeneous Poisson process.}
