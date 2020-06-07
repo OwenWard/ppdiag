@@ -54,6 +54,8 @@ lambda_hat
 
 ```
 
+# Fit a Hawkes Process
+
 We can also fit a Hawkes process using `optim`.
 
 ```{r hawkes_functions, include=FALSE}
@@ -137,4 +139,39 @@ drawHPIntensity(lambda0 = hawkes.par$par[1],alpha = hawkes.par$par[2],
 
 
 ```
+This doesn't work because `drawHPIntensity` is currently only really built to
+be used inside `drawUniMMHPIntensity`, which fits a more complex model. We
+can use that on a simple example.
+
+
+```{r}
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+x <- mmhp(Q, delta = c(1 / 3, 2 / 3), 
+          lambda0 = 0.2,
+          lambda1 = .75,
+          alpha = 1.8,
+          beta = 1.2)
+y <- simulatemmhp(x,nsim = 10)
+drawUniMMHPIntensity(x, y)
+
+```
+This uses `drawHPIntensity` for some regions. Hence if you call it, it assumes it
+is being added to an existing plot, hence the error.
+
+- We can modify the hawkes plotting function so that it can be used on its own also. 
+To do this we can have a function argument `ADD` which is false by default.
+When it's false we initialise an empty plot with `plot`. We then set `ADD` to `TRUE`
+when calling it inside the MMHP, so it will instead add to the existing plot. 
+- Sally, this might be something simple for you to do initially by creating a branch,
+editing the functions as required and submitting a pull request.
+
+# Residuals
+
+We can compute the Pearson and raw residuals for multiple models which
+are documented in those files. Lets implement the ones we have.
+
+
+
+
+
 
