@@ -1,0 +1,140 @@
+---
+title: "Test Case of Existing Functions and `R` classes"
+author: "Owen Ward"
+date: "6/6/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The aim of this document is to demonstrate the existing functions in this package
+and to use them to better understand how `S3` classes work in `R`.
+
+To do this we will load in a simple univariate point process and analyse it using
+the existing tools.
+
+We will load in a simple event stream from an existing package.
+
+```{r,echo=FALSE,message=FALSE}
+library(tidyverse)
+library(SAPP)
+
+theme_set(theme_bw())
+```
+
+```{r}
+data(Brastings)
+
+Brastings %>% head(n=20)
+
+length(Brastings)
+
+range(Brastings)
+
+events <- Brastings[1:100]
+
+tibble(times=events,value = 1) %>%
+  ggplot(aes(times,value)) + geom_point() + theme(axis.ticks = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+# Fit a Homogeneous Poisson Process
+
+The first thing we can do is fit a homogeneous Poisson process to `events`.
+
+The MLE, $\hat{\lambda}$ is simply $M/T$, for $M$ events in a time period $T$.
+
+
+```{r fit_hom_Pois}
+lambda_hat <- length(events)/max(events)
+lambda_hat
+
+```
+
+We can also fit a Hawkes process using `optim`.
+
+```{r hawkes_functions, include=FALSE}
+uniHawkesCompensator<-function(lambda0,alpha,beta,t) {
+  n<-length(t)
+  delta.t<-t-c(0,t[-n])
+  Lambda<-rep(0,n)
+  A<-0
+  Lambda[1]<-lambda0*(t[1])*2
+  for(i in 2:n){
+    A<-1+exp(-beta*(delta.t[i-1]))*A
+    Lambda[i]<-lambda0*(delta.t[i])*2+alpha/beta(1-exp(-beta*delta.t[i]))*A
+  }
+  return(Lambda)
+}
+uniHawkesNegLogLik <- function(params=list(lambda0,alpha,beta), t) {
+  lambda0 <- params[[1]]
+  alpha <- params[[2]]
+  beta <- params[[3]]
+  n <- length(t)
+  r <- rep(0,n)
+  for(i in 2:n) {
+    r[i] <- exp(-beta*(t[i]-t[i-1]))*(1+r[i-1])
+  }
+  loglik <- -t[n]*lambda0
+  loglik <- loglik+alpha/beta*sum(exp(-beta*(t[n]-t))-1)
+  if(any(lambda0+alpha*r<=0)){
+    loglik<--1e+10 
+  }else{
+    loglik <- loglik+sum(log(lambda0+alpha*r))
+  }
+  return(-loglik)
+}
+uniHawkesntensity <- function(params=list(lambda0,alpha,beta), times, t0) {
+  intens <- 0
+  lambda0 <- params[[1]]
+  alpha <- params[[2]]
+  beta <- params[[3]]
+  keep_times <- times[which(times < t0)]
+  intens <- intens + lambda0 + alpha * sum(exp(-beta*(t0-keep_times)))
+  return(intens)
+}
+
+Res_Hawkes <- function(params = list(lambda0,alpha,beta),times, t0) {
+  lambda0 <- params[[1]]
+  alpha <- params[[2]]
+  beta <- params[[3]]
+  tmp <- uniHawkesCompensator(lambda0,alpha,beta,times)
+  n <- length(which(times < t0))
+  return(n-sum(tmp))
+}
+
+
+```
+
+
+
+We can fit a Hawkes process.
+
+```{r}
+hawkes.par<-optim(par=rep(0.01,3), fn=uniHawkesNegLogLik, 
+                    t=events, control = list(maxit = 1000) )
+
+# optim does minimization by default. the min of the negative loglikelihood
+# is the max of the likelihood
+hawkes.par$convergence
+hawkes.par
+
+```
+We then want to use `hawkes.par$par to plot.
+
+
+```{r}
+drawHPIntensity(lambda0 = hawkes.par$par[1],alpha = hawkes.par$par[2],
+                beta = hawkes.par$par[3],
+                start = 0,
+                end =  max(events),
+                hawkes_time = events,
+                history = events,
+                i = 1)
+
+
+```
+
