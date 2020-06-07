@@ -1,5 +1,5 @@
-# snadv
-R package for diagnosis and visualizations in social network analysis
+# ppdiag
+R package for diagnosis and visualizations in point processes
 
 installation :
 
@@ -7,4 +7,4 @@ if (!require("devtools")) {
   install.packages("devtools")
 }
 
-devtoolds::install_github("xiaoxidq/snadv/snadv")
+devtoolds::install_github("owenward/ppdiag")
