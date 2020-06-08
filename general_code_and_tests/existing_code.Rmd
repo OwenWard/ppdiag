@@ -2,7 +2,9 @@
 title: "Test Case of Existing Functions and `R` classes"
 author: "Owen Ward"
 date: "6/6/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -41,7 +43,7 @@ tibble(times=events,value = 1) %>%
 ```
 
 
-# Fit a Homogeneous Poisson Process
+# Fit a homogeneous Poisson process
 
 The first thing we can do is fit a homogeneous Poisson process to `events`.
 
@@ -54,7 +56,7 @@ lambda_hat
 
 ```
 
-# Fit a Hawkes Process
+# Fit a Hawkes process
 
 We can also fit a Hawkes process using `optim`.
 
@@ -125,10 +127,19 @@ hawkes.par$convergence
 hawkes.par
 
 ```
+
+Note that there is actually a `negloglik` function which I could/should have used here. 
+
+- A simple task would be to redo this MLE calculation using that function.
+
 We then want to use `hawkes.par$par to plot.
 
 
-```{r}
+
+
+```{r, error=TRUE}
+devtools::load_all() # to load in the package we are working on
+
 drawHPIntensity(lambda0 = hawkes.par$par[1],alpha = hawkes.par$par[2],
                 beta = hawkes.par$par[3],
                 start = 0,
@@ -155,6 +166,7 @@ y <- simulatemmhp(x,nsim = 10)
 drawUniMMHPIntensity(x, y)
 
 ```
+
 This uses `drawHPIntensity` for some regions. Hence if you call it, it assumes it
 is being added to an existing plot, hence the error.
 
@@ -170,6 +182,52 @@ editing the functions as required and submitting a pull request.
 We can compute the Pearson and raw residuals for multiple models which
 are documented in those files. Lets implement the ones we have.
 
+## Raw residuals
+
+```{r, error=TRUE}
+
+hp_object <- list(lambda0 = hawkes.par$par[1],
+                  alpha = hawkes.par$par[2],
+                  beta = hawkes.par$par[3])
+
+
+
+rawresidual.hp(hp_object,t = events,termination = max(events))
+
+# if you make hp_object a hawkes process object then you can just call
+# rawresidual instead.
+# this is to do with S3 classes
+class(hp_object) <- "hp"
+
+rawresidual(hp_object,t = events, termination = max(events))
+
+# won't work for a class that hasn't been defined in rawresidual.R
+class(hp_object) <- "p"
+
+rawresidual(hp_object,t = events, termination = max(events))
+
+
+```
+
+## Pearson residuals
+
+```{r,error=TRUE}
+class(hp_object) <- "hp"
+pearsonresidual(hp_object,t = events, termination = max(events))
+
+class(hp_object) <- "p"
+pearsonresidual(hp_object,t = events, termination = max(events))
+
+
+```
+Note that this gives a different error message to the same
+error in raw residuals. We would like these
+messages to be uniform across all object types.
+
+- Sally, this is something else which should be pretty straightforward to
+fix, another early task which could be good to work through.
+- Based on the message, it seems the error has not been defined for 
+the `pearsonresidual`.
 
 
 

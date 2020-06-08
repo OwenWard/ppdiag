@@ -2,7 +2,7 @@
 #'
 #' Compute Pearson residuals for social network models with model specified time events or simulated time events
 #'
-#' @param object social network model contating the parameters
+#' @param object social network model containing the parameters
 #' @param t vector of event happening time
 #' @param termination termination time
 #' @param time.vec time segment to calculate the intensity for `numeric` method
