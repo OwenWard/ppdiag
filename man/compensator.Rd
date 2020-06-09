@@ -14,7 +14,7 @@ compensator(object, t, pzt)
 
 \method{compensator}{mmpp}(object, t, pzt)
 
-\method{compensator}{hp}(object, t, pzt)
+\method{compensator}{hp}(object, t, pzt = NULL)
 
 \method{compensator}{mmhp}(object, t, pzt)
 }

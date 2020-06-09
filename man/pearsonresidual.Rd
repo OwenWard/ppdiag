@@ -44,7 +44,7 @@ pearsonresidual(
 )
 }
 \arguments{
-\item{object}{social network model contating the parameters}
+\item{object}{social network model containing the parameters}
 
 \item{t}{vector of event happening time}
 

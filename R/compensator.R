@@ -34,20 +34,27 @@ compensator.mmpp <- function(object, t, pzt) {
 
 #' @rdname compensator
 #' @export
-compensator.hp <- function(object, t, pzt) {
+compensator.hp <- function(object, t, pzt = NULL) {
+  # input object: parameters for Hawkes process, include lambda0, alpha, beta 
+  #       events: vector of events times
+  # output Lambda: vector of compensator evaluated at each event time
+  
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
-  n <- length(t)
-  delta.t <- t - c(0, t[-n])
-  Lambda <- rep(0, n)
-  A <- 0
-  Lambda[1] <- lambda0 * (t[1]) * 2
-  for (i in 2:n) {
-    A <- 1 + exp(-beta * (delta.t[i - 1])) * A
-    Lambda[i] <- lambda0 * (delta.t[i]) * 2 + alpha / beta * (1 - exp(-beta * delta.t[i])) * A
+  
+  N<-length(t)
+  Lambda<-rep(0,N)
+  r<-0
+  Lambda[1]<-lambda0*(t[1])
+  for(i in 2:N){
+    delta.t <- t[i]-t[i-1]
+    temp.r <-exp(-beta*delta.t)*(r+1)
+    Lambda[i]<-lambda0*delta.t-alpha/beta*(temp.r-r-1)
+    r <- temp.r
   }
   return(Lambda)
+
 }
 
 #' @rdname compensator
