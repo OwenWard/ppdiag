@@ -2,14 +2,14 @@
 % Please edit documentation in R/rawresidual.R
 \name{rawresidual}
 \alias{rawresidual}
-\alias{residual.default}
+\alias{rawresidual.default}
 \alias{rawresidual.hp}
 \alias{rawresidual.mmhp}
 \title{Compute raw residuals for social network models}
 \usage{
 rawresidual(object, t, termination, time.vec, latent.vec)
 
-residual.default(object, t, termination, time.vec, latent.vec)
+\method{rawresidual}{default}(object, t, termination, time.vec, latent.vec)
 
 \method{rawresidual}{hp}(object, t, termination, time.vec, latent.vec)
 
