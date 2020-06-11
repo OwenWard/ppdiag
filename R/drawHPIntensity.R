@@ -23,7 +23,7 @@ drawHPIntensity <- function(lambda0, i, alpha, beta, start, end, history, hawkes
 
   if(add==FALSE){
     graphics::plot(0, 0,
-      xlim = c(start, hawkes_time[n]), ylim = c(0, 1), type = "n", xlab = "Time", ylab = "Intensity",
+      xlim = c(start, hawkes_time[n]), ylim = c(0, 10), type = "n", xlab = "Time", ylab = "Intensity",
       main = 'Hawkes Process'
     )
   }
