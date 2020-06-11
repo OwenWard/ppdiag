@@ -17,7 +17,7 @@ rawresidual <- function(object, t, termination, time.vec, latent.vec) {
 
 #' @rdname rawresidual
 #' @export
-residual.default <- function(object, t, termination, time.vec, latent.vec) {
+rawresidual.default <- function(object, t, termination, time.vec, latent.vec) {
   cat("please input the right model")
 }
 
