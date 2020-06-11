@@ -17,10 +17,17 @@
 #' @export
 
 
-drawHPIntensity <- function(lambda0, i, alpha, beta, start, end, history, hawkes_time, color = 1) {
+drawHPIntensity <- function(lambda0, i, alpha, beta, start, end, history, hawkes_time, color = 1, add=FALSE) {
   n <- length(hawkes_time)
   m <- length(history)
 
+  if(add==FALSE){
+    graphics::plot(0, 0,
+      xlim = c(start, hawkes_time[n]), ylim = c(0, 1), type = "n", xlab = "Time", ylab = "Intensity",
+      main = 'Hawkes Process'
+    )
+  }
+  
   if (n == 0) {
     if (i == 1) {
       segments(x0 = start, x1 = end, y0 = lambda0)
