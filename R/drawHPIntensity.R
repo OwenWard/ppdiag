@@ -11,6 +11,7 @@
 #' @param history the past event times
 #' @param hawkes_time the event times happened in this state
 #' @param color A specification for the default plotting color.
+#' @param add whether to add the hawkes intensity to an existing plot
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 

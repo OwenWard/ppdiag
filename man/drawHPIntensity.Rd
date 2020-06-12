@@ -13,7 +13,8 @@ drawHPIntensity(
   end,
   history,
   hawkes_time,
-  color = 1
+  color = 1,
+  add = FALSE
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ drawHPIntensity(
 \item{hawkes_time}{the event times happened in this state}
 
 \item{color}{A specification for the default plotting color.}
+
+\item{add}{whether to add the hawkes intensity to an existing plot}
 }
 \description{
 Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
