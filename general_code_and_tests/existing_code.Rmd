@@ -3,8 +3,8 @@ title: "Test Case of Existing Functions and `R` classes"
 author: "Owen Ward"
 date: "6/6/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -143,8 +143,8 @@ devtools::load_all() # to load in the package we are working on
 drawHPIntensity(lambda0 = hawkes.par$par[1],alpha = hawkes.par$par[2],
                 beta = hawkes.par$par[3],
                 start = 0,
-                end =  max(events),
-                hawkes_time = events,
+                end =  max(events[1:10]),
+                hawkes_time = events[1:10],
                 history = events,
                 i = 1)
 
