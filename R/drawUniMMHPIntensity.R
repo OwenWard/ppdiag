@@ -8,7 +8,6 @@
 #' @param add logical; if TRUE add to an already existing plot; if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot. Taken as FALSE (with a warning if a different value is supplied) if no graphics device is open.
 #' @param color A specification for the default plotting color.
 #' @param given_main title of the plot.
-#' @param add TRUE when using drawHPIntensity on a plot already called
 #' @importFrom graphics plot
 #' @importFrom graphics points
 #' @importFrom graphics legend
