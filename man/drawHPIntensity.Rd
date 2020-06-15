@@ -5,25 +5,18 @@
 \title{Draw the intensity of Hawkes Process}
 \usage{
 drawHPIntensity(
-  lambda0,
-  i,
-  alpha,
-  beta,
+  object,
   start,
   end,
   history,
   hawkes_time,
-  color = 1
+  color = 1,
+  i = 1,
+  add = FALSE
 )
 }
 \arguments{
-\item{lambda0}{parameters for Hawkes process}
-
-\item{i}{state number}
-
-\item{alpha}{parameters for Hawkes process}
-
-\item{beta}{parameters for Hawkes process}
+\item{object}{parameters for Hawkes process}
 
 \item{start}{the start time of current state}
 
@@ -34,7 +27,13 @@ drawHPIntensity(
 \item{hawkes_time}{the event times happened in this state}
 
 \item{color}{A specification for the default plotting color.}
+
+\item{i}{state number this corresponds to a state jump directly before
+which is only important when using mmhp}
+
+\item{add}{whether to add the hawkes intensity to an existing plot}
 }
 \description{
 Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
+while also available independently
 }

@@ -3,8 +3,8 @@ title: "Test Case of Existing Functions and `R` classes"
 author: "Owen Ward"
 date: "6/6/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -35,7 +35,7 @@ length(Brastings)
 
 range(Brastings)
 
-events <- Brastings[1:100]
+events <- Brastings[1:20]
 
 tibble(times=events,value = 1) %>%
   ggplot(aes(times,value)) + geom_point() + theme(axis.ticks = element_blank(),axis.text.y = element_blank()) 
@@ -119,7 +119,8 @@ We can fit a Hawkes process.
 
 ```{r}
 hawkes.par<-optim(par=rep(0.01,3), fn=uniHawkesNegLogLik, 
-                    t=events, control = list(maxit = 1000) )
+                    t=events, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
+                  method = "L-BFGS-B")
 
 # optim does minimization by default. the min of the negative loglikelihood
 # is the max of the likelihood
@@ -140,14 +141,24 @@ We then want to use `hawkes.par$par to plot.
 ```{r, error=TRUE}
 devtools::load_all() # to load in the package we are working on
 
-drawHPIntensity(lambda0 = hawkes.par$par[1],alpha = hawkes.par$par[2],
-                beta = hawkes.par$par[3],
-                start = 0,
-                end =  max(events),
-                hawkes_time = events,
-                history = events,
-                i = 1)
 
+hawkes_par <- list(lambda0 = 0.15,alpha=0.1,
+                   beta = 0.25)
+hawkes_max_intensity(hawkes_par,events[1:10])
+
+
+drawHPIntensity(object = hawkes_par,
+                start = 0,
+                end =  max(events[1:10]),
+                hawkes_time = events[1:10],
+                history = NULL,
+                i = 1)
+drawHPIntensity(object = hawkes_par,
+                start = 0,
+                end =  max(events[1:10]),
+                hawkes_time = events[1:10],
+                history = NULL,
+                i = 0)
 
 ```
 This doesn't work because `drawHPIntensity` is currently only really built to
