@@ -26,16 +26,11 @@ drawHPIntensity <- function(lambda0, i = 1, alpha, beta,
                             color = 1, add=FALSE) {
   n <- length(hawkes_time)
   m <- length(history)
-  hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
-  #events <- c(history,hawkes_time)
-  events <- hawkes_time
-  y_max <- hawkes_max_intensity(object = hawkes_par,events)
-
   if(add==FALSE){
-    #segments=data.frame(x0=double(),y0=double(),y1=double())
-    #curves=data.frame(from=double(),to=double())
-    #max=c()
-    #ylim=c(0,max(max))
+    hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
+    #events <- c(history,hawkes_time)
+    events <- hawkes_time
+    y_max <- hawkes_max_intensity(object = hawkes_par,events)
     ylim = c(0,y_max)
     graphics::plot(0, 0,
                    xlim = c(start, end),
