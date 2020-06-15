@@ -20,7 +20,7 @@ pearsonresidual <- function(object, t, termination, time.vec = NULL, latent.vec 
 #' @rdname pearsonresidual
 #' @export
 pearsonresidual.default <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
-  cat("please input the right model")
+  cat("Please input the right model. Select from hp and mmhp. ")
 }
 
 #' @rdname pearsonresidual
