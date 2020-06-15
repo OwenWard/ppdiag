@@ -45,8 +45,9 @@ drawUniMMHPIntensity <- function(mmhp, simulation, yupper = 10, add = FALSE, col
       hawkes_time <- t[t >= state_time[i] & t < state_time[i + 1]]
       if (i == 1) hawkes_time <- hawkes_time[-1]
       history <- t[t < state_time[i]]
-      drawHPIntensity(lambda1, i, alpha, beta, state_time[i], state_time[i + 1], history[-1], hawkes_time,
-                      color = color, add = TRUE)
+      hawkes_obj <- list(lambda1,alpha,beta)
+      drawHPIntensity(object = hawkes_obj, state_time[i], state_time[i + 1], history[-1], hawkes_time,
+                      color = color,i, add = TRUE)
     } else {
       segments(x0 = state_time[i], x1 = state_time[i + 1], y0 = lambda0, lty = 2, col = color)
     }

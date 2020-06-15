@@ -3,16 +3,14 @@
 #' Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
 #' while also available independently
 #'
-#' @param lambda0 parameters for Hawkes process
-#' @param i state number this corresponds to a state jump directly before
-#' which is only important when using mmhp
-#' @param beta parameters for Hawkes process
-#' @param alpha parameters for Hawkes process
+#' @param object parameters for Hawkes process
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
 #' @param hawkes_time the event times happened in this state
 #' @param color A specification for the default plotting color.
+#' @param i state number this corresponds to a state jump directly before
+#' which is only important when using mmhp
 #' @param add whether to add the hawkes intensity to an existing plot
 #' @importFrom graphics curve
 #' @importFrom graphics segments
@@ -21,16 +19,19 @@
 #' @export
 
 
-drawHPIntensity <- function(lambda0, i = 1, alpha, beta, 
+drawHPIntensity <- function(object, 
                             start, end, history, hawkes_time,
-                            color = 1, add=FALSE) {
+                            color = 1, i = 1, add=FALSE) {
   n <- length(hawkes_time)
   m <- length(history)
+  lambda0 = object$lambda0
+  alpha = object$alpha
+  beta = object$beta
   if(add==FALSE){
-    hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
+    #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
     #events <- c(history,hawkes_time)
     events <- hawkes_time
-    y_max <- hawkes_max_intensity(object = hawkes_par,events)
+    y_max <- hawkes_max_intensity(object,events)
     ylim = c(0,y_max)
     graphics::plot(0, 0,
                    xlim = c(start, end),

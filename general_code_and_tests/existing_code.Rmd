@@ -142,20 +142,18 @@ We then want to use `hawkes.par$par to plot.
 devtools::load_all() # to load in the package we are working on
 
 
-hawkes_par <- list(lambda0 = 0.5,alpha=0.1,
-                   beta = hawkes.par$par[3])
+hawkes_par <- list(lambda0 = 0.15,alpha=0.1,
+                   beta = 0.25)
 hawkes_max_intensity(hawkes_par,events[1:10])
 
 
-drawHPIntensity(lambda0 = 0.01,alpha = 0.21,
-                beta = 0.5,
+drawHPIntensity(object = hawkes_par,
                 start = 0,
                 end =  max(events[1:10]),
                 hawkes_time = events[1:10],
                 history = NULL,
                 i = 1)
-drawHPIntensity(lambda0 = 0.01,alpha = 0.21,
-                beta = 0.5,
+drawHPIntensity(object = hawkes_par,
                 start = 0,
                 end =  max(events[1:10]),
                 hawkes_time = events[1:10],
