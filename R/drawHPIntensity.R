@@ -4,7 +4,8 @@
 #' while also available independently
 #'
 #' @param lambda0 parameters for Hawkes process
-#' @param i state number
+#' @param i state number this corresponds to a state jump directly before
+#' which is only important when using mmhp
 #' @param beta parameters for Hawkes process
 #' @param alpha parameters for Hawkes process
 #' @param start the start time of current state

@@ -148,13 +148,19 @@ hawkes_max_intensity(hawkes_par,events[1:10])
 
 
 drawHPIntensity(lambda0 = 0.01,alpha = 0.21,
-                beta = 0.2,
+                beta = 0.5,
                 start = 0,
                 end =  max(events[1:10]),
                 hawkes_time = events[1:10],
                 history = NULL,
                 i = 1)
-
+drawHPIntensity(lambda0 = 0.01,alpha = 0.21,
+                beta = 0.5,
+                start = 0,
+                end =  max(events[1:10]),
+                hawkes_time = events[1:10],
+                history = NULL,
+                i = 0)
 
 ```
 This doesn't work because `drawHPIntensity` is currently only really built to
