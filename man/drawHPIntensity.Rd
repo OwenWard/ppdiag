@@ -6,7 +6,7 @@
 \usage{
 drawHPIntensity(
   lambda0,
-  i,
+  i = 1,
   alpha,
   beta,
   start,
