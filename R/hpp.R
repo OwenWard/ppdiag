@@ -3,7 +3,6 @@
 #' @param lambda rate of the poisson process
 #' @param n number of events
 #' @param t0 start time of events
-#' @importFrom 
 #' @return a vector of length n
 #' @export
 
