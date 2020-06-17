@@ -8,7 +8,7 @@
 #' @return a vector of length n
 #' @export
 
-hpp <- function(lambda,start=0,end=0,n=NULL){
+simulatehpp <- function(lambda,start=0,end=0,n=NULL){
   if(!is.null(n)){
     if(end>start){
       cat("hpp events with length n will be generated, end time might be 
