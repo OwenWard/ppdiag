@@ -15,13 +15,14 @@ simulatehpp <- function(lambda,start,end=0,n=NULL){
           different from the value you entered, if you have a preferred 
           end time, please rerun the function without specifying n.")
     }
-    return(cumsum(c(start,-log(runif(n-1))/lambda)))
+    hpp=cumsum(c(start,-log(runif(n-1))/lambda))
+    return (hpp[2:length(hpp)])
   }else{
     n=rpois(n=1,lambda=lambda*end)
-    while(n==0){
-      n=rpois(n=1,lambda=lambda*end)
+    if(n==0){
+      return (NULL)
     }
-    u=(end-start)*runif(n-1)+start
-    return (sort(c(start,u)))
+    hpp=(end-start)*runif(n-1)+start
+    return (sort(hpp))
   }
 }
