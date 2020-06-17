@@ -9,7 +9,7 @@
 #' @return hpp object
 #' @export
 
-hp <- function(lambda, start=0, end=0, n = NULL) {
+hpp <- function(lambda, start=0, end=0, n = NULL) {
   y <- c(list(lambda=lambda, start=start, end=end, n=n))
   class(y) <- "hpp"
   return(y)
