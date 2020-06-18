@@ -2,7 +2,7 @@
 #'
 #' Draw the event time counts for homogeneous poisson process
 #'
-#' @param event homogeneous poisson process events
+#' @param events homogeneous poisson process events
 #' @param color a specification for the default plotting color.
 #' @importFrom graphics plot
 
