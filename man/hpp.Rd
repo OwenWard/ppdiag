@@ -4,7 +4,7 @@
 \alias{hpp}
 \title{Create a homogeneous poisson process model}
 \usage{
-hpp(lambda, start = 0, end = 0, n = NULL)
+hpp(lambda, start = 0, end = 1, n = NULL)
 }
 \arguments{
 \item{lambda}{rate of the poisson process}
