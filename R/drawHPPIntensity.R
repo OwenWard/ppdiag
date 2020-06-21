@@ -20,6 +20,6 @@ drawHPPIntensity <- function(hpp,color){
 		end=max(events)
 	}
 	plot(c(start,end), c(0,lambda*2), type = "n", xlab = "event times", ylab = "lambda", 
-		main="intensity of homogeneous poisson process")
+		main="Intensity of homogeneous poisson process")
 	abline(h=lambda, col=color)
 }
