@@ -7,12 +7,12 @@
 #' @param alpha parameters for Hawkes process.
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
-#' @param horizon end time of the Hawkes process.
+#' @param end end time of the Hawkes process.
 #' @importFrom stats runif
 
 #' @return simulated Hawkes Process
 #' @export
-simulatehp <- function(lambda0, alpha, beta, start, horizon, history) {
+simulatehp <- function(lambda0, alpha, beta, start, end, history) {
   j0 <- length(history) + 1
   lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + alpha * sum(exp(-beta * (rep(start, j0 - 2) - history[2:(j0 - 1)]))))
   lambda.max <- lambda.star
@@ -22,7 +22,7 @@ simulatehp <- function(lambda0, alpha, beta, start, horizon, history) {
   s <- -log(U) / lambda.star
   ti <- start + s
   repeat {
-    if (ti > horizon) {
+    if (ti > end) {
       break
     }
 

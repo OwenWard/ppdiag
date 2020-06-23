@@ -19,8 +19,8 @@
 #' @export
 
 
-drawHPIntensity <- function(object, 
-                            start, end, history, hawkes_time,
+drawHPIntensity <- function(object, hawkes_time,
+                            start = 0, end = max(hawkes_time +1), history = NULL,
                             color = 1, i = 1, add=FALSE) {
   n <- length(hawkes_time)
   m <- length(history)
