@@ -4,7 +4,7 @@
 \alias{simulatehp}
 \title{Simulate Hawkes process during active state}
 \usage{
-simulatehp(lambda0, alpha, beta, start, horizon, history)
+simulatehp(lambda0, alpha, beta, start, end, history)
 }
 \arguments{
 \item{lambda0}{parameters for Hawkes process.}
@@ -15,7 +15,7 @@ simulatehp(lambda0, alpha, beta, start, horizon, history)
 
 \item{start}{start time of the Hawkes process.}
 
-\item{horizon}{end time of the Hawkes process.}
+\item{end}{end time of the Hawkes process.}
 
 \item{history}{the past event times.}
 }
