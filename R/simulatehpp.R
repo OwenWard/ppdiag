@@ -1,16 +1,17 @@
 #' Simulate homogeneous poisson process events
 #'
-#' @param lambda rate of the poisson process
-#' @param n number of events
-#' @param start start time of events
-#' @param end end time of events
+#' @param hpp hpp object in list type, (lambda, start=0, end=1, n = NULL)
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' 
 #' @return a vector of length n
 #' @export
 
-simulatehpp <- function(lambda,end = 1,start = 0,n=NULL){
+simulatehpp <- function(hpp){
+  lambda=hpp$lambda
+  end=hpp$end
+  start=hpp$start
+  n=hpp$n
   if(start == end) {
     stop("Start and end time identical")
   }
