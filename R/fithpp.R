@@ -10,7 +10,7 @@
 fithpp <- function(t){
 	start=min(t)
 	end=max(t)
-	n=lenth(t)
+	n=length(t)
 	lambda=n/(end-start)
 	hpp_object=list(lambda=lambda, start=start, end=end, n=n)
 	class(hpp_object)="hpp"
