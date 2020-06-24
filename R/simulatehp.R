@@ -2,9 +2,7 @@
 #'
 #' Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
 #'
-#' @param lambda0 parameters for Hawkes process.
-#' @param beta parameters for Hawkes process.
-#' @param alpha parameters for Hawkes process.
+#' @param hp hawkes process object, including parameters in list type (lambda0, alpha, beta, tau)
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
 #' @param end end time of the Hawkes process.
@@ -12,7 +10,14 @@
 
 #' @return simulated Hawkes Process
 #' @export
-simulatehp <- function(lambda0, alpha, beta, start, end, history) {
+simulatehp <- function(hp, start, end, history) {
+  events=hp$tau
+  if(!is.null(events)){
+    stop("Event time already in the hp object.")
+  }
+  lambda0=hp$lambda0
+  alpha=hp$alpha
+  beta=hp$beta
   j0 <- length(history) + 1
   lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + alpha * sum(exp(-beta * (rep(start, j0 - 2) - history[2:(j0 - 1)]))))
   lambda.max <- lambda.star
