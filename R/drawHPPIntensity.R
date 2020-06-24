@@ -7,7 +7,6 @@
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points
-#' @importFrom graphics points
 #' @export
 
 
