@@ -2,9 +2,6 @@
   title: "PPDiag"
 output: pdf_document
 ---
-
-The aim of this document is to provide some simple examples of all the functions
-we write.
   
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -33,12 +30,15 @@ pois_y
 events <- simulatehpp(lambda = 1, end = 10)
 events
 
+
 events <- simulatehpp(pois_y)
 events
 ```
 
+# Homogeneous Poisson Process
 
 ## Fit
+
 
 ```{r}
 
@@ -47,12 +47,15 @@ fithpp(events)
 fit_hpp <- fithpp(events)
 
 ```
+=======
+
 
 
 
 
 ## Plot
 
+<<<<<<< HEAD
 ```{r}
 plothpp_step(events)
 ```
@@ -64,12 +67,13 @@ drawHPPIntensity(fit_hpp,color = "red")
 
 ```
 
+=======
+
 
 
 
 ## Diagnostics
 
-To be completed.
 
 # Hawkes Process
 
@@ -90,27 +94,10 @@ simulatehp(hp_obj,start = 0, end = 10, history = 0)
 
 ## Fit
 
-
-```{r}
-sample_events <- readRDS("time.RDS")
-initial <- c(0.5,0.5,0.5)
-fit_values <- fithp(vec = initial,t = sample_events, termination = max(sample_events))
-
-fit_values
-
-```
-
-
 ## Plot
-
-```{r}
-drawHPIntensity(object = fit_values, hawkes_time =  sample_events)
-```
-
 
 ## Diagnostics
 
-To be completed.
 
 ```{r}
 ### something like (eventually)
