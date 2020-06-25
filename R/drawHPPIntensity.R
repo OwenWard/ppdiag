@@ -16,10 +16,10 @@ drawHPPIntensity <- function(hpp,color){
 	lambda=hpp$lambda
 	n=hpp$n
 	if(!is.null(n)){
-		events=simulatehpp(lambda=lambda, start=start, end=end, n=n) #if n not null, we need to simulate to get end
+		events=simulatehpp(hpp) #if n not null, we need to simulate to get end
 		end=max(events)
 	}else{
-	  events=simulatehpp(lambda=lambda, start=start, end=end)
+	  events=simulatehpp(hpp)
 	}
 	plot(c(start,end), c(0,lambda*2), type = "n", xlab = "event times", ylab = "lambda", 
 		main="Intensity of homogeneous poisson process")
