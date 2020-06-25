@@ -5,6 +5,7 @@
 \alias{rawresidual.default}
 \alias{rawresidual.hp}
 \alias{rawresidual.mmhp}
+\alias{rawresidual.hpp}
 \title{Compute raw residuals for social network models}
 \usage{
 rawresidual(object, t, termination, time.vec, latent.vec)
@@ -14,6 +15,8 @@ rawresidual(object, t, termination, time.vec, latent.vec)
 \method{rawresidual}{hp}(object, t, termination, time.vec, latent.vec)
 
 \method{rawresidual}{mmhp}(object, t, termination, time.vec, latent.vec)
+
+\method{rawresidual}{hpp}(object, t)
 }
 \arguments{
 \item{object}{social network model contating the parameters}

@@ -10,7 +10,7 @@
 #' @export
 
 
-drawHPPIntensity <- function(hpp,color){
+drawHPPIntensity <- function(hpp,color = "red"){
 	start=hpp$start
 	end=hpp$end
 	lambda=hpp$lambda

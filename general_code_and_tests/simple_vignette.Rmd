@@ -21,7 +21,7 @@ devtools::load_all()  ## loads ppdiag
 ## Class
 
 ```{r}
-pois_y <- hpp(lambda = 1)
+pois_y <- hpp(lambda = 1, end = 10)
 
 pois_y
 ```
@@ -33,6 +33,8 @@ pois_y
 events <- simulatehpp(lambda = 1, end = 10)
 events
 
+events <- simulatehpp(pois_y)
+events
 ```
 
 
@@ -40,7 +42,9 @@ events
 
 ```{r}
 
-hppmle(events)
+fithpp(events)
+
+fit_hpp <- fithpp(events)
 
 ```
 
@@ -54,6 +58,10 @@ plothpp_step(events)
 ```
 ```{r}
 drawHPPIntensity(pois_y,color = "red")
+
+drawHPPIntensity(fit_hpp,color = "red")
+# if we have events can we plot them rather than simulate new ones?
+
 ```
 
 
@@ -69,8 +77,13 @@ To be completed.
 ## Simulate
 
 ```{r}
+
+hp_obj <- hp(lambda0 = 0.1,alpha = 0.5,beta = 0.5)
+
 simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
            history = 0)
+
+simulatehp(hp_obj,start = 0, end = 10, history = 0)
 
 ```
 

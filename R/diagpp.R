@@ -9,19 +9,19 @@
 #' @return print qq plot and ks plot, and print out pearson and raw residuals.
 #' @export
 
-diag <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
-  UseMethod("diag")
+diagpp <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+  UseMethod("diagpp")
 }
 
-#' @rdname diag
+#' @rdname diagpp
 #' @export
-diag.default <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+diagpp.default <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   cat("Please input the right model. Select from hp and mmhp. ")
 }
 
-#' @rdname diag
+#' @rdname diagpp
 #' @export
-diag.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+diagpp.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
   r=compensator(object, t, pzt)
   qqexp(r)
   ksplot(r)
@@ -31,9 +31,9 @@ diag.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, lat
   paste("The pearson residual is", pr)
 }
 
-#' @rdname diag
+#' @rdname diagpp
 #' @export
-diag.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
   r=compensator(object, t, pzt)
   qqexp(r)
   ksplot(r)

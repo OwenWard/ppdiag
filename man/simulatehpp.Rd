@@ -4,16 +4,10 @@
 \alias{simulatehpp}
 \title{Simulate homogeneous poisson process events}
 \usage{
-simulatehpp(lambda, end = 1, start = 0, n = NULL)
+simulatehpp(hpp)
 }
 \arguments{
-\item{lambda}{rate of the poisson process}
-
-\item{end}{end time of events}
-
-\item{start}{start time of events}
-
-\item{n}{number of events}
+\item{hpp}{hpp object in list type, (lambda, start=0, end=1, n = NULL)}
 }
 \value{
 a vector of length n

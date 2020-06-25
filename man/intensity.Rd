@@ -6,6 +6,7 @@
 \alias{intensity.mmhp}
 \alias{intensity.hp}
 \alias{intensity.mmpp}
+\alias{intensity.hpp}
 \title{Compute the intensity of social network model}
 \usage{
 intensity(object, event, method = "function")
@@ -17,6 +18,8 @@ intensity(object, event, method = "function")
 \method{intensity}{hp}(object, event, method = "function")
 
 \method{intensity}{mmpp}(object, event, method = "function")
+
+\method{intensity}{hpp}(object, event, method = "function")
 }
 \arguments{
 \item{object}{an object of MMHP/HP/MMPP
