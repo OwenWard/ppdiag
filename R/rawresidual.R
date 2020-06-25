@@ -62,3 +62,12 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
   return(N - all_Lambda)
 }
 
+#' @rdname rawresidual
+#' @export
+rawresidual.hpp <- function(object, t) {
+  N <- length(t)
+  end <- object$end
+  est.intensity <- intensity(object, t, method = "numeric")
+  all_Lambda <- sum(est.intensity)
+  return(N - all_Lambda)
+}
