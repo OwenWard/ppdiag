@@ -66,7 +66,9 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        simulate.result <- simulatehp(lambda1, alpha, beta, x[i - 1], x[i], tau[1:(j - 1)])
+        hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
+        class(hp_obj)="hp"
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], tau[1:(j - 1)])
         hp <- simulate.result$t
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
@@ -109,7 +111,9 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        simulate.result <- simulatehp(lambda1, alpha, beta, x[i - 1], x[i], tau[1:(j - 1)])
+        hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
+        class(hp_obj)="hp"
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], tau[1:(j - 1)])
         hp <- simulate.result$t
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
