@@ -62,3 +62,22 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
   return(N - all_Lambda)
 }
 
+#' @rdname intensity
+#' @export
+intensity.hpp <- function(object, event, method = "function"){
+  if(method=="function"){
+    lambda=object$lambda
+    start=object$start
+    end=object$end
+    n=object$n
+    intensity <- function(x) {
+      return(lambda)
+    }
+    return(Vectorize(intensity))
+  } else if (method == "numeric"){
+    return(rep(lambda,n))
+  } else if (method == "integral") {
+    return ((end-start)*lambda)
+  }  
+}
+
