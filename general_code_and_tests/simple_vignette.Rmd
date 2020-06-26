@@ -109,7 +109,7 @@ drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
 
 ```{r}
 ### something like (eventually)
-diag(hp_object)
+### diagpp(hp_object)
 ```
 
 
