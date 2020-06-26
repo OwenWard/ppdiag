@@ -229,13 +229,17 @@ intensity.mmpp <- function(object, event, method = "function") {
 #' @rdname intensity
 #' @export
 intensity.hpp <- function(object, event, method = "function"){
+  lambda=object$lambda
+  start=object$start
+  end=object$end
+  n=object$n
+  if(is.null(n)){
+    n=rpois(n=1,lambda=lambda*end)
+  }
   if(method=="function"){
-    lambda=object$lambda
-    start=object$start
-    end=object$end
-    n=object$n
     intensity <- function(x) {
-      return(lambda)
+      l=lambda
+      return(l)
     }
     return(Vectorize(intensity))
   } else if (method == "numeric"){
