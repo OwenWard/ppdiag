@@ -42,3 +42,15 @@ diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL,
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
   paste("The pearson residual is", pr)
 }
+
+
+#' @rdname diagpp
+#' @export
+diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+  qqexp(t)
+  ksplot(t)
+  rr=rawresidual(object, t, max(t), time.vec, latent.vec)
+  paste("The raw residual is", rr)
+  pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
+  paste("The pearson residual is", pr)
+}
