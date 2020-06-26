@@ -2,7 +2,7 @@
 #'
 #' Draw the event time counts for homogeneous poisson process
 #'
-#' @param object parameters for homogeneous poisson process
+#' @param events parameters for homogeneous poisson process
 #' @param color A specification for the default plotting color.
 #' @importFrom graphics plot
 #' @importFrom stats stepfun
