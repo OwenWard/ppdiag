@@ -5,7 +5,7 @@
 #' @param hp hawkes process object, including parameters in list type (lambda0, alpha, beta, tau)
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
-#' @param horizon end time of the Hawkes process.
+#' @param end end time of the Hawkes process.
 #' @importFrom stats runif
 
 #' @return simulated Hawkes Process
@@ -27,7 +27,7 @@ simulatehp <- function(hp, start, end, history) {
   s <- -log(U) / lambda.star
   ti <- start + s
   repeat {
-    if (ti > horizon) {
+    if (ti > end) {
       break
     }
 
