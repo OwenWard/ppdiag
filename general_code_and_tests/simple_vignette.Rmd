@@ -73,7 +73,10 @@ drawHPPIntensity(fit_hpp,color = "red")
 
 
 ## Diagnostics
-
+```{r}
+### something like (eventually)
+diagpp(pois_y,t=events)
+```
 
 # Hawkes Process
 
@@ -109,7 +112,7 @@ drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
 
 ```{r}
 ### something like (eventually)
-### diagpp(hp_object)
+diagpp(hp_obj, t=events)
 ```
 
 
