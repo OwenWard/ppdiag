@@ -6,10 +6,10 @@
 \usage{
 drawHPIntensity(
   object,
+  start,
+  end,
+  history,
   hawkes_time,
-  start = 0,
-  end = max(hawkes_time + 1),
-  history = NULL,
   color = 1,
   i = 1,
   add = FALSE
@@ -18,13 +18,13 @@ drawHPIntensity(
 \arguments{
 \item{object}{parameters for Hawkes process}
 
-\item{hawkes_time}{the event times happened in this state}
-
 \item{start}{the start time of current state}
 
 \item{end}{the end time of current state}
 
 \item{history}{the past event times}
+
+\item{hawkes_time}{the event times happened in this state}
 
 \item{color}{A specification for the default plotting color.}
 

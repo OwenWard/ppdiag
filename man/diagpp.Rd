@@ -5,6 +5,7 @@
 \alias{diagpp.default}
 \alias{diagpp.hp}
 \alias{diagpp.mmhp}
+\alias{diagpp.hpp}
 \title{Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.}
 \usage{
 diagpp(
@@ -35,6 +36,15 @@ diagpp(
 )
 
 \method{diagpp}{mmhp}(
+  object,
+  t,
+  pzt = NULL,
+  time.vec = NULL,
+  latent.vec = NULL,
+  latent_event = NULL
+)
+
+\method{diagpp}{hpp}(
   object,
   t,
   pzt = NULL,

@@ -47,7 +47,7 @@ fithpp(events)
 fit_hpp <- fithpp(events)
 
 ```
-=======
+
 
 
 
@@ -55,10 +55,12 @@ fit_hpp <- fithpp(events)
 
 ## Plot
 
-<<<<<<< HEAD
+
 ```{r}
 plothpp_step(events)
 ```
+
+
 ```{r}
 drawHPPIntensity(pois_y,color = "red")
 
@@ -67,7 +69,7 @@ drawHPPIntensity(fit_hpp,color = "red")
 
 ```
 
-=======
+
 
 
 
