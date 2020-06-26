@@ -93,15 +93,23 @@ simulatehp(hp_obj,start = 0, end = 10, history = 0)
 
 
 ## Fit
+```{r}
+init=rep(0.1,3)
+fithp(init,events,max(events))
+fit_hp <- fithp(init,events,max(events))
+```
 
 ## Plot
+```{r}
+drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
+```
 
 ## Diagnostics
 
 
 ```{r}
 ### something like (eventually)
-###diag(fit_values)
+diag(hp_object)
 ```
 
 
