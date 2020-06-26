@@ -15,6 +15,8 @@
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom stats optimize
+#' @importFrom graphics points
+
 
 #' @export
 
@@ -37,7 +39,9 @@ drawHPIntensity <- function(object,
                    xlim = c(start, end),
                    ylim = ylim, type = "n", xlab = "Time", 
                    ylab = "Intensity",main = 'Hawkes')
-    
+    for(i in 1:length(events)){
+	    graphics::points(x=events[i],y=0,pch=1,col="blue")
+	  }
     
     if (n == 0) {
       if (i == 1) {
