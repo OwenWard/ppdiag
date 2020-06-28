@@ -16,7 +16,6 @@ devtools::load_all()  ## loads ppdiag
 # Homogeneous Poisson Process
 
 ## Class
-
 ```{r}
 pois_y <- hpp(lambda = 1, end = 10)
 
@@ -25,21 +24,15 @@ pois_y
 
 
 ## Simulate
-
 ```{r}
-events <- simulatehpp(lambda = 1, end = 10)
-events
-
+# events <- simulatehpp(lambda = 1, end = 10)
+# events
 
 events <- simulatehpp(pois_y)
 events
 ```
 
-# Homogeneous Poisson Process
-
 ## Fit
-
-
 ```{r}
 
 fithpp(events)
@@ -48,14 +41,7 @@ fit_hpp <- fithpp(events)
 
 ```
 
-
-
-
-
-
 ## Plot
-
-
 ```{r}
 plothpp_step(events)
 ```
@@ -66,72 +52,76 @@ drawHPPIntensity(pois_y,color = "red")
 
 drawHPPIntensity(fit_hpp,color = "red")
 # if we have events can we plot them rather than simulate new ones?
-
 ```
-
-
-
-
-
 
 ## Diagnostics
 ```{r}
-### something like (eventually)
 diagpp(pois_y,t=events)
 ```
 
+
+
 # Hawkes Process
 
+## Class
+```{r}
+hp_obj <- hp(lambda0 = 0.1,alpha = 0.5,beta = 0.5)
+```
 
 ## Simulate
-
 ```{r}
-
-hp_obj <- hp(lambda0 = 0.1,alpha = 0.5,beta = 0.5)
-
-simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
+# simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
            history = 0)
 
 simulatehp(hp_obj,start = 0, end = 10, history = 0)
-
 ```
-
 
 ## Fit
 ```{r}
 init=rep(0.1,3)
+
 fithp(init,events,max(events))
+
 fit_hp <- fithp(init,events,max(events))
 ```
 
 ## Plot
 ```{r}
 drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
+
+drawHPIntensity(fit_hp, start=0, end=max(events), history=0, hawkes_time=events)
 ```
 
 ## Diagnostics
-
-
 ```{r}
-### something like (eventually)
 diagpp(hp_obj, t=events)
 ```
 
 
+
 # MMHP
-
-## Plot
-
+## Class
 ```{r}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+
 x <- mmhp(Q, delta = c(1 / 3, 2 / 3), 
           lambda0 = 0.2,
           lambda1 = .75,
           alpha = 0.1,
           beta = 0.2)
+```
+
+## Simulate
+```{r}
 y <- simulatemmhp(x,nsim = 5)
+```
+
+## Plot
+```{r}
 drawUniMMHPIntensity(x, y)
 ```
 
-
 ## Diagnostics
+```{r}
+diagpp(x, t=y)
+```
