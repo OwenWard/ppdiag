@@ -100,7 +100,7 @@ pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.v
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, t, termination, time.vec=NULL, latent.vec=NULL) {
+pearsonresidual.hpp <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event = NULL) {
   N <- length(t)
   end <- object$end
   est.intensity <- intensity(object, t, method = "numeric")
