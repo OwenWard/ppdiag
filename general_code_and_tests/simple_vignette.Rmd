@@ -28,6 +28,7 @@ pois_y
 # events <- simulatehpp(lambda = 1, end = 10)
 # events
 
+pois_y$n <- 50
 events <- simulatehpp(pois_y)
 events
 ```
