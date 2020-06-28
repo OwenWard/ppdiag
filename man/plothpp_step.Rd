@@ -7,9 +7,9 @@
 plothpp_step(events, color = "red")
 }
 \arguments{
-\item{color}{A specification for the default plotting color.}
+\item{events}{parameters for homogeneous poisson process}
 
-\item{object}{parameters for homogeneous poisson process}
+\item{color}{A specification for the default plotting color.}
 }
 \description{
 Draw the event time counts for homogeneous poisson process

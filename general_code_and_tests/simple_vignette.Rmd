@@ -1,5 +1,5 @@
 ---
-  title: "PPDiag"
+title: "PPDiag"
 output: pdf_document
 ---
   
@@ -123,5 +123,5 @@ drawUniMMHPIntensity(x, y)
 
 ## Diagnostics
 ```{r}
-diagpp(x, t=y)
+try(diagpp(x, t=y))
 ```

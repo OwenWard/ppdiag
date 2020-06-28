@@ -16,7 +16,7 @@ rawresidual(object, t, termination, time.vec, latent.vec)
 
 \method{rawresidual}{mmhp}(object, t, termination, time.vec, latent.vec)
 
-\method{rawresidual}{hpp}(object, t)
+\method{rawresidual}{hpp}(object, t, termination, time.vec, latent.vec)
 }
 \arguments{
 \item{object}{social network model contating the parameters}

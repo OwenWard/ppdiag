@@ -5,6 +5,7 @@
 \alias{pearsonresidual.default}
 \alias{pearsonresidual.mmhp}
 \alias{pearsonresidual.hp}
+\alias{pearsonresidual.hpp}
 \title{Compute Pearson residuals for social network models}
 \usage{
 pearsonresidual(
@@ -35,6 +36,15 @@ pearsonresidual(
 )
 
 \method{pearsonresidual}{hp}(
+  object,
+  t,
+  termination,
+  time.vec = NULL,
+  latent.vec = NULL,
+  latent_event = NULL
+)
+
+\method{pearsonresidual}{hpp}(
   object,
   t,
   termination,
