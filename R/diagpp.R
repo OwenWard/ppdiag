@@ -26,9 +26,8 @@ diagpp.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, l
   qqexp(r)
   ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  paste("The raw residual is", rr)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  paste("The pearson residual is", pr)
+  paste("The raw residual is", rr, ". The pearson residual is", pr, ".")
 }
 
 #' @rdname diagpp
@@ -38,9 +37,8 @@ diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL,
   qqexp(r)
   ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  paste("The raw residual is", rr)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  paste("The pearson residual is", pr)
+  paste("The raw residual is", rr, ". The pearson residual is", pr, ".")
 }
 
 
@@ -50,7 +48,6 @@ diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, 
   qqexp(t)
   ksplot(t)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  paste("The raw residual is", rr)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  paste("The pearson residual is", pr)
+  paste("The raw residual is", rr, ". The pearson residual is", pr, ".")
 }
