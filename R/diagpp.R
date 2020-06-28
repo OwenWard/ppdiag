@@ -16,7 +16,7 @@ diagpp <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, la
 #' @rdname diagpp
 #' @export
 diagpp.default <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
-  cat("Please input the right model. Select from hp and mmhp. ")
+  cat("Please input the right model. Select from hp, hpp, and mmhp. ")
 }
 
 #' @rdname diagpp
