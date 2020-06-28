@@ -71,7 +71,7 @@ hp_obj <- hp(lambda0 = 0.1,alpha = 0.5,beta = 0.5)
 ## Simulate
 ```{r}
 # simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
-           history = 0)
+#           history = 0)
 
 simulatehp(hp_obj,start = 0, end = 10, history = 0)
 ```
