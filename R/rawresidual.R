@@ -64,7 +64,7 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, t) {
+rawresidual.hpp <- function(object, t, termination, time.vec, latent.vec) {
   N <- length(t)
   end <- object$end
   est.intensity <- intensity(object, t, method = "numeric")
