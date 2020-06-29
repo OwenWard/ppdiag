@@ -10,15 +10,24 @@
 #' @export
 
 
-drawHPPIntensity <- function(hpp,color = "red"){
+drawHPPIntensity <- function(hpp, events=NULL, color = "red"){
 	start=hpp$start
 	end=hpp$end
 	lambda=hpp$lambda
 	n=hpp$n
-	if(!is.null(n)){
+	if(!is.null(events)){
+		message("The inputted events and its corresponding intensity will be plotted, the hpp object input will be ignored.")
+		hpp_obj=fithpp(events)
+		start=hpp_obj$start
+		end=hpp_obj$end
+		lambda=hpp_obj$lambda
+		n=hpp_obj$n
+	}
+	else if(!is.null(n)){
 		events=simulatehpp(hpp) #if n not null, we need to simulate to get end
 		end=max(events)
-	}else{
+	}
+	else{
 	  events=simulatehpp(hpp)
 	}
 	plot(c(start,end), c(0,lambda*2), type = "n", xlab = "event times", ylab = "lambda", 
