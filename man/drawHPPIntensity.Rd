@@ -4,7 +4,7 @@
 \alias{drawHPPIntensity}
 \title{Draw Intensity of Homogeneous Poisson Process}
 \usage{
-drawHPPIntensity(hpp, color = "red")
+drawHPPIntensity(hpp, events = NULL, color = "red")
 }
 \arguments{
 \item{hpp}{object for homogeneous poisson process}
