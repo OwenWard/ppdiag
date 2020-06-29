@@ -52,7 +52,10 @@ plothpp_step(events)
 drawHPPIntensity(pois_y,color = "red")
 
 drawHPPIntensity(fit_hpp,color = "red")
+
+drawHPPIntensity(fit_hpp, events=events, color = "red")
 # if we have events can we plot them rather than simulate new ones?
+# yes we can plot events, and the object inputted would be ignored, fitted intensity would be plotted
 ```
 
 ## Diagnostics
