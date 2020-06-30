@@ -112,6 +112,6 @@ pearsonresidual.hpp <- function(object, t, termination, time.vec=NULL, latent.ve
     end=1
   }
   est.intensity <- intensity(object, t, method = "numeric")
-  pr <- sum(1 / sqrt(est.intensity)) - (end-start)*sqrt(lambda)
+  pr <- sum(1 / sqrt(est.intensity)) - sum(sqrt(est.intensity))
   return(pr)
 }
