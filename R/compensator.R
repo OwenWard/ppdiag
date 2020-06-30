@@ -89,6 +89,9 @@ compensator.mmhp <- function(object, t, pzt) {
 compensator.hpp <- function(object, t, pzt = NULL) {
   N=length(t)
   lambda=object$lambda
-  Lambda=rep(lambda, N)
+  Lambda=rep(0,N)
+  for (i in 2:N){
+    Lambda[i]=(t[i]-t[i-1])*lambda
+  }
   return(Lambda)
 }
