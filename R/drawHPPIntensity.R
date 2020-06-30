@@ -3,6 +3,7 @@
 #' Draw the intensity for homogeneous poisson process events
 #'
 #' @param hpp object for homogeneous poisson process
+#' @param events event times input
 #' @param color a specification for the default plotting color.
 #' @importFrom graphics plot
 #' @importFrom graphics abline
