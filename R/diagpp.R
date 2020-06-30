@@ -47,8 +47,9 @@ diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL,
 #' @rdname diagpp
 #' @export
 diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
-  qqexp(t)
-  ksplot(t)
+  r=compensator(object, t, pzt)
+  qqexp(r)
+  ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
   cat("Raw residual: ", rr, "\n",sep = "")
