@@ -6,6 +6,7 @@
 #' @param time.vec time segment to calculate the intensity for `numeric` method
 #' @param latent.vec the probability of the latent space being in the active state
 #' @param latent_event the estimated latent space of the point process model
+#' @importFrom stats ks.test
 #' @return print qq plot and ks plot, and print out pearson and raw residuals.
 #' @export
 
@@ -27,8 +28,11 @@ diagpp.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, l
   ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
+  N=length(t)
+  ks=ks.test(t,rexp(length(t)))
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
+  print(ks)
 }
 
 #' @rdname diagpp
@@ -39,8 +43,11 @@ diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL,
   ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
+  N=length(t)
+  ks=ks.test(t,rexp(length(t)))
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
+  print(ks)
 }
 
 
@@ -52,6 +59,9 @@ diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, 
   ksplot(r)
   rr=rawresidual(object, t, max(t), time.vec, latent.vec)
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
+  N=length(t)
+  ks=ks.test(t,rexp(length(t)))
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
+  print(ks)
 }
