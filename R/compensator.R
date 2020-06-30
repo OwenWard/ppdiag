@@ -88,7 +88,7 @@ compensator.mmhp <- function(object, t, pzt) {
 #' @export
 compensator.hpp <- function(object, t, pzt = NULL) {
   N=length(t)
-  lambda-object$lambda
+  lambda=object$lambda
   Lambda=rep(lambda, N)
   return(Lambda)
 }
