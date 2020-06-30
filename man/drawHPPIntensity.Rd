@@ -9,6 +9,8 @@ drawHPPIntensity(hpp, events = NULL, color = "red")
 \arguments{
 \item{hpp}{object for homogeneous poisson process}
 
+\item{events}{event times input}
+
 \item{color}{a specification for the default plotting color.}
 }
 \description{

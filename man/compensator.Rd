@@ -6,7 +6,8 @@
 \alias{compensator.mmpp}
 \alias{compensator.hp}
 \alias{compensator.mmhp}
-\title{Compensators for MMHP, HP and MMPP models}
+\alias{compensator.hpp}
+\title{Compensators for MMHP, HP HPP, and MMPP models}
 \usage{
 compensator(object, t, pzt)
 
@@ -17,6 +18,8 @@ compensator(object, t, pzt)
 \method{compensator}{hp}(object, t, pzt = NULL)
 
 \method{compensator}{mmhp}(object, t, pzt)
+
+\method{compensator}{hpp}(object, t, pzt = NULL)
 }
 \arguments{
 \item{object}{a social network model}
@@ -29,5 +32,5 @@ compensator(object, t, pzt)
 vector of compensator
 }
 \description{
-Compensators for MMHP, HP and MMPP models
+Compensators for MMHP, HP HPP, and MMPP models
 }

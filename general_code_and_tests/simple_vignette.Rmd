@@ -77,16 +77,18 @@ hp_obj <- hp(lambda0 = 0.1,alpha = 0.5,beta = 0.5)
 # simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
 #           history = 0)
 
-simulatehp(hp_obj,start = 0, end = 10, history = 0)
+sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
+sims
+
 ```
 
 ## Fit
 ```{r}
 init=rep(0.1,3)
 
-fithp(init,events,max(events))
+fithp(init,sims$t,max(sims$t))
 
-fit_hp <- fithp(init,events,max(events))
+fit_hp <- fithp(init,sims$t,max(sims$t))
 ```
 
 ## Plot
@@ -98,7 +100,12 @@ drawHPIntensity(fit_hp, start=0, end=max(events), history=0, hawkes_time=events)
 
 ## Diagnostics
 ```{r}
-diagpp(hp_obj, t=events)
+diagpp(hp_obj, t=sims$t)
+# this is the truth
+
+
+diagpp(fit_hp, t = sims$t)
+
 ```
 
 
