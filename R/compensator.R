@@ -1,6 +1,6 @@
 ## Calculate compensators for different models
 
-#' Compensators for MMHP, HP and MMPP models
+#' Compensators for MMHP, HP HPP, and MMPP models
 #'
 #' @param object a social network model
 #' @param pzt probability
@@ -82,4 +82,13 @@ compensator.mmhp <- function(object, t, pzt) {
   }
   Lambda_mixed <- Lambda * pzt + lambda0 * interevent * (1 - pzt)
   return(Lambda_mixed)
+}
+
+#' @rdname compensator
+#' @export
+compensator.hpp <- function(object, t, pzt = NULL) {
+  N=length(t)
+  lambda-object$lambda
+  Lambda=rep(lambda, N)
+  return(Lambda)
 }
