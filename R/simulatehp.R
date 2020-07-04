@@ -10,7 +10,7 @@
 
 #' @return simulated Hawkes Process
 #' @export
-simulatehp <- function(hp, start, end, history) {
+simulatehp <- function(hp, start, end, history=0) {
   events=hp$tau
   if(!is.null(events)){
     stop("Event time already in the hp object.")
