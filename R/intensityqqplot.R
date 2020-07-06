@@ -34,7 +34,8 @@ intensityqqplot.hp <- function(object,
                             color=1, i=1, events, pzt = NULL) {
   r=compensator(object=object,t=events,pzt=pzt)  
   par(mfrow=c(2,1))
-  qqexp(r)          												drawHPIntensity(object=object,start=start,end=end,history=history,hawkes_time=hawkes_time,color=color,i=i,add=FALSE)
+  qqexp(r)
+  drawHPIntensity(object=object,start=start,end=end,history=history,hawkes_time=hawkes_time,color=color,i=i,add=FALSE)
 }
 
 
