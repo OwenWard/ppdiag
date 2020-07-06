@@ -63,6 +63,9 @@ drawHPPIntensity(fit_hpp, events=events, color = "red")
 diagpp(pois_y,t=events)
 ```
 
+```{r}
+intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,history=0,events=events)
+```
 
 
 # Hawkes Process
@@ -108,6 +111,9 @@ diagpp(fit_hp, t = sims$t)
 
 ```
 
+```{r}
+intensityqqplot(fit_hp,start=0,end=max(events),history=0,events=events)
+```
 
 
 # MMHP
@@ -135,4 +141,5 @@ drawUniMMHPIntensity(x, y)
 ## Diagnostics
 ```{r}
 try(diagpp(x, t=y))
+try(intensityqqplot(object=x,min(y$tau),max(y$tau),history=0,events=y$tau,pzt=0.5))
 ```
