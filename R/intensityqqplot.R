@@ -11,7 +11,7 @@
 #' @param events event times
 #' @param pzt probability for calculating rescaled-interevent times.
 #' which is only important when using mmhp
-
+#' @importFrom graphics par
 
 #' @export
 intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
@@ -58,8 +58,10 @@ intensityqqplot.mmhp <- function(object,
   r=compensator(object=object,t=events,pzt=pzt)  
   par(mfrow=c(1,2))
   qqexp(r)  
-  simulation=simulatemmhp(object)
-  drawUniMMHPIntensity(object=object, simulation=simulation, add=FALSE, color=color, given_main = "Intensity Plot of MMHP")  
+  simulation=simulatemmhp(object) # we don't want to sim this 
+  drawUniMMHPIntensity(mmhp = object, simulation=simulation, 
+                       add=FALSE, color=color,
+                       given_main = "Intensity Plot of MMHP")  
 }
 
 
