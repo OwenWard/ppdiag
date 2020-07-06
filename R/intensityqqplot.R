@@ -6,7 +6,6 @@
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
-#' @param hawkes_time the event times happened in this state
 #' @param color A specification for the default plotting color for intensity plot.
 #' @param i state number this corresponds to a state jump directly before
 #' @param events event times
@@ -15,14 +14,14 @@
 
 
 #' @export
-intensityqqplot <- function(object, start, end, history, hawkes_time, color, i, events, pzt){
+intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
 	UseMethod("intensityqqplot")
 }
 
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.default <- function(object, 
-                            start, end, history, hawkes_time,
+                            start, end, history,
                             color, i, events, pzt) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")   
 }
@@ -30,22 +29,22 @@ intensityqqplot.default <- function(object,
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hp <- function(object, 
-                            start, end, history, hawkes_time,
+                            start, end, history,
                             color=1, i=1, events, pzt = NULL) {
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(2,1))
+  par(mfrow=c(1,2))
   qqexp(r)
-  drawHPIntensity(object=object,start=start,end=end,history=history,hawkes_time=hawkes_time,color=color,i=i,add=FALSE)
+  drawHPIntensity(object=object,start=start,end=end,history=history,hawkes_time=events,color=color,i=i,add=FALSE)
 }
 
 
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hpp <- function(object, 
-                            start, end, history, hawkes_time,
+                            start, end, history,
                             color=1, i=1, events, pzt = NULL) {
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(2,1))
+  par(mfrow=c(1,2))
   qqexp(r)  
   drawHPPIntensity(object, events=events, color = color)  
 }
@@ -54,10 +53,10 @@ intensityqqplot.hpp <- function(object,
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.mmhp <- function(object, 
-                            start, end, history, hawkes_time,
+                            start, end, history,
                             color=1, i=1, events, pzt) {
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(2,1))
+  par(mfrow=c(1,2))
   qqexp(r)  
   simulation=simulatemmhp(object)
   drawUniMMHPIntensity(object=object, simulation=simulation, add=FALSE, color=color, given_main = "Intensity Plot of MMHP")  
