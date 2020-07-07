@@ -36,7 +36,7 @@ simulateNetworkhp <- function(lambda_matrix, alpha_matrix, beta_matrix, Z, start
     }
   }
   
-  event_data %>% arrange(Times) %>% head()
+  event_data <- event_data %>% arrange(Times) %>% head()
   
   return(event_data)
   
