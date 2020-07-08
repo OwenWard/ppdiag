@@ -9,7 +9,10 @@
 #' 
 #' @return a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
 #' @export
-
+#' @examples
+#' init=rep(0.1,3)
+#' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
+#' fithp(init,sims$t,max(sims$t))
 
 negloglik_hp<-function(vec,t,termination){
 	#transforms input list object into vector so that it can be used in optim 
