@@ -51,11 +51,11 @@ plothpp_step(events)
 ```{r}
 drawHPPIntensity(pois_y,color = "red")
 
-drawHPPIntensity(fit_hpp,color = "red")
+# this plots the fit_hpp intensity and its corresponding simulated events, since plot_events default is FALSE:
+drawHPPIntensity(fit_hpp,events=events, color = "red")
 
-drawHPPIntensity(fit_hpp, events=events, color = "red")
-# if we have events can we plot them rather than simulate new ones?
-# yes we can plot events, and the object inputted would be ignored, fitted intensity would be plotted
+# this plots the inputted events, since plot_events=TRUE:
+drawHPPIntensity(fit_hpp, events=events, color = "red", plot_events=TRUE)
 ```
 
 ## Diagnostics
