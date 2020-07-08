@@ -9,6 +9,7 @@
 #'
 #' @return hpp object
 #' @export
+#' @examples
 #' hpp(lambda = 1, end = 10)
 
 hpp <- function(lambda, start=0, end=1, n = NULL) {
