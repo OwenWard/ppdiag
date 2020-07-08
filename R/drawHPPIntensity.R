@@ -10,7 +10,9 @@
 #' @importFrom graphics abline
 #' @importFrom graphics points
 #' @export
-
+#' @examples
+#' pois_y <- hpp(lambda = 1, end = 10)
+#' drawHPPIntensity(pois_y,color = "red")
 
 drawHPPIntensity <- function(hpp, events=NULL, color = "red", plot_events=FALSE){
 	start=hpp$start
