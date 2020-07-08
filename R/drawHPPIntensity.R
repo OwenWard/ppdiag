@@ -5,24 +5,30 @@
 #' @param hpp object for homogeneous poisson process
 #' @param events event times input
 #' @param color a specification for the default plotting color.
+#' @param plot_events a boolean indicating whether events inputted will be plotted
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points
 #' @export
 
 
-drawHPPIntensity <- function(hpp, events=NULL, color = "red"){
+drawHPPIntensity <- function(hpp, events=NULL, color = "red", plot_events=FALSE){
 	start=hpp$start
 	end=hpp$end
 	lambda=hpp$lambda
 	n=hpp$n
 	if(!is.null(events)){
-		message("The inputted events and its corresponding intensity will be plotted, the hpp object input will be ignored.")
-		hpp_obj=fithpp(events)
-		start=hpp_obj$start
-		end=hpp_obj$end
-		lambda=hpp_obj$lambda
-		n=hpp_obj$n
+		if(plot_events==TRUE){
+			message("The inputted events and its corresponding intensity will be plotted, the hpp object input will be ignored.")
+			hpp_obj=fithpp(events)
+			start=hpp_obj$start
+			end=hpp_obj$end
+			lambda=hpp_obj$lambda
+			n=hpp_obj$n
+		}else{
+		  message("The inputted events will be ignored, the hpp object and its simulated events will be plotted.")
+		  events=simulatehpp(hpp)
+		}		
 	}
 	else if(!is.null(n)){
 		events=simulatehpp(hpp) #if n not null, we need to simulate to get end
