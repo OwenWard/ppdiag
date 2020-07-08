@@ -6,6 +6,10 @@
 #'
 #' @return an hpp object fitted
 #' @export
+#' @examples
+#' pois_y <- hpp(lambda = 1, end = 10)
+#' events <- simulatehpp(pois_y)
+#' fithpp(events)
 
 fithpp <- function(t){
 	start=min(t)
