@@ -6,9 +6,11 @@
 #' @param color A specification for the default plotting color.
 #' @importFrom graphics plot
 #' @importFrom stats stepfun
-
-
 #' @export
+#' @examples
+#' pois_y <- hpp(lambda = 1, end = 10, n=50)
+#' events <- simulatehpp(pois_y)
+#' plothpp_step(events)
 
 
 plothpp_step <- function(events, color="red"){
