@@ -9,6 +9,7 @@
 #'
 #' @return hpp object
 #' @export
+#' hpp(lambda = 1, end = 10)
 
 hpp <- function(lambda, start=0, end=1, n = NULL) {
   y <- c(list(lambda = lambda, start = start, end = end, n = n))
