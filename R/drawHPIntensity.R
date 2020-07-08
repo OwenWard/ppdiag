@@ -19,7 +19,11 @@
 
 
 #' @export
-
+#' @examples
+#' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+#' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
+#' events=sims$t
+#' drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
 
 drawHPIntensity <- function(object, 
                             start, end, history, hawkes_time,
