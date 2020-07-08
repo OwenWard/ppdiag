@@ -12,7 +12,7 @@
 #' @param pzt probability for calculating rescaled-interevent times.
 #' which is only important when using mmhp
 #' @importFrom graphics par
-
+#' @importFrom graphics layout
 #' @export
 intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
 	UseMethod("intensityqqplot")
@@ -31,9 +31,11 @@ intensityqqplot.default <- function(object,
 intensityqqplot.hp <- function(object, 
                             start, end, history,
                             color=1, i=1, events, pzt = NULL) {
+  layout(mat = matrix(c(1,2),nrow = 2, ncol = 1),heights = c(2, 2),widths = c(2, 2))
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(1,2))
+  par(mar = c(2, 2,1,1))
   qqexp(r)
+  par(mar = c(2, 2,1,1))
   drawHPIntensity(object=object,start=start,end=end,history=history,hawkes_time=events,color=color,i=i,add=FALSE)
 }
 
@@ -43,9 +45,12 @@ intensityqqplot.hp <- function(object,
 intensityqqplot.hpp <- function(object, 
                             start, end, history,
                             color=1, i=1, events, pzt = NULL) {
+	
+  layout(mat = matrix(c(1,2),nrow = 2, ncol = 1),heights = c(2, 2),widths = c(2, 2))
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(1,2))
+  par(mar = c(2, 2,1,1))
   qqexp(r)  
+  par(mar = c(2, 2,1,1))
   drawHPPIntensity(object, events=events, color = color)  
 }
 
@@ -55,10 +60,12 @@ intensityqqplot.hpp <- function(object,
 intensityqqplot.mmhp <- function(object, 
                             start, end, history,
                             color=1, i=1, events, pzt) {
+  layout(mat = matrix(c(1,2),nrow = 2, ncol = 1),heights = c(2, 2),widths = c(2, 2))
   r=compensator(object=object,t=events,pzt=pzt)  
-  par(mfrow=c(1,2))
+  par(mar = c(2, 2,1,1))
   qqexp(r)  
   simulation=simulatemmhp(object) # we don't want to sim this 
+  par(mar = c(2, 2,1,1))
   drawUniMMHPIntensity(mmhp = object, simulation=simulation, 
                        add=FALSE, color=color,
                        given_main = "Intensity Plot of MMHP")  
