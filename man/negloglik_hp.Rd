@@ -13,9 +13,6 @@ negloglik_hp(vec, t, termination)
 
 \item{termination}{the end time of event times.}
 }
-\value{
-a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
-}
 \description{
-Compute the maximum likelihood parameter values for hawkes process.
+Compute the negative log likelihood parameter values for hawkes process.
 }

@@ -4,7 +4,7 @@
 \alias{drawHPPIntensity}
 \title{Draw Intensity of Homogeneous Poisson Process}
 \usage{
-drawHPPIntensity(hpp, events = NULL, color = "red")
+drawHPPIntensity(hpp, events = NULL, color = "red", plot_events = FALSE)
 }
 \arguments{
 \item{hpp}{object for homogeneous poisson process}
@@ -12,7 +12,13 @@ drawHPPIntensity(hpp, events = NULL, color = "red")
 \item{events}{event times input}
 
 \item{color}{a specification for the default plotting color.}
+
+\item{plot_events}{a boolean indicating whether events inputted will be plotted}
 }
 \description{
 Draw the intensity for homogeneous poisson process events
+}
+\examples{
+pois_y <- hpp(lambda = 1, end = 10)
+drawHPPIntensity(pois_y,color = "red")
 }

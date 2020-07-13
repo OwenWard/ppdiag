@@ -15,3 +15,8 @@ an hpp object fitted
 \description{
 Compute maximum likelihood estimator for the hpp model with time events
 }
+\examples{
+pois_y <- hpp(lambda = 1, end = 10)
+events <- simulatehpp(pois_y)
+fithpp(events)
+}

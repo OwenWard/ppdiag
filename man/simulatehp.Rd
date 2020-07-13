@@ -21,3 +21,7 @@ simulated Hawkes Process
 \description{
 Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
 }
+\examples{
+hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+simulatehp(hp_obj,start = 0, end = 100)
+}

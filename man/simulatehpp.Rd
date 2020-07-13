@@ -15,3 +15,7 @@ a vector of length n
 \description{
 Simulate homogeneous poisson process events
 }
+\examples{
+hpp_obj=hpp(lambda = 1, end = 10, n=50)
+simulatehpp(hpp_obj)
+}

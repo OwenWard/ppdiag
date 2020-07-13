@@ -14,3 +14,8 @@ plothpp_step(events, color = "red")
 \description{
 Draw the event time counts for homogeneous poisson process
 }
+\examples{
+pois_y <- hpp(lambda = 1, end = 10, n=50)
+events <- simulatehpp(pois_y)
+plothpp_step(events)
+}

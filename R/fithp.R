@@ -1,18 +1,13 @@
 #' Fit a hawkes process using negloglik and optim functions
 #'
-#' Compute the maximum likelihood parameter values for hawkes process.
+#' Compute the negative log likelihood parameter values for hawkes process.
 #' 
 #' @param vec vector containing initial values for the object parameters (lambda0,alpha,beta) to be optimized.
 #' @param t vector containing event times.
 #' @param termination the end time of event times.
-#' @importFrom stats optim
 #' 
-#' @return a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
 #' @export
-#' @examples
-#' init=rep(0.1,3)
-#' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
-#' fithp(init,sims$t,max(sims$t))
+
 
 negloglik_hp<-function(vec,t,termination){
 	#transforms input list object into vector so that it can be used in optim 
@@ -21,7 +16,20 @@ negloglik_hp<-function(vec,t,termination){
     negloglik(object=object, t=t, termination=termination)
 }
 
-                  
+
+
+#' Determine the MLE of hawkes process numerically
+#' @param vec vector of initial values
+#' @param t event times
+#' @param termination end of observation period
+#' @importFrom stats optim
+#' @return a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
+#' @export
+#' @examples
+#' init=rep(0.1,3)
+#' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+#' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
+#' fithp(init,sims$t,max(sims$t))                  
 fithp<-function(vec,t,termination){
 	hawkes.par=optim(par=vec, fn=negloglik_hp, 
                     t=t, termination=termination, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
