@@ -4,24 +4,24 @@
 #'
 #' @param object social network model contating the parameters
 #' @param t vector containing the event times.
-#' @param termination the end time of event times
+#' @param end the end time of event times
 #'
 #' @return a scalar indicating the negative log likelihood
 #' @export
 
-negloglik <- function(object, t, termination) {
+negloglik <- function(object, t, end) {
   UseMethod("negloglik")
 }
 
 #' @rdname negloglik
 #' @export
-negloglik.default <- function(object, t, termination) {
+negloglik.default <- function(object, t, end) {
   cat("please input the right model")
 }
 
 #' @rdname negloglik
 #' @export
-negloglik.hp <- function(object, t, termination) {
+negloglik.hp <- function(object, t, end) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -32,13 +32,13 @@ negloglik.hp <- function(object, t, termination) {
       r[i] <- exp(-beta * (t[i] - t[i - 1])) * (1 + r[i - 1])
     }
   }
-  if (is.null(termination)) {
+  if (is.null(end)) {
     loglik <- -t[n] * lambda0
-    termination <- t[n]
+    end <- t[n]
   } else {
-    loglik <- -termination * lambda0
+    loglik <- -end * lambda0
   }
-  loglik <- loglik + alpha / beta * sum(exp(-beta * (termination - t)) - 1)
+  loglik <- loglik + alpha / beta * sum(exp(-beta * (end - t)) - 1)
   if (any(lambda0 + alpha * r <= 0)) {
     loglik <- -1e+10
   } else {
@@ -50,7 +50,7 @@ negloglik.hp <- function(object, t, termination) {
 #' @rdname negloglik
 #' @export
 
-negloglik.mmhp <- function(object, t, termination) {
+negloglik.mmhp <- function(object, t, end) {
   # t is event time, t[1]=0
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
