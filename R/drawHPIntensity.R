@@ -3,7 +3,7 @@
 #' Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
 #' while also available independently
 #'
-#' @param object parameters for Hawkes process
+#' @param hp object parameters for Hawkes process
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
@@ -25,19 +25,19 @@
 #' events=sims$t
 #' drawHPIntensity(hp_obj, start=0, end=max(events), history=0, t=events)
 
-drawHPIntensity <- function(object, 
+drawHPIntensity <- function(hp, 
                             start, end, history=0, t,
                             color = 1, i = 1, add=FALSE) {
   n <- length(t)
   m <- length(history)
-  lambda0 = object$lambda0
-  alpha = object$alpha
-  beta = object$beta
+  lambda0 = hp$lambda0
+  alpha = hp$alpha
+  beta = hp$beta
   if(add==FALSE){
     #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
     #events <- c(history,t)
     events <- t
-    y_max <- hawkes_max_intensity(object,events)
+    y_max <- hawkes_max_intensity(hp,events)
     ylim = c(0,y_max)
     graphics::plot(0, 0,
                    xlim = c(start, end),
