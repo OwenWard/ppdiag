@@ -94,9 +94,9 @@ fit_hp
 ```
 
 ## Plot
-### drawHPIntensity(object, start, end, history, hawkes_time, color = 1, i = 1, add=FALSE) takes a hp object, start and end time of events, history, event times vector, and plots its intensity
+### drawHPIntensity(object, start, end, history, t, color = 1, i = 1, add=FALSE) takes a hp object, start and end time of events, history, event times vector, and plots its intensity
 ```{r}
-drawHPIntensity(fit_hp, start=min(time), end=max(time), history=0, hawkes_time=time)
+drawHPIntensity(fit_hp, start=min(time), end=max(time), history=0, t=time)
 ```
 
 ## Diagnostics
