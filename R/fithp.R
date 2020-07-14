@@ -18,13 +18,13 @@ negloglik_hp<-function(vec,t,end){
 	#transforms input list object into vector so that it can be used in optim 
 	object=list(lambda0=vec[1], alpha=vec[2], beta=vec[3])
 	class(object) = "hp"
-    negloglik(object=object, t=t, termination=end)
+    negloglik(object=object, t=t, end=end)
 }
 
                   
 fithp<-function(vec,t,end){
 	hawkes.par=optim(par=vec, fn=negloglik_hp, 
-                    t=t, termination=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
+                    t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
                   method = "L-BFGS-B")
     hp_object = list(lambda0=hawkes.par$par[1], alpha=hawkes.par$par[2], beta=hawkes.par$par[3])
     class(hp_object) = "hp"
