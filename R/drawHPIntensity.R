@@ -7,7 +7,7 @@
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
-#' @param hawkes_time the event times happened in this state
+#' @param t the event times happened in this state
 #' @param color A specification for the default plotting color.
 #' @param i state number this corresponds to a state jump directly before
 #' which is only important when using mmhp
@@ -23,20 +23,20 @@
 #' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 #' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 #' events=sims$t
-#' drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
+#' drawHPIntensity(hp_obj, start=0, end=max(events), history=0, t=events)
 
 drawHPIntensity <- function(object, 
-                            start, end, history, hawkes_time,
+                            start, end, history=0, t,
                             color = 1, i = 1, add=FALSE) {
-  n <- length(hawkes_time)
+  n <- length(t)
   m <- length(history)
   lambda0 = object$lambda0
   alpha = object$alpha
   beta = object$beta
   if(add==FALSE){
     #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
-    #events <- c(history,hawkes_time)
-    events <- hawkes_time
+    #events <- c(history,t)
+    events <- t
     y_max <- hawkes_max_intensity(object,events)
     ylim = c(0,y_max)
     graphics::plot(0, 0,
@@ -58,32 +58,32 @@ drawHPIntensity <- function(object,
       }
     } else {
       if (i == 1) {
-        graphics::segments(x0 = start, x1 = hawkes_time[1], y0 = lambda0, col = color)
-        segments(x0 = hawkes_time[1], y0 = lambda0, y1 = lambda0 + alpha, col = color)
+        graphics::segments(x0 = start, x1 = t[1], y0 = lambda0, col = color)
+        segments(x0 = t[1], y0 = lambda0, y1 = lambda0 + alpha, col = color)
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
         segments(x0 = start, y0 = lambda0, y1 = lambda.n(start), lty = 2, col = color)
-        graphics::curve(new.lambda.n, from = start, to = hawkes_time[1], add = TRUE, col = color)
-        segments(x0 = hawkes_time[1], y0 = lambda.n(hawkes_time[1]), y1 = lambda.n(hawkes_time[1]) + alpha, col = color)
+        graphics::curve(new.lambda.n, from = start, to = t[1], add = TRUE, col = color)
+        segments(x0 = t[1], y0 = lambda.n(t[1]), y1 = lambda.n(t[1]) + alpha, col = color)
       }
       if (n > 1) {
         for (j in 1:(n - 1)) {
-          lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + j) - c(history, hawkes_time[1:j]))))
+          lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + j) - c(history, t[1:j]))))
           new.lambda.n <- Vectorize(lambda.n)
-          curve(new.lambda.n, from = hawkes_time[j], to = hawkes_time[j + 1], add = TRUE, col = color)
-          segments(x0 = hawkes_time[j + 1], y0 = lambda.n(hawkes_time[j + 1]), y1 = lambda.n(hawkes_time[j + 1]) + alpha, col = color)
+          curve(new.lambda.n, from = t[j], to = t[j + 1], add = TRUE, col = color)
+          segments(x0 = t[j + 1], y0 = lambda.n(t[j + 1]), y1 = lambda.n(t[j + 1]) + alpha, col = color)
         }
       }
-      lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, hawkes_time[1:n]))))
+      lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, t[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
-      curve(new.lambda.n, from = hawkes_time[n], to = end, add = TRUE, col = color)
+      curve(new.lambda.n, from = t[n], to = end, add = TRUE, col = color)
       segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
-      # if (hawkes_time[n]==end){
+      # if (t[n]==end){
       #   max=c(max,new.lambda.n(end))
       # }
       # else{
-      #   max=c(max,optimize(new.lambda.n, interval=c(hawkes_time[n], end), maximum=TRUE)$objective)
+      #   max=c(max,optimize(new.lambda.n, interval=c(t[n], end), maximum=TRUE)$objective)
       # }
     }
   }
@@ -100,26 +100,26 @@ drawHPIntensity <- function(object,
       }
     } else {
       if (i == 1) {
-        graphics::segments(x0 = start, x1 = hawkes_time[1], y0 = lambda0, col = color)
-        segments(x0 = hawkes_time[1], y0 = lambda0, y1 = lambda0 + alpha, col = color)
+        graphics::segments(x0 = start, x1 = t[1], y0 = lambda0, col = color)
+        segments(x0 = t[1], y0 = lambda0, y1 = lambda0 + alpha, col = color)
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
         segments(x0 = start, y0 = lambda0, y1 = lambda.n(start), lty = 2, col = color)
-        graphics::curve(new.lambda.n, from = start, to = hawkes_time[1], add = TRUE, col = color)
-        segments(x0 = hawkes_time[1], y0 = lambda.n(hawkes_time[1]), y1 = lambda.n(hawkes_time[1]) + alpha, col = color)
+        graphics::curve(new.lambda.n, from = start, to = t[1], add = TRUE, col = color)
+        segments(x0 = t[1], y0 = lambda.n(t[1]), y1 = lambda.n(t[1]) + alpha, col = color)
       }
       if (n > 1) {
         for (j in 1:(n - 1)) {
-          lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + j) - c(history, hawkes_time[1:j]))))
+          lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + j) - c(history, t[1:j]))))
           new.lambda.n <- Vectorize(lambda.n)
-          curve(new.lambda.n, from = hawkes_time[j], to = hawkes_time[j + 1], add = TRUE, col = color)
-          segments(x0 = hawkes_time[j + 1], y0 = lambda.n(hawkes_time[j + 1]), y1 = lambda.n(hawkes_time[j + 1]) + alpha, col = color)
+          curve(new.lambda.n, from = t[j], to = t[j + 1], add = TRUE, col = color)
+          segments(x0 = t[j + 1], y0 = lambda.n(t[j + 1]), y1 = lambda.n(t[j + 1]) + alpha, col = color)
         }
       }
-      lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, hawkes_time[1:n]))))
+      lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, t[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
-      curve(new.lambda.n, from = hawkes_time[n], to = end, add = TRUE, col = color)
+      curve(new.lambda.n, from = t[n], to = end, add = TRUE, col = color)
       segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
     }
   }
