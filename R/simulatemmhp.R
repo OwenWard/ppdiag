@@ -93,6 +93,8 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
         }
       }
     }
+    x=round(x,3)
+    tau=round(tau,3)
     return(list(x = x[1:i], z = z[1:i], tau = tau[1:(nsim + 1)], zt = zt[1:(nsim + 1)], lambda.max = lambda.max))
   } else {
     x <- states$x
@@ -138,6 +140,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
         }
       }
     }
+    tau=round(tau,3)
     return(list(tau = tau[1:(j - 1)][tau[1:(j - 1)] <= ending], zt = zt[1:(j - 1)][tau[1:(j - 1)] <= ending], lambda.max = lambda.max))
   }
 }
