@@ -35,6 +35,10 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
   lambda1 <- object$lambda1
   alpha <- object$alpha
   beta <- object$beta
+  
+  if(alpha > beta) {
+    stop("Require alpha less than beta for a stationary process")
+  }
 
   Pi <- diag(m) - diag(1 / diag(Q)) %*% Q
   zt <- rep(NA, nsim + 1)
