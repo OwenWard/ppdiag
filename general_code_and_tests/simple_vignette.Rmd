@@ -115,7 +115,7 @@ diagpp(fit_hp, t = sims$t)
 ```
 
 ```{r}
-intensityqqplot(fit_hp,start=0,end=max(events),history=0,events=events)
+intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=sims$t)
 ```
 
 
