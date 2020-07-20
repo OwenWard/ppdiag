@@ -96,9 +96,12 @@ fit_hp <- fithp(init,sims$t,max(sims$t))
 
 ## Plot
 ```{r}
-drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
+# changing this to use hawkes event times
 
-drawHPIntensity(fit_hp, start=0, end=max(events), history=0, hawkes_time=events)
+drawHPIntensity(hp_obj, start=0, end=max(sims$t), history=0, t=sims$t)
+
+drawHPIntensity(fit_hp, start=0, end=max(sims$t), history=0, t=sims$t)
+
 ```
 
 ## Diagnostics
