@@ -4,7 +4,7 @@
 \alias{hp}
 \title{Create a Hawkes Process(HP) model}
 \usage{
-hp(lambda0, alpha, beta, tau = NULL)
+hp(lambda0, alpha, beta, t = NULL)
 }
 \arguments{
 \item{lambda0}{parameters for Hawkes process.}
@@ -13,7 +13,7 @@ hp(lambda0, alpha, beta, tau = NULL)
 
 \item{beta}{parameters for Hawkes process.}
 
-\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
+\item{t}{vector containing the event times. Note that the first event is at time zero. Alternatively, t could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 hp object

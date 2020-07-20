@@ -4,14 +4,14 @@
 \alias{negloglik_hp}
 \title{Fit a hawkes process using negloglik and optim functions}
 \usage{
-negloglik_hp(vec, t, termination)
+negloglik_hp(vec, t, end)
 }
 \arguments{
 \item{vec}{vector containing initial values for the object parameters (lambda0,alpha,beta) to be optimized.}
 
 \item{t}{vector containing event times.}
 
-\item{termination}{the end time of event times.}
+\item{end}{the end time of event times.}
 }
 \description{
 Compute the negative log likelihood parameter values for hawkes process.

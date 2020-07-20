@@ -4,19 +4,10 @@
 \alias{drawHPIntensity}
 \title{Draw the intensity of Hawkes Process}
 \usage{
-drawHPIntensity(
-  object,
-  start,
-  end,
-  history,
-  hawkes_time,
-  color = 1,
-  i = 1,
-  add = FALSE
-)
+drawHPIntensity(hp, start, end, history = 0, t, color = 1, i = 1, add = FALSE)
 }
 \arguments{
-\item{object}{parameters for Hawkes process}
+\item{hp}{object parameters for Hawkes process}
 
 \item{start}{the start time of current state}
 
@@ -24,7 +15,7 @@ drawHPIntensity(
 
 \item{history}{the past event times}
 
-\item{hawkes_time}{the event times happened in this state}
+\item{t}{the event times happened in this state}
 
 \item{color}{A specification for the default plotting color.}
 
@@ -41,5 +32,5 @@ while also available independently
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 events=sims$t
-drawHPIntensity(hp_obj, start=0, end=max(events), history=0, hawkes_time=events)
+drawHPIntensity(hp_obj, start=0, end=max(events), history=0, t=events)
 }

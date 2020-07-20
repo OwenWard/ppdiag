@@ -4,14 +4,14 @@
 \alias{fithp}
 \title{Determine the MLE of hawkes process numerically}
 \usage{
-fithp(vec, t, termination)
+fithp(vec, t, end)
 }
 \arguments{
 \item{vec}{vector of initial values}
 
 \item{t}{event times}
 
-\item{termination}{end of observation period}
+\item{end}{end of observation period}
 }
 \value{
 a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
