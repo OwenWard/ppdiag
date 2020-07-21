@@ -6,12 +6,11 @@
 #' @export
 
 fit.single.network.hpp <- function(t){
+  n_events = nrow(t)
+  t_range = max(t$Times)-min(t$Times)
   t  = t%>%group_by(Send,Rec)%>% summarise(Times =list(Times))
-  hpp_lambda <- 0
-  for (i in 1:nrow(t)){
-    hpp_lambda <- hpp_lambda+ fithpp(t[i,'Times'][[1]])$lambda
-  }
-  return (hpp_lambda/nrow(t))
+  n_group = nrow(t)
+  return (n_events/(t_range*n_group))
 }
 
 
