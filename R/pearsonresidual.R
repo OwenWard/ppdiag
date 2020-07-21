@@ -100,16 +100,10 @@ pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.v
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, t, termination, time.vec=NULL, latent.vec=NULL, latent_event = NULL) {
-  N <- length(t)
-  end <- object$end
-  start <- object$start
-  lambda <- object$lambda
-  if(is.null(start)){
-    start=0
-  }
-  if(is.null(end)){
-    end=1
+pearsonresidual.hpp <- function(object, t, termination=NULL, time.vec=NULL, latent.vec=NULL, latent_event = NULL) {
+  if((!is.null(termination)) && (termination!=object$end)){
+    message("Termination input will override end time in object. Leaving termination as null can avoid this.")
+    object$end=termination
   }
   est.intensity <- intensity(object, t, method = "numeric")
   pr <- sum(1 / sqrt(est.intensity)) - sum(sqrt(est.intensity))
