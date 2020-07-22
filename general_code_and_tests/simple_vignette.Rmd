@@ -31,6 +31,18 @@ pois_y
 pois_y$n <- 50
 events <- simulatehpp(pois_y)
 events
+
+# sample simulation of 10 hpp events
+s1=simulatehpp(lambda=1,n=10)
+hist(s1)
+
+# sample simulation of 50 hpp events
+s2=simulatehpp(lambda=1,n=50)
+hist(s2)
+
+# sample simulation of 100 hpp events
+s3=simulatehpp(lambda=1,n=100)
+hist(s3)
 ```
 
 ## Fit
