@@ -35,7 +35,7 @@ fithp<-function(vec,t,end){
 	hawkes.par=optim(par=vec, fn=negloglik_hp, 
                     t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
                   method = "L-BFGS-B")
-    hp_object = list(lambda0=hawkes.par$par[1], alpha=hawkes.par$par[2], beta=hawkes.par$par[3], events=t)
+    hp_object = list(lambda0=hawkes.par$par[1], alpha=hawkes.par$par[2], beta=hawkes.par$par[3], t=t)
     class(hp_object) = "hp"
     return (hp_object)
 }
