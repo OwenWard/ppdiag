@@ -40,7 +40,7 @@ drawHPPIntensity <- function(hpp, events=NULL, color = "red", plot_events=FALSE)
 	  events=simulatehpp(hpp)
 	}
 	fisher=1/lambda
-	plot(c(start,end), c(0,lambda*2), type = "n", xlab = "event times", ylab = "lambda", 
+	plot(c(start,end), c(0,(lambda+fisher)*2), type = "n", xlab = "event times", ylab = "lambda", 
 		main="Intensity of homogeneous poisson process")
 	abline(h=lambda, col=color)
 	abline(h=lambda+fisher,lty=2)	
