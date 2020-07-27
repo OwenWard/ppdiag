@@ -16,7 +16,7 @@ fithpp <- function(t){
 	end=max(t)
 	n=length(t)
 	lambda=n/(end-start)
-	hpp_object=list(lambda=lambda, start=start, end=end, n=n)
+	hpp_object=list(lambda=lambda, start=start, end=end, n=n, t=t)
 	class(hpp_object)="hpp"
 	return(hpp_object)	
 }
