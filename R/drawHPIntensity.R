@@ -12,6 +12,8 @@
 #' @param i state number this corresponds to a state jump directly before
 #' which is only important when using mmhp
 #' @param add whether to add the hawkes intensity to an existing plot
+#' @param plot_events a boolean indicating whether events inputted will be plotted
+#' @param vec vector of initial values of parameters used in fithp
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom stats optimize
@@ -27,7 +29,7 @@
 
 drawHPIntensity <- function(hp, 
                             start, end, history=0, t,
-                            color = 1, i = 1, add=FALSE) {
+                            color = 1, i = 1, add=FALSE, plot_events=FALSE, vec=NULL) {
   n <- length(t)
   m <- length(history)
   lambda0 = hp$lambda0
@@ -37,6 +39,22 @@ drawHPIntensity <- function(hp,
     #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
     #events <- c(history,t)
     events <- t
+	  
+    if(plot_events==TRUE){
+      if(is.null(vec)){
+        stop("To plot events instead of object, please enter vec which is the initial vector of parameters")
+      }
+      message("The inputted events and its corresponding intensity will be plotted, the hpp object input will be ignored.")
+      hp=fithp(vec,events,end)
+      lambda0 = hp$lambda0
+      alpha = hp$alpha
+      beta = hp$beta
+    }else{
+      message("The inputted events will be ignored, the hpp object and its simulated events will be plotted.")
+      events=simulatehp(hp,start=start,end=end,history=history)$t
+      n <- length(events)
+    }
+	  
     y_max <- hawkes_max_intensity(hp,events)
     ylim = c(0,y_max)
     graphics::plot(0, 0,
