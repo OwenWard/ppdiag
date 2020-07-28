@@ -33,16 +33,16 @@ events <- simulatehpp(pois_y)
 events
 
 # sample simulation of 10 hpp events
-s1=simulatehpp(lambda=1,n=10)
-hist(s1)
+s1=simulatehpp(hpp(lambda=1,n=10))
+hist(s1,main="sample simulation of 10 hpp events")
 
 # sample simulation of 50 hpp events
-s2=simulatehpp(lambda=1,n=50)
-hist(s2)
+s2=simulatehpp(hpp(lambda=1,n=50))
+hist(s2,main="sample simulation of 50 hpp events")
 
 # sample simulation of 100 hpp events
-s3=simulatehpp(lambda=1,n=100)
-hist(s3)
+s3=simulatehpp(hpp(lambda=1,n=100))
+hist(s3,main="sample simulation of 100 hpp events")
 ```
 
 ## Fit
