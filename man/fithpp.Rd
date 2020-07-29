@@ -4,10 +4,10 @@
 \alias{fithpp}
 \title{Fit a homogeneous poisson process}
 \usage{
-fithpp(t)
+fithpp(events)
 }
 \arguments{
-\item{t}{vector containing the event times.}
+\item{events}{vector containing the event times.}
 }
 \value{
 an hpp object fitted
