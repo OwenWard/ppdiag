@@ -47,7 +47,7 @@ pearsonresidual(
 \method{pearsonresidual}{hpp}(
   object,
   t,
-  termination,
+  termination = NULL,
   time.vec = NULL,
   latent.vec = NULL,
   latent_event = NULL

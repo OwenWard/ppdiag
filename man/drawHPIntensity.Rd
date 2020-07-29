@@ -4,10 +4,21 @@
 \alias{drawHPIntensity}
 \title{Draw the intensity of Hawkes Process}
 \usage{
-drawHPIntensity(hp, start, end, history = 0, t, color = 1, i = 1, add = FALSE)
+drawHPIntensity(
+  hp_obj,
+  start,
+  end,
+  history = 0,
+  events,
+  color = 1,
+  i = 1,
+  add = FALSE,
+  plot_events = FALSE,
+  vec = NULL
+)
 }
 \arguments{
-\item{hp}{object parameters for Hawkes process}
+\item{hp_obj}{object parameters for Hawkes process}
 
 \item{start}{the start time of current state}
 
@@ -15,7 +26,7 @@ drawHPIntensity(hp, start, end, history = 0, t, color = 1, i = 1, add = FALSE)
 
 \item{history}{the past event times}
 
-\item{t}{the event times happened in this state}
+\item{events}{the event times happened in this state}
 
 \item{color}{A specification for the default plotting color.}
 
@@ -23,6 +34,10 @@ drawHPIntensity(hp, start, end, history = 0, t, color = 1, i = 1, add = FALSE)
 which is only important when using mmhp}
 
 \item{add}{whether to add the hawkes intensity to an existing plot}
+
+\item{plot_events}{a boolean indicating whether events inputted will be plotted}
+
+\item{vec}{vector of initial values of parameters used in fithp}
 }
 \description{
 Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
@@ -32,5 +47,5 @@ while also available independently
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 events=sims$t
-drawHPIntensity(hp_obj, start=0, end=max(events), history=0, t=events)
+drawHPIntensity(hp_obj, start=0, end=max(events), history=0, events)
 }
