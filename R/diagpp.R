@@ -61,7 +61,7 @@ diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, 
   pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
   N=length(t)
   ks=ks.test(r,"pexp")
-  cat("Raw residual: ", rr, "\n",sep = "")
+  cat("\n","Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
 }

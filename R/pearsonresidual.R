@@ -102,7 +102,7 @@ pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.v
 #' @export
 pearsonresidual.hpp <- function(object, t, termination=NULL, time.vec=NULL, latent.vec=NULL, latent_event = NULL) {
   if((!is.null(termination)) && (termination!=object$end)){
-    message("Termination input will override end time in object. Leaving termination as null can avoid this.")
+    message("PR calculated to specified end time.")
     object$end=termination
   }
   est.intensity <- intensity(object, t, method = "numeric")

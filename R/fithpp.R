@@ -2,7 +2,7 @@
 #'
 #' Compute maximum likelihood estimator for the hpp model with time events 
 #' 
-#' @param t vector containing the event times.
+#' @param events vector containing the event times.
 #'
 #' @return an hpp object fitted
 #' @export
@@ -11,12 +11,14 @@
 #' events <- simulatehpp(pois_y)
 #' fithpp(events)
 
-fithpp <- function(t){
-	start=min(t)
-	end=max(t)
-	n=length(t)
+fithpp <- function(events){
+	start=min(events)
+	end=max(events)
+	n=length(events)
 	lambda=n/(end-start)
-	hpp_object=list(lambda=lambda, start=start, end=end, n=n, t=t)
+	hpp_object=list(lambda = lambda, start = start,
+	                end = end, n = n,
+	                events = events)
 	class(hpp_object)="hpp"
 	return(hpp_object)	
 }

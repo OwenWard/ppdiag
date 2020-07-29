@@ -21,10 +21,11 @@ simulatehpp <- function(hpp){
   }
   if(!is.null(n)){
     if(end>start){
-      message("n events simulated, end time specified will be ignored. To simulate events up to an endtime do not specify n.")
+      message(paste(n, " events simulated, end time specified will be ignored. To simulate events up to an endtime do not specify n.",
+                    sep=""))
     }
     hpp=cumsum(c(start,-log(runif(n))/lambda))
-    hpp=round(hpp,0)
+    hpp=round(hpp,2)
     return (hpp[2:length(hpp)])
   }else{
     n=rpois(n=1,lambda=lambda*end)
@@ -32,7 +33,7 @@ simulatehpp <- function(hpp){
       return (NULL)
     }
     hpp=(end-start)*runif(n)+start # to make this n events
-    hpp=round(hpp,0)
+    hpp=round(hpp,2)
     return (sort(hpp))
   }
 }
