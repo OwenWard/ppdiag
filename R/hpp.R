@@ -13,7 +13,8 @@
 #' hpp(lambda = 1, end = 10)
 
 hpp <- function(lambda, start=0, end=1, n = NULL) {
-  y <- c(list(lambda = lambda, start = start, end = end, n = n, t=t))
+  y <- c(list(lambda = lambda, start = start, end = end,
+              n = n, events = NULL))
   class(y) <- "hpp"
   return(y)
 }
