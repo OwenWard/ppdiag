@@ -135,7 +135,7 @@ drawHPIntensity <- function(hp_obj,
         segments(x0 = start, y0 = lambda0, y1 = lambda.n(start), lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = events[1],
                         add = TRUE, col = color)
-        segments(x0 = t[1], y0 = lambda.n(events[1]),
+        segments(x0 = events[1], y0 = lambda.n(events[1]),
                  y1 = lambda.n(events[1]) + alpha, col = color)
       }
       if (n > 1) {
