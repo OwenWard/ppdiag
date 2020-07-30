@@ -40,15 +40,28 @@ events
 ```{r}
 # sample simulation of 10 hpp events
 s1=simulatehpp(hpp(lambda=1,n=10))
-hist(s1,main="sample simulation of 10 hpp events")
+par(mfrow=c(1,2))
+hist(s1,main="sample sim of 10 hpp events")
+temp=s1
+inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
+hist(inter_s1,main="interevent times")
+
 
 # sample simulation of 50 hpp events
-s2=simulatehpp(hpp(lambda=3,n=50))
-hist(s2,main="sample simulation of 50 hpp events")
+s1=simulatehpp(hpp(lambda=1,n=50))
+par(mfrow=c(1,2))
+hist(s1,main="sample sim of 10 hpp events")
+temp=s1
+inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
+hist(inter_s1,main="interevent times")
 
 # sample simulation of 100 hpp events
-s3=simulatehpp(hpp(lambda=1,n=100))
-hist(s3,main="sample simulation of 100 hpp events")
+s1=simulatehpp(hpp(lambda=1,n=100))
+par(mfrow=c(1,2))
+hist(s1,main="sample sim of 10 hpp events")
+temp=s1
+inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
+hist(inter_s1,main="interevent times")
 ```
 
 ## Fit
@@ -88,6 +101,12 @@ these plots.
 intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,history=0,events=events)
 ```
 
+## interevent times
+```{r}
+temp=events
+inter_hpp=events[2:length(events)]-temp[1:length(temp)-1]
+hist(inter_hpp)
+```
 
 # Hawkes Process
 
@@ -145,6 +164,12 @@ diagpp(fit_hp, t = sims$t)
 intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=sims$t)
 ```
 
+## interevent times
+```{r}
+temp=sims$t
+inter_hp=sims$t[2:length(sims$t)]-temp[1:length(temp)-1]
+hist(inter_hp)
+```
 
 # MMHP
 ## Class
