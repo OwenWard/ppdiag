@@ -66,9 +66,8 @@ intensityqqplot.mmhp <- function(object,
   r=compensator(object=object,t=events,pzt=pzt)  
   par(mar = c(2, 2,1,1))
   qqexp(r)  
-  simulation=simulatemmhp(object) # we don't want to sim this 
   par(mar = c(2, 2,1,1))
-  drawUniMMHPIntensity(mmhp = object, simulation=simulation, 
+  drawUniMMHPIntensity(mmhp = object, simulation=events, 
                        add=FALSE, color=color,
                        given_main = "Intensity Plot of MMHP")  
 }
