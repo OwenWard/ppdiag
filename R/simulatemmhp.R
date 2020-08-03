@@ -3,7 +3,7 @@
 #' Simulate Markov Modulated Hawkes Process (including all the history) according to a mmhp object
 #'
 #' @param object a mmhp object including its Q, delta, events, lambda0, lambda1, beta and alpha.
-#' @param nsim number of points to simulate.
+#' @param n number of points to simulate.
 #' @param seed seed for the random number generator.
 #' @param given_state if the hidden state trajectory is given. It `TRUE`, then simulate according to the given state. Default to `FALSE`
 #' @param states an object containing:
@@ -19,7 +19,7 @@
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x)
-simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, seed = NULL, ...) {
+simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) {
   if (!is.null(seed)) set.seed(seed)
   m <- 2
   #------------------------
@@ -41,14 +41,14 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
   }
 
   Pi <- diag(m) - diag(1 / diag(Q)) %*% Q
-  zt <- rep(NA, nsim + 1)
-  events <- rep(NA, nsim + 1)
+  zt <- rep(NA, n + 1)
+  events <- rep(NA, n + 1)
   #------------------------ initialization for Markov process
   #    the length of x and z may be too short
   #    gets extended later if required
   if (given_state == FALSE) {
-    x <- rep(NA, nsim * 10)
-    z <- rep(NA, nsim * 10)
+    x <- rep(NA, n * 10)
+    z <- rep(NA, n * 10)
     z[1] <- zt[1] <- initial
     x[1] <- events[1] <- 0
     lambda.max <- 0
@@ -56,12 +56,12 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
     j <- 2 # index for event
     #------------------------ initialization for Hawkes process
 
-    while (j < nsim + 2) {
+    while (j < n + 2) {
       i <- i + 1
       #   extend x and z if too short
       if (i > length(x)) {
-        x <- c(x, rep(NA, nsim * 10))
-        z <- c(z, rep(NA, nsim * 10))
+        x <- c(x, rep(NA, n * 10))
+        z <- c(z, rep(NA, n * 10))
       }
       #   sim time spent in Markov state y[i-1]
       z[i] <- sample(x = 1:m, size = 1, prob = Pi[(z[i - 1]), ])
@@ -83,7 +83,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
       }
 
       if (z[i - 1] == 2) {
-        while (j < nsim + 2) {
+        while (j < n + 2) {
           #   sim times of Poisson events
           ti <- t0 + rexp(1, rate = lambda0)
           if (ti < x[i]) {
@@ -99,7 +99,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
     }
     x=round(x,3)
     events=round(events,3)
-    return(list(x = x[1:i], z = z[1:i], events = events[1:(nsim + 1)], zt = zt[1:(nsim + 1)], lambda.max = lambda.max))
+    return(list(x = x[1:i], z = z[1:i], events = events[1:(n + 1)], zt = zt[1:(n + 1)], lambda.max = lambda.max))
   } else {
     x <- states$x
     z <- states$z
