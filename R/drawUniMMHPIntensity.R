@@ -37,7 +37,8 @@ drawUniMMHPIntensity <- function(mmhp, simulation, yupper = 10, add = FALSE, col
       xlim = c(0, state_time[m]), ylim = c(0, yupper), type = "n", xlab = "Time", ylab = "Intensity",
       main = given_main
     )
-    graphics::points(t[-1], rep(lambda0 / 2, n - 1), cex = 0.6, pch = ifelse(mmhp$tau_state[-1] == 1, 16, 1), col = "blue")
+    graphics::points(t[-1], rep(lambda0 / 2, n - 1), cex = 0.6, 
+                     pch = ifelse(mmhp$tau_state[-1] == 1, 16, 1), col = "blue")
     points(state_time, rep(lambda0, m), cex = 0.6, pch = 4, col = "red")
   }
   for (i in 1:(m - 1)) {
