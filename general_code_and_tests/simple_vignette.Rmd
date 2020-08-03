@@ -46,6 +46,8 @@ inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
 hist(inter_s1,main="interevent times")
 
 
+### can also just use diff(events) instead
+
 # sample simulation of 50 hpp events
 s2=simulatehpp(hpp(lambda=3,n=50))
 temp=s2
@@ -183,7 +185,7 @@ x <- mmhp(Q, delta = c(1 / 3, 2 / 3),
 
 ## Simulate
 ```{r}
-y <- simulatemmhp(x,nsim = 5)
+y <- simulatemmhp(x,nsim = 15)
 ```
 
 ## Plot

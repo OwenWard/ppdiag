@@ -6,6 +6,7 @@
 #' @param events event times input
 #' @param color a specification for the default plotting color.
 #' @param plot_events a boolean indicating whether events inputted will be plotted
+#' @param fit a boolean indicating whether to fit a hpp or use the passed object
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points
@@ -14,21 +15,26 @@
 #' pois_y <- hpp(lambda = 1, end = 10)
 #' drawHPPIntensity(pois_y,color = "red")
 
-drawHPPIntensity <- function(hpp, events=NULL, color = "red", plot_events=FALSE){
+drawHPPIntensity <- function(hpp, events = NULL, color = "red", 
+                             plot_events = FALSE, fit = FALSE){
 	start=hpp$start
 	end=hpp$end
 	lambda=hpp$lambda
 	n=hpp$n
 	if(!is.null(events)){
-		if(plot_events==TRUE){
-			message("The inputted events and its corresponding intensity will be plotted, the hpp object input will be ignored.")
+		if(plot_events==TRUE & fit == TRUE){
+			message("Fitting and plotting a HPP. Specified fit not used.")
 			hpp_obj=fithpp(events)
 			start=hpp_obj$start
 			end=hpp_obj$end
 			lambda=hpp_obj$lambda
 			n=hpp_obj$n
-		}else{
-		  message("The inputted events will be ignored, the hpp object and its simulated events will be plotted.")
+		}
+	  if(plot_events == TRUE & fit == FALSE){
+	    message("Fitting specified hpp.")
+	  }
+	  else{
+		  message("The inputted events not used, hpp object and simulated events will be plotted.")
 		  events=simulatehpp(hpp)
 		}		
 	}

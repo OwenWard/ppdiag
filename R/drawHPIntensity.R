@@ -31,7 +31,7 @@ drawHPIntensity <- function(hp_obj,
                             start, end, history=0, events,
                             color = 1, i = 1, add=FALSE,
                             plot_events=FALSE, vec=NULL) {
-  n <- length(t)
+  n <- length(events)
   m <- length(history)
   lambda0 = hp_obj$lambda0
   alpha = hp_obj$alpha
