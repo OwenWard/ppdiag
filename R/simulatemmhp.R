@@ -2,7 +2,7 @@
 #'
 #' Simulate Markov Modulated Hawkes Process (including all the history) according to a mmhp object
 #'
-#' @param object a mmhp object including its Q, delta, tau, lambda0, lambda1, beta and alpha.
+#' @param object a mmhp object including its Q, delta, events, lambda0, lambda1, beta and alpha.
 #' @param nsim number of points to simulate.
 #' @param seed seed for the random number generator.
 #' @param given_state if the hidden state trajectory is given. It `TRUE`, then simulate according to the given state. Default to `FALSE`
@@ -42,7 +42,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
 
   Pi <- diag(m) - diag(1 / diag(Q)) %*% Q
   zt <- rep(NA, nsim + 1)
-  tau <- rep(NA, nsim + 1)
+  events <- rep(NA, nsim + 1)
   #------------------------ initialization for Markov process
   #    the length of x and z may be too short
   #    gets extended later if required
@@ -50,7 +50,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
     x <- rep(NA, nsim * 10)
     z <- rep(NA, nsim * 10)
     z[1] <- zt[1] <- initial
-    x[1] <- tau[1] <- 0
+    x[1] <- events[1] <- 0
     lambda.max <- 0
     i <- 1 # index for state
     j <- 2 # index for event
@@ -72,11 +72,11 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
         #   sim times of Hawkes Poisson events
         hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj)="hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], tau[1:(j - 1)])
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], events[1:(j - 1)])
         hp <- simulate.result$t
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
-          tau[j:(j + length(hp) - 1)] <- hp
+          events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
           j <- j + length(hp)
         }
@@ -87,7 +87,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
           #   sim times of Poisson events
           ti <- t0 + rexp(1, rate = lambda0)
           if (ti < x[i]) {
-            tau[j] <- t0 <- ti
+            events[j] <- t0 <- ti
             zt[j] <- z[i - 1]
             j <- j + 1
           }
@@ -98,20 +98,20 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
       }
     }
     x=round(x,3)
-    tau=round(tau,3)
-    return(list(x = x[1:i], z = z[1:i], tau = tau[1:(nsim + 1)], zt = zt[1:(nsim + 1)], lambda.max = lambda.max))
+    events=round(events,3)
+    return(list(x = x[1:i], z = z[1:i], events = events[1:(nsim + 1)], zt = zt[1:(nsim + 1)], lambda.max = lambda.max))
   } else {
     x <- states$x
     z <- states$z
     ending <- states$ending
     zt[1] <- z[1]
-    tau[1] <- 0
+    events[1] <- 0
     lambda.max <- 0
     i <- 1 # index for state
     j <- 2 # index for event
     #------------------------ initialization for Hawkes process
 
-    while (tau[j - 1] <= ending & i < length(x)) {
+    while (events[j - 1] <= ending & i < length(x)) {
       i <- i + 1
       t0 <- x[i - 1]
 
@@ -119,22 +119,22 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
         #   sim times of Hawkes Poisson events
         hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj)="hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], tau[1:(j - 1)])
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], events[1:(j - 1)])
         hp <- simulate.result$t
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
-          tau[j:(j + length(hp) - 1)] <- hp
+          events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
           j <- j + length(hp)
         }
       }
 
       if (z[i - 1] == 2) {
-        while (tau[j - 1] <= ending) {
+        while (events[j - 1] <= ending) {
           #   sim times of Poisson events
           ti <- t0 + rexp(1, rate = lambda0)
           if (ti < x[i]) {
-            tau[j] <- t0 <- ti
+            events[j] <- t0 <- ti
             zt[j] <- z[i - 1]
             j <- j + 1
           }
@@ -144,7 +144,7 @@ simulatemmhp <- function(object, nsim = 1, given_state = FALSE, states = NULL, s
         }
       }
     }
-    tau=round(tau,3)
-    return(list(tau = tau[1:(j - 1)][tau[1:(j - 1)] <= ending], zt = zt[1:(j - 1)][tau[1:(j - 1)] <= ending], lambda.max = lambda.max))
+    events=round(events,3)
+    return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending], zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending], lambda.max = lambda.max))
   }
 }

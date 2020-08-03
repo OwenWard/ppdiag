@@ -52,7 +52,7 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
   N <- length(t)
   est.intensity <- intensity(object,
     event = list(
-      tau = t,
+      events = t,
       time_segment = time.vec,
       latent_mean = latent.vec
     ),

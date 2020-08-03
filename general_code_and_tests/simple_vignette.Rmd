@@ -16,6 +16,7 @@ devtools::load_all()  ## loads ppdiag
 # Homogeneous Poisson Process
 
 ## Class
+hpp(lambda, start=0, end=1, n = NULL) takes lambda(rate of the poisson process), start and end(start and end time of events), n(number of events) as inputs and returns an object of class hpp, in the form of a list of parameters provided. 
 ```{r}
 pois_y <- hpp(lambda = 1, end = 10)
 
@@ -40,28 +41,22 @@ events
 ```{r}
 # sample simulation of 10 hpp events
 s1=simulatehpp(hpp(lambda=1,n=10))
-par(mfrow=c(1,2))
-hist(s1,main="sample sim of 10 hpp events")
 temp=s1
 inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
 hist(inter_s1,main="interevent times")
 
 
 # sample simulation of 50 hpp events
-s1=simulatehpp(hpp(lambda=3,n=50))
-par(mfrow=c(1,2))
-hist(s1,main="sample sim of 50 hpp events")
-temp=s1
-inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
-hist(inter_s1,main="interevent times")
+s2=simulatehpp(hpp(lambda=3,n=50))
+temp=s2
+inter_s2=s2[2:length(s2)]-temp[1:length(temp)-1]
+hist(inter_s2,main="interevent times")
 
 # sample simulation of 100 hpp events
-s1=simulatehpp(hpp(lambda=1,n=100))
-par(mfrow=c(1,2))
-hist(s1,main="sample sim of 100 hpp events")
-temp=s1
-inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
-hist(inter_s1,main="interevent times")
+s3=simulatehpp(hpp(lambda=1,n=100))
+temp=s3
+inter_s3=s3[2:length(s3)]-temp[1:length(temp)-1]
+hist(inter_s3,main="interevent times")
 ```
 
 ## Fit
@@ -111,6 +106,7 @@ hist(inter_hpp)
 # Hawkes Process
 
 ## Class
+hp(lambda0, alpha, beta, events = NULL) takes lambda0(base intensity of hawkes process), alpha(jump size of increase in intensity), beta(exponential decay of intensity), events(the first event is at time zero, events data can be added later after simulation) as inputs and returns an object of class hp, in the form of a list of parameters provided.
 ```{r}
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 ```
@@ -160,11 +156,9 @@ diagpp(fit_hp, t = sims$t)
 
 ```
 
-For the intensity and QQ plot together, we don't want this to simulate events,
-so the code for this needs to be updated....
 
 ```{r}
-intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=sims$t)
+intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=events)
 ```
 
 ## interevent times
@@ -176,6 +170,7 @@ hist(inter_hp)
 
 # MMHP
 ## Class
+mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL) takes lambda0(intensity for hpp), lambda1(base intensity for hp), alpha(jump size of the increase in intensity in hp), beta(exponential decrease of intensity in hp), Q(transition probability matrix), delta(initial state probability), events(event times, could be added later after simulation) as inputs and returns an object of class mmhp, in the form of a list of parameters provided.
 ```{r}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 
@@ -199,5 +194,5 @@ drawUniMMHPIntensity(x, y)
 ## Diagnostics
 ```{r}
 try(diagpp(x, t=y))
-try(intensityqqplot(object=x,min(y$tau),max(y$tau),history=0,events=y$tau,pzt=0.5))
+try(intensityqqplot(object=x,min(y$events),max(y$events),history=0,events=y$events,pzt=0.5))
 ```
