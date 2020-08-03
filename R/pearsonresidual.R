@@ -29,14 +29,14 @@ pearsonresidual.mmhp <- function(object, t, termination, time.vec = NULL, latent
   N <- length(t)
   est.intensity <- intensity(object,
     event = list(
-      tau = t,
+      events = t,
       time_segment = time.vec,
       latent_mean = latent.vec
     ),
     method = "numeric"
   )
   est.intensity.events <- intensity(object, event = list(
-    tau = t,
+    events = t,
     z = latent_event
   ), method = "atevent")
   pr <- sum(1 / sqrt(est.intensity.events)) -
