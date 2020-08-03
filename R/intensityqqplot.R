@@ -14,8 +14,7 @@
 #' @importFrom graphics par
 #' @importFrom graphics layout
 #' @export
-intensityqqplot <- function(object, start, end, history, color, i, events, pzt,
-                            ...){
+intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
 	UseMethod("intensityqqplot")
 }
 

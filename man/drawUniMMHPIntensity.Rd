@@ -7,14 +7,14 @@
 drawUniMMHPIntensity(
   mmhp,
   simulation,
-  yupper = 10,
+  yupper = 5,
   add = FALSE,
   color = 1,
   given_main = "Intensity Plot of MMHP"
 )
 }
 \arguments{
-\item{mmhp}{a mmhp object including its state, state_time, tau, lambda0, lambda1, beta and alpha.}
+\item{mmhp}{a mmhp object including its state, state_time, events, lambda0, lambda1, beta and alpha.}
 
 \item{simulation}{the simulated Markov-modulated Hawkes Process(MMHP)}
 

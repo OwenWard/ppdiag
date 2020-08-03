@@ -14,7 +14,7 @@ simulatemmhp(
 )
 }
 \arguments{
-\item{object}{a mmhp object including its Q, delta, tau, lambda0, lambda1, beta and alpha.}
+\item{object}{a mmhp object including its Q, delta, events, lambda0, lambda1, beta and alpha.}
 
 \item{nsim}{number of points to simulate.}
 

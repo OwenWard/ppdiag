@@ -7,6 +7,7 @@
 #' @param color a specification for the default plotting color.
 #' @param plot_events a boolean indicating whether events inputted will be plotted
 #' @param fit a boolean indicating whether to fit a hpp or use the passed object
+#' @param int_title the plot title
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points

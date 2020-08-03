@@ -4,7 +4,14 @@
 \alias{drawHPPIntensity}
 \title{Draw Intensity of Homogeneous Poisson Process}
 \usage{
-drawHPPIntensity(hpp, events = NULL, color = "red", plot_events = FALSE)
+drawHPPIntensity(
+  hpp,
+  events = NULL,
+  color = "red",
+  plot_events = FALSE,
+  fit = FALSE,
+  int_title = "Intensity homogeneous Poisson Process"
+)
 }
 \arguments{
 \item{hpp}{object for homogeneous poisson process}
@@ -14,6 +21,10 @@ drawHPPIntensity(hpp, events = NULL, color = "red", plot_events = FALSE)
 \item{color}{a specification for the default plotting color.}
 
 \item{plot_events}{a boolean indicating whether events inputted will be plotted}
+
+\item{fit}{a boolean indicating whether to fit a hpp or use the passed object}
+
+\item{int_title}{the plot title}
 }
 \description{
 Draw the intensity for homogeneous poisson process events

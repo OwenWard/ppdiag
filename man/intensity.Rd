@@ -23,7 +23,7 @@ intensity(object, event, method = "function")
 }
 \arguments{
 \item{object}{an object of MMHP/HP/MMPP
-For example, MMHP object should includ its state, state_time, tau, lambda0, lambda1, beta and alpha.}
+For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.}
 
 \item{event}{the observed/simulated events}
 

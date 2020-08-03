@@ -7,13 +7,13 @@
 hp(lambda0, alpha, beta, events = NULL)
 }
 \arguments{
-\item{lambda0}{parameters for Hawkes process.}
+\item{lambda0}{initial intensity at the start time}
 
-\item{alpha}{parameters for Hawkes process.}
+\item{alpha}{jump size in increase of intensity}
 
-\item{beta}{parameters for Hawkes process.}
+\item{beta}{exponential decay of intensity}
 
-\item{events}{vector containing the event times. Note that the first event is at time zero. Alternatively, t could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
+\item{events}{vector containing the event times. Note that the first event is at time zero. Alternatively, events could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 hp object
