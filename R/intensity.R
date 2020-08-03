@@ -3,7 +3,7 @@
 #' Take an object of MMHP/HP/MMPP and generate its intensity function accordingly
 #'
 #' @param object an object of MMHP/HP/MMPP
-#' For example, MMHP object should includ its state, state_time, tau, lambda0, lambda1, beta and alpha.
+#' For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.
 #' @param event the observed/simulated events
 #' @param method the method used to calculate intensity.
 #'   The candidates are: `function`, `numeric`, and `atevent`, default to `function`.
@@ -27,7 +27,7 @@ intensity.default <- function(object, event, method = "function") {
 #' @rdname intensity
 #' @export
 intensity.mmhp <- function(object, event, method = "function") {
-  t <- event$tau
+  t <- event$events
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
@@ -91,7 +91,7 @@ intensity.mmhp <- function(object, event, method = "function") {
     return(lambda.t)
   } # else if (method =="attime"){
   # return intensity evaluates at event times (output is an vector)
-  #   events<-event$tau
+  #   events<-event$events
   #   latent_z <-event$z
   #   latent$x <-event$x
   #   current_time <- event$current_time
