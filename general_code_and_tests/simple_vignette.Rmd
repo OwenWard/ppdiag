@@ -143,7 +143,7 @@ parameter values....
 # changing this to use hawkes event times
 
 drawHPIntensity(hp_obj, start=0, end=max(sims$t), history=0, events = sims$t,
-                plot_events = FALSE)
+                plot_events = TRUE)
 
 drawHPIntensity(fit_hp, start=0, end=max(sims$t), 
                 history=0, events = sims$t, plot_events = TRUE)
