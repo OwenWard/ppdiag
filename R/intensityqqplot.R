@@ -14,7 +14,8 @@
 #' @importFrom graphics par
 #' @importFrom graphics layout
 #' @export
-intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
+intensityqqplot <- function(object, start, end, history, color, i, events, pzt,
+                            ...){
 	UseMethod("intensityqqplot")
 }
 
@@ -47,13 +48,14 @@ intensityqqplot.hpp <- function(object,
                             start, end, history,
                             color=1, i=1, events, pzt = NULL) {
 	
-  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),widths = c(2, 2))
-  r=compensator(object=object,t=events,pzt=pzt)  
+  layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
+         heights = c(2, 2), widths = c(2, 2))
+  r=compensator(object = object, t = events, pzt = pzt)  
   par(mar = c(2, 2,1,1))
   qqexp(r)  
   par(mar = c(2, 2,1,1))
   drawHPPIntensity(object, events = events, color = color,
-                   plot_events = TRUE)  
+                   plot_events = TRUE, int_title = "Intensity")  
 }
 
 

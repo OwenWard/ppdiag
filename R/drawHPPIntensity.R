@@ -16,7 +16,9 @@
 #' drawHPPIntensity(pois_y,color = "red")
 
 drawHPPIntensity <- function(hpp, events = NULL, color = "red", 
-                             plot_events = FALSE, fit = FALSE){
+                             plot_events = FALSE,
+                             fit = FALSE,
+                             int_title = "Intensity homogeneous Poisson Process"){
 	start=hpp$start
 	end=hpp$end
 	lambda=hpp$lambda
@@ -47,12 +49,12 @@ drawHPPIntensity <- function(hpp, events = NULL, color = "red",
 	}
 	fisher=1/lambda
 	plot(c(start,end), c(0,(lambda+fisher)*2), type = "n", xlab = "event times", ylab = "lambda", 
-		main="Intensity of homogeneous poisson process")
+		main=int_title)
 	abline(h=lambda, col=color)
 	abline(h=lambda+fisher,lty=2)	
 	abline(h=lambda-fisher,lty=2)	
 	for(i in 1:length(events)){
 	  points(x=events[i],y=0,pch=1,col="blue")
 	}
-	legend("topleft", "Homogeneous Poisson Process events", col = "blue", pch = 1)
+	legend("topleft", "Events", col = "blue", pch = 1)
 }

@@ -95,7 +95,8 @@ This gives the right warning message, but we don't want to simulate data for
 these plots.
 
 ```{r}
-intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,history=0,events=events)
+intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,
+                history = 0,events = events)
 ```
 
 ## interevent times

@@ -18,7 +18,7 @@ qqexp <- function(r, ...) {
   q <- quantile(r, p = p) # percentiles of the sample distribution
   max_range <- max(c(max(qexp(p)),q))
   plot(qexp(p), q,
-    main = "Exponential Q-Q Plot",
+    main = "Q-Q Plot",
     xlab = "Theoretical Quantiles", ylab = "Sample Quantiles", 
     xlim = c(0,max_range),
     ylim = c(0,max_range), ...
