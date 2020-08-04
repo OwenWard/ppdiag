@@ -186,7 +186,7 @@ x <- mmhp(Q, delta = c(1 / 3, 2 / 3),
 
 ## Simulate
 ```{r}
-y <- simulatemmhp(x,nsim = 15)
+y <- simulatemmhp(x,n = 50)
 ```
 
 ## Plot
