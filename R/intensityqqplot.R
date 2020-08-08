@@ -70,7 +70,7 @@ intensityqqplot.mmhp <- function(object,
   par(mar = c(2, 2,1,1))
   drawUniMMHPIntensity(mmhp = object, simulation=events, 
                        add=FALSE, color=color,
-                       given_main = "Intensity Plot of MMHP")  
+                       given_main = "Intensity")  
 }
 
 
