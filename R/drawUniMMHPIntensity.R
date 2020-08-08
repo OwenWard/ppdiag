@@ -39,7 +39,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation, yupper = 5, add = FALSE, colo
     )
     ## should be related to state
     graphics::points(events[-1], rep(lambda0 / 2, n - 1), cex = 0.6, 
-                     pch = ifelse(mmhp$tau_state[-1] == 1, 16, 1), col = "blue")
+                     pch = ifelse(state[-1] == 1, 16, 1), col = "blue")
     points(state_time, rep(lambda0, m), cex = 0.6, pch = 4, col = "red")
   }
   for (i in 1:(m - 1)) {
