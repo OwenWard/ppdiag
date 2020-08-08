@@ -14,6 +14,7 @@
 #' @param add whether to add the hawkes intensity to an existing plot
 #' @param plot_events a boolean indicating whether events inputted will be plotted
 #' @param vec vector of initial values of parameters used in fithp
+#' @param int_title title of the intensity plot
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom stats optimize
@@ -30,7 +31,7 @@
 drawHPIntensity <- function(hp_obj, 
                             start, end, history=0, events,
                             color = 1, i = 1, add=FALSE,
-                            plot_events=FALSE, vec=NULL) {
+                            plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
   lambda0 = hp_obj$lambda0
@@ -63,7 +64,7 @@ drawHPIntensity <- function(hp_obj,
     graphics::plot(0, 0,
                    xlim = c(start, end),
                    ylim = ylim, type = "n", xlab = "Time", 
-                   ylab = "Intensity",main = 'Hawkes')
+                   ylab = "Intensity",main = int_title)
     for(i in 1:length(events)){
 	    graphics::points(x=events[i],y=0,pch=1,col="blue")
 	  }
