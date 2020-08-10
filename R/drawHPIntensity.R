@@ -158,5 +158,5 @@ drawHPIntensity <- function(hp_obj,
       segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
     }
   }
-
+  legend("topleft", "Events", col = "blue", pch = 1)
 }
