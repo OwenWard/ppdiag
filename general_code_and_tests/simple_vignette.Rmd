@@ -41,24 +41,24 @@ events
 ```{r}
 # sample simulation of 10 hpp events
 s1=simulatehpp(hpp(lambda=1,n=10))
-temp=s1
-inter_s1=s1[2:length(s1)]-temp[1:length(temp)-1]
+inter_s1=diff(s1)
 hist(inter_s1,main="interevent times")
+lines(density(inter_s1))
 
 
 ### can also just use diff(events) instead
 
 # sample simulation of 50 hpp events
 s2=simulatehpp(hpp(lambda=3,n=50))
-temp=s2
-inter_s2=s2[2:length(s2)]-temp[1:length(temp)-1]
+inter_s2=diff(s2)
 hist(inter_s2,main="interevent times")
+lines(density(inter_s2))
 
 # sample simulation of 100 hpp events
 s3=simulatehpp(hpp(lambda=1,n=100))
-temp=s3
-inter_s3=s3[2:length(s3)]-temp[1:length(temp)-1]
+inter_s3=diff(s3)
 hist(inter_s3,main="interevent times")
+lines(density(inter_s3))
 ```
 
 ## Fit
