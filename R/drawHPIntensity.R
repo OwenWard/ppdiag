@@ -15,6 +15,7 @@
 #' @param plot_events a boolean indicating whether events inputted will be plotted
 #' @param vec vector of initial values of parameters used in fithp
 #' @param int_title title of the intensity plot
+#' @param fit a boolean indicating whether to fit a hp or use the passed object
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom stats optimize
@@ -30,7 +31,7 @@
 
 drawHPIntensity <- function(hp_obj, 
                             start, end, history=0, events,
-                            color = 1, i = 1, add=FALSE, fit=FALSE
+                            color = 1, i = 1, add=FALSE, fit=FALSE,
                             plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
@@ -42,7 +43,7 @@ drawHPIntensity <- function(hp_obj,
     #events <- c(history,t)
     #events <- t
 	  
-    if(plot_events==TRUE & fit=TRUE){
+    if(plot_events==TRUE & fit==TRUE){
       if(is.null(vec)){
         # stop("To plot events instead of object, 
         #      please enter vec which is the initial vector of parameters")
