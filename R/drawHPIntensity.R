@@ -54,8 +54,8 @@ drawHPIntensity <- function(hp_obj,
       alpha = hp_obj$alpha
       beta = hp_obj$beta
     }
-    if(plot_events=TRUE & fit==FALSE){
-	    message("Using specified hp object.")
+    if(plot_events==TRUE & fit==FALSE){
+      message("Using specified hp object.")
     }else{
       message("Simulating events from a Hawkes process with the specified parameters.")
       events=simulatehp(hp_obj,start=start,end=end,history=history)$t
