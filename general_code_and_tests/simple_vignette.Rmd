@@ -25,6 +25,7 @@ pois_y
 
 
 ## Simulate
+simulatehpp takes a hpp object in the form of a list(lambda, start=0, end=1, n = NULL) and simulates events according to the arguments in the list, this function returns a vector of event times. 
 ```{r}
 # events <- simulatehpp(lambda = 1, end = 10)
 # events
@@ -37,7 +38,7 @@ events
 ```
 
 
-
+Below are several examples simulations(10 events, 50 events, and 100 events), their histogram of interevent times and the corresponding fitted density curves are plotted to illustrate homogeneous poisson events. 
 ```{r}
 # sample simulation of 10 hpp events
 s1=simulatehpp(hpp(lambda=1,n=10))
@@ -62,6 +63,7 @@ lines(density(inter_s3))
 ```
 
 ## Fit
+fithpp takes a vector of events and returns a hpp object in the form of list(lambda, start, end, n), events are fitted according to the maximum likelihood estimator.
 ```{r}
 
 fithpp(events)
@@ -71,11 +73,15 @@ fit_hpp <- fithpp(events)
 ```
 
 ## Plot
+plothpp_step takes in a vector of event times, a color parameter, and plots the event time counts.
 ```{r}
 plothpp_step(events)
 ```
 
-
+drawHPPIntensity takes (hpp, events = NULL, color = "red", 
+                             plot_events = FALSE,
+                             fit = FALSE,
+                             int_title = "Intensity homogeneous Poisson Process"), which include a necessary argument which is a hpp object, and plots its intensity. You can also input 'events', which is a vector of event times, and indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hpp on the given events or use the given hpp object in 'fit'.
 ```{r}
 drawHPPIntensity(pois_y,color = "red")
 
@@ -87,23 +93,26 @@ drawHPPIntensity(fit_hpp, events=events, color = "red", plot_events=TRUE)
 ```
 
 ## Diagnostics
+diagpp takes a hpp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 diagpp(pois_y,t=events)
 ```
 
-This gives the right warning message, but we don't want to simulate data for
-these plots.
+#This gives the right warning message, but we don't want to simulate data for
+#these plots.
 
+Intensityqqplot takes a hpp object, and a vector of events, and plots the qqplot and intensity plot together. 
 ```{r}
 intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,
                 history = 0,events = events)
 ```
 
 ## interevent times
+Below is a plot of interevent times of our simulated events. 
 ```{r}
-temp=events
-inter_hpp=events[2:length(events)]-temp[1:length(temp)-1]
+inter_hpp=diff(events)
 hist(inter_hpp)
+lines(density(inter_hpp))
 ```
 
 # Hawkes Process
