@@ -30,7 +30,7 @@
 
 drawHPIntensity <- function(hp_obj, 
                             start, end, history=0, events,
-                            color = 1, i = 1, add=FALSE,
+                            color = 1, i = 1, add=FALSE, fit=FALSE
                             plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
@@ -42,17 +42,20 @@ drawHPIntensity <- function(hp_obj,
     #events <- c(history,t)
     #events <- t
 	  
-    if(plot_events==TRUE){
+    if(plot_events==TRUE & fit=TRUE){
       if(is.null(vec)){
         # stop("To plot events instead of object, 
         #      please enter vec which is the initial vector of parameters")
         vec <- rep(0.1,3) ## use a random initialisation
       }
-      message("Fitting a Hawkes process to the supplied events.")
-      hp=fithp(vec,events,end)
+      message("Fitting a Hawkes process to the supplied events. Specified object not used.")
+      hp_obj=fithp(vec,events,end)
       lambda0 = hp_obj$lambda0
       alpha = hp_obj$alpha
       beta = hp_obj$beta
+    }
+    if(plot_events=TRUE & fit==FALSE){
+	    message("Using specified hp object.")
     }else{
       message("Simulating events from a Hawkes process with the specified parameters.")
       events=simulatehp(hp_obj,start=start,end=end,history=history)$t
