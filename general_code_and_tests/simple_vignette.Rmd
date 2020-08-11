@@ -124,16 +124,15 @@ hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 ```
 
 ## Simulate
+simulatehp takes a hp object in the form of a list(hp, start=0, end, history=0) and simulates events according to the arguments in the list, this function returns a vector of event times. 
 ```{r}
-# simulatehp(lambda0 = 0.1, alpha = 0.5, beta = 0.5, start = 0, end = 10,
-#           history = 0)
-
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 sims
 
 ```
 
 ## Fit
+fithp takes argument including vec, which is the vector of initial parameters lambda0, alpha, beta, and t, the vector of event times, and end, the end time of event times, and fits a hawkes process based on optimizing negative log likelihood, then returns a hp object in the form of a list that consists of the three parameters fitted. 
 ```{r}
 init=rep(0.1,3)
 
@@ -147,6 +146,10 @@ fit_hp <- fithp(init,sims$t,max(sims$t))
 One difficulty with this is that now we cannot look at the fits for different
 parameter values....
 
+
+drawHPIntensity takes (hp_obj, start, end, history=0, events,
+                            color = 1, i = 1, add=FALSE, fit=FALSE,
+                            plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity"), which include necessary arguments including a hp object, events, and start and end time of events, and plots the intensity. You can also indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hp on the given events or use the given hpp object in 'fit'.
 ```{r}
 # changing this to use hawkes event times
 
@@ -159,6 +162,7 @@ drawHPIntensity(fit_hp, start=0, end=max(sims$t),
 ```
 
 ## Diagnostics
+diagpp takes a hp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 diagpp(hp_obj, t=sims$t)
 # this is the truth
@@ -168,12 +172,13 @@ diagpp(fit_hp, t = sims$t)
 
 ```
 
-
+Intensityqqplot takes a hp object, a vector of events, its start and end time, an optional argument of historical events, and plots the qqplot and intensity plot together. 
 ```{r}
 intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=events)
 ```
 
 ## interevent times
+Below is a plot of interevent times of our simulated events. 
 ```{r}
 temp=sims$t
 inter_hp=sims$t[2:length(sims$t)]-temp[1:length(temp)-1]
