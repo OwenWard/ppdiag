@@ -199,17 +199,23 @@ x <- mmhp(Q, delta = c(1 / 3, 2 / 3),
 ```
 
 ## Simulate
+simulatemmhp(object, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) takes a mmhp object, n which is number of events, given_state which is a boolean parameter, If TRUE, then simulate according to the given state, default FALSE, states which is an object containing z, the states of Markov Process, x, time of each transition of Markov process, ending, preset ending time for the process, and seed which is the seed of the random number generator. It returns a simulated Markov Modulated Hawkes Process, including states of Markov Process, time of each transition of Markoc Process, state at each event, times of Poisson events.
 ```{r}
 y <- simulatemmhp(x,n = 50)
 ```
 
+drawUniMMHPIntensity(mmhp, simulation, add = FALSE, color = 1, given_main = "Intensity Plot of MMHP") takes a mmhp object, mmhp which is the simulated mmhp events, add which is a logical parameter, if TRUE add to an already existing plot, if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot, taken as FALSE (with a warning if a different value is supplied) if no graphics device is open, color which is the default plotting color, given_main which is the title of the plot. It plots the intensity of mmhp. 
 ## Plot
 ```{r}
 drawUniMMHPIntensity(x, y)
 ```
 
 ## Diagnostics
+diagpp takes a mmhp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 try(diagpp(x, t=y))
+```
+Intensityqqplot takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
+```{r}
 try(intensityqqplot(object=x,min(y$events),max(y$events),history=0,events=y$events,pzt=0.5))
 ```
