@@ -12,6 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 devtools::load_all()  ## loads ppdiag
 ```
+# Load data
+We'll apply some data to the functions. 
+```{r}
+time=readRDS("time.RDS")
+```
 
 # Homogeneous Poisson Process
 
@@ -33,8 +38,6 @@ simulatehpp takes a hpp object in the form of a list(lambda, start=0, end=1, n =
 pois_y$n <- 50
 events <- simulatehpp(pois_y)
 events
-
-
 ```
 
 
@@ -45,9 +48,6 @@ s1=simulatehpp(hpp(lambda=1,n=10))
 inter_s1=diff(s1)
 hist(inter_s1,main="interevent times")
 lines(density(inter_s1))
-
-
-### can also just use diff(events) instead
 
 # sample simulation of 50 hpp events
 s2=simulatehpp(hpp(lambda=3,n=50))
@@ -71,11 +71,21 @@ fithpp(events)
 fit_hpp <- fithpp(events)
 
 ```
+Then we try to fit the time data:
+```{r}
+time_fit_hpp=fithpp(time)
+time_fit_hpp
+```
 
 ## Plot
 plothpp_step takes in a vector of event times, a color parameter, and plots the event time counts.
 ```{r}
 plothpp_step(events)
+```
+
+Let's plot the time data:
+```{r}
+plothpp_step(time)
 ```
 
 drawHPPIntensity takes (hpp, events = NULL, color = "red", 
@@ -91,11 +101,23 @@ drawHPPIntensity(fit_hpp,events=events, color = "red")
 # this plots the inputted events, since plot_events=TRUE:
 drawHPPIntensity(fit_hpp, events=events, color = "red", plot_events=TRUE)
 ```
+Then we plot the intensity of the fitted time data:
+```{r}
+# this plots the fit_hpp intensity and its corresponding simulated events, since plot_events default is FALSE:
+drawHPPIntensity(time_fit_hpp,events=time, color = "red")
 
+# this plots the inputted events, since plot_events=TRUE:
+drawHPPIntensity(time_fit_hpp, events=time, color = "red", plot_events=TRUE)
+```
 ## Diagnostics
 diagpp takes a hpp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 diagpp(pois_y,t=events)
+```
+
+Applying time data:
+```{r}
+diagpp(time_fit_hpp,t=time)
 ```
 
 #This gives the right warning message, but we don't want to simulate data for
@@ -106,15 +128,25 @@ Intensityqqplot takes a hpp object, and a vector of events, and plots the qqplot
 intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,
                 history = 0,events = events)
 ```
+Applying time data:
+```{r}
+intensityqqplot(time_fit_hpp,time_fit_hpp$start,time_fit_hpp$end,
+                history = 0,events = time)
+```
 
 ## interevent times
-Below is a plot of interevent times of our simulated events. 
+Below is a histogram with fitted density of interevent times of our simulated events. 
 ```{r}
 inter_hpp=diff(events)
 hist(inter_hpp)
 lines(density(inter_hpp))
 ```
-
+For the time data:
+```{r}
+inter_hpp=diff(time)
+hist(inter_hpp)
+lines(density(inter_hpp))
+```
 # Hawkes Process
 
 ## Class
@@ -128,7 +160,6 @@ simulatehp takes a hp object in the form of a list(hp, start=0, end, history=0) 
 ```{r}
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 sims
-
 ```
 
 ## Fit
@@ -139,6 +170,12 @@ init=rep(0.1,3)
 fithp(init,sims$t,max(sims$t))
 
 fit_hp <- fithp(init,sims$t,max(sims$t))
+```
+We can fit our time data to hp:
+```{r}
+init=rep(0.1,3)
+time_fit_hp <- fithp(init,time,max(time))
+time_fit_hp
 ```
 
 ## Plot
@@ -161,6 +198,11 @@ drawHPIntensity(fit_hp, start=0, end=max(sims$t),
 
 ```
 
+We can plot the hp intensity for the fitted time data:
+```{r}
+drawHPIntensity(time_fit_hp, start=min(time), end=max(time), history=0, events=time)
+```
+
 ## Diagnostics
 diagpp takes a hp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
@@ -171,12 +213,19 @@ diagpp(hp_obj, t=sims$t)
 diagpp(fit_hp, t = sims$t)
 
 ```
+Applying diagnostics on the time data:
+```{r}
+diagpp(time_fit_hp, t = time)
+```
 
 Intensityqqplot takes a hp object, a vector of events, its start and end time, an optional argument of historical events, and plots the qqplot and intensity plot together. 
 ```{r}
 intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=events)
 ```
-
+Plotting intensityqqplot for the time data:
+```{r}
+intensityqqplot(time_fit_hp,start=min(time),end=max(time),history=0,events=time)
+```
 ## interevent times
 Below is a plot of interevent times of our simulated events. 
 ```{r}
