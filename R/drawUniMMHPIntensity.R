@@ -48,7 +48,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
   
   if (add == FALSE) {
     graphics::plot(0, 0,
-      xlim = c(0, state_time[m]), ylim = c(0, yupper), type = "n", xlab = "Time", ylab = "Intensity",
+      xlim = c(0, state_time[m]), ylim = c(0, yupper*1.5), type = "n", xlab = "Time", ylab = "Intensity",
       main = given_main
     )
     ## should be related to state
