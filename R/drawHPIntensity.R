@@ -75,22 +75,22 @@ drawHPIntensity <- function(hp_obj,
     
     if (n == 0) {
       if (i == 1) {
-        segments(x0 = start, x1 = end, y0 = lambda0)
+        segments(x0 = start, x1 = end, y0 = 0)
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        graphics::segments(x0 = start, y0 = lambda0, y1 = lambda.n(end),
+        graphics::segments(x0 = start, y0 = 0, y1 = lambda.n(end),
                            lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = end, add = TRUE, col = color)
       }
     } else {
       if (i == 1) {
-        graphics::segments(x0 = start, x1 = events[1], y0 = lambda0, col = color)
-        segments(x0 = events[1], y0 = lambda0, y1 = lambda0 + alpha, col = color)
+        graphics::segments(x0 = start, x1 = events[1], y0 = 0, col = color)
+        segments(x0 = events[1], y0 = 0, y1 = lambda0 + alpha, col = color)
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        segments(x0 = start, y0 = lambda0, y1 = lambda.n(start),
+        segments(x0 = start, y0 = 0, y1 = lambda.n(start),
                  lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, 
                         to = events[1], add = TRUE, col = color)
@@ -110,7 +110,7 @@ drawHPIntensity <- function(hp_obj,
       lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, events[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
       curve(new.lambda.n, from = events[n], to = end, add = TRUE, col = color)
-      segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
+      segments(x0 = end, y0 = lambda.n(end), y1 = 0, lty = 2, col = color)
       # if (t[n]==end){
       #   max=c(max,new.lambda.n(end))
       # }
@@ -123,11 +123,11 @@ drawHPIntensity <- function(hp_obj,
     # to add to an already created plot
     if (n == 0) {
       if (i == 1) {
-        segments(x0 = start, x1 = end, y0 = lambda0)
+        segments(x0 = start, x1 = end, y0 = 0)
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        graphics::segments(x0 = start, y0 = lambda0, y1 = lambda.n(end), lty = 2, col = color)
+        graphics::segments(x0 = start, y0 = 0, y1 = lambda.n(end), lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = end, add = TRUE, col = color)
       }
     } else {
@@ -137,7 +137,7 @@ drawHPIntensity <- function(hp_obj,
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        segments(x0 = start, y0 = lambda0, y1 = lambda.n(start), lty = 2, col = color)
+        segments(x0 = start, y0 = 0, y1 = lambda.n(start), lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = events[1],
                         add = TRUE, col = color)
         segments(x0 = events[1], y0 = lambda.n(events[1]),
@@ -156,7 +156,7 @@ drawHPIntensity <- function(hp_obj,
       lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m + n) - c(history, events[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
       curve(new.lambda.n, from = events[n], to = end, add = TRUE, col = color)
-      segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
+      segments(x0 = end, y0 = lambda.n(end), y1 = 0, lty = 2, col = color)
     }
   }
   legend("topleft", "Events", col = "blue", pch = 1)
