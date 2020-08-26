@@ -125,13 +125,11 @@ diagpp(time_fit_hpp,t=time)
 
 Intensityqqplot takes a hpp object, and a vector of events, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,
-                history = 0,events = events)
+intensityqqplot(object=fit_hpp,events = events, color="red")
 ```
 Applying time data:
 ```{r}
-intensityqqplot(time_fit_hpp,time_fit_hpp$start,time_fit_hpp$end,
-                history = 0,events = time)
+intensityqqplot(object=time_fit_hpp,events = time)
 ```
 
 ## interevent times
@@ -220,11 +218,11 @@ diagpp(time_fit_hp, t = time)
 
 Intensityqqplot takes a hp object, a vector of events, its start and end time, an optional argument of historical events, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=events)
+intensityqqplot(fit_hp,start=0,end=max(sims$t),events=events)
 ```
 Plotting intensityqqplot for the time data:
 ```{r}
-intensityqqplot(time_fit_hp,start=min(time),end=max(time),history=0,events=time)
+intensityqqplot(time_fit_hp,start=min(time),end=max(time),events=time)
 ```
 ## interevent times
 Below is a plot of interevent times of our simulated events. 
