@@ -44,7 +44,11 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
     }
   }
   
-  yupper=max(ylim)
+  if(!is.null(ylim)){
+    yupper=max(ylim)
+  }else{
+    yupper=0
+  }
   
   if (add == FALSE) {
     graphics::plot(0, 0,
