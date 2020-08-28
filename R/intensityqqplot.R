@@ -14,38 +14,31 @@
 #' @importFrom graphics par
 #' @importFrom graphics layout
 #' @export
-intensityqqplot <- function(object, start, end, history, color, i, events, pzt){
+intensityqqplot <- function(object, events, pzt, ...){
 	UseMethod("intensityqqplot")
 }
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.default <- function(object, 
-                            start, end, history,
-                            color, i, events, pzt) {
+intensityqqplot.default <- function(object, events, pzt, ...) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")   
 }
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hp <- function(object, 
-                            start, end, history,
-                            color=1, i=1, events, pzt = NULL) {
+intensityqqplot.hp <- function(object, events, pzt=NULL, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),widths = c(2, 2))
   r=compensator(object=object,t=events,pzt=pzt)  
   par(mar = c(2, 2,1,1))
   qqexp(r)
   par(mar = c(2, 2,1,1))
-  drawHPIntensity(object,start=start,end=end,
-                  history=history,events = events,color=color,i=i,add=FALSE,int_title="Intensity")
+  drawHPIntensity(object,events = events,add=FALSE, ...)
 }
 
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hpp <- function(object, 
-                            start=NULL, end=NULL, history=NULL,
-                            color=1, i=1, events, pzt = NULL) {
+intensityqqplot.hpp <- function(object, events, pzt, ...) {
 	
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
@@ -53,24 +46,21 @@ intensityqqplot.hpp <- function(object,
   par(mar = c(2, 2,1,1))
   qqexp(r)  
   par(mar = c(2, 2,1,1))
-  drawHPPIntensity(object, events = events, color = color,
-                   plot_events = TRUE, int_title = "Intensity")  
+  drawHPPIntensity(object, events = events,
+                   plot_events = TRUE,...)  
 }
 
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.mmhp <- function(object, 
-                            start, end, history,
-                            color=1, i=1, events, pzt) {
+intensityqqplot.mmhp <- function(object, events, pzt, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),widths = c(2, 2))
   r=compensator(object=object,t=events,pzt=pzt)  
   par(mar = c(2, 2,1,1))
   qqexp(r)  
   par(mar = c(2, 2,1,1))
-  drawUniMMHPIntensity(mmhp = object, simulation=events, 
-                       add=FALSE, color=color,
-                       given_main = "Intensity")  
+  drawUniMMHPIntensity(mmhp = object, 
+                       add=FALSE, ...)  
 }
 
 

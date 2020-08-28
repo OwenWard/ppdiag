@@ -48,19 +48,19 @@ Below are several examples simulations(10 events, 50 events, and 100 events), th
 # sample simulation of 10 hpp events
 s1=simulatehpp(hpp(lambda=1,n=10))
 inter_s1=diff(s1)
-hist(inter_s1,main="interevent times")
+hist(inter_s1,main="interevent times",freq=FALSE)
 lines(density(inter_s1))
 
 # sample simulation of 50 hpp events
 s2=simulatehpp(hpp(lambda=3,n=50))
 inter_s2=diff(s2)
-hist(inter_s2,main="interevent times")
+hist(inter_s2,main="interevent times",freq=FALSE)
 lines(density(inter_s2))
 
 # sample simulation of 100 hpp events
 s3=simulatehpp(hpp(lambda=1,n=100))
 inter_s3=diff(s3)
-hist(inter_s3,main="interevent times")
+hist(inter_s3,main="interevent times",freq=FALSE)
 lines(density(inter_s3))
 ```
 
@@ -127,26 +127,24 @@ diagpp(time_fit_hpp,t=time)
 
 Intensityqqplot takes a hpp object, and a vector of events, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(fit_hpp,fit_hpp$start,fit_hpp$end,
-                history = 0,events = events)
+intensityqqplot(object=fit_hpp,events = events, color="red")
 ```
 Applying time data:
 ```{r}
-intensityqqplot(time_fit_hpp,time_fit_hpp$start,time_fit_hpp$end,
-                history = 0,events = time)
+intensityqqplot(object=time_fit_hpp,events = time)
 ```
 
 ## interevent times
 Below is a histogram with fitted density of interevent times of our simulated events. 
 ```{r}
 inter_hpp=diff(events)
-hist(inter_hpp)
+hist(inter_hpp,freq=FALSE)
 lines(density(inter_hpp))
 ```
 For the time data:
 ```{r}
 inter_hpp=diff(time)
-hist(inter_hpp)
+hist(inter_hpp,freq=FALSE)
 lines(density(inter_hpp))
 ```
 # Hawkes Process
@@ -222,18 +220,19 @@ diagpp(time_fit_hp, t = time)
 
 Intensityqqplot takes a hp object, a vector of events, its start and end time, an optional argument of historical events, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(fit_hp,start=0,end=max(sims$t),history=0,events=events)
+intensityqqplot(fit_hp,start=0,end=max(sims$t),events=events)
 ```
 Plotting intensityqqplot for the time data:
 ```{r}
-intensityqqplot(time_fit_hp,start=min(time),end=max(time),history=0,events=time)
+intensityqqplot(time_fit_hp,start=min(time),end=max(time),events=time)
 ```
 ## interevent times
 Below is a plot of interevent times of our simulated events. 
 ```{r}
 temp=sims$t
 inter_hp=sims$t[2:length(sims$t)]-temp[1:length(temp)-1]
-hist(inter_hp)
+hist(inter_hp,freq=FALSE)
+lines(density(inter_hp))
 ```
 
 # MMHP
@@ -268,5 +267,5 @@ try(diagpp(x, t=y))
 ```
 Intensityqqplot takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
 ```{r}
-try(intensityqqplot(object=x,min(y$events),max(y$events),history=0,events=y$events,pzt=0.5))
+intensityqqplot(object=x,events=y$events,pzt=0.5,simulation=y)
 ```
