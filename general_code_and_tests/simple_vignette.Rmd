@@ -265,5 +265,5 @@ try(diagpp(x, t=y))
 ```
 Intensityqqplot takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
 ```{r}
-try(intensityqqplot(object=x,min(y$events),max(y$events),history=0,events=y$events,pzt=0.5))
+intensityqqplot(object=x,events=y$events,pzt=0.5,simulation=y)
 ```
