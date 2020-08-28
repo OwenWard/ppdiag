@@ -59,7 +59,7 @@ intensityqqplot.mmhp <- function(object, events, pzt, ...) {
   par(mar = c(2, 2,1,1))
   qqexp(r)  
   par(mar = c(2, 2,1,1))
-  drawUniMMHPIntensity(mmhp = object, simulation=events, 
+  drawUniMMHPIntensity(mmhp = object, 
                        add=FALSE, ...)  
 }
 
