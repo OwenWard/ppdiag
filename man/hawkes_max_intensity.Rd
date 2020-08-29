@@ -7,9 +7,9 @@
 hawkes_max_intensity(object, events)
 }
 \arguments{
-\item{object}{parameters for Hawkes process.}
+\item{object}{hawkes process object containing parameters for Hawkes process.}
 
-\item{events}{parameters for Hawkes process.}
+\item{events}{events for Hawkes process.}
 }
 \value{
 max of intensity

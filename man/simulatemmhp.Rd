@@ -6,7 +6,7 @@
 \usage{
 simulatemmhp(
   object,
-  nsim = 1,
+  n = 1,
   given_state = FALSE,
   states = NULL,
   seed = NULL,
@@ -16,7 +16,7 @@ simulatemmhp(
 \arguments{
 \item{object}{a mmhp object including its Q, delta, events, lambda0, lambda1, beta and alpha.}
 
-\item{nsim}{number of points to simulate.}
+\item{n}{number of points to simulate.}
 
 \item{given_state}{if the hidden state trajectory is given. It `TRUE`, then simulate according to the given state. Default to `FALSE`}
 

@@ -2,7 +2,8 @@
 title: "PPDiag"
 output:
   html_document:
-    df_print: paged
+    toc: true
+    toc_float: true
 ---
   
 ```{r setup, include=FALSE}
@@ -90,10 +91,10 @@ Let's plot the time data:
 plothpp_step(time)
 ```
 
-drawHPPIntensity takes (hpp, events = NULL, color = "red", 
-                             plot_events = FALSE,
-                             fit = FALSE,
-                             int_title = "Intensity homogeneous Poisson Process"), which include a necessary argument which is a hpp object, and plots its intensity. You can also input 'events', which is a vector of event times, and indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hpp on the given events or use the given hpp object in 'fit'.
+To draw the homogeneous poisson process, use
+`drawHPPIntensity takes (hpp, events = NULL, color = "red", 
+plot_events = FALSE,fit = FALSE,int_title = "Intensity homogeneous Poisson Process")`,
+which include a necessary argument which is a hpp object, and plots its intensity. You can also input 'events', which is a vector of event times, and indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hpp on the given events or use the given hpp object in 'fit'.
 ```{r}
 drawHPPIntensity(pois_y,color = "red")
 
@@ -147,23 +148,24 @@ inter_hpp=diff(time)
 hist(inter_hpp,freq=FALSE)
 lines(density(inter_hpp))
 ```
+
 # Hawkes Process
 
 ## Class
-hp(lambda0, alpha, beta, events = NULL) takes lambda0(base intensity of hawkes process), alpha(jump size of increase in intensity), beta(exponential decay of intensity), events(the first event is at time zero, events data can be added later after simulation) as inputs and returns an object of class hp, in the form of a list of parameters provided.
+`hp(lambda0, alpha, beta, events = NULL)` takes lambda0(base intensity of hawkes process), alpha(jump size of increase in intensity), beta(exponential decay of intensity), events(the first event is at time zero, events data can be added later after simulation) as inputs and returns an object of class hp, in the form of a list of parameters provided.
 ```{r}
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 ```
 
 ## Simulate
-simulatehp takes a hp object in the form of a list(hp, start=0, end, history=0) and simulates events according to the arguments in the list, this function returns a vector of event times. 
+`simulatehp` takes a hp object in the form of a list(hp, start=0, end, history=0) and simulates events according to the arguments in the list, this function returns a vector of event times. 
 ```{r}
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 sims
 ```
 
 ## Fit
-fithp takes argument including vec, which is the vector of initial parameters lambda0, alpha, beta, and t, the vector of event times, and end, the end time of event times, and fits a hawkes process based on optimizing negative log likelihood, then returns a hp object in the form of a list that consists of the three parameters fitted. 
+`fithp` takes argument including vec, which is the vector of initial parameters lambda0, alpha, beta, and t, the vector of event times, and end, the end time of event times, and fits a hawkes process based on optimizing negative log likelihood, then returns a hp object in the form of a list that consists of the three parameters fitted. 
 ```{r}
 init=rep(0.1,3)
 
@@ -183,10 +185,11 @@ time_fit_hp
 One difficulty with this is that now we cannot look at the fits for different
 parameter values....
 
-
-drawHPIntensity takes (hp_obj, start, end, history=0, events,
+`drawHPIntensity takes (hp_obj, start, end, history=0, events,
                             color = 1, i = 1, add=FALSE, fit=FALSE,
-                            plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity"), which include necessary arguments including a hp object, events, and start and end time of events, and plots the intensity. You can also indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hp on the given events or use the given hpp object in 'fit'.
+                            plot_events=FALSE, vec=NULL, 
+                            int_title="Hawkes Intensity")`,
+which include necessary arguments including a hp object, events, and start and end time of events, and plots the intensity. You can also indicate whether to plot the given events in 'plot_events', and indicate whether to fit a hp on the given events or use the given hpp object in 'fit'.
 ```{r}
 # changing this to use hawkes event times
 
@@ -204,7 +207,7 @@ drawHPIntensity(time_fit_hp, start=min(time), end=max(time), history=0, events=t
 ```
 
 ## Diagnostics
-diagpp takes a hp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
+`diagpp` takes a hp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 diagpp(hp_obj, t=sims$t)
 # this is the truth
@@ -213,19 +216,24 @@ diagpp(hp_obj, t=sims$t)
 diagpp(fit_hp, t = sims$t)
 
 ```
+
 Applying diagnostics on the time data:
 ```{r}
 diagpp(time_fit_hp, t = time)
 ```
 
-Intensityqqplot takes a hp object, a vector of events, its start and end time, an optional argument of historical events, and plots the qqplot and intensity plot together. 
+`intensityqqplot` takes a hp object, a vector of events,
+its start and end time, an optional argument of historical events, and plots the 
+qqplot and intensity plot together. 
 ```{r}
 intensityqqplot(fit_hp,start=0,end=max(sims$t),events=events)
 ```
+
 Plotting intensityqqplot for the time data:
 ```{r}
 intensityqqplot(time_fit_hp,start=min(time),end=max(time),events=time)
 ```
+
 ## interevent times
 Below is a plot of interevent times of our simulated events. 
 ```{r}
@@ -237,7 +245,13 @@ lines(density(inter_hp))
 
 # MMHP
 ## Class
-mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL) takes lambda0(intensity for hpp), lambda1(base intensity for hp), alpha(jump size of the increase in intensity in hp), beta(exponential decrease of intensity in hp), Q(transition probability matrix), delta(initial state probability), events(event times, could be added later after simulation) as inputs and returns an object of class mmhp, in the form of a list of parameters provided.
+`mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)`
+takes lambda0(intensity for hpp), lambda1(base intensity for hp), alpha(jump size
+of the increase in intensity in hp), beta(exponential decrease of intensity in 
+hp), Q(transition probability matrix), delta(initial state probability), 
+events(event times, could be added later after simulation) as inputs and returns 
+an object of class mmhp, in the form of a list of parameters provided.
+
 ```{r}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 
@@ -249,23 +263,32 @@ x <- mmhp(Q, delta = c(1 / 3, 2 / 3),
 ```
 
 ## Simulate
-simulatemmhp(object, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) takes a mmhp object, n which is number of events, given_state which is a boolean parameter, If TRUE, then simulate according to the given state, default FALSE, states which is an object containing z, the states of Markov Process, x, time of each transition of Markov process, ending, preset ending time for the process, and seed which is the seed of the random number generator. It returns a simulated Markov Modulated Hawkes Process, including states of Markov Process, time of each transition of Markoc Process, state at each event, times of Poisson events.
+`simulatemmhp(object, n = 1, given_state = FALSE, states = NULL, seed = NULL, 
+...)`
+takes a mmhp object, n which is number of events, given_state which is a boolean 
+parameter, If TRUE, then simulate according to the given state, default FALSE, 
+states which is an object containing z, the states of Markov Process, x, time of 
+each transition of Markov process, ending, preset ending time for the process, 
+and seed which is the seed of the random number generator. It returns a simulated
+Markov Modulated Hawkes Process, including states of Markov Process, time of each
+transition of Markoc Process, state at each event, times of Poisson events.
 ```{r}
 y <- simulatemmhp(x,n = 50)
 ```
 
-drawUniMMHPIntensity(mmhp, simulation, add = FALSE, color = 1, given_main = "Intensity Plot of MMHP") takes a mmhp object, mmhp which is the simulated mmhp events, add which is a logical parameter, if TRUE add to an already existing plot, if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot, taken as FALSE (with a warning if a different value is supplied) if no graphics device is open, color which is the default plotting color, given_main which is the title of the plot. It plots the intensity of mmhp. 
+`drawUniMMHPIntensity(mmhp, simulation, add = FALSE, color = 1, given_main = "Intensity Plot of MMHP")`
+takes a mmhp object, mmhp which is the simulated mmhp events, add which is a logical parameter, if TRUE add to an already existing plot, if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot, taken as FALSE (with a warning if a different value is supplied) if no graphics device is open, color which is the default plotting color, given_main which is the title of the plot. It plots the intensity of mmhp. 
 ## Plot
 ```{r}
 drawUniMMHPIntensity(x, y)
 ```
 
 ## Diagnostics
-diagpp takes a mmhp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
+`diagpp` takes a mmhp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
 try(diagpp(x, t=y))
 ```
-Intensityqqplot takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
+`intensityqqplot` takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(object=x,events=y$events,pzt=0.5,simulation=y)
+intensityqqplot(object=x,simulation=y, events=y$events,pzt=0.5)
 ```

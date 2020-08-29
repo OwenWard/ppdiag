@@ -14,7 +14,8 @@
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#'  alpha = 0.8, beta = 1.2)
 #' y <- simulatemmhp(x)
 #' drawUniMMHPIntensity(x, y)
 drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
@@ -34,13 +35,16 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
   ylim=c()
   for (i in 1:(m - 1)) {
     if (state[i] == 1) {
-      hawkes_time <- events[events >= state_time[i] & events < state_time[i + 1]]
+      hawkes_time <- events[events >= state_time[i] & 
+                              events < state_time[i + 1]]
       if (i == 1) hawkes_time <- hawkes_time[-1]
       history <- events[events < state_time[i]]
       hawkes_obj <- list(lambda0 = lambda1,
                          alpha = alpha,
                          beta = beta)
-      if(length(hawkes_time)>1) ylim=append(ylim,hawkes_max_intensity(hawkes_obj,hawkes_time))
+      if(length(hawkes_time)>1) {
+        ylim=append(ylim,hawkes_max_intensity(hawkes_obj,hawkes_time))
+      }
     }
   }
   
@@ -48,11 +52,13 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
     yupper=max(ylim)
   }else{
     yupper=0
+    # do we want a message here about there being no events?
   }
   
   if (add == FALSE) {
     graphics::plot(0, 0,
-      xlim = c(0, state_time[m]), ylim = c(0, yupper*1.5), type = "n", xlab = "Time", ylab = "Intensity",
+      xlim = c(0, state_time[m]), ylim = c(0, yupper*1.5), type = "n",
+      xlab = "Time", ylab = "Intensity",
       main = given_main
     )
     ## should be related to state
@@ -73,15 +79,18 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
                       history = history[-1], events = hawkes_time,
                       color = color,i, add = TRUE)
     } else {
-      segments(x0 = state_time[i], x1 = state_time[i + 1], y0 = 0, lty = 2, col = color)
+      segments(x0 = state_time[i], x1 = state_time[i + 1], y0 = 0,
+               lty = 2, col = color)
     }
   }
   if (add == FALSE) {
-    graphics::legend("topleft", c("Hawkes event", "Poisson process event", "state change point"),
+    graphics::legend("topleft", c("Hawkes event", "Poisson process event",
+                                  "state change point"),
       col = c("blue", "blue", "red"),
       pch = c(16, 1, 4)
     )
   } else {
-    legend("topright", c("True", "Estimation"), col = c("black", color), lty = c(1, 1))
+    legend("topright", c("True", "Estimation"), col = c("black", color), 
+           lty = c(1, 1))
   }
 }
