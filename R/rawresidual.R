@@ -5,25 +5,23 @@
 #' @param object social network model contating the parameters
 #' @param events vector of event happening time
 #' @param termination termination time
-#' @param time.vec time segment to calculate the intensity for `numeric` method
-#' @param latent.vec the probability of the latent space being in the active state
 #'
 #' @return the raw residual
 #' @export
 
-rawresidual <- function(object, events, termination, time.vec, latent.vec) {
+rawresidual <- function(object, events, termination) {
   UseMethod("rawresidual")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, termination, time.vec, latent.vec) {
-  cat("Please input the right model. Select from hp and mmhp. ")
+rawresidual.default <- function(object, events, termination) {
+  cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, termination, time.vec, latent.vec) {
+rawresidual.hp <- function(object, events, termination) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -49,7 +47,12 @@ rawresidual.hp <- function(object, events, termination, time.vec, latent.vec) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, termination, time.vec, latent.vec) {
+rawresidual.mmhp <- function(object, events, termination) {
+  ## need to define and compute time.vec, latent.vec in here
+  time.vec <- NA
+  latent.vec <- NA
+  
+  
   N <- length(events)
   est.intensity <- intensity(object,
     event = list(
@@ -65,7 +68,7 @@ rawresidual.mmhp <- function(object, events, termination, time.vec, latent.vec) 
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, termination, time.vec, latent.vec) {
+rawresidual.hpp <- function(object, events, termination) {
   N <- length(t)
   end <- object$end
   est.intensity <- intensity(object, events, method = "numeric")
