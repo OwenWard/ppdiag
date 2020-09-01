@@ -61,9 +61,9 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
       main = given_main
     )
     ## should be related to state
-    graphics::points(events[-1], rep(0, n - 1), cex = 0.6, 
+    graphics::points(events[-1], rep(lambda0 / 2, n - 1), cex = 0.6, 
                      pch = ifelse(state[-1] == 1, 16, 1), col = "blue")
-    points(state_time, rep(0, m), cex = 0.6, pch = 4, col = "red")
+    points(state_time, rep(lambda0, m), cex = 0.6, pch = 4, col = "red")
   }
   for (i in 1:(m - 1)) {
     if (state[i] == 1) {
@@ -78,7 +78,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
                       history = history[-1], events = hawkes_time,
                       color = color,i, add = TRUE)
     } else {
-      segments(x0 = state_time[i], x1 = state_time[i + 1], y0 = 0,
+      segments(x0 = state_time[i], x1 = state_time[i + 1], y0 = lambda0,
                lty = 2, col = color)
     }
   }
