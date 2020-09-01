@@ -137,7 +137,7 @@ drawHPIntensity <- function(hp_obj,
       } else {
         lambda.n <- function(s) lambda0 + alpha * sum(exp(-beta * (rep(s, m) - history)))
         new.lambda.n <- Vectorize(lambda.n)
-        segments(x0 = start, y0 = 0, y1 = lambda.n(start), lty = 2, col = color)
+        segments(x0 = start, y0 = lambda0, y1 = lambda.n(start), lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = events[1],
                         add = TRUE, col = color)
         segments(x0 = events[1], y0 = lambda.n(events[1]),
