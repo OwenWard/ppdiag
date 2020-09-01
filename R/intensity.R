@@ -27,12 +27,12 @@ intensity.default <- function(object, event, method = "function") {
 #' @rdname intensity
 #' @export
 intensity.mmhp <- function(object, event, method = "function") {
-  t <- event$events
+  events <- event$events
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
   beta <- object$beta
-  n <- length(t)
+  n <- length(events)
   if (method == "function") {
     # return a function of intensity
     state <- event$z
@@ -42,11 +42,12 @@ intensity.mmhp <- function(object, event, method = "function") {
       y <- 0
       for (i in 1:(m - 1)) {
         if (state[i] == 1) {
-          hawkes_time <- t[t >= state_time[i] & t < state_time[i + 1]]
+          hawkes_time <- events[events >= state_time[i] & events < state_time[i + 1]]
           if (i == 1) hawkes_time <- hawkes_time[-1]
-          history <- t[t < state_time[i]]
+          history <- events[events < state_time[i]]
           hp_object <- hp(lambda0 = lambda1, alpha, beta)
-          hp_event <- list(start = state_time[i], end = state_time[i + 1], history = history[-1], hawkes_time = hawkes_time)
+          hp_event <- list(start = state_time[i], end = state_time[i + 1],
+                           history = history[-1], hawkes_time = hawkes_time)
           HPfunc <- intensity.hp(object = hp_object, event = hp_event)
           if (x >= state_time[i] & x <= state_time[i + 1]) {
             y <- HPfunc(x)
@@ -65,24 +66,24 @@ intensity.mmhp <- function(object, event, method = "function") {
     time.vec <- event$time_segment
     latent.vec <- event$latent_mean
     hp_object <- hp(lambda1, alpha, beta)
-    hp_event <- list(t = t, time.vec = time.vec)
+    hp_event <- list(events = events, time.vec = time.vec)
     lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } else if (method == "atevent") {
     # return the intensity evaluates at event times (output is an vector)
     latent_z <- event$z
-    if (t[1] == 0) {
-      t <- t[-1]
+    if (events[1] == 0) {
+      events <- events[-1]
     }
-    if (length(latent_z) == (length(t) + 1)) {
+    if (length(latent_z) == (length(events) + 1)) {
       latent_z <- latent_z[-1]
     }
-    lambda.t <- rep(lambda0, length(t))
+    lambda.t <- rep(lambda0, length(events))
     r <- 0
-    for (i in c(1:length(t))) {
+    for (i in c(1:length(events))) {
       if (i > 1) {
-        r <- exp(-beta * (t[i] - t[i - 1])) * (1 + r)
+        r <- exp(-beta * (events[i] - events[i - 1])) * (1 + r)
       }
       if (latent_z[i] == 1) {
         lambda.t[i] <- lambda1 + alpha * r
@@ -157,7 +158,7 @@ intensity.hp <- function(object, event, method = "function") {
     return(Vectorize(intensity))
   } else if (method == "numeric") {
     time.vec <- event$time.vec
-    t <- event$t
+    events <- event$events
     lambda<-object$lambda0
     beta<-object$beta
     alpha<-object$alpha
@@ -168,17 +169,17 @@ intensity.hp <- function(object, event, method = "function") {
     r <- 0
     for (i in c(1:length(time.vec))) {
       current.t <- time.vec[i]
-      if (event.idx < length(t)) {
-        if (current.t > t[event.idx + 1]) {
+      if (event.idx < length(events)) {
+        if (current.t > events[event.idx + 1]) {
           event.idx <- event.idx + 1
-          r <- exp(-beta * (t[event.idx] - t[event.idx - 1])) * (1 + r)
+          r <- exp(-beta * (events[event.idx] - events[event.idx - 1])) * (1 + r)
         }
       }
 
-      if (current.t <= t[1]) {
+      if (current.t <= events[1]) {
         lambda1.t[i] <- lambda
       } else {
-        lambda1.t[i] <- lambda + alpha * exp(-beta * (current.t - t[event.idx])) * (1 + r)
+        lambda1.t[i] <- lambda + alpha * exp(-beta * (current.t - events[event.idx])) * (1 + r)
       }
     }
 
@@ -193,7 +194,7 @@ intensity.hp <- function(object, event, method = "function") {
     lambda0 <- object$lambda0
     alpha <- object$alpha
     beta <- object$beta
-    events <- event$t
+    events <- event$events
     termination <- event$termination
     N <- length(events)
     r <- 0
@@ -207,7 +208,8 @@ intensity.hp <- function(object, event, method = "function") {
       if (N == 0) {
         result <- lambda0 * termination
       } else {
-        result <- lambda0 * termination + alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
+        result <- lambda0 * termination + 
+          alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
       }
 
       return(result)

@@ -23,7 +23,8 @@ intensityqqplot.default <- function(object, events, pzt, ...) {
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hp <- function(object, events, pzt=NULL, ...) {
-  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),widths = c(2, 2))
+  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),
+         widths = c(2, 2))
   r=compensator(object = object, events = events, pzt = pzt)  
   par(mar = c(2, 2,1,1))
   qqexp(r)
