@@ -1,7 +1,7 @@
 #' Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.
 #'
 #' @param object a social network model
-#' @param t event times
+#' @param events event times
 #' @param pzt probability for producing compensator
 #' @param time.vec time segment to calculate the intensity for `numeric` method
 #' @param latent.vec the probability of the latent space being in the active state
@@ -10,25 +10,29 @@
 #' @return print qq plot and ks plot, and print out pearson and raw residuals.
 #' @export
 
-diagpp <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+diagpp <- function(object, events, pzt = NULL,
+                   time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
   UseMethod("diagpp")
 }
 
 #' @rdname diagpp
 #' @export
-diagpp.default <- function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+diagpp.default <- function(object, events, pzt = NULL, time.vec = NULL,
+                           latent.vec = NULL, latent_event = NULL) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")
 }
 
 #' @rdname diagpp
 #' @export
-diagpp.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
-  r=compensator(object, t, pzt)
+diagpp.hp<-function(object, events, pzt = NULL, time.vec = NULL,
+                    latent.vec = NULL, latent_event = NULL){
+  r=compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  N=length(t)
+  rr=rawresidual(object, events, max(events), time.vec, latent.vec)
+  pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
+                     latent_event)
+  N=length(events)
   ks=ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
@@ -37,13 +41,14 @@ diagpp.hp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, l
 
 #' @rdname diagpp
 #' @export
-diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
-  r=compensator(object, t, pzt)
+diagpp.mmhp<-function(object, events, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+  r=compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  N=length(t)
+  rr=rawresidual(object, events, max(events), time.vec, latent.vec)
+  pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
+                     latent_event)
+  N=length(events)
   ks=ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
@@ -53,13 +58,14 @@ diagpp.mmhp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL,
 
 #' @rdname diagpp
 #' @export
-diagpp.hpp<-function(object, t, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
-  r=compensator(object, t, pzt)
+diagpp.hpp<-function(object, events, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+  r=compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, t, max(t), time.vec, latent.vec)
-  pr=pearsonresidual(object, t, max(t), time.vec, latent.vec, latent_event)
-  N=length(t)
+  rr=rawresidual(object, events, max(events), time.vec, latent.vec)
+  pr=pearsonresidual(object, events, max(events),
+                     time.vec, latent.vec, latent_event)
+  N=length(events)
   ks=ks.test(r,"pexp")
   cat("\n","Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")

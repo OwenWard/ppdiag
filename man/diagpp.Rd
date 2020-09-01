@@ -10,7 +10,7 @@
 \usage{
 diagpp(
   object,
-  t,
+  events,
   pzt = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -19,7 +19,7 @@ diagpp(
 
 \method{diagpp}{default}(
   object,
-  t,
+  events,
   pzt = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -28,7 +28,7 @@ diagpp(
 
 \method{diagpp}{hp}(
   object,
-  t,
+  events,
   pzt = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -37,7 +37,7 @@ diagpp(
 
 \method{diagpp}{mmhp}(
   object,
-  t,
+  events,
   pzt = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -46,7 +46,7 @@ diagpp(
 
 \method{diagpp}{hpp}(
   object,
-  t,
+  events,
   pzt = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -56,7 +56,7 @@ diagpp(
 \arguments{
 \item{object}{a social network model}
 
-\item{t}{event times}
+\item{events}{event times}
 
 \item{pzt}{probability for producing compensator}
 

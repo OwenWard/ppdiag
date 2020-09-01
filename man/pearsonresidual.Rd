@@ -10,7 +10,7 @@
 \usage{
 pearsonresidual(
   object,
-  t,
+  events,
   termination,
   time.vec = NULL,
   latent.vec = NULL,
@@ -19,7 +19,7 @@ pearsonresidual(
 
 \method{pearsonresidual}{default}(
   object,
-  t,
+  events,
   termination,
   time.vec = NULL,
   latent.vec = NULL,
@@ -28,7 +28,7 @@ pearsonresidual(
 
 \method{pearsonresidual}{mmhp}(
   object,
-  t,
+  events,
   termination,
   time.vec = NULL,
   latent.vec = NULL,
@@ -37,7 +37,7 @@ pearsonresidual(
 
 \method{pearsonresidual}{hp}(
   object,
-  t,
+  events,
   termination,
   time.vec = NULL,
   latent.vec = NULL,
@@ -46,7 +46,7 @@ pearsonresidual(
 
 \method{pearsonresidual}{hpp}(
   object,
-  t,
+  events,
   termination = NULL,
   time.vec = NULL,
   latent.vec = NULL,
@@ -56,7 +56,7 @@ pearsonresidual(
 \arguments{
 \item{object}{social network model containing the parameters}
 
-\item{t}{vector of event happening time}
+\item{events}{vector of event happening time}
 
 \item{termination}{termination time}
 

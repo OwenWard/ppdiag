@@ -3,7 +3,7 @@
 #' Compute raw residuals for social network models with model specified time events or simulated time events
 #'
 #' @param object social network model contating the parameters
-#' @param t vector of event happening time
+#' @param events vector of event happening time
 #' @param termination termination time
 #' @param time.vec time segment to calculate the intensity for `numeric` method
 #' @param latent.vec the probability of the latent space being in the active state
@@ -11,36 +11,37 @@
 #' @return the raw residual
 #' @export
 
-rawresidual <- function(object, t, termination, time.vec, latent.vec) {
+rawresidual <- function(object, events, termination, time.vec, latent.vec) {
   UseMethod("rawresidual")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, t, termination, time.vec, latent.vec) {
+rawresidual.default <- function(object, events, termination, time.vec, latent.vec) {
   cat("Please input the right model. Select from hp and mmhp. ")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, t, termination, time.vec, latent.vec) {
+rawresidual.hp <- function(object, events, termination, time.vec, latent.vec) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
 
-  N <- length(t)
+  N <- length(events)
   r <- 0
 
   if (N > 1) {
     for (i in 2:N) {
-      r <- exp(-beta * (t[i] - t[i - 1])) * (r + 1)
+      r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
     }
   }
 
   if (N == 0) {
     result <- lambda0 * termination
   } else {
-    result <- lambda0 * termination + alpha / beta * (N - (1 + r) * exp(-beta * (termination - t[N])))
+    result <- lambda0 * termination + 
+      alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
   }
 
   return(N - result)
@@ -48,11 +49,11 @@ rawresidual.hp <- function(object, t, termination, time.vec, latent.vec) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
-  N <- length(t)
+rawresidual.mmhp <- function(object, events, termination, time.vec, latent.vec) {
+  N <- length(events)
   est.intensity <- intensity(object,
     event = list(
-      events = t,
+      events = events,
       time_segment = time.vec,
       latent_mean = latent.vec
     ),
@@ -64,10 +65,10 @@ rawresidual.mmhp <- function(object, t, termination, time.vec, latent.vec) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, t, termination, time.vec, latent.vec) {
+rawresidual.hpp <- function(object, events, termination, time.vec, latent.vec) {
   N <- length(t)
   end <- object$end
-  est.intensity <- intensity(object, t, method = "numeric")
+  est.intensity <- intensity(object, events, method = "numeric")
   all_Lambda <- sum(est.intensity)
   return(N - all_Lambda)
 }
