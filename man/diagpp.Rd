@@ -38,7 +38,7 @@ diagpp(
 \method{diagpp}{mmhp}(
   object,
   events,
-  pzt = NULL,
+  pzt = 0.5,
   time.vec = NULL,
   latent.vec = NULL,
   latent_event = NULL
@@ -58,7 +58,7 @@ diagpp(
 
 \item{events}{event times}
 
-\item{pzt}{probability for producing compensator}
+\item{pzt}{probability for producing compensator (mmhp)}
 
 \item{time.vec}{time segment to calculate the intensity for `numeric` method}
 

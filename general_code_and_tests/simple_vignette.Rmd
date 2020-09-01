@@ -115,12 +115,12 @@ drawHPPIntensity(time_fit_hpp, events=time, color = "red", plot_events=TRUE)
 ## Diagnostics
 diagpp takes a hpp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
-diagpp(pois_y,t=events)
+diagpp(pois_y,events)
 ```
 
 Applying time data:
 ```{r}
-diagpp(time_fit_hpp,t=time)
+diagpp(time_fit_hpp,time)
 ```
 
 #This gives the right warning message, but we don't want to simulate data for
@@ -128,7 +128,7 @@ diagpp(time_fit_hpp,t=time)
 
 Intensityqqplot takes a hpp object, and a vector of events, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(object=fit_hpp,events = events, color="red")
+intensityqqplot(object=fit_hpp, events = events, color="red")
 ```
 Applying time data:
 ```{r}
@@ -209,17 +209,17 @@ drawHPIntensity(time_fit_hp, start=min(time), end=max(time), history=0, events=t
 ## Diagnostics
 `diagpp` takes a hp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
 ```{r}
-diagpp(hp_obj, t=sims$t)
+diagpp(hp_obj, events = sims$t)
 # this is the truth
 
 
-diagpp(fit_hp, t = sims$t)
+diagpp(fit_hp, events = sims$t)
 
 ```
 
 Applying diagnostics on the time data:
 ```{r}
-diagpp(time_fit_hp, t = time)
+diagpp(time_fit_hp, events = time)
 ```
 
 `intensityqqplot` takes a hp object, a vector of events,
@@ -285,11 +285,20 @@ drawUniMMHPIntensity(x, y)
 ```
 
 ## Diagnostics
-`diagpp` takes a mmhp object and a vector of events, and provides diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals. 
+`diagpp` takes a mmhp object and a vector of events, and provides
+diagnostics of the model, including a qq plot, a ks plot, ks test, raw
+and pearson residuals. 
 ```{r}
-try(diagpp(x, t=y$events))
+# try(diagpp(x, events = y$events))
+# need to specify time vec for intensity?
+# rawresidual(x, events = y$events)
+# pearsonresidual(x, events = y$events)
+
+# ppdiag::intensity(object = x, event = y, method = "numeric")
+
+diagpp(x, events = y$events, pzt = 0.5)
 ```
 `intensityqqplot` takes a mmhp object, start and end time, vector of historical events, a vector of events, a state jump directly before, an optional argument of historical events, probability for calculating rescaled-interevent times, and plots the qqplot and intensity plot together. 
 ```{r}
-intensityqqplot(object=x,simulation=y, events=y$events,pzt=0.5)
+intensityqqplot(object=x, simulation=y, events=y$events, pzt=0.5)
 ```

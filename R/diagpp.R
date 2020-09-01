@@ -2,7 +2,7 @@
 #'
 #' @param object a social network model
 #' @param events event times
-#' @param pzt probability for producing compensator
+#' @param pzt probability for producing compensator (mmhp)
 #' @param time.vec time segment to calculate the intensity for `numeric` method
 #' @param latent.vec the probability of the latent space being in the active state
 #' @param latent_event the estimated latent space of the point process model

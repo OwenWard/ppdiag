@@ -64,6 +64,8 @@ intensity.mmhp <- function(object, event, method = "function") {
   } else if (method == "numeric") {
     # return the numeric intensity value at each time segment
     time.vec <- event$time_segment
+    ## this is empty here by default
+    
     latent.vec <- event$latent_mean
     hp_object <- hp(lambda1, alpha, beta)
     hp_event <- list(events = events, time.vec = time.vec)
