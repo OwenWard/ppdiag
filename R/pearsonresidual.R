@@ -24,7 +24,9 @@ pearsonresidual.default <- function(object, events, termination) {
 #' @export
 pearsonresidual.mmhp <- function(object, events, termination) {
   # define time.vec,latent.vec,latent_event in here
-  
+  time.vec <- NA
+  latent.vec <- NA
+  latent_event <- NA
   
   N <- length(events)
   est.intensity <- intensity(object,

@@ -8,15 +8,15 @@
 \alias{rawresidual.hpp}
 \title{Compute raw residuals for social network models}
 \usage{
-rawresidual(object, events, termination, time.vec, latent.vec)
+rawresidual(object, events, termination)
 
-\method{rawresidual}{default}(object, events, termination, time.vec, latent.vec)
+\method{rawresidual}{default}(object, events, termination)
 
-\method{rawresidual}{hp}(object, events, termination, time.vec, latent.vec)
+\method{rawresidual}{hp}(object, events, termination)
 
-\method{rawresidual}{mmhp}(object, events, termination, time.vec, latent.vec)
+\method{rawresidual}{mmhp}(object, events, termination)
 
-\method{rawresidual}{hpp}(object, events, termination, time.vec, latent.vec)
+\method{rawresidual}{hpp}(object, events, termination)
 }
 \arguments{
 \item{object}{social network model contating the parameters}
@@ -24,10 +24,6 @@ rawresidual(object, events, termination, time.vec, latent.vec)
 \item{events}{vector of event happening time}
 
 \item{termination}{termination time}
-
-\item{time.vec}{time segment to calculate the intensity for `numeric` method}
-
-\item{latent.vec}{the probability of the latent space being in the active state}
 }
 \value{
 the raw residual

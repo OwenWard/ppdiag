@@ -8,50 +8,15 @@
 \alias{diagpp.hpp}
 \title{Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.}
 \usage{
-diagpp(
-  object,
-  events,
-  pzt = NULL,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+diagpp(object, events, pzt = NULL)
 
-\method{diagpp}{default}(
-  object,
-  events,
-  pzt = NULL,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{diagpp}{default}(object, events, pzt = NULL)
 
-\method{diagpp}{hp}(
-  object,
-  events,
-  pzt = NULL,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{diagpp}{hp}(object, events, pzt = NULL)
 
-\method{diagpp}{mmhp}(
-  object,
-  events,
-  pzt = 0.5,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{diagpp}{mmhp}(object, events, pzt = 0.5)
 
-\method{diagpp}{hpp}(
-  object,
-  events,
-  pzt = NULL,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{diagpp}{hpp}(object, events, pzt = NULL)
 }
 \arguments{
 \item{object}{a social network model}
@@ -59,12 +24,6 @@ diagpp(
 \item{events}{event times}
 
 \item{pzt}{probability for producing compensator (mmhp)}
-
-\item{time.vec}{time segment to calculate the intensity for `numeric` method}
-
-\item{latent.vec}{the probability of the latent space being in the active state}
-
-\item{latent_event}{the estimated latent space of the point process model}
 }
 \value{
 print qq plot and ks plot, and print out pearson and raw residuals.
