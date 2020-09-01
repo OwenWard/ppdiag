@@ -32,7 +32,7 @@ diagpp.hp<-function(object, events, pzt = NULL, time.vec = NULL,
   rr=rawresidual(object, events, max(events), time.vec, latent.vec)
   pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
                      latent_event)
-  N=length(events)
+
   ks=ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
@@ -41,17 +41,23 @@ diagpp.hp<-function(object, events, pzt = NULL, time.vec = NULL,
 
 #' @rdname diagpp
 #' @export
-diagpp.mmhp<-function(object, events, pzt = NULL, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+diagpp.mmhp<-function(object, events, pzt = 0.5, time.vec = NULL, latent.vec = NULL, latent_event = NULL){
+  
+  ### need to compute 
+  # pzt
+  # time.vec
+  # latent.vec
+  
   r=compensator(object, events, pzt)
-  #qqexp(r)
-  #ksplot(r)
-  rr=rawresidual(object, events, max(events), time.vec, latent.vec)
-  pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
-                     latent_event)
-  N=length(events)
+  qqexp(r)
+  ksplot(r)
+  #rr=rawresidual(object, events, max(events), time.vec, latent.vec)
+  #pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
+  #                   latent_event)
+  
   ks=ks.test(r,"pexp")
-  cat("Raw residual: ", rr, "\n",sep = "")
-  cat("Pearson residual: ", pr, "\n",sep = "")
+  # cat("Raw residual: ", rr, "\n",sep = "")
+  # cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
 }
 
@@ -65,7 +71,7 @@ diagpp.hpp<-function(object, events, pzt = NULL, time.vec = NULL, latent.vec = N
   rr=rawresidual(object, events, max(events), time.vec, latent.vec)
   pr=pearsonresidual(object, events, max(events),
                      time.vec, latent.vec, latent_event)
-  N=length(events)
+  
   ks=ks.test(r,"pexp")
   cat("\n","Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
