@@ -5,33 +5,27 @@
 #' @param object social network model containing the parameters
 #' @param events vector of event happening time
 #' @param termination termination time
-#' @param time.vec time segment to calculate the intensity for `numeric` method
-#' @param latent.vec the probability of the latent space being in the active state
-#' @param latent_event the estimated latent space of the point process model
-#'
-#' @return the pearson residual
+#' 
+#' @return the Pearson residual
 #' @importFrom stats integrate
 #' @export
 
-pearsonresidual <- function(object, events, termination,
-                            time.vec = NULL, latent.vec = NULL,
-                            latent_event = NULL) {
+pearsonresidual <- function(object, events, termination) {
   UseMethod("pearsonresidual")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.default <- function(object, events, termination, 
-                                    time.vec = NULL, latent.vec = NULL, 
-                                    latent_event = NULL) {
-  cat("Please input the right model. Select from hp and mmhp. ")
+pearsonresidual.default <- function(object, events, termination) {
+  cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, events, termination,
-                                 time.vec = NULL, latent.vec = NULL,
-                                 latent_event = NULL) {
+pearsonresidual.mmhp <- function(object, events, termination) {
+  # define time.vec,latent.vec,latent_event in here
+  
+  
   N <- length(events)
   est.intensity <- intensity(object,
     event = list(
@@ -52,9 +46,7 @@ pearsonresidual.mmhp <- function(object, events, termination,
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hp <- function(object, events, termination,
-                               time.vec = NULL, latent.vec = NULL,
-                               latent_event = NULL) {
+pearsonresidual.hp <- function(object, events, termination) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -108,9 +100,7 @@ pearsonresidual.hp <- function(object, events, termination,
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, events, termination=NULL, 
-                                time.vec=NULL, latent.vec=NULL,
-                                latent_event = NULL) {
+pearsonresidual.hpp <- function(object, events, termination=max(events)) {
   if((!is.null(termination)) && (termination!=object$end)){
     message("PR calculated to specified end time.")
     object$end=termination
