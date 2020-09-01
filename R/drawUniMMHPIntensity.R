@@ -49,9 +49,10 @@ drawUniMMHPIntensity <- function(mmhp, simulation, add = FALSE, color = 1,
   }
   
   if(!is.null(ylim)){
-    yupper=max(ylim)
+    yupper <- max(ylim)
   }else{
     message("No events in non latent state.")
+    yupper <- 0
   }
   
   if (add == FALSE) {

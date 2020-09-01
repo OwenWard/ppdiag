@@ -1,9 +1,9 @@
 Package: ppdiag
 Type: Package
-Title: Diagnosis and visualizations for social network analysis
+Title: Diagnosis and Visualizations Tools for Point Processes
 Version: 0.1.0
-Author: Jing Wu, Owen Gerard Ward, Tian Zheng, Xiaoxi Zhao
-Maintainer: The package maintainer <owengward@gmail.com>
+Author: Jing Wu, Owen G. Ward, Tian Zheng, Xiaoxi Zhao
+Maintainer: Owen G. Ward <owengward@gmail.com>
 Description: A suite of simple diagnostic tools for univariate point processes.
 License: MIT + file LICENSE
 Encoding: UTF-8
