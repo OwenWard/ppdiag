@@ -4,25 +4,26 @@
 #'
 #' @param object social network model containing the parameters
 #' @param events vector of event happening time
+#' @param start start of observation period
 #' @param termination termination time
 #' 
 #' @return the Pearson residual
 #' @importFrom stats integrate
 #' @export
 
-pearsonresidual <- function(object, events, termination) {
+pearsonresidual <- function(object, events, start, termination) {
   UseMethod("pearsonresidual")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.default <- function(object, events, termination) {
+pearsonresidual.default <- function(object, events, start, termination) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, events, termination) {
+pearsonresidual.mmhp <- function(object, events, start, termination) {
   # define time.vec,latent.vec,latent_event in here
   time.vec <- NA
   latent.vec <- NA
@@ -48,7 +49,7 @@ pearsonresidual.mmhp <- function(object, events, termination) {
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hp <- function(object, events, termination) {
+pearsonresidual.hp <- function(object, events, start, termination) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -102,7 +103,7 @@ pearsonresidual.hp <- function(object, events, termination) {
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, events, termination=max(events)) {
+pearsonresidual.hpp <- function(object, events, start, termination=max(events)) {
   if((!is.null(termination)) && (termination!=object$end)){
     message("PR calculated to specified end time.")
     object$end=termination

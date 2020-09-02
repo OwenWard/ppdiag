@@ -4,28 +4,31 @@
 #'
 #' @param object social network model contating the parameters
 #' @param events vector of event happening time
-#' @param termination termination time
+#' @param start start of observation period
+#' @param termination end of observation period
 #'
 #' @return the raw residual
 #' @export
 
-rawresidual <- function(object, events, termination) {
+rawresidual <- function(object, events, start = 0, termination) {
   UseMethod("rawresidual")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, termination) {
+rawresidual.default <- function(object, events, start = 0, termination) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, termination) {
+rawresidual.hp <- function(object, events, start = 0, termination) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
-
+  
+  ## shouldn't this be using intensity function instead?
+  
   N <- length(events)
   r <- 0
 
@@ -47,7 +50,7 @@ rawresidual.hp <- function(object, events, termination) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, termination) {
+rawresidual.mmhp <- function(object, events, start = 0, termination) {
   ## need to define and compute time.vec, latent.vec in here
   time.vec <- NA
   latent.vec <- NA
@@ -68,7 +71,7 @@ rawresidual.mmhp <- function(object, events, termination) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, termination) {
+rawresidual.hpp <- function(object, events, start = 0, termination) {
   N <- length(t)
   end <- object$end
   est.intensity <- intensity(object, events, method = "numeric")
