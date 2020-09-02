@@ -59,16 +59,16 @@ pearsonresidual.hp <- function(object, events, start, termination) {
   r <- 0
 
   if (N == 0) {
-    return(-sqrt(lambda0) * termination)
+    return(-sqrt(lambda0) * (termination - start))
   } else if (N == 1) {
-    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * events[1]
+    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * (events[1] - start)
     integrand <- function(u) {
       sqrt(lambda0 + alpha * exp(-beta * (u - events[1])))
     }
     PR <- PR - integrate(integrand, lower = events[1], upper = termination)$value
   } else {
     # first event
-    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * events[1]
+    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * (events[1] - start)
     # 2~N t
     for (i in 2:N) {
       r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
@@ -103,12 +103,14 @@ pearsonresidual.hp <- function(object, events, start, termination) {
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, events, start, termination=max(events)) {
-  if((!is.null(termination)) && (termination!=object$end)){
+pearsonresidual.hpp <- function(object, events, start = 0, termination=max(events)) {
+  if(termination != max(events)) {
     message("PR calculated to specified end time.")
-    object$end=termination
   }
-  est.intensity <- intensity(object, events, method = "numeric")
-  pr <- sum(1 / sqrt(est.intensity)) - sum(sqrt(est.intensity))
+  est.intensity <- sqrt(object$lambda)*(termination-start)
+  ### this pr looks incorrect to me
+  N <- length(events)
+  int_events <- rep(object$lambda,N)
+  pr <- sum(1 / sqrt(int_events)) - est.intensity
   return(pr)
 }

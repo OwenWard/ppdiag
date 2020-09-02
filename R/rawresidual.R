@@ -26,25 +26,10 @@ rawresidual.hp <- function(object, events, start = 0, termination) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
-  
-  ## shouldn't this be using intensity function instead?
-  
+  hawkes_obj <- object
+  event_obj <- list(events = events, termination = termination)
   N <- length(events)
-  r <- 0
-
-  if (N > 1) {
-    for (i in 2:N) {
-      r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
-    }
-  }
-
-  if (N == 0) {
-    result <- lambda0 * termination
-  } else {
-    result <- lambda0 * termination + 
-      alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
-  }
-
+  result <- intensity(hawkes_obj,event = event_obj, method = "integral")
   return(N - result)
 }
 
@@ -72,9 +57,9 @@ rawresidual.mmhp <- function(object, events, start = 0, termination) {
 #' @rdname rawresidual
 #' @export
 rawresidual.hpp <- function(object, events, start = 0, termination) {
-  N <- length(t)
-  end <- object$end
-  est.intensity <- intensity(object, events, method = "numeric")
+  N <- length(events)
+  inten_obj <- list(events = events, start = start, termination = termination)
+  est.intensity <- intensity(object, events, method = "integral")
   all_Lambda <- sum(est.intensity)
   return(N - all_Lambda)
 }

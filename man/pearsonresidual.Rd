@@ -16,7 +16,7 @@ pearsonresidual(object, events, start, termination)
 
 \method{pearsonresidual}{hp}(object, events, start, termination)
 
-\method{pearsonresidual}{hpp}(object, events, start, termination = max(events))
+\method{pearsonresidual}{hpp}(object, events, start = 0, termination = max(events))
 }
 \arguments{
 \item{object}{social network model containing the parameters}

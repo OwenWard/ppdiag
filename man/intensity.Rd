@@ -25,7 +25,8 @@ intensity(object, event, method = "numeric")
 \item{object}{an object of MMHP/HP/MMPP
 For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.}
 
-\item{event}{the observed/simulated events}
+\item{event}{the observed/simulated events, including event times and 
+start/end of observation period}
 
 \item{method}{the method used to calculate intensity.
 The candidates are: `numeric`, and `atevent`, default to `numeric`. 

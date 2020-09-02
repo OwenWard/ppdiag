@@ -4,7 +4,8 @@
 #'
 #' @param object an object of MMHP/HP/MMPP
 #' For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.
-#' @param event the observed/simulated events
+#' @param event the observed/simulated events, including event times and 
+#' start/end of observation period
 #' @param method the method used to calculate intensity.
 #'   The candidates are: `numeric`, and `atevent`, default to `numeric`. 
 #'   ### function currently removed as not needed
@@ -170,8 +171,6 @@ intensity.hp <- function(object, event, method = "numeric") {
     alpha<-object$alpha
     lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
-
-
     r <- 0
     for (i in c(1:length(time.vec))) {
       current.t <- time.vec[i]
@@ -239,13 +238,11 @@ intensity.mmpp <- function(object, event, method = "numeric") {
 #' @rdname intensity
 #' @export
 intensity.hpp <- function(object, event, method = "numeric"){
-  lambda=object$lambda
-  start=object$start
-  end=object$end
-  n=object$n
-  if(is.null(n)){
-    n=rpois(n=1,lambda=lambda*end)
-  }
+  lambda <- object$lambda
+  start <- event$start
+  termination <- event$termination
+  ### what does this do?
+  n <- length(event$events)
   # if(method=="function"){
   #   intensity <- function(x) {
   #     l=lambda
@@ -253,9 +250,13 @@ intensity.hpp <- function(object, event, method = "numeric"){
   #   }
   #   return(Vectorize(intensity))
   # } 
-  if (method == "numeric"){
+  if (method == "atevent"){
     return(rep(lambda,n))
-  } else if (method == "integral") {
-    return ((end-start)*lambda)
+  } 
+  else if (method == "integral") {
+    return ((termination-start)*lambda)
   }  
+  else if (method == "numeric") {
+    return(rep(lambda,1000))
+  }
 }

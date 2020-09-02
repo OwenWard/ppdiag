@@ -23,8 +23,8 @@ diagpp.hp<-function(object, events, pzt = NULL){
   r=compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, events, max(events))
-  pr=pearsonresidual(object, events, max(events))
+  rr=rawresidual(object, events, termination = max(events))
+  pr=pearsonresidual(object, events, termination = max(events))
 
   ks=ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
@@ -60,8 +60,8 @@ diagpp.hpp<-function(object, events, pzt = NULL){
   r=compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, events, max(events))
-  pr=pearsonresidual(object, events, max(events))
+  rr=rawresidual(object, events, termination = max(events))
+  pr=pearsonresidual(object, events, termination = max(events))
   
   ks=ks.test(r,"pexp")
   cat("\n","Raw residual: ", rr, "\n",sep = "")
