@@ -27,7 +27,9 @@ rawresidual.hp <- function(object, events, start = 0, termination) {
   alpha <- object$alpha
   beta <- object$beta
   hawkes_obj <- object
-  event_obj <- list(events = events, termination = termination)
+  event_obj <- list(events = events,
+                    start = start,
+                    termination = termination)
   N <- length(events)
   result <- intensity(hawkes_obj,event = event_obj, method = "integral")
   return(N - result)
