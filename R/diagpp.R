@@ -24,7 +24,7 @@ diagpp.hp<-function(object, events, pzt = NULL){
   qqexp(r)
   ksplot(r)
   rr=rawresidual(object, events, termination = max(events))
-  pr=pearsonresidual(object, events, termination = max(events))
+  pr=pearsonresidual(object, events, start=min(events), termination = max(events))
 
   ks=ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
