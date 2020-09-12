@@ -3,5 +3,5 @@ test_that("fit hpp", {
   events <- simulatehpp(pois_y)
   hpp=fithpp(events)
   expect_type(hpp, "list")
-  expect_equal(length(hpp), 5)
+  expect_length(hpp, 5)
 })

@@ -4,5 +4,5 @@ test_that("fit hp", {
   hp=fithp(vec=rep(0.1,3),t=events, end=10)
   expect_type(hp, "list")
   expect_equal(length(hp), 4)
-  expect_less_than(hp$alpha,hp$beta)
+  expect_lt(hp$alpha,hp$beta)
 })
