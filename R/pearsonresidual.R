@@ -23,25 +23,17 @@ pearsonresidual.default <- function(object, events, start, termination) {
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, events, start, termination) {
-  # define time.vec,latent.vec,latent_event in here
-  time.vec <- NA
-  latent.vec <- NA
-  latent_event <- NA
-  
+pearsonresidual.mmhp <- function(object, events, start = 0, termination) {
+  # define time.vec,latent.vec,latent_event in intensity
   N <- length(events)
-  est.intensity <- intensity(object,
-    event = list(
-      events = events,
-      time_segment = time.vec,
-      latent_mean = latent.vec
-    ),
-    method = "numeric"
-  )
-  est.intensity.events <- intensity(object, event = list(
-    events = events,
-    z = latent_event
-  ), method = "atevent")
+  event_obj <- list()
+  event_obj$events <- events
+  event_obj$start <- start
+  event_obj$termination <- termination
+  
+  est.intensity <- intensity(object,event = event_obj,method = "numeric")
+  est.intensity.events <- intensity(object, event = event_obj,
+                                    method = "atevent")
   pr <- sum(1 / sqrt(est.intensity.events)) -
     sum(sqrt(est.intensity)) * (time.vec[2] - time.vec[1])
   return(pr)

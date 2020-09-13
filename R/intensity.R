@@ -30,6 +30,8 @@ intensity.default <- function(object, event, method = "numeric") {
 #' @export
 intensity.mmhp <- function(object, event, method = "numeric") {
   events <- event$events
+  start <- event$start
+  termination <- event$termination
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
@@ -37,10 +39,15 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   n <- length(events)
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
-    time.vec <- event$time_segment
+    time.vec <- seq(from = start, to = termination, length.out = 1000)
     ## this is empty here by default
     
-    latent.vec <- event$latent_mean
+    # we don't have a function to compute this in the package
+    # compute latent mean here
+    # place in a default here for now
+    latent.vec <- rep(0.5, length(time.vec))
+    
+    
     hp_object <- hp(lambda1, alpha, beta)
     hp_event <- list(events = events, time.vec = time.vec)
     lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
@@ -49,6 +56,8 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   } 
   else if (method == "atevent") {
     # return the intensity evaluates at event times (output is an vector)
+    ## compute latent state of events here
+    
     latent_z <- event$z
     if (events[1] == 0) {
       events <- events[-1]
@@ -81,6 +90,7 @@ intensity.mmhp <- function(object, event, method = "numeric") {
 intensity.hp <- function(object, event, method = "numeric") {
   if (method == "numeric") {
     time.vec <- event$time.vec
+    # assume this time.vec contains start and termination
     events <- event$events
     lambda<-object$lambda0
     beta<-object$beta

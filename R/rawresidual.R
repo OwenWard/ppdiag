@@ -39,19 +39,17 @@ rawresidual.hp <- function(object, events, start = 0, termination) {
 #' @export
 rawresidual.mmhp <- function(object, events, start = 0, termination) {
   ## need to define and compute time.vec, latent.vec in here
-  time.vec <- NA
-  latent.vec <- NA
-  
+  # time.vec <- NA
+  # latent.vec <- NA
+  # actually only need to compute the latent vec here?
+  event_obj <- list()
+  event_obj$start <- start
+  event_obj$termination <- termination
+  event_obj$events <- events
   
   N <- length(events)
-  est.intensity <- intensity(object,
-    event = list(
-      events = events,
-      time_segment = time.vec,
-      latent_mean = latent.vec
-    ),
-    method = "numeric"
-  )
+  est.intensity <- intensity(object, event = event_obj, method = "numeric")
+  # is this next line correct?
   all_Lambda <- sum(est.intensity) * (time.vec[2] - time.vec[1])
   return(N - all_Lambda)
 }
