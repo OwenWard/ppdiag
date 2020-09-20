@@ -15,7 +15,7 @@
 #' simulatehp(hp_obj,start = 0, end = 100)
 
 simulatehp <- function(hp, start=0, end, history=0) {
-  events=hp$tau
+  events=hp$events
   if(!is.null(events)){
     stop("Event time already in the hp object.")
   }
