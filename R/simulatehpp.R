@@ -20,6 +20,9 @@ simulatehpp <- function(hpp){
     stop("Start and end time identical")
   }
   if(!is.null(n)){
+    if(n==0){
+      return (NULL)
+    }
     if(end>start){
       message(paste(n, " events simulated, end time specified will be ignored. To simulate events up to an endtime do not specify n.",
                     sep=""))
@@ -30,6 +33,7 @@ simulatehpp <- function(hpp){
   }else{
     n=rpois(n=1,lambda=lambda*end)
     if(n==0){
+      message("No events simulated, please resimulate. The argument n is the number of events needed. ")
       return (NULL)
     }
     hpp=(end-start)*runif(n)+start # to make this n events
