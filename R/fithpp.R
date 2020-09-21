@@ -14,6 +14,9 @@
 fithpp <- function(events){
 	start=min(events)
 	end=max(events)
+	if(start==end){
+	  stop("Start and end time are equal, fitting is terminated.")
+	}
 	n=length(events)
 	lambda=n/(end-start)
 	hpp_object=list(lambda = lambda, start = start,
