@@ -25,6 +25,9 @@ simulatehp <- function(hp, start=0, end, history=0) {
   if(alpha>=beta){
     stop("A stationary hawkes process requires alpha<beta.")
   }
+  if(start>=end){
+    stop("Invalid start and end time. Start time should be less than end time.")
+  }
   j0 <- length(history) + 1
   lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + alpha * sum(exp(-beta * (rep(start, j0 - 2) - history[2:(j0 - 1)]))))
   lambda.max <- lambda.star
