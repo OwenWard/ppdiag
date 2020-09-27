@@ -37,16 +37,35 @@ fithp<-function(vec,t,end){
                   method = "L-BFGS-B")
     a=hawkes.par$par[2]
     b=hawkes.par$par[3]
-    while(TRUE){
-	  message("A stationary hawkes process requires alpha<beta. Now refitting.")
-	  hawkes.par=optim(par=vec, fn=negloglik_hp, 
-	                   t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
-	                   method = "L-BFGS-B")
-	  a=hawkes.par$par[2]
-	  b=hawkes.par$par[3]
-	  if(a<b){
-	    break
-	  }
+    c=hawkes.par$convergence[1]
+    i=1
+    while(a>=b){
+      if(c==51 || c==52){
+        message(hawkes.par$message)
+      }
+      else if(c==1){
+        #if maxit reached, then we automatically refit
+        hawkes.par=optim(par=vec, fn=negloglik_hp, 
+                         t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
+                         method = "L-BFGS-B")
+        a=hawkes.par$par[2]
+        b=hawkes.par$par[3]
+        c=hawkes.par$convergence[1]
+      }
+      else{
+        #if maxit not reached but a>=b, then we tell the user that we are refitting
+        message("A stationary hawkes process requires alpha<beta. Now refitting.")
+        hawkes.par=optim(par=vec, fn=negloglik_hp, 
+                         t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
+                         method = "L-BFGS-B")
+        a=hawkes.par$par[2]
+        b=hawkes.par$par[3]
+        c=hawkes.par$convergence[1]
+      }
+      i=i+1
+      if(i>10){
+        stop("Refitting exceeded 10 times. Try a different initial vector. ")
+      }
     }
     hp_object = list(lambda0=hawkes.par$par[1], alpha=hawkes.par$par[2], beta=hawkes.par$par[3], t=t)
     class(hp_object) = "hp"
