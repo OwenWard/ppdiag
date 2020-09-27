@@ -38,7 +38,7 @@ fithp<-function(vec,t,end){
     a=hawkes.par$par[2]
     b=hawkes.par$par[3]
     while(TRUE){
-	  message("A stationary hawkes process requires alpha<beta. Refitting events to get a stationary hawkes process object.")
+	  message("A stationary hawkes process requires alpha<beta. Now refitting.")
 	  hawkes.par=optim(par=vec, fn=negloglik_hp, 
 	                   t=t, end=end, control = list(maxit = 1000),lower = c(1e-4,1e-4,1e-4),
 	                   method = "L-BFGS-B")
