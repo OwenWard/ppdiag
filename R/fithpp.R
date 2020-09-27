@@ -15,7 +15,7 @@ fithpp <- function(events){
 	start=min(events)
 	end=max(events)
 	if(start==end){
-	  stop("Start and end time are equal, fitting is terminated.")
+	  stop("Start and end time are equal.")
 	}
 	n=length(events)
 	lambda=n/(end-start)
