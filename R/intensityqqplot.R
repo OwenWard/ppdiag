@@ -44,7 +44,7 @@ intensityqqplot.hpp <- function(object, events, pzt, ...) {
   qqexp(r)  
   par(mar = c(2, 2,1,1))
   drawHPPIntensity(object, events = events,
-                   plot_events = TRUE,...)  
+                   plot_events = TRUE,int_title="Intensity plot of HPP",...)  
 }
 
 
