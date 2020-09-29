@@ -12,7 +12,7 @@ pearsonresidual(object, events, start, termination)
 
 \method{pearsonresidual}{default}(object, events, start, termination)
 
-\method{pearsonresidual}{mmhp}(object, events, start, termination)
+\method{pearsonresidual}{mmhp}(object, events, start = 0, termination)
 
 \method{pearsonresidual}{hp}(object, events, start, termination)
 
