@@ -1,0 +1,51 @@
+---
+title: "`ppdiag`, diagnostic tools for Point Processes"
+output: rmarkdown::html_vignette
+author: Sally Sun, Owen G. Ward et al.
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ppdiag)
+```
+
+This vignette provides an introduction to the functions 
+available in `ppdiag` to evaluate the fit of univariate temporal 
+point processes.
+
+To achieve this, we currently include a range of functions which allow
+a user to:
+
+- Simulate data from a range of common univariate point processes.
+- Fit a range of univariate point processes to data.
+- After fitting a point process to some data, evaluate the ability of that 
+point process to capture the temporal structure present in this data.
+
+
+## Simulating data
+
+
+## Fitting a point process
+
+
+## Diagnosing the fit of a point process to data
+
+There are several existing methods which can be used to assess the 
+goodness of fit of a point process to temporal data. In this package 
+we allow a user to:
+
+- Examine the distribution of the rescaled interevent times, by utilising the
+time rescaling theorem.
+- Examine the residual process of an estimated point process, 
+in particular computing the raw and Pearson residuals for a given point process fit to data.
+- Visually inspect the estimated intensity of the point process.

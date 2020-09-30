@@ -6,8 +6,10 @@ test_that("test hp", {
   expect_true(!is.null(sim$t))
   
   #test for error messages
-  expect_error(simulatehp(hp=hp(1.5,0.5,0.2),end=10), "A stationary hawkes process requires alpha<beta.")
-  expect_error(simulatehp(hp=hp(1.5,0.1,0.2,events=c(1,5,10)),end=10), "Event time already in the hp object.")
+  expect_error(simulatehp(hp=hp(1.5,0.5,0.2),end=10),
+               "A stationary hawkes process requires alpha<beta.")
+  expect_error(simulatehp(hp=hp(1.5,0.1,0.2,events=c(1,5,10)),end=10),
+               "Event time already in the hp object.")
   
   #test fit hp
   events=sim$t
