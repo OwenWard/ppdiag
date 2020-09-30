@@ -1,6 +1,7 @@
 #' Compute Pearson residuals for social network models
 #'
-#' Compute Pearson residuals for social network models with model specified time events or simulated time events
+#' Compute Pearson residuals for social network models 
+#' with model specified time events or simulated time events
 #'
 #' @param object social network model containing the parameters
 #' @param events vector of event happening time
@@ -57,7 +58,8 @@ pearsonresidual.hp <- function(object, events, start, termination) {
     integrand <- function(u) {
       sqrt(lambda0 + alpha * exp(-beta * (u - events[1])))
     }
-    PR <- PR - integrate(integrand, lower = events[1], upper = termination)$value
+    PR <- PR - integrate(integrand, lower = events[1],
+                         upper = termination)$value
   } else {
     # first event
     PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * (events[1] - start)
@@ -76,7 +78,8 @@ pearsonresidual.hp <- function(object, events, start, termination) {
         return(sqrt(temp))
       }
 
-      PR <- PR - integrate(integrand, lower = events[i - 1], upper = events[i])$value
+      PR <- PR - integrate(integrand, lower = events[i - 1],
+                           upper = events[i])$value
     }
     # N event ~ termination time
 
@@ -88,14 +91,16 @@ pearsonresidual.hp <- function(object, events, start, termination) {
       return(sqrt(temp))
     }
 
-    PR <- PR - integrate(integrand, lower = events[N], upper = termination)$value
+    PR <- PR - integrate(integrand, lower = events[N],
+                         upper = termination)$value
     return(PR)
   }
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, events, start = 0, termination=max(events)) {
+pearsonresidual.hpp <- function(object, events, start = 0,
+                                termination=max(events)) {
   if(termination != max(events)) {
     message("PR calculated to specified end time.")
   }

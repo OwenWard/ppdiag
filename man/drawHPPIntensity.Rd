@@ -20,9 +20,11 @@ drawHPPIntensity(
 
 \item{color}{a specification for the default plotting color.}
 
-\item{plot_events}{a boolean indicating whether events inputted will be plotted}
+\item{plot_events}{a boolean indicating whether events 
+inputted will be plotted}
 
-\item{fit}{a boolean indicating whether to fit a hpp or use the passed object}
+\item{fit}{a boolean indicating whether to fit a hpp or
+use the passed object}
 
 \item{int_title}{the plot title}
 }

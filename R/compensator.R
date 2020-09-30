@@ -28,7 +28,8 @@ compensator.mmpp <- function(object, events, pzt) {
   q2 <- object$q2
   n <- length(events) - 1
   interevent <- events[-1] - events[-(n + 1)]
-  Lambda_mixed <- lambda0 * (1 + c) * interevent * pzt + lambda0 * interevent * (1 - pzt)
+  Lambda_mixed <- lambda0 * (1 + c) * interevent * pzt + 
+    lambda0 * interevent * (1 - pzt)
   return(Lambda_mixed)
 }
 
@@ -43,14 +44,14 @@ compensator.hp <- function(object, events, pzt = NULL) {
   alpha <- object$alpha
   beta <- object$beta
   
-  N<-length(events)
-  Lambda<-rep(0,N)
-  r<-0
-  Lambda[1]<-lambda0*(events[1])
+  N <- length(events)
+  Lambda <- rep(0,N)
+  r <- 0
+  Lambda[1] <- lambda0*(events[1])
   for(i in 2:N){
     delta.t <- events[i]-events[i-1]
-    temp.r <-exp(-beta*delta.t)*(r+1)
-    Lambda[i]<-lambda0*delta.t-alpha/beta*(temp.r-r-1)
+    temp.r <- exp(-beta*delta.t)*(r+1)
+    Lambda[i] <- lambda0*delta.t-alpha/beta*(temp.r-r-1)
     r <- temp.r
   }
   return(Lambda)
@@ -78,7 +79,8 @@ compensator.mmhp <- function(object, events, pzt) {
   Lambda[1] <- lambda0 * (interevent[1])
   for (i in 2:n) {
     A <- 1 + exp(-beta * (interevent[i - 1])) * A
-    Lambda[i] <- lambda1 * (interevent[i]) + alpha / beta * (1 - exp(-beta * interevent[i])) * A
+    Lambda[i] <- lambda1 * (interevent[i]) + 
+      alpha / beta * (1 - exp(-beta * interevent[i])) * A
   }
   Lambda_mixed <- Lambda * pzt + lambda0 * interevent * (1 - pzt)
   return(Lambda_mixed)
@@ -87,11 +89,11 @@ compensator.mmhp <- function(object, events, pzt) {
 #' @rdname compensator
 #' @export
 compensator.hpp <- function(object, events, pzt = NULL) {
-  N=length(events)
-  lambda=object$lambda
-  Lambda=rep(0,N)
+  N <- length(events)
+  lambda <- object$lambda
+  Lambda <- rep(0,N)
   for (i in 2:N){
-    Lambda[i]=(events[i]-events[i-1])*lambda
+    Lambda[i] <- (events[i]-events[i-1])*lambda
   }
   return(Lambda)
 }

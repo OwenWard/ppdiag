@@ -12,5 +12,6 @@ ksplot(r, ...)
 \item{...}{other arguments for plots}
 }
 \description{
-Plot empirical cdf plot for rescaled-inter-event-times and exponential cdf as a reference curve
+Plot empirical cdf plot for rescaled-inter-event-times and
+ exponential cdf as a reference curve
 }

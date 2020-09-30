@@ -1,9 +1,11 @@
 #' Compute the intensity of social network model
 #'
-#' Take an object of MMHP/HP/MMPP and generate its intensity function accordingly
+#' Take an object of MMHP/HP/MMPP and generate its intensity 
+#' function accordingly
 #'
 #' @param object an object of MMHP/HP/MMPP
-#' For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.
+#' For example, MMHP object should includ its state, state_time,
+#'  events, lambda0, lambda1, beta and alpha.
 #' @param event the observed/simulated events, including event times and 
 #' start/end of observation period
 #' @param method the method used to calculate intensity.
@@ -13,9 +15,11 @@
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+#' lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 #' y <- simulatemmhp(x)
-#'## z <- intensity(x, y) ### need to fix this, due to time.vec being missing
+#'## z <- intensity(x, y) 
+#'### need to fix this, due to time.vec being missing
 intensity <- function(object, event, method = "numeric") {
   UseMethod("intensity")
 }
@@ -67,7 +71,7 @@ intensity.mmhp <- function(object, event, method = "numeric") {
     }
     lambda.t <- rep(lambda0, length(events))
     r <- 0
-    for (i in c(1:length(events))) {
+    for (i in seq_along(events)) {
       if (i > 1) {
         r <- exp(-beta * (events[i] - events[i - 1])) * (1 + r)
       }
@@ -98,19 +102,21 @@ intensity.hp <- function(object, event, method = "numeric") {
     lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
     r <- 0
-    for (i in c(1:length(time.vec))) {
+    for (i in seq_along(time.vec)) {
       current.t <- time.vec[i]
       if (event.idx < length(events)) {
         if (current.t > events[event.idx + 1]) {
           event.idx <- event.idx + 1
-          r <- exp(-beta * (events[event.idx] - events[event.idx - 1])) * (1 + r)
+          r <- exp(-beta * (events[event.idx] - 
+                              events[event.idx - 1])) * (1 + r)
         }
       }
 
       if (current.t <= events[1]) {
         lambda1.t[i] <- lambda
       } else {
-        lambda1.t[i] <- lambda + alpha * exp(-beta * (current.t - events[event.idx])) * (1 + r)
+        lambda1.t[i] <- lambda + 
+          alpha * exp(-beta * (current.t - events[event.idx])) * (1 + r)
       }
     }
 
@@ -118,7 +124,8 @@ intensity.hp <- function(object, event, method = "numeric") {
   } 
   else if (method == "integral") {
     # This function is used to compute \int_0^T \lambda(u) du
-    # input object: parameters for Hawkes process, include lambda0, alpha, beta
+    # input object: parameters for Hawkes process, include lambda0,
+    # alpha, beta
     #       events: vector of event happening time
     #       T: termination time
     # output result: \int_0^T \lambda(u) du
@@ -140,7 +147,8 @@ intensity.hp <- function(object, event, method = "numeric") {
         result <- lambda0 * (termination-start)
       } else {
         result <- lambda0 * (termination-start) + 
-          alpha / beta * (N - (1 + r) * exp(-beta * (termination - events[N])))
+          alpha / beta * (N - (1 + r) * 
+                            exp(-beta * (termination - events[N])))
       }
 
       return(result)

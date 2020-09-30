@@ -1,6 +1,7 @@
 #' Compute raw residuals for social network models
 #'
-#' Compute raw residuals for social network models with model specified time events or simulated time events
+#' Compute raw residuals for social network models with model
+#'  specified time events or simulated time events
 #'
 #' @param object social network model contating the parameters
 #' @param events vector of event happening time

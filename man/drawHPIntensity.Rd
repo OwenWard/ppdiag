@@ -37,16 +37,19 @@ which is only important when using mmhp}
 
 \item{add}{whether to add the hawkes intensity to an existing plot}
 
-\item{fit}{a boolean indicating whether to fit a hp or use the passed object}
+\item{fit}{a boolean indicating whether to fit a hp or 
+use the passed object}
 
-\item{plot_events}{a boolean indicating whether events inputted will be plotted}
+\item{plot_events}{a boolean indicating whether events
+inputted will be plotted}
 
 \item{vec}{vector of initial values of parameters used in fithp}
 
 \item{int_title}{title of the intensity plot}
 }
 \description{
-Draw the intensity of Hawkes Process, a helper function for 'drawUniMMHPIntensity'
+Draw the intensity of Hawkes Process, a helper function for
+ 'drawUniMMHPIntensity'
 while also available independently
 }
 \examples{

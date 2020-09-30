@@ -1,6 +1,8 @@
 #' Plot Quantile-quantile plot for rescaled-inter-event-times
 #'
-#' Generate Quantile-quantile plot for rescaled-inter-event-times, which are supposedly to be independently and identically distributed as exponential random vairbales with rate 1.
+#' Generate Quantile-quantile plot for rescaled-inter-event-times,
+#'  which are supposedly to be independently 
+#'  and identically distributed as exponential random vairbales with rate 1.
 #'
 #' @param r rescaled-inter-event-times
 #' @param ... other arguments for plots

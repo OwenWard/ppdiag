@@ -14,7 +14,7 @@
 
 
 plothpp_step <- function(events, color="red"){
-	count=0:length(events)
+	count <- 0:length(events)
 	plot(stepfun(x=events, y=count), main="Homogeneous Poisson Process",
        xlab="Event Time", ylab="Number of events", col=color)
 }

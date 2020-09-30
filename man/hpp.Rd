@@ -19,7 +19,8 @@ hpp(lambda, start = 0, end = 1, n = NULL)
 hpp object
 }
 \description{
-Create a homogeneous poisson process according to given parameters: lambda, start, end, and n.
+Create a homogeneous poisson process according to given parameters:
+ lambda, start, end, and n.
 }
 \examples{
 hpp(lambda = 1, end = 10)

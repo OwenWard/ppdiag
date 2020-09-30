@@ -1,11 +1,15 @@
 #' Simulate Markov Modulated Hawkes Process
 #'
-#' Simulate Markov Modulated Hawkes Process (including all the history) according to a mmhp object
+#' Simulate Markov Modulated Hawkes Process (including all the history) 
+#' according to a mmhp object
 #'
-#' @param object a mmhp object including its Q, delta, events, lambda0, lambda1, beta and alpha.
+#' @param object a mmhp object including its Q, delta, events, lambda0, 
+#' lambda1, beta and alpha.
 #' @param n number of points to simulate.
 #' @param seed seed for the random number generator.
-#' @param given_state if the hidden state trajectory is given. It `TRUE`, then simulate according to the given state. Default to `FALSE`
+#' @param given_state if the hidden state trajectory is given.
+#'  If `TRUE`, then simulate according to the given state. 
+#'  Default to `FALSE`
 #' @param states an object containing:
 #'              - z: the states of Markov Process,
 #'              - x: time of each transition of Markov process
@@ -13,13 +17,18 @@
 #' @param ... other arguments.
 #' @importFrom stats rexp
 #'
-#' @return simulated Markov Modulated Hawkes Process, including states of Markov Process, time of each transition of Markoc Process, state at each event, times of Poisson events.
+#' @return simulated Markov Modulated Hawkes Process, 
+#' including states of Markov Process, time of each 
+#' transition of Markoc Process, state at each event,
+#'  times of Poisson events.
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x)
-simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) {
+simulatemmhp <- function(object, n = 1, given_state = FALSE,
+                         states = NULL, seed = NULL, ...) {
   if (!is.null(seed)) set.seed(seed)
   m <- 2
   #------------------------
@@ -70,11 +79,13 @@ simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
-        class(hp_obj)="hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], events[1:(j - 1)])
+        hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
+        class(hp_obj) <- "hp"
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
+                                      events[1:(j - 1)])
         hp <- simulate.result$t
-        lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
+        lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
+                             lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
@@ -97,9 +108,11 @@ simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed
         }
       }
     }
-    x=round(x,3)
-    events=round(events,3)
-    return(list(x = x[1:i], z = z[1:i], events = events[1:(n + 1)], zt = zt[1:(n + 1)], lambda.max = lambda.max))
+    x <- round(x,3)
+    events <- round(events,3)
+    return(list(x = x[1:i], z = z[1:i], 
+                events = events[1:(n + 1)], zt = zt[1:(n + 1)],
+                lambda.max = lambda.max))
   } else {
     x <- states$x
     z <- states$z
@@ -117,11 +130,13 @@ simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        hp_obj=list(lambda0=lambda1,alpha=alpha,beta=beta)
-        class(hp_obj)="hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i], events[1:(j - 1)])
+        hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
+        class(hp_obj) <- "hp"
+        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
+                                      events[1:(j - 1)])
         hp <- simulate.result$t
-        lambda.max <- ifelse(lambda.max > simulate.result$lambda.max, lambda.max, simulate.result$lambda.max)
+        lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
+                             lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
@@ -144,7 +159,9 @@ simulatemmhp <- function(object, n = 1, given_state = FALSE, states = NULL, seed
         }
       }
     }
-    events=round(events,3)
-    return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending], zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending], lambda.max = lambda.max))
+    events <- round(events,3)
+    return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending],
+                zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
+                lambda.max = lambda.max))
   }
 }

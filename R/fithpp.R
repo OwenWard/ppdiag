@@ -12,16 +12,16 @@
 #' fithpp(events)
 
 fithpp <- function(events){
-	start=min(events)
-	end=max(events)
+	start <- min(events)
+	end <- max(events)
 	if(start==end){
 	  stop("Start and end time are equal.")
 	}
-	n=length(events)
-	lambda=n/(end-start)
-	hpp_object=list(lambda = lambda, start = start,
+	n <- length(events)
+	lambda <- n/(end-start)
+	hpp_object <- list(lambda = lambda, start = start,
 	                end = end, n = n,
 	                events = events)
-	class(hpp_object)="hpp"
+	class(hpp_object) <- "hpp"
 	return(hpp_object)	
 }

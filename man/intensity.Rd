@@ -23,7 +23,8 @@ intensity(object, event, method = "numeric")
 }
 \arguments{
 \item{object}{an object of MMHP/HP/MMPP
-For example, MMHP object should includ its state, state_time, events, lambda0, lambda1, beta and alpha.}
+For example, MMHP object should includ its state, state_time,
+ events, lambda0, lambda1, beta and alpha.}
 
 \item{event}{the observed/simulated events, including event times and 
 start/end of observation period}
@@ -36,11 +37,14 @@ The candidates are: `numeric`, and `atevent`, default to `numeric`.
 The intensity function of MMHP
 }
 \description{
-Take an object of MMHP/HP/MMPP and generate its intensity function accordingly
+Take an object of MMHP/HP/MMPP and generate its intensity 
+function accordingly
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 y <- simulatemmhp(x)
-## z <- intensity(x, y) ### need to fix this, due to time.vec being missing
+## z <- intensity(x, y) 
+### need to fix this, due to time.vec being missing
 }

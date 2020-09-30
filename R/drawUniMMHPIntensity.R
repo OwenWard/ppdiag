@@ -2,9 +2,14 @@
 #'
 #' Take a mmhp object and draw its intensity accordingly
 #'
-#' @param mmhp a mmhp object including its state, state_time, events, lambda0, lambda1, beta and alpha.
+#' @param mmhp a mmhp object including its state, state_time,
+#'  events, lambda0, lambda1, beta and alpha.
 #' @param simulation the simulated Markov-modulated Hawkes Process(MMHP)
-#' @param add logical; if TRUE add to an already existing plot; if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot. Taken as FALSE (with a warning if a different value is supplied) if no graphics device is open.
+#' @param add logical; if TRUE add to an already existing plot;
+#'  if NA start a new plot taking the defaults 
+#'  for the limits and log-scaling of the x-axis from the previous plot.
+#'   Taken as FALSE (with a warning if a different value is supplied) 
+#'   if no graphics device is open.
 #' @param color A specification for the default plotting color.
 #' @param given_main title of the plot.
 #' @importFrom graphics plot
@@ -34,7 +39,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation,
   n <- length(events)
   m <- length(state)
   
-  ylim=c()
+  ylim <- c()
   for (i in 1:(m - 1)) {
     if (state[i] == 1) {
       hawkes_time <- events[events >= state_time[i] & 
@@ -45,7 +50,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation,
                          alpha = alpha,
                          beta = beta)
       if(length(hawkes_time)>1) {
-        ylim = append(ylim,hawkes_max_intensity(hawkes_obj,hawkes_time))
+        ylim <- append(ylim,hawkes_max_intensity(hawkes_obj,hawkes_time))
       }
     }
   }
@@ -70,7 +75,8 @@ drawUniMMHPIntensity <- function(mmhp, simulation,
   }
   for (i in 1:(m - 1)) {
     if (state[i] == 1) {
-      hawkes_time <- events[events >= state_time[i] & events < state_time[i + 1]]
+      hawkes_time <- events[events >= state_time[i] & 
+                              events < state_time[i + 1]]
       if (i == 1) hawkes_time <- hawkes_time[-1]
       history <- events[events < state_time[i]]
       hawkes_obj <- list(lambda0 = lambda1,

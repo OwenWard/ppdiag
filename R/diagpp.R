@@ -1,4 +1,6 @@
-#' Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.
+#' Generate diagnostic tools for different models, 
+#' including quantile-quantile plot, ks plot, 
+#' raw residual and pearson residual.
 #'
 #' @param object a social network model
 #' @param events event times
@@ -20,13 +22,14 @@ diagpp.default <- function(object, events, pzt = NULL) {
 #' @rdname diagpp
 #' @export
 diagpp.hp<-function(object, events, pzt = NULL){
-  r=compensator(object, events, pzt)
+  r <- compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, events, termination = max(events))
-  pr=pearsonresidual(object, events, start=min(events), termination = max(events))
+  rr <- rawresidual(object, events, termination = max(events))
+  pr <- pearsonresidual(object, events, start=min(events),
+                        termination = max(events))
 
-  ks=ks.test(r,"pexp")
+  ks <- ks.test(r,"pexp")
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
@@ -34,20 +37,20 @@ diagpp.hp<-function(object, events, pzt = NULL){
 
 #' @rdname diagpp
 #' @export
-diagpp.mmhp<-function(object, events, pzt = 0.5){
+diagpp.mmhp <- function(object, events, pzt = 0.5){
   ### need to compute 
   # pzt
   # time.vec
   # latent.vec
   
-  r=compensator(object, events, pzt)
+  r <- compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
   #rr=rawresidual(object, events, max(events), time.vec, latent.vec)
   #pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
   #                   latent_event)
   
-  ks=ks.test(r,"pexp")
+  ks <- ks.test(r,"pexp")
   # cat("Raw residual: ", rr, "\n",sep = "")
   # cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
@@ -57,13 +60,13 @@ diagpp.mmhp<-function(object, events, pzt = 0.5){
 #' @rdname diagpp
 #' @export
 diagpp.hpp<-function(object, events, pzt = NULL){
-  r=compensator(object, events, pzt)
+  r <- compensator(object, events, pzt)
   qqexp(r)
   ksplot(r)
-  rr=rawresidual(object, events, termination = max(events))
-  pr=pearsonresidual(object, events, termination = max(events))
+  rr <- rawresidual(object, events, termination = max(events))
+  pr <-pearsonresidual(object, events, termination = max(events))
   
-  ks=ks.test(r,"pexp")
+  ks <- ks.test(r,"pexp")
   cat("\n","Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)

@@ -26,5 +26,6 @@ negloglik(object, t, end)
 a scalar indicating the negative log likelihood
 }
 \description{
-Compute negative log likelihood for social network models with model specified time events or simulated time events
+Compute negative log likelihood for social network models
+ with model specified time events or simulated time events
 }

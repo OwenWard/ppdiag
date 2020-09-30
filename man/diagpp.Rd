@@ -6,7 +6,9 @@
 \alias{diagpp.hp}
 \alias{diagpp.mmhp}
 \alias{diagpp.hpp}
-\title{Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.}
+\title{Generate diagnostic tools for different models, 
+including quantile-quantile plot, ks plot, 
+raw residual and pearson residual.}
 \usage{
 diagpp(object, events, pzt = NULL)
 
@@ -29,5 +31,7 @@ diagpp(object, events, pzt = NULL)
 print qq plot and ks plot, and print out pearson and raw residuals.
 }
 \description{
-Generate diagnostic tools for different models, including quantile-quantile plot, ks plot, raw residual and pearson residual.
+Generate diagnostic tools for different models, 
+including quantile-quantile plot, ks plot, 
+raw residual and pearson residual.
 }

@@ -13,14 +13,19 @@ hp(lambda0, alpha, beta, events = NULL)
 
 \item{beta}{exponential decay of intensity}
 
-\item{events}{vector containing the event times. Note that the first event is at time zero. Alternatively, events could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
+\item{events}{vector containing the event times. 
+Note that the first event is at time zero. 
+Alternatively, events could be specified as NULL, 
+meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 hp object
 }
 \description{
-Create a Hawkes Process(HP) model according to the given parameters: lambda0, alpha, beta and event times.
-If event time tau is missing, then it means that data will be added later(e.g. simulated)
+Create a Hawkes Process(HP) model according to the given parameters:
+ lambda0, alpha, beta and event times.
+If event time tau is missing, then it means that data will be
+ added later(e.g. simulated)
 }
 \examples{
 hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)

@@ -7,7 +7,8 @@
 simulatehp(hp, start = 0, end, history = 0)
 }
 \arguments{
-\item{hp}{hawkes process object, including parameters in list type (lambda0, alpha, beta, tau)}
+\item{hp}{hawkes process object, including parameters in list type 
+(lambda0, alpha, beta, tau)}
 
 \item{start}{start time of the Hawkes process.}
 
@@ -19,7 +20,8 @@ simulatehp(hp, start = 0, end, history = 0)
 simulated Hawkes Process
 }
 \description{
-Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
+Simulate Hawkes process during active state (including all the histoty),
+ a helper function for "simulationmmhp"
 }
 \examples{
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)

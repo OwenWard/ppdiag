@@ -31,5 +31,6 @@ pearsonresidual(object, events, start, termination)
 the Pearson residual
 }
 \description{
-Compute Pearson residuals for social network models with model specified time events or simulated time events
+Compute Pearson residuals for social network models 
+with model specified time events or simulated time events
 }

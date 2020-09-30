@@ -31,5 +31,6 @@ rawresidual(object, events, start = 0, termination)
 the raw residual
 }
 \description{
-Compute raw residuals for social network models with model specified time events or simulated time events
+Compute raw residuals for social network models with model
+ specified time events or simulated time events
 }

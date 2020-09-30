@@ -14,7 +14,8 @@ fithp(vec, t, end)
 \item{end}{end of observation period}
 }
 \value{
-a hp object indicating the maximum likelihood parameter values (lambda0,alpha,beta) for hawkes process.
+a hp object indicating the maximum 
+likelihood parameter values (lambda0,alpha,beta) for hawkes process.
 }
 \description{
 Determine the MLE of hawkes process numerically

@@ -1,6 +1,7 @@
 #' Compute negative log likelihood for social network models
 #'
-#' Compute negative log likelihood for social network models with model specified time events or simulated time events
+#' Compute negative log likelihood for social network models
+#'  with model specified time events or simulated time events
 #'
 #' @param object social network model contating the parameters
 #' @param t vector containing the event times.
@@ -63,8 +64,10 @@ negloglik.mmhp <- function(object, t, end) {
   interevent <- t[-1] - t[-(n + 1)]
 
   forward <- matrix(0, ncol = 2, nrow = n)
-  probs_1 <- matrix(0, ncol = 2, nrow = n) # Probability vector for transition to state 1 (active state)
-  probs_2 <- matrix(0, ncol = 2, nrow = n) # Probability vector for transition to state 2 (inactive state)
+  probs_1 <- matrix(0, ncol = 2, nrow = n) 
+  # Probability vector for transition to state 1 (active state)
+  probs_2 <- matrix(0, ncol = 2, nrow = n) 
+  # Probability vector for transition to state 2 (inactive state)
   r <- rep(0, n)
 
   integ1 <- interevent[1] * lambda1
@@ -83,10 +86,15 @@ negloglik.mmhp <- function(object, t, end) {
     integ2 <- interevent[i] * lambda0
     r[i] <- exp(-beta * interevent[i]) * (r[i - 1] + 1)
     a <- min(forward[i - 1, ] + probs_1[i - 1, ])
-    forward[i, 1] <- a + log(sum(exp(forward[i - 1, ] + probs_1[i - 1, ] - a))) + log(lambda1 + alpha * exp(-beta * interevent[i]) * (r[i - 1] + 1)) - integ1 +
+    forward[i, 1] <- a + log(sum(exp(forward[i - 1, ] + 
+                                       probs_1[i - 1, ] - a))) + 
+      log(lambda1 + 
+            alpha * exp(-beta * interevent[i]) * (r[i - 1] + 1)) - integ1 +
       alpha / beta * (r[i] - r[i - 1] - 1)
     a <- min(forward[i - 1, ] + probs_2[i - 1, ])
-    forward[i, 2] <- a + log(sum(exp(forward[i - 1, ] + probs_2[i - 1, ] - a))) + log(lambda0) - integ2
+    forward[i, 2] <- a + log(sum(exp(forward[i - 1, ] + 
+                                       probs_2[i - 1, ] - a))) + 
+      log(lambda0) - integ2
   }
   return(-sum(forward[n, ]))
 }

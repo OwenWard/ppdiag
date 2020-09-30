@@ -1,6 +1,7 @@
 #' KS plot to visualize the empirical and theoretical cdf curve
 #'
-#' Plot empirical cdf plot for rescaled-inter-event-times and exponential cdf as a reference curve
+#' Plot empirical cdf plot for rescaled-inter-event-times and
+#'  exponential cdf as a reference curve
 #'
 #' @param r rescaled-inter-event-times
 #' @param ... other arguments for plots

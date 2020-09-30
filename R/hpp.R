@@ -1,6 +1,7 @@
 #' Create a homogeneous poisson process model
 #'
-#' Create a homogeneous poisson process according to given parameters: lambda, start, end, and n.
+#' Create a homogeneous poisson process according to given parameters:
+#'  lambda, start, end, and n.
 #'
 #' @param lambda rate of the poisson process
 #' @param n number of events

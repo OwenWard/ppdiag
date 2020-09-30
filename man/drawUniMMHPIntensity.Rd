@@ -13,11 +13,16 @@ drawUniMMHPIntensity(
 )
 }
 \arguments{
-\item{mmhp}{a mmhp object including its state, state_time, events, lambda0, lambda1, beta and alpha.}
+\item{mmhp}{a mmhp object including its state, state_time,
+events, lambda0, lambda1, beta and alpha.}
 
 \item{simulation}{the simulated Markov-modulated Hawkes Process(MMHP)}
 
-\item{add}{logical; if TRUE add to an already existing plot; if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot. Taken as FALSE (with a warning if a different value is supplied) if no graphics device is open.}
+\item{add}{logical; if TRUE add to an already existing plot;
+if NA start a new plot taking the defaults 
+for the limits and log-scaling of the x-axis from the previous plot.
+ Taken as FALSE (with a warning if a different value is supplied) 
+ if no graphics device is open.}
 
 \item{color}{A specification for the default plotting color.}
 
