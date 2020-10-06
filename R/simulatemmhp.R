@@ -3,7 +3,7 @@
 #' Simulate Markov Modulated Hawkes Process (including all the history) 
 #' according to a mmhp object
 #'
-#' @param object a mmhp object including its Q, delta, events, lambda0, 
+#' @param mmhp a mmhp object including its Q, delta, events, lambda0, 
 #' lambda1, beta and alpha.
 #' @param n number of points to simulate.
 #' @param seed seed for the random number generator.
@@ -27,23 +27,23 @@
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x)
-simulatemmhp <- function(object, n = 1, given_state = FALSE,
+simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
                          states = NULL, seed = NULL, ...) {
   if (!is.null(seed)) set.seed(seed)
   m <- 2
   #------------------------
-  if (sum(object$delta) != 1) stop("Invalid delta")
-  if (any(object$delta == 1)) {
-    initial <- (1:m)[as.logical(object$delta)]
+  if (sum(mmhp$delta) != 1) stop("Invalid delta")
+  if (any(mmhp$delta == 1)) {
+    initial <- (1:m)[as.logical(mmhp$delta)]
   } else {
-    initial <- sample(m, 1, prob = object$delta)
+    initial <- sample(m, 1, prob = mmhp$delta)
   }
   #------------------------
-  Q <- object$Q
-  lambda0 <- object$lambda0
-  lambda1 <- object$lambda1
-  alpha <- object$alpha
-  beta <- object$beta
+  Q <- mmhp$Q
+  lambda0 <- mmhp$lambda0
+  lambda1 <- mmhp$lambda1
+  alpha <- mmhp$alpha
+  beta <- mmhp$beta
   
   if(alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
