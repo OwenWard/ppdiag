@@ -6,31 +6,31 @@
 #' @param object social network model contating the parameters
 #' @param events vector of event happening time
 #' @param start start of observation period
-#' @param termination end of observation period
+#' @param end end of observation period
 #'
 #' @return the raw residual
 #' @export
 
-rawresidual <- function(object, events, start = 0, termination) {
+rawresidual <- function(object, events, start = 0, end) {
   UseMethod("rawresidual")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, start = 0, termination) {
+rawresidual.default <- function(object, events, start = 0, end) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, start = 0, termination) {
+rawresidual.hp <- function(object, events, start = 0, end) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
   hawkes_obj <- object
   event_obj <- list(events = events,
                     start = start,
-                    termination = termination)
+                    end = end)
   N <- length(events)
   result <- intensity(hawkes_obj,event = event_obj, method = "integral")
   return(N - result)
@@ -38,14 +38,14 @@ rawresidual.hp <- function(object, events, start = 0, termination) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, start = 0, termination) {
+rawresidual.mmhp <- function(object, events, start = 0, end) {
   ## need to define and compute time.vec, latent.vec in here
   # time.vec <- NA
   # latent.vec <- NA
   # actually only need to compute the latent vec here?
   event_obj <- list()
   event_obj$start <- start
-  event_obj$termination <- termination
+  event_obj$end <- end
   event_obj$events <- events
   
   # temp definition to avoid issues checking
@@ -60,9 +60,9 @@ rawresidual.mmhp <- function(object, events, start = 0, termination) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, start = 0, termination) {
+rawresidual.hpp <- function(object, events, start = 0, end) {
   N <- length(events)
-  inten_obj <- list(events = events, start = start, termination = termination)
+  inten_obj <- list(events = events, start = start, end = end)
   est.intensity <- intensity(object, events, method = "integral")
   all_Lambda <- sum(est.intensity)
   return(N - all_Lambda)

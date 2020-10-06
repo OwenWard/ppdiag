@@ -33,6 +33,27 @@ point process to capture the temporal structure present in this data.
 
 
 ## Simulating data
+Functions for simulating data include simulatehpp, simulatehp, and simulatemmhp, which take in objects of type hpp, hp, and mmhp, respectively. 
+
+- Homogeneous Poisson Process: 
+
+The function hpp(lambda, start=0, end=1, n = NULL) takes lambda(rate of the poisson process), start and end(start and end time of events), n(number of events) as inputs and returns an object of class hpp, in the form of a list of parameters provided. 
+
+The function simulatehpp takes a hpp object in the form of the above and simulates events according to the arguments in the object, this function returns a vector of event times. Usage: simulatehpp(hpp) where hpp is the object obtained by hpp(lambda, start=0, end=1, n = NULL). 
+
+- Hawkes Process: 
+
+The function hp(lambda0, alpha, beta, events = NULL) takes lambda0(base intensity of hawkes process), alpha(jump size of increase in intensity), beta(exponential decay of intensity), events(the first event is at time zero, events data can be added later after simulation) as inputs and returns an object of class hp, in the form of a list of parameters provided.
+
+The function simulatehp(hp, start=0, end, history=0) takes hp(a hp object in the form of the above), start(start time of events needed), end(end time of events needed), history(vector of past event times) and simulates events according to the arguments, this function returns a vector of event times. Usage: simulatehp(hp, start=0, end, history=0) where hp is obtained by hp(lambda0, alpha, beta, events = NULL). 
+
+- Markov-Modulated Hawkes Process: 
+
+The function mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL) takes lambda0(intensity for hpp), lambda1(base intensity for hp), alpha(jump size of the increase in intensity in hp), beta(exponential decrease of intensity in hp), Q(transition probability matrix), delta(initial state probability), events(event times, could be added later after simulation) as inputs and returns an object of class mmhp, in the form of a list of parameters provided. 
+
+The function simulatemmhp(mmhp, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) takes mmhp(a mmhp object), n(number of events), given_state(a boolean parameter, If TRUE, then simulate according to the given state, default FALSE), 
+states(an object containing z: the states of Markov Process; x: time of each transition of Markov process; ending: preset ending time for the process), and seed(the seed of the random number generator). Usage: simulatemmhp(mmhp, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) where mmhp is obtained by mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL). 
+
 
 
 ## Fitting a point process
