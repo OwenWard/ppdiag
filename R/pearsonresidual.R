@@ -32,6 +32,9 @@ pearsonresidual.mmhp <- function(object, events, start = 0, termination) {
   event_obj$start <- start
   event_obj$termination <- termination
   
+  # temp definition to avoid issues checking
+  time.vec <- seq(from = start, to = termination, length.out = 1000)
+  
   est.intensity <- intensity(object,event = event_obj,method = "numeric")
   est.intensity.events <- intensity(object, event = event_obj,
                                     method = "atevent")

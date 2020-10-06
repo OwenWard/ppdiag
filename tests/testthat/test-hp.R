@@ -21,7 +21,7 @@ test_that("test hp", {
   #expect_lt(hp$alpha,hp$beta)
   
   
-  hp <- fithp(vec=rep(0.5,3),t=events, end=10)
+  # hp <- fithp(vec=rep(0.5,3),t=events, end=10)
   #expect_error(fithp(vec=rep(0.5,3),t=events, end=10),
   # "Refitting exceeded 10 times. Try a different initial vector. ")
   #expect_type(hp, "list")
@@ -29,7 +29,7 @@ test_that("test hp", {
   #expect_lt(hp$alpha,hp$beta)
   
   
-  hp <- fithp(vec=rep(0.3,3),t=events, end=10)
+  # hp <- fithp(vec=rep(0.3,3),t=events, end=10)
   #expect_error(fithp(vec=rep(0.3,3),t=events, end=10),
   # "Refitting exceeded 10 times. Try a different initial vector. ")
   #expect_type(hp, "list")
