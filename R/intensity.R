@@ -35,7 +35,7 @@ intensity.default <- function(object, event, method = "numeric") {
 intensity.mmhp <- function(object, event, method = "numeric") {
   events <- event$events
   start <- event$start
-  termination <- event$termination
+  end <- event$end
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
@@ -43,7 +43,7 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   n <- length(events)
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
-    time.vec <- seq(from = start, to = termination, length.out = 1000)
+    time.vec <- seq(from = start, to = end, length.out = 1000)
     ## this is empty here by default
     
     # we don't have a function to compute this in the package
@@ -135,7 +135,7 @@ intensity.hp <- function(object, event, method = "numeric") {
     beta <- object$beta
     events <- event$events
     start <- event$start
-    termination <- event$termination
+    end <- event$end
     N <- length(events) 
     r <- 0
 
@@ -144,11 +144,11 @@ intensity.hp <- function(object, event, method = "numeric") {
         r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
       }
       if (N == 0) {
-        result <- lambda0 * (termination-start)
+        result <- lambda0 * (end-start)
       } else {
-        result <- lambda0 * (termination-start) + 
+        result <- lambda0 * (end-start) + 
           alpha / beta * (N - (1 + r) * 
-                            exp(-beta * (termination - events[N])))
+                            exp(-beta * (end - events[N])))
       }
 
       return(result)
@@ -173,7 +173,7 @@ intensity.mmpp <- function(object, event, method = "numeric") {
 intensity.hpp <- function(object, event, method = "numeric"){
   lambda <- object$lambda
   start <- object$start
-  termination <- object$end
+  end <- object$end
   ### what does this do?
   n <- length(event)
   # if(method=="function"){
@@ -187,7 +187,7 @@ intensity.hpp <- function(object, event, method = "numeric"){
     return(rep(lambda,n))
   } 
   else if (method == "integral") {
-    return ((termination-start)*lambda)
+    return ((end-start)*lambda)
   }  
   else if (method == "numeric") {
     return(rep(lambda,1000))
