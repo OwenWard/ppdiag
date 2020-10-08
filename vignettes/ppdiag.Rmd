@@ -1,5 +1,5 @@
 ---
-title: "`ppdiag`, diagnostic tools for Point Processes"
+title: "`ppdiag`, diagnostic tools for temporal Point Processes"
 output: rmarkdown::html_vignette
 author: Sally Sun, Owen G. Ward et al.
 vignette: >
