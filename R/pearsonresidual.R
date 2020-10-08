@@ -1,44 +1,43 @@
 #' Compute Pearson residuals for social network models
 #'
-#' Compute Pearson residuals for social network models with model specified time events or simulated time events
+#' Compute Pearson residuals for social network models 
+#' with model specified time events or simulated time events
 #'
 #' @param object social network model containing the parameters
-#' @param t vector of event happening time
-#' @param termination termination time
-#' @param time.vec time segment to calculate the intensity for `numeric` method
-#' @param latent.vec the probability of the latent space being in the active state
-#' @param latent_event the estimated latent space of the point process model
-#'
-#' @return the pearson residual
+#' @param events vector of event happening time
+#' @param start start of observation period
+#' @param end termination time
+#' 
+#' @return the Pearson residual
 #' @importFrom stats integrate
 #' @export
 
-pearsonresidual <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+pearsonresidual <- function(object, events, start, end) {
   UseMethod("pearsonresidual")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.default <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
-  cat("Please input the right model. Select from hp and mmhp. ")
+pearsonresidual.default <- function(object, events, start, end) {
+  cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
-  N <- length(t)
-  est.intensity <- intensity(object,
-    event = list(
-      tau = t,
-      time_segment = time.vec,
-      latent_mean = latent.vec
-    ),
-    method = "numeric"
-  )
-  est.intensity.events <- intensity(object, event = list(
-    tau = t,
-    z = latent_event
-  ), method = "atevent")
+pearsonresidual.mmhp <- function(object, events, start = 0, end) {
+  # define time.vec,latent.vec,latent_event in intensity
+  N <- length(events)
+  event_obj <- list()
+  event_obj$events <- events
+  event_obj$start <- start
+  event_obj$end <- end
+  
+  # temp definition to avoid issues checking
+  time.vec <- seq(from = start, to = end, length.out = 1000)
+  
+  est.intensity <- intensity(object,event = event_obj,method = "numeric")
+  est.intensity.events <- intensity(object, event = event_obj,
+                                    method = "atevent")
   pr <- sum(1 / sqrt(est.intensity.events)) -
     sum(sqrt(est.intensity)) * (time.vec[2] - time.vec[1])
   return(pr)
@@ -46,29 +45,30 @@ pearsonresidual.mmhp <- function(object, t, termination, time.vec = NULL, latent
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.vec = NULL, latent_event = NULL) {
+pearsonresidual.hp <- function(object, events, start, end) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
 
-  N <- length(t)
+  N <- length(events)
   PR <- 0
   r <- 0
 
   if (N == 0) {
-    return(-sqrt(lambda0) * termination)
+    return(-sqrt(lambda0) * (end - start))
   } else if (N == 1) {
-    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * t[1]
+    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * (events[1] - start)
     integrand <- function(u) {
-      sqrt(lambda0 + alpha * exp(-beta * (u - t[1])))
+      sqrt(lambda0 + alpha * exp(-beta * (u - events[1])))
     }
-    PR <- PR - integrate(integrand, lower = t[1], upper = termination)$value
+    PR <- PR - integrate(integrand, lower = events[1],
+                         upper = end)$value
   } else {
     # first event
-    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * t[1]
+    PR <- PR + 1 / sqrt(lambda0) - sqrt(lambda0) * (events[1] - start)
     # 2~N t
     for (i in 2:N) {
-      r <- exp(-beta * (t[i] - t[i - 1])) * (r + 1)
+      r <- exp(-beta * (events[i] - events[i - 1])) * (r + 1)
       if (lambda0 + alpha * r > 0) {
         PR <- PR + 1 / sqrt(lambda0 + alpha * r)
       }
@@ -76,24 +76,41 @@ pearsonresidual.hp <- function(object, t, termination, time.vec = NULL, latent.v
       integrand <- function(u) {
         temp <- lambda0
         for (k in c(1:(i - 1))) {
-          temp <- temp + alpha * exp(-beta * (u - t[k]))
+          temp <- temp + alpha * exp(-beta * (u - events[k]))
         }
         return(sqrt(temp))
       }
 
-      PR <- PR - integrate(integrand, lower = t[i - 1], upper = t[i])$value
+      PR <- PR - integrate(integrand, lower = events[i - 1],
+                           upper = events[i])$value
     }
     # N event ~ termination time
 
     integrand <- function(u) {
       temp <- lambda0
       for (k in c(1:N)) {
-        temp <- temp + alpha * exp(-beta * (u - t[k]))
+        temp <- temp + alpha * exp(-beta * (u - events[k]))
       }
       return(sqrt(temp))
     }
 
-    PR <- PR - integrate(integrand, lower = t[N], upper = termination)$value
+    PR <- PR - integrate(integrand, lower = events[N],
+                         upper = end)$value
     return(PR)
   }
+}
+
+#' @rdname pearsonresidual
+#' @export
+pearsonresidual.hpp <- function(object, events, start = 0,
+                                end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
+  est.intensity <- sqrt(object$lambda)*(end-start)
+  ### this pr looks incorrect to me
+  N <- length(events)
+  int_events <- rep(object$lambda,N)
+  pr <- sum(1 / sqrt(int_events)) - est.intensity
+  return(pr)
 }

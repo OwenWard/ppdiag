@@ -1,5 +1,5 @@
 ^general_code_and_tests$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-
 ^LICENSE\.md$
+^README\.Rmd$

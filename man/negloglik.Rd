@@ -7,24 +7,25 @@
 \alias{negloglik.mmhp}
 \title{Compute negative log likelihood for social network models}
 \usage{
-negloglik(object, t, termination)
+negloglik(object, t, end)
 
-\method{negloglik}{default}(object, t, termination)
+\method{negloglik}{default}(object, t, end)
 
-\method{negloglik}{hp}(object, t, termination)
+\method{negloglik}{hp}(object, t, end)
 
-\method{negloglik}{mmhp}(object, t, termination)
+\method{negloglik}{mmhp}(object, t, end)
 }
 \arguments{
 \item{object}{social network model contating the parameters}
 
 \item{t}{vector containing the event times.}
 
-\item{termination}{the end time of event times}
+\item{end}{the end time of event times}
 }
 \value{
 a scalar indicating the negative log likelihood
 }
 \description{
-Compute negative log likelihood for social network models with model specified time events or simulated time events
+Compute negative log likelihood for social network models
+ with model specified time events or simulated time events
 }

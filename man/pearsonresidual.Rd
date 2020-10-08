@@ -5,60 +5,32 @@
 \alias{pearsonresidual.default}
 \alias{pearsonresidual.mmhp}
 \alias{pearsonresidual.hp}
+\alias{pearsonresidual.hpp}
 \title{Compute Pearson residuals for social network models}
 \usage{
-pearsonresidual(
-  object,
-  t,
-  termination,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+pearsonresidual(object, events, start, end)
 
-\method{pearsonresidual}{default}(
-  object,
-  t,
-  termination,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{pearsonresidual}{default}(object, events, start, end)
 
-\method{pearsonresidual}{mmhp}(
-  object,
-  t,
-  termination,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{pearsonresidual}{mmhp}(object, events, start = 0, end)
 
-\method{pearsonresidual}{hp}(
-  object,
-  t,
-  termination,
-  time.vec = NULL,
-  latent.vec = NULL,
-  latent_event = NULL
-)
+\method{pearsonresidual}{hp}(object, events, start, end)
+
+\method{pearsonresidual}{hpp}(object, events, start = 0, end = max(events))
 }
 \arguments{
 \item{object}{social network model containing the parameters}
 
-\item{t}{vector of event happening time}
+\item{events}{vector of event happening time}
 
-\item{termination}{termination time}
+\item{start}{start of observation period}
 
-\item{time.vec}{time segment to calculate the intensity for `numeric` method}
-
-\item{latent.vec}{the probability of the latent space being in the active state}
-
-\item{latent_event}{the estimated latent space of the point process model}
+\item{end}{termination time}
 }
 \value{
-the pearson residual
+the Pearson residual
 }
 \description{
-Compute Pearson residuals for social network models with model specified time events or simulated time events
+Compute Pearson residuals for social network models 
+with model specified time events or simulated time events
 }

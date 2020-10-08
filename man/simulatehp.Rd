@@ -4,18 +4,15 @@
 \alias{simulatehp}
 \title{Simulate Hawkes process during active state}
 \usage{
-simulatehp(lambda0, alpha, beta, start, horizon, history)
+simulatehp(hp, start = 0, end, history = 0)
 }
 \arguments{
-\item{lambda0}{parameters for Hawkes process.}
-
-\item{alpha}{parameters for Hawkes process.}
-
-\item{beta}{parameters for Hawkes process.}
+\item{hp}{hawkes process object, including parameters in list type 
+(lambda0, alpha, beta, tau)}
 
 \item{start}{start time of the Hawkes process.}
 
-\item{horizon}{end time of the Hawkes process.}
+\item{end}{end time of the Hawkes process.}
 
 \item{history}{the past event times.}
 }
@@ -23,5 +20,10 @@ simulatehp(lambda0, alpha, beta, start, horizon, history)
 simulated Hawkes Process
 }
 \description{
-Simulate Hawkes process during active state (including all the histoty), a helper function for "simulationmmhp"
+Simulate Hawkes process during active state (including all the histoty),
+ a helper function for "simulationmmhp"
+}
+\examples{
+hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+simulatehp(hp_obj,start = 0, end = 100)
 }

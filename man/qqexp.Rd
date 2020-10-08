@@ -12,5 +12,7 @@ qqexp(r, ...)
 \item{...}{other arguments for plots}
 }
 \description{
-Generate Quantile-quantile plot for rescaled-inter-event-times, which are supposedly to be independently and identically distributed as exponential random vairbales with rate 1.
+Generate Quantile-quantile plot for rescaled-inter-event-times,
+ which are supposedly to be independently 
+ and identically distributed as exponential random vairbales with rate 1.
 }

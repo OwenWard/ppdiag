@@ -6,22 +6,25 @@
 \alias{compensator.mmpp}
 \alias{compensator.hp}
 \alias{compensator.mmhp}
-\title{Compensators for MMHP, HP and MMPP models}
+\alias{compensator.hpp}
+\title{Compensators for MMHP, HP HPP, and MMPP models}
 \usage{
-compensator(object, t, pzt)
+compensator(object, events, pzt)
 
-\method{compensator}{default}(object, t, pzt)
+\method{compensator}{default}(object, events, pzt)
 
-\method{compensator}{mmpp}(object, t, pzt)
+\method{compensator}{mmpp}(object, events, pzt)
 
-\method{compensator}{hp}(object, t, pzt = NULL)
+\method{compensator}{hp}(object, events, pzt = NULL)
 
-\method{compensator}{mmhp}(object, t, pzt)
+\method{compensator}{mmhp}(object, events, pzt)
+
+\method{compensator}{hpp}(object, events, pzt = NULL)
 }
 \arguments{
 \item{object}{a social network model}
 
-\item{t}{event times}
+\item{events}{event times}
 
 \item{pzt}{probability}
 }
@@ -29,5 +32,5 @@ compensator(object, t, pzt)
 vector of compensator
 }
 \description{
-Compensators for MMHP, HP and MMPP models
+Compensators for MMHP, HP HPP, and MMPP models
 }

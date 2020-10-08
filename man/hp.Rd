@@ -4,21 +4,29 @@
 \alias{hp}
 \title{Create a Hawkes Process(HP) model}
 \usage{
-hp(lambda0, alpha, beta, tau = NULL)
+hp(lambda0, alpha, beta, events = NULL)
 }
 \arguments{
-\item{lambda0}{parameters for Hawkes process.}
+\item{lambda0}{initial intensity at the start time}
 
-\item{alpha}{parameters for Hawkes process.}
+\item{alpha}{jump size in increase of intensity}
 
-\item{beta}{parameters for Hawkes process.}
+\item{beta}{exponential decay of intensity}
 
-\item{tau}{vector containing the event times. Note that the first event is at time zero. Alternatively, tau could be specified as NULL, meaning that the data will be added later (e.g. simulated).}
+\item{events}{vector containing the event times. 
+Note that the first event is at time zero. 
+Alternatively, events could be specified as NULL, 
+meaning that the data will be added later (e.g. simulated).}
 }
 \value{
 hp object
 }
 \description{
-Create a Hawkes Process(HP) model according to the given parameters: lambda0, alpha, beta and event times.
-If event time tau is missing, then it means that data will be added later(e.g. simulated)
+Create a Hawkes Process(HP) model according to the given parameters:
+ lambda0, alpha, beta and event times.
+If event time tau is missing, then it means that data will be
+ added later(e.g. simulated)
+}
+\examples{
+hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 }

@@ -7,20 +7,22 @@
 drawUniMMHPIntensity(
   mmhp,
   simulation,
-  yupper = 10,
   add = FALSE,
   color = 1,
   given_main = "Intensity Plot of MMHP"
 )
 }
 \arguments{
-\item{mmhp}{a mmhp object including its state, state_time, tau, lambda0, lambda1, beta and alpha.}
+\item{mmhp}{a mmhp object including its state, state_time,
+events, lambda0, lambda1, beta and alpha.}
 
 \item{simulation}{the simulated Markov-modulated Hawkes Process(MMHP)}
 
-\item{yupper}{upper limit of y axis of the plot.}
-
-\item{add}{logical; if TRUE add to an already existing plot; if NA start a new plot taking the defaults for the limits and log-scaling of the x-axis from the previous plot. Taken as FALSE (with a warning if a different value is supplied) if no graphics device is open.}
+\item{add}{logical; if TRUE add to an already existing plot;
+if NA start a new plot taking the defaults 
+for the limits and log-scaling of the x-axis from the previous plot.
+ Taken as FALSE (with a warning if a different value is supplied) 
+ if no graphics device is open.}
 
 \item{color}{A specification for the default plotting color.}
 
@@ -31,7 +33,8 @@ Take a mmhp object and draw its intensity accordingly
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+ alpha = 0.8, beta = 1.2)
 y <- simulatemmhp(x)
 drawUniMMHPIntensity(x, y)
 }
