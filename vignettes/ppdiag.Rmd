@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+set.seed(100) # to make it reproducible
 ```
 
 ```{r setup}
@@ -34,7 +35,8 @@ point process to capture the temporal structure present in this data.
 ## Classes
 - Homogeneous Poisson Process: 
 
-hpp(lambda, start=0, end=1, n = NULL) creates an object of a list type in class 'hpp'. 
+`hpp(lambda, start=0, end=1, n = NULL)` creates an object of
+a list type in class 'hpp'. 
 ```{r}
 hpp_obj <- hpp(lambda = 1, end = 10)
 hpp_obj
@@ -42,7 +44,8 @@ hpp_obj
 
 - Hawkes Process: 
 
-hp(lambda0, alpha, beta, events = NULL) creates an object of list type in class 'hp'.
+`hp(lambda0, alpha, beta, events = NULL)` creates an object of list 
+type in class 'hp'.
 ```{r}
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 hp_obj
@@ -50,7 +53,8 @@ hp_obj
 
 - Markov-Modulated Hawkes Process: 
 
-mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL) creates an object of type in class 'mmhp'. 
+`mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)` 
+creates an object of type in class 'mmhp'. 
 ```{r}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 
@@ -59,21 +63,35 @@ mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3),
           lambda1 = .75,
           alpha = 0.1,
           beta = 0.2)
+
+mmhp_obj
+
 ```
 
 ## Simulating data
-Functions for simulating data include simulatehpp, simulatehp, and simulatemmhp, which take in objects of type hpp, hp, and mmhp, respectively, with additional parameters for simulation, and produces vector of simulated event times. 
+Functions for simulating data include `simulatehpp`, `simulatehp`,
+and `simulatemmhp`, which take in objects of type `hpp`, `hp`, and `mmhp`,
+respectively, with additional parameters for simulation, and produces a vector
+of simulated event times. 
 
 - Homogeneous Poisson Process: 
 
-simulatehpp(hpp) takes a hpp object and returns a vector of event times. In the hpp object, one can either specify n, which is expected number of events, or end, which is the expected end time of event times. If both are provided, then the function will automatically simulate n events regardless of the end time specified. 
+`simulatehpp(hpp)` takes a hpp object and returns a vector of event times
+simulated from the corresponding homogeneous Poisson process.
+<!-- In the hpp object, one can either specify n, 
+which is expected number of  -->
+<!-- events, or end, which is the expected end time of event times. If both 
+are  -->
+<!-- provided, then the function will automatically simulate n events 
+regardless of -->
+<!-- the end time specified.  -->
 
-Simulating by end time: 
+This can simulate events up to a specified end time in `hp_obj$end`
 ```{r}
-events <- simulatehpp(hpp_obj)
-events
+hpp_events <- simulatehpp(hpp_obj)
+hpp_events
 ```
-Simulating by n: 
+or specify a vector of certain length.
 ```{r}
 hpp_obj$n <- 50
 simulatehpp(hpp_obj)
@@ -81,18 +99,22 @@ simulatehpp(hpp_obj)
 
 - Hawkes Process: 
 
-simulatehp(hp, start=0, end, history=0) returns a list containing t and lambda.max.
+`simulatehp(hp, start = 0, end, history = 0)` returns event times
+simulated from the Hawkes process specified by `hp`, up to some end
+time, along with the maximum overall intensity of the Hawkes process
+given these events.
 ```{r}
-sims <- simulatehp(hp_obj,start = 0, end = 100)
-sims
+hp_events <- simulatehp(hp_obj, start = 0, end = 50)
+hp_events
 ```
 
 - Markov-Modulated Hawkes Process: 
 
-simulatemmhp(mmhp, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...) returns a list containing x, z, events, zt, lambda.max if given_state is FALSE; or a list containing events, zt, lambda.max if given_state is TRUE. 
+`simulatemmhp(mmhp, n = 1, ...)` 
+simulates events from a specified Markov Modulated Hawkes process. 
 ```{r}
-y <- simulatemmhp(mmhp_obj,n = 50)
-y
+mmhp_events <- simulatemmhp(mmhp_obj, n = 50)
+mmhp_events
 ```
 
 
@@ -102,19 +124,22 @@ Functions for fitting objects include fithpp and fithp, which take in event time
 
 - Homogeneous Poisson Process: 
 
-fithpp(events) returns an object of class 'hpp'.
+`fithpp(hpp_events)` returns an object of class `hpp`.
 
 ```{r}
-fit_hpp <- fithpp(events)
+fit_hpp <- fithpp(hpp_events)
 fit_hpp
 ```
 
 - Hawkes Process: 
 
-fithp(vec,t,end) returns an object of class 'hp'.
+`fithp(vec,t,end)` returns an object of class `hp`, estimating the
+three parameters of the Hawkes process using `optim`, with the initial
+value given by `vec`. This can be a challenging optimisation problem
+and convergence is not guaranteed.
 ```{r}
 init <- rep(0.1,3)
-fit_hp <- fithp(init,sims$t,max(sims$t))
+fit_hp <- fithp(init, hp_events$t, max(hp_events$t))
 fit_hp
 ```
 
@@ -125,42 +150,66 @@ There are several existing methods which can be used to assess the goodness of f
 - Examine the distribution of the rescaled interevent times, by utilising the
 time rescaling theorem.
 - Examine the residual process of an estimated point process, 
-in particular computing the raw and Pearson residuals for a given point process fit to data.
+in particular computing the raw and Pearson residuals for a given point 
+process fit to data.
 - Visually inspect the estimated intensity of the point process.
 
-drawHPPIntensity(hpp, events = NULL, color = "red", plot_events = FALSE, fit = FALSE, int_title = "Intensity homogeneous Poisson Process") plots the intensity of a homogeneous poisson process. 
+<!-- `drawHPPIntensity(hpp, events = NULL, color = "red",  -->
+<!-- plot_events = FALSE, -->
+<!-- fit = FALSE, int_title = "Intensity homogeneous Poisson Process")` -->
+<!-- plots the intensity of a homogeneous poisson process.  -->
 
-To plot the simulated events with the intensity, specify plot_events=FALSE. 
-```{r}
-drawHPPIntensity(fit_hpp,events=events, color = "red")
-```
+<!-- To plot the simulated events with the intensity, specify plot_events=FALSE.  -->
+<!-- ```{r} -->
+<!-- drawHPPIntensity(fit_hpp, events = hpp_events, color = "red", -->
+<!--                  plot_events = FALSE) -->
+<!-- ``` -->
+
+
+### Visualize the intensity function
 
 To plot the inputted events with the intensity, specify plot_events=TRUE.
 ```{r}
-drawHPPIntensity(fit_hpp, events=events, color = "red", plot_events=TRUE)
+drawHPPIntensity(fit_hpp, events = hpp_events,
+                 color = "red", plot_events=TRUE)
 ```
 
-drawHPIntensity(hp_obj, start, end, history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, plot_events=FALSE, vec=NULL, int_title="Hawkes Intensity") plots the intensity of a hawkes process.
+
+`drawHPIntensity(hp_obj, start, end, history=0, events, color = 1, i = 1, 
+add=FALSE, fit=FALSE, plot_events=FALSE, vec=NULL, int_title="Hawkes 
+Intensity")`
+plots the intensity of a hawkes process.
 ```{r}
-drawHPIntensity(fit_hp, start=0, end=max(sims$t), history=0, events = sims$t, plot_events = TRUE)
+drawHPIntensity(fit_hp, start = 0, end = max(hp_events$t),
+                history = 0, events = hp_events$t, plot_events = TRUE)
 ```
 
-drawUniMMHPIntensity(mmhp, simulation, add = FALSE, color = 1, given_main = "Intensity Plot of MMHP") plots the intensity of a mmhp process. 
+`drawUniMMHPIntensity(mmhp, simulation, add = FALSE,
+color = 1, given_main = "Intensity Plot of MMHP")` plots the intensity of a 
+mmhp process. 
 ```{r}
-drawUniMMHPIntensity(mmhp_obj, y)
+drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 ```
 
-diagpp(object, events, pzt = NULL) gives diagnostics of the model, including a qq plot, a ks plot, ks test, raw
+
+
+### Homogeneous Poisson process
+
+
+`diagpp(object, events, pzt = NULL)` gives diagnostics of the model,
+including a qq plot, a ks plot, ks test, raw
 and pearson residuals. 
-For hpp: 
+
 ```{r}
-try(diagpp(hpp_obj,events))
+diagpp(hpp_obj,hpp_events)
 ```
-For hp: 
+
+### Hawkes Process
+
 ```{r}
-try(diagpp(hp_obj, sims$t))
+diagpp(hp_obj, hp_events$t)
 ```
-For mmhp:
-```{r}
-diagpp(mmhp_obj, events = y$events, pzt = 0.5)
-```
+
+
+### MMHP
+To be completed.
