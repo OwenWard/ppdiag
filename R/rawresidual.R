@@ -49,7 +49,7 @@ rawresidual.mmhp <- function(object, events, start = 0, end) {
   event_obj$events <- events
   
   # temp definition to avoid issues checking
-  time.vec <- seq(from = start, to = termination, length.out = 1000)
+  time.vec <- seq(from = start, to = end, length.out = 1000)
   
   N <- length(events)
   est.intensity <- intensity(object, event = event_obj, method = "numeric")
