@@ -103,7 +103,7 @@ pearsonresidual.hp <- function(object, events, start, end) {
 #' @rdname pearsonresidual
 #' @export
 pearsonresidual.hpp <- function(object, events, start = 0,
-                                end=max(events)) {
+                                end = max(events)) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
   }

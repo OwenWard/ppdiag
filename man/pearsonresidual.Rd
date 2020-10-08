@@ -8,15 +8,15 @@
 \alias{pearsonresidual.hpp}
 \title{Compute Pearson residuals for social network models}
 \usage{
-pearsonresidual(object, events, start, termination)
+pearsonresidual(object, events, start, end)
 
-\method{pearsonresidual}{default}(object, events, start, termination)
+\method{pearsonresidual}{default}(object, events, start, end)
 
-\method{pearsonresidual}{mmhp}(object, events, start = 0, termination)
+\method{pearsonresidual}{mmhp}(object, events, start = 0, end)
 
-\method{pearsonresidual}{hp}(object, events, start, termination)
+\method{pearsonresidual}{hp}(object, events, start, end)
 
-\method{pearsonresidual}{hpp}(object, events, start = 0, termination = max(events))
+\method{pearsonresidual}{hpp}(object, events, start = 0, end = max(events))
 }
 \arguments{
 \item{object}{social network model containing the parameters}
@@ -25,7 +25,7 @@ pearsonresidual(object, events, start, termination)
 
 \item{start}{start of observation period}
 
-\item{termination}{termination time}
+\item{end}{termination time}
 }
 \value{
 the Pearson residual
