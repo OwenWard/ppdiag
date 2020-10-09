@@ -169,7 +169,7 @@ process fit to data.
 ### Visualize the intensity function
 
 To plot the inputted events with the intensity, specify plot_events=TRUE.
-```{r}
+```{r,fig.width=4,fig.height=4}
 drawHPPIntensity(fit_hpp, events = hpp_events,
                  color = "red", plot_events=TRUE)
 ```
@@ -179,7 +179,7 @@ drawHPPIntensity(fit_hpp, events = hpp_events,
 add=FALSE, fit=FALSE, plot_events=FALSE, vec=NULL, int_title="Hawkes 
 Intensity")`
 plots the intensity of a hawkes process.
-```{r}
+```{r,fig.width=4,fig.height=5}
 drawHPIntensity(fit_hp, start = 0, end = max(hp_events$t),
                 history = 0, events = hp_events$t, plot_events = TRUE)
 ```
@@ -187,7 +187,7 @@ drawHPIntensity(fit_hp, start = 0, end = max(hp_events$t),
 `drawUniMMHPIntensity(mmhp, simulation, add = FALSE,
 color = 1, given_main = "Intensity Plot of MMHP")` plots the intensity of a 
 mmhp process. 
-```{r}
+```{r,fig.width=4,fig.height=5}
 drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 ```
 
@@ -200,14 +200,14 @@ drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals. 
 
-```{r}
-diagpp(hpp_obj,hpp_events)
+```{r,fig.width=4,fig.height=4}
+try(diagpp(hpp_obj,hpp_events))
 ```
 
 ### Hawkes Process
 
-```{r}
-diagpp(hp_obj, hp_events$t)
+```{r,fig.width=4,fig.height=4}
+try(diagpp(hp_obj, hp_events$t))
 ```
 
 
