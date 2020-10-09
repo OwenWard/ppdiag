@@ -13,8 +13,8 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/master/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=master)
 <!-- badges: end -->
 
-`ppdiag` is an `R` package which provides a sequence of tools which can
-be used to assess the fit of temporal point processes to data.
+`ppdiag` is an `R` package which provides a collection of tools which
+can be used to assess the fit of temporal point processes to data.
 
 These currently include:
 
