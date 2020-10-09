@@ -3,7 +3,21 @@ Type: Package
 Title: Diagnosis and Visualizations Tools for Temporal Point Processes
 Version: 0.0.0.9000
 Author: Sally Sun, Jing Wu, Owen G. Ward, Tian Zheng, Xiaoxi Zhao
-Maintainer: Owen G. Ward <owengward@gmail.com>
+Authors@R: 
+    c(person(given = "Owen",
+             family = "Ward",
+             role = c("aut","cre"),
+             email = "owengward@gmail.com",
+             comment = c(ORCID = "0000-0002-9678-3542")),
+      person(given = "Sally",
+             family = "Sun",
+             role = "aut"),
+      person(given = "Jing",
+             family = "Wu",
+             role = "aut"),
+      person(given = "Xiaoxi",
+             family = "Zhao",
+             role = "aut"))
 Description: A suite of diagnostic tools for univariate point processes.
     This includes tools for simulating and fitting both common and more
     complex temporal point processes. We also include functions to 
