@@ -201,13 +201,13 @@ including a qq plot, a ks plot, ks test, raw
 and pearson residuals. 
 
 ```{r,fig.width=4,fig.height=4}
-try(diagpp(hpp_obj,hpp_events))
+diagpp(hpp_obj,hpp_events)
 ```
 
 ### Hawkes Process
 
 ```{r,fig.width=4,fig.height=4}
-try(diagpp(hp_obj, hp_events$t))
+diagpp(hp_obj, hp_events$t)
 ```
 
 
