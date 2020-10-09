@@ -32,6 +32,8 @@ use the passed object}
 Draw the intensity for homogeneous poisson process events
 }
 \examples{
+\dontrun{
 pois_y <- hpp(lambda = 1, end = 10)
 drawHPPIntensity(pois_y,color = "red")
+}
 }
