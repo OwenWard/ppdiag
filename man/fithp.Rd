@@ -4,10 +4,10 @@
 \alias{fithp}
 \title{Determine the MLE of hawkes process numerically}
 \usage{
-fithp(vec, t, end)
+fithp(vec = rep(0.1, 3), t, end)
 }
 \arguments{
-\item{vec}{vector of initial values}
+\item{vec}{vector of initial parameter values}
 
 \item{t}{event times}
 
