@@ -3,7 +3,7 @@
 #' Compute raw residuals for social network models with model
 #'  specified time events or simulated time events
 #'
-#' @param object social network model contating the parameters
+#' @param object social network model containing the parameters
 #' @param events vector of event happening time
 #' @param start start of observation period
 #' @param end end of observation period
@@ -11,19 +11,19 @@
 #' @return the raw residual
 #' @export
 
-rawresidual <- function(object, events, start = 0, end) {
+rawresidual <- function(object, events, start, end) {
   UseMethod("rawresidual")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, start = 0, end) {
+rawresidual.default <- function(object, events, start = min(events), end = max(events)) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, start = 0, end) {
+rawresidual.hp <- function(object, events, start = min(events), end = max(events)) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -38,7 +38,7 @@ rawresidual.hp <- function(object, events, start = 0, end) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, start = 0, end) {
+rawresidual.mmhp <- function(object, events, start = min(events), end = max(events)) {
   ## need to define and compute time.vec, latent.vec in here
   # time.vec <- NA
   # latent.vec <- NA
@@ -60,7 +60,7 @@ rawresidual.mmhp <- function(object, events, start = 0, end) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, start = 0, end) {
+rawresidual.hpp <- function(object, events, start = min(events), end = max(events)) {
   N <- length(events)
   inten_obj <- list(events = events, start = start, end = end)
   est.intensity <- intensity(object, events, method = "integral")
