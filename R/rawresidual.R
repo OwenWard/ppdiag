@@ -23,14 +23,14 @@ rawresidual <- function(object, events, start, end) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, start = min(events),
+rawresidual.default <- function(object, events, start = 0,
                                 end = max(events)) {
   cat("Please input the right model. Select from hp, hpp and mmhp.")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, start = min(events), 
+rawresidual.hp <- function(object, events, start = 0, 
                            end = max(events)) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
@@ -46,7 +46,7 @@ rawresidual.hp <- function(object, events, start = min(events),
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, start = min(events),
+rawresidual.mmhp <- function(object, events, start = 0,
                              end = max(events)) {
   event_obj <- list()
   event_obj$start <- start
@@ -62,7 +62,7 @@ rawresidual.mmhp <- function(object, events, start = min(events),
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, start = min(events), 
+rawresidual.hpp <- function(object, events, start = 0, 
                             end = max(events)) {
   N <- length(events)
   inten_obj <- list(events = events, start = start, end = end)

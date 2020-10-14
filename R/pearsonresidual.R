@@ -24,14 +24,14 @@ pearsonresidual <- function(object, events, start, end) {
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.default <- function(object, events, start = min(events),
+pearsonresidual.default <- function(object, events, start = 0,
                                 end = max(events)) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.mmhp <- function(object, events, start = min(events),
+pearsonresidual.mmhp <- function(object, events, start = 0,
                                 end = max(events)) {
   # define time.vec,latent.vec,latent_event in intensity
   N <- length(events)
@@ -50,7 +50,7 @@ pearsonresidual.mmhp <- function(object, events, start = min(events),
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hp <- function(object, events, start = min(events),
+pearsonresidual.hp <- function(object, events, start = 0,
                                 end = max(events)) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
@@ -108,7 +108,7 @@ pearsonresidual.hp <- function(object, events, start = min(events),
 
 #' @rdname pearsonresidual
 #' @export
-pearsonresidual.hpp <- function(object, events, start = min(events),
+pearsonresidual.hpp <- function(object, events, start = 0,
                                 end = max(events)) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
