@@ -1,4 +1,8 @@
 #' Estimate the latent state for events of an MMHP
+#' 
+#' Given a MMHP object and events from that MMHP, infer the
+#' most likely state of the Markov Process and each event time, along
+#' with the probability of being in the active state.
 #'
 #' @param params the parameters of the chosen MMHP
 #' @param events the event times
