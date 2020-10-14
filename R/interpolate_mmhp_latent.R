@@ -1,7 +1,7 @@
 #' Interpolate latent process of MMHP
 #'
 #' @param params params of the MMHP
-#' @param events events (not including 0)
+#' @param events events (not including 0, but assumes start at 0)
 #' @param zt inferred latent state of events
 #' @param initial.state initial state, if given
 #' @param termination.time termination time, if given
@@ -13,7 +13,12 @@
 #' @export
 #'
 #' @examples
-interpolate_mmhp_latent <- function(params =list(lambda0, lambda1,
+#' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+#' mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#'  alpha = 0.8, beta = 1.2)
+#' interpolate_mmhp_latent(params = mmhp_obj, events = c(1, 2, 3, 5),
+#' zt = c(2, 1, 1, 2))
+interpolate_mmhp_latent <- function(params = list(lambda0, lambda1,
                                                     alpha, beta, q1, q2), 
                                         events, zt, 
                                         initial.state = NULL,
@@ -21,9 +26,9 @@ interpolate_mmhp_latent <- function(params =list(lambda0, lambda1,
                                         termination.state = NULL,
                                         default.inactive = 2){
   
-  interevent <- diff(c(0,events))
+  interevent <- diff(c(0, events))
   N <- length(interevent)
-  inactive_state <- setdiff(unique(zt),c(1))
+  inactive_state <- setdiff(unique(zt), c(1))
   
   if(params$alpha < 0){
     params$alpha <- abs(params$alpha)

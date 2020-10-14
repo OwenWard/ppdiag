@@ -27,7 +27,8 @@ mmhp <- function(lambda0, lambda1, alpha, beta, Q = NULL,
                  delta = NULL, events = NULL) {
   y <- c(list(Q = Q, delta = delta,
               events = events, lambda0 = lambda0, 
-              lambda1 = lambda1, alpha = alpha, beta = beta))
+              lambda1 = lambda1, alpha = alpha, beta = beta,
+              q1 = Q[1,2], q2 = Q[2,1]))
   class(y) <- "mmhp"
   if(alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
