@@ -14,7 +14,7 @@ intensityqqplot(object, events, pzt, ...)
 
 \method{intensityqqplot}{hp}(object, events, pzt = NULL, ...)
 
-\method{intensityqqplot}{hpp}(object, events, pzt, ...)
+\method{intensityqqplot}{hpp}(object, events, pzt = NULL, ...)
 
 \method{intensityqqplot}{mmhp}(object, events, pzt, ...)
 }
