@@ -193,21 +193,62 @@ drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 
 
 
-### Homogeneous Poisson process
+### Diagnostics tools of the models
 
+- Homogeneous Poisson Process
 
 `diagpp(object, events, pzt = NULL)` gives diagnostics of the model,
 including a qq plot, a ks plot, ks test, raw
-and pearson residuals. 
+and pearson residuals in one function.
 
 ```{r,fig.width=4,fig.height=4}
 diagpp(hpp_obj,hpp_events)
 ```
 
-### Hawkes Process
+`rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
+
+```{r}
+rawresidual(hpp_obj,hpp_events)
+```
+
+`pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
+
+```{r}
+pearsonresidual(hpp_obj,hpp_events)
+```
+
+`intensityqqplot(object, events, pzt=NULL)` gives both qqplot and intensity plot. 
+
+```{r,fig.width=7,fig.height=4}
+intensityqqplot(hpp_obj, hpp_events, pzt=NULL)
+```
+
+- Hawkes Process
+
+`diagpp(object, events, pzt = NULL)` gives diagnostics of the model,
+including a qq plot, a ks plot, ks test, raw
+and pearson residuals in one function.
 
 ```{r,fig.width=4,fig.height=4}
-diagpp(hp_obj, hp_events$t)
+diagpp(hp_obj,hp_events$t)
+```
+
+`rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
+
+```{r}
+rawresidual(hp_obj,hp_events$t)
+```
+
+`pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
+
+```{r}
+pearsonresidual(hp_obj,hp_events$t)
+```
+
+`intensityqqplot(object, events, pzt=NULL)` gives both qqplot and intensity plot. 
+
+```{r,fig.width=7,fig.height=4}
+intensityqqplot(hp_obj, hp_events$t)
 ```
 
 
