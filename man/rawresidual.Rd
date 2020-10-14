@@ -10,13 +10,13 @@
 \usage{
 rawresidual(object, events, start, end)
 
-\method{rawresidual}{default}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{default}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{hp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{hp}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{mmhp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{mmhp}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{hpp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{hpp}(object, events, start = 0, end = max(events))
 }
 \arguments{
 \item{object}{social network model containing the parameters}
