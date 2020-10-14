@@ -8,15 +8,15 @@
 \alias{rawresidual.hpp}
 \title{Compute raw residuals for social network models}
 \usage{
-rawresidual(object, events, start = 0, termination)
+rawresidual(object, events, start = 0, end)
 
-\method{rawresidual}{default}(object, events, start = 0, termination)
+\method{rawresidual}{default}(object, events, start = 0, end)
 
-\method{rawresidual}{hp}(object, events, start = 0, termination)
+\method{rawresidual}{hp}(object, events, start = 0, end)
 
-\method{rawresidual}{mmhp}(object, events, start = 0, termination)
+\method{rawresidual}{mmhp}(object, events, start = 0, end)
 
-\method{rawresidual}{hpp}(object, events, start = 0, termination)
+\method{rawresidual}{hpp}(object, events, start = 0, end)
 }
 \arguments{
 \item{object}{social network model contating the parameters}
@@ -25,7 +25,7 @@ rawresidual(object, events, start = 0, termination)
 
 \item{start}{start of observation period}
 
-\item{termination}{end of observation period}
+\item{end}{end of observation period}
 }
 \value{
 the raw residual

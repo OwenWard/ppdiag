@@ -1,13 +1,13 @@
 #' Interpolate latent process of MMHP
 #'
-#' @param params params of the MMHP
+#' @param params parameters of the MMHP, an MMHP object
 #' @param events events (not including 0, but assumes start at 0)
 #' @param zt inferred latent state of events
 #' @param initial.state initial state, if given
 #' @param termination.time termination time, if given
 #' @param termination.state termination state, if given
 #' @param default.inactive default inactive state, 2
-#'
+#' @importFrom utils tail
 #' @return list of the states of the Markov process (z.hat)
 #' and the times of the transitions between these times (x.hat).
 #' @export
@@ -18,8 +18,7 @@
 #'  alpha = 0.8, beta = 1.2)
 #' interpolate_mmhp_latent(params = mmhp_obj, events = c(1, 2, 3, 5),
 #' zt = c(2, 1, 1, 2))
-interpolate_mmhp_latent <- function(params = list(lambda0, lambda1,
-                                                    alpha, beta, q1, q2), 
+interpolate_mmhp_latent <- function(params, 
                                         events, zt, 
                                         initial.state = NULL,
                                         termination.time = NULL,

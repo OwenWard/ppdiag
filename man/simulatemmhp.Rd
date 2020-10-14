@@ -4,17 +4,10 @@
 \alias{simulatemmhp}
 \title{Simulate Markov Modulated Hawkes Process}
 \usage{
-simulatemmhp(
-  object,
-  n = 1,
-  given_state = FALSE,
-  states = NULL,
-  seed = NULL,
-  ...
-)
+simulatemmhp(mmhp, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...)
 }
 \arguments{
-\item{object}{a mmhp object including its Q, delta, events, lambda0, 
+\item{mmhp}{a mmhp object including its Q, delta, events, lambda0, 
 lambda1, beta and alpha.}
 
 \item{n}{number of points to simulate.}
