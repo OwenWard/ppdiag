@@ -35,7 +35,7 @@ intensityqqplot.hp <- function(object, events, pzt=NULL, ...) {
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hpp <- function(object, events, pzt, ...) {
+intensityqqplot.hpp <- function(object, events, pzt=NULL, ...) {
 	
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
