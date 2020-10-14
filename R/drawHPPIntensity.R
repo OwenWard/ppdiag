@@ -15,9 +15,10 @@
 #' @importFrom graphics points
 #' @export
 #' @examples
+#' \dontrun{
 #' pois_y <- hpp(lambda = 1, end = 10)
 #' drawHPPIntensity(pois_y,color = "red")
-
+#' }
 drawHPPIntensity <- function(hpp, events = NULL, color = "red", 
                              plot_events = FALSE,
                              fit = FALSE,

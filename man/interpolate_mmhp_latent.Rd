@@ -15,7 +15,7 @@ interpolate_mmhp_latent(
 )
 }
 \arguments{
-\item{params}{params of the MMHP}
+\item{params}{parameters of the MMHP, an MMHP object}
 
 \item{events}{events (not including 0, but assumes start at 0)}
 

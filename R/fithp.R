@@ -21,7 +21,7 @@ negloglik_hp<-function(vec,t,end){
 
 
 #' Determine the MLE of hawkes process numerically
-#' @param vec vector of initial values
+#' @param vec vector of initial parameter values
 #' @param t event times
 #' @param end end of observation period
 #' @importFrom stats optim
@@ -33,9 +33,9 @@ negloglik_hp<-function(vec,t,end){
 #' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 #' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
 #' fithp(init,sims$t,max(sims$t))                  
-fithp<-function(vec,t,end){
-	hawkes.par <- optim(par=vec, fn=negloglik_hp, 
-                    t=t, end=end, control = list(maxit = 1000),
+fithp <- function(vec = rep(0.1, 3), t, end){
+	hawkes.par <- optim(par = vec, fn = negloglik_hp, 
+                    t = t, end = end, control = list(maxit = 1000),
                     lower = c(1e-4,1e-4,1e-4),
                   method = "L-BFGS-B")
     a <- hawkes.par$par[2]

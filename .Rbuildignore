@@ -1,8 +1,10 @@
 ^general_code_and_tests$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
 ^LICENSE\.md$
+^README\.Rmd$
+^\.github$
+^codecov\.yml$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

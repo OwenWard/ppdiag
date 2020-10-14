@@ -29,13 +29,13 @@ intensityqqplot.hp <- function(object, events, pzt=NULL, ...) {
   par(mar = c(2, 2,1,1))
   qqexp(r)
   par(mar = c(2, 2,1,1))
-  drawHPIntensity(object,events = events,add=FALSE, ...)
+  drawHPIntensity(object,start=min(events),end=max(events),events = events,add=FALSE, ...)
 }
 
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hpp <- function(object, events, pzt, ...) {
+intensityqqplot.hpp <- function(object, events, pzt=NULL, ...) {
 	
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
