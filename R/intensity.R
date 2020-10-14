@@ -41,11 +41,12 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   alpha <- object$alpha
   beta <- object$beta
   n <- length(events)
+  event_state <- mmhp_event_state(params = object, 
+                                  events = events, start = start)
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
     time.vec <- seq(from = start, to = end, length.out = 1000)
-    event_state <- mmhp_event_state(params = object, 
-                                    events = events, start = start)
+    
     latent_inter <- interpolate_mmhp_latent(params = object,
                                             events = events,
                                             zt = event_state$zt)
@@ -59,11 +60,11 @@ intensity.mmhp <- function(object, event, method = "numeric") {
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } 
-  else if (method == "atevent") {
+  if (method == "atevent") {
     # return the intensity evaluates at event times (output is an vector)
     ## compute latent state of events here
     
-    latent_z <- event$z
+    latent_z <- event_state$zt
     if (events[1] == 0) {
       events <- events[-1]
     }

@@ -25,8 +25,8 @@ mmhp_event_state <- function(params = list(lambda0, lambda1,
   lambda1 <- params$lambda1
   alpha <- params$alpha
   beta <- params$beta
-  q1 <- params$q1
-  q2 <- params$q2
+  q1 <- params$Q[1, 2]
+  q2 <- params$Q[2, 1]
   interevent <- diff(c(0,events))
   N <- length(interevent)
   

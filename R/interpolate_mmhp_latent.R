@@ -29,6 +29,10 @@ interpolate_mmhp_latent <- function(params,
   N <- length(interevent)
   inactive_state <- setdiff(unique(zt), c(1))
   
+  # specify q1 and q2
+  q1 <- params$Q[1, 2]
+  q2 <- params$Q[2, 1]
+  
   if(params$alpha < 0){
     params$alpha <- abs(params$alpha)
   }
@@ -46,7 +50,7 @@ interpolate_mmhp_latent <- function(params,
           # termination time, if change
           ## helper variables
           A.m <- cumsum(exp(params$beta*events)) 
-          frequent.par <- params$q2 - params$q1 + 
+          frequent.par <- q2 - q1 + 
             params$lambda0 - params$lambda1
           
           if(frequent.par<=0){
@@ -96,7 +100,7 @@ interpolate_mmhp_latent <- function(params,
     ## helper variables
     A.m <- cumsum(exp(params$beta*events)) 
     #length = n; A=alpha/beta*A.m
-    frequent.par <- params$q2 - params$q1 + 
+    frequent.par <- q2 - q1 + 
       params$lambda0 - params$lambda1
     
     z.hat[1] <- zt[1]
@@ -160,9 +164,9 @@ interpolate_mmhp_latent <- function(params,
           # and termination time, if change
           if(frequent.par<=0){
             x.hat[temp.count] <- tail(events,1)
-            z.hat[temp.count+1] <- inactive_state
-            x.hat[temp.count+1] <- termination.time
-            z.hat[temp.count+2] <- inactive_state
+            z.hat[temp.count + 1] <- inactive_state
+            x.hat[temp.count + 1] <- termination.time
+            z.hat[temp.count + 2] <- inactive_state
           }else{
             l_0 <- params$alpha/params$beta * A.m[N] * 
               exp(-params$beta*events[N])
@@ -172,12 +176,12 @@ interpolate_mmhp_latent <- function(params,
             if(is.finite(A.m[N])){
               if(l_0>l_Delta){
                 x.hat[temp.count] <- tail(events,1)
-                z.hat[temp.count+1] <- inactive_state
-                x.hat[temp.count+1] <- termination.time
-                z.hat[temp.count+2] <- inactive_state
+                z.hat[temp.count + 1] <- inactive_state
+                x.hat[temp.count + 1] <- termination.time
+                z.hat[temp.count + 2] <- inactive_state
               }else{
                 x.hat[temp.count] <- termination.time
-                z.hat[temp.count+1] <- z.hat[temp.count]
+                z.hat[temp.count + 1] <- z.hat[temp.count]
               }
             }else{
               x.hat[temp.count] <- termination.time
@@ -186,11 +190,11 @@ interpolate_mmhp_latent <- function(params,
           }
         }else{
           x.hat[temp.count] <- termination.time
-          z.hat[temp.count+1] <- z.hat[temp.count]
+          z.hat[temp.count + 1] <- z.hat[temp.count]
         }
       }else{
         x.hat[temp.count] <- termination.time
-        z.hat[temp.count+1] <- termination.state
+        z.hat[temp.count + 1] <- termination.state
       }
     }
     

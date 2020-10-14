@@ -3,7 +3,7 @@ title: "`ppdiag`, diagnostic tools for temporal Point Processes"
 output: rmarkdown::html_vignette
 author: Sally Sun, Owen G. Ward et al.
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{`ppdiag`, diagnostic tools for temporal Point Processes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -217,15 +217,15 @@ rawresidual(hpp_obj,hpp_events)
 pearsonresidual(hpp_obj,hpp_events)
 ```
 
-`intensityqqplot(object, events, pzt=NULL)` gives both qqplot and intensity plot. 
+`intensityqqplot(object, events)` gives both qqplot and intensity plot. 
 
 ```{r,fig.width=7,fig.height=4}
-intensityqqplot(hpp_obj, hpp_events, pzt=NULL)
+intensityqqplot(hpp_obj, hpp_events)
 ```
 
 - Hawkes Process
 
-`diagpp(object, events, pzt = NULL)` gives diagnostics of the model,
+`diagpp(object, events)` gives diagnostics of the model,
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 

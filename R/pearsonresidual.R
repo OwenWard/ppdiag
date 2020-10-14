@@ -11,6 +11,12 @@
 #' @return the Pearson residual
 #' @importFrom stats integrate
 #' @export
+#' @examples 
+#' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+#' lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+#' y <- simulatemmhp(x, n = 10)
+#' pearsonresidual(x, events = y$events[-1])
 
 pearsonresidual <- function(object, events, start, end) {
   UseMethod("pearsonresidual")
@@ -33,10 +39,7 @@ pearsonresidual.mmhp <- function(object, events, start = min(events),
   event_obj$events <- events
   event_obj$start <- start
   event_obj$end <- end
-  
-  # temp definition to avoid issues checking
   time.vec <- seq(from = start, to = end, length.out = 1000)
-  
   est.intensity <- intensity(object,event = event_obj,method = "numeric")
   est.intensity.events <- intensity(object, event = event_obj,
                                     method = "atevent")
