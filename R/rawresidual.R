@@ -10,6 +10,12 @@
 #'
 #' @return the raw residual
 #' @export
+#' @examples
+#' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+#' lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+#' y <- simulatemmhp(x, n = 10)
+#' rawresidual(x, events = y$events[-1])
 
 rawresidual <- function(object, events, start, end) {
   UseMethod("rawresidual")
@@ -17,13 +23,15 @@ rawresidual <- function(object, events, start, end) {
 
 #' @rdname rawresidual
 #' @export
-rawresidual.default <- function(object, events, start = min(events), end = max(events)) {
-  cat("Please input the right model. Select from hp, hpp and mmhp. ")
+rawresidual.default <- function(object, events, start = 0,
+                                end = max(events)) {
+  cat("Please input the right model. Select from hp, hpp and mmhp.")
 }
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hp <- function(object, events, start = min(events), end = max(events)) {
+rawresidual.hp <- function(object, events, start = 0, 
+                           end = max(events)) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -38,19 +46,13 @@ rawresidual.hp <- function(object, events, start = min(events), end = max(events
 
 #' @rdname rawresidual
 #' @export
-rawresidual.mmhp <- function(object, events, start = min(events), end = max(events)) {
-  ## need to define and compute time.vec, latent.vec in here
-  # time.vec <- NA
-  # latent.vec <- NA
-  # actually only need to compute the latent vec here?
+rawresidual.mmhp <- function(object, events, start = 0,
+                             end = max(events)) {
   event_obj <- list()
   event_obj$start <- start
   event_obj$end <- end
   event_obj$events <- events
-  
-  # temp definition to avoid issues checking
   time.vec <- seq(from = start, to = end, length.out = 1000)
-  
   N <- length(events)
   est.intensity <- intensity(object, event = event_obj, method = "numeric")
   # is this next line correct?
@@ -60,7 +62,8 @@ rawresidual.mmhp <- function(object, events, start = min(events), end = max(even
 
 #' @rdname rawresidual
 #' @export
-rawresidual.hpp <- function(object, events, start = min(events), end = max(events)) {
+rawresidual.hpp <- function(object, events, start = 0, 
+                            end = max(events)) {
   N <- length(events)
   inten_obj <- list(events = events, start = start, end = end)
   est.intensity <- intensity(object, events, method = "integral")

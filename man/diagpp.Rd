@@ -10,22 +10,20 @@
 including quantile-quantile plot, ks plot, 
 raw residual and pearson residual.}
 \usage{
-diagpp(object, events, pzt = NULL)
+diagpp(object, events)
 
-\method{diagpp}{default}(object, events, pzt = NULL)
+\method{diagpp}{default}(object, events)
 
-\method{diagpp}{hp}(object, events, pzt = NULL)
+\method{diagpp}{hp}(object, events)
 
-\method{diagpp}{mmhp}(object, events, pzt = 0.5)
+\method{diagpp}{mmhp}(object, events)
 
-\method{diagpp}{hpp}(object, events, pzt = NULL)
+\method{diagpp}{hpp}(object, events)
 }
 \arguments{
 \item{object}{a social network model}
 
 \item{events}{event times}
-
-\item{pzt}{probability for producing compensator (mmhp)}
 }
 \value{
 print qq plot and ks plot, and print out pearson and raw residuals.

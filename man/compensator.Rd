@@ -9,27 +9,25 @@
 \alias{compensator.hpp}
 \title{Compensators for MMHP, HP HPP, and MMPP models}
 \usage{
-compensator(object, events, pzt)
+compensator(object, events)
 
-\method{compensator}{default}(object, events, pzt)
+\method{compensator}{default}(object, events)
 
-\method{compensator}{mmpp}(object, events, pzt)
+\method{compensator}{mmpp}(object, events)
 
-\method{compensator}{hp}(object, events, pzt = NULL)
+\method{compensator}{hp}(object, events)
 
-\method{compensator}{mmhp}(object, events, pzt)
+\method{compensator}{mmhp}(object, events)
 
-\method{compensator}{hpp}(object, events, pzt = NULL)
+\method{compensator}{hpp}(object, events)
 }
 \arguments{
 \item{object}{a social network model}
 
 \item{events}{event times}
-
-\item{pzt}{probability}
 }
 \value{
-vector of compensator
+compensator vector of rescaled interevent times
 }
 \description{
 Compensators for MMHP, HP HPP, and MMPP models

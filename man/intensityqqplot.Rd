@@ -8,25 +8,23 @@
 \alias{intensityqqplot.mmhp}
 \title{Draw the intensity and q-q plot}
 \usage{
-intensityqqplot(object, events, pzt, ...)
+intensityqqplot(object, events, ...)
 
-\method{intensityqqplot}{default}(object, events, pzt, ...)
+\method{intensityqqplot}{default}(object, events, ...)
 
-\method{intensityqqplot}{hp}(object, events, pzt = NULL, ...)
+\method{intensityqqplot}{hp}(object, events, ...)
 
-\method{intensityqqplot}{hpp}(object, events, pzt = NULL, ...)
+\method{intensityqqplot}{hpp}(object, events, ...)
 
-\method{intensityqqplot}{mmhp}(object, events, pzt, ...)
+\method{intensityqqplot}{mmhp}(object, events, ...)
 }
 \arguments{
 \item{object}{parameters for the models: hp, hpp, and mmhp}
 
 \item{events}{event times}
 
-\item{pzt}{probability for calculating rescaled-interevent times.
+\item{...}{further arguments
 which is only important when using mmhp}
-
-\item{...}{further arguments}
 }
 \description{
 Draw the intensity and q-q plot for models

@@ -17,9 +17,9 @@
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
 #' lambda1 = 1.1, alpha = 0.8, beta = 1.2)
-#' y <- simulatemmhp(x)
-#'## z <- intensity(x, y) 
-#'### need to fix this, due to time.vec being missing
+#' y <- simulatemmhp(x, n = 10)
+#' z <- intensity(x, y) 
+#'
 intensity <- function(object, event, method = "numeric") {
   UseMethod("intensity")
 }
@@ -41,28 +41,30 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   alpha <- object$alpha
   beta <- object$beta
   n <- length(events)
+  event_state <- mmhp_event_state(params = object, 
+                                  events = events, start = start)
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
     time.vec <- seq(from = start, to = end, length.out = 1000)
-    ## this is empty here by default
     
-    # we don't have a function to compute this in the package
-    # compute latent mean here
-    # place in a default here for now
-    latent.vec <- rep(0.5, length(time.vec))
-    
-    
+    latent_inter <- interpolate_mmhp_latent(params = object,
+                                            events = events,
+                                            zt = event_state$zt)
+    # then use a step function on this
+    step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
+    latent.vec <- step_fun_est(time.vec)
+    ###
     hp_object <- hp(lambda1, alpha, beta)
     hp_event <- list(events = events, time.vec = time.vec)
     lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } 
-  else if (method == "atevent") {
+  if (method == "atevent") {
     # return the intensity evaluates at event times (output is an vector)
     ## compute latent state of events here
     
-    latent_z <- event$z
+    latent_z <- event_state$zt
     if (events[1] == 0) {
       events <- events[-1]
     }

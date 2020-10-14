@@ -4,25 +4,24 @@
 #'
 #' @param object a social network model
 #' @param events event times
-#' @param pzt probability for producing compensator (mmhp)
 #' @importFrom stats ks.test
 #' @return print qq plot and ks plot, and print out pearson and raw residuals.
 #' @export
 
-diagpp <- function(object, events, pzt = NULL) {
+diagpp <- function(object, events) {
   UseMethod("diagpp")
 }
 
 #' @rdname diagpp
 #' @export
-diagpp.default <- function(object, events, pzt = NULL) {
+diagpp.default <- function(object, events) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")
 }
 
 #' @rdname diagpp
 #' @export
-diagpp.hp<-function(object, events, pzt = NULL){
-  r <- compensator(object, events, pzt)
+diagpp.hp<-function(object, events){
+  r <- compensator(object, events)
   qqexp(r)
   ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
@@ -37,30 +36,23 @@ diagpp.hp<-function(object, events, pzt = NULL){
 
 #' @rdname diagpp
 #' @export
-diagpp.mmhp <- function(object, events, pzt = 0.5){
-  ### need to compute 
-  # pzt
-  # time.vec
-  # latent.vec
-  
-  r <- compensator(object, events, pzt)
+diagpp.mmhp <- function(object, events){
+  r <- compensator(object, events)
   qqexp(r)
   ksplot(r)
-  #rr=rawresidual(object, events, max(events), time.vec, latent.vec)
-  #pr=pearsonresidual(object, events, max(events), time.vec, latent.vec,
-  #                   latent_event)
-  
+  rr <- rawresidual(object, events, end = max(events), start = 0)
+  pr <- pearsonresidual(object, events, end = max(events), start = 0)
   ks <- ks.test(r,"pexp")
-  # cat("Raw residual: ", rr, "\n",sep = "")
-  # cat("Pearson residual: ", pr, "\n",sep = "")
+  cat("Raw residual: ", rr, "\n",sep = "")
+  cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
 }
 
 
 #' @rdname diagpp
 #' @export
-diagpp.hpp<-function(object, events, pzt = NULL){
-  r <- compensator(object, events, pzt)
+diagpp.hpp<-function(object, events){
+  r <- compensator(object, events)
   qqexp(r)
   ksplot(r)
   rr <- rawresidual(object, events, end = max(events))

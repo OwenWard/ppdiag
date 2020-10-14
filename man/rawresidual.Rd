@@ -10,13 +10,13 @@
 \usage{
 rawresidual(object, events, start, end)
 
-\method{rawresidual}{default}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{default}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{hp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{hp}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{mmhp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{mmhp}(object, events, start = 0, end = max(events))
 
-\method{rawresidual}{hpp}(object, events, start = min(events), end = max(events))
+\method{rawresidual}{hpp}(object, events, start = 0, end = max(events))
 }
 \arguments{
 \item{object}{social network model containing the parameters}
@@ -33,4 +33,11 @@ the raw residual
 \description{
 Compute raw residuals for social network models with model
  specified time events or simulated time events
+}
+\examples{
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+y <- simulatemmhp(x, n = 10)
+rawresidual(x, events = y$events[-1])
 }
