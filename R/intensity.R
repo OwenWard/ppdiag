@@ -44,14 +44,15 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
     time.vec <- seq(from = start, to = end, length.out = 1000)
-    ## this is empty here by default
-    
-    # we don't have a function to compute this in the package
-    # compute latent mean here
-    # place in a default here for now
-    latent.vec <- rep(0.5, length(time.vec))
-    
-    
+    event_state <- mmhp_event_state(params = object, 
+                                    events = events, start = start)
+    latent_inter <- interpolate_mmhp_latent(params = object,
+                                            events = events,
+                                            zt = event_state$zt)
+    # then use a step function on this
+    step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
+    latent.vec <- step_fun_est(time.vec)
+    ###
     hp_object <- hp(lambda1, alpha, beta)
     hp_event <- list(events = events, time.vec = time.vec)
     lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
