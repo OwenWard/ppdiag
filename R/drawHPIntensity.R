@@ -54,7 +54,7 @@ drawHPIntensity <- function(hp_obj,
       }
       message("Fitting a Hawkes process to the supplied events.
               Specified object not used.")
-      hp_obj <- fithp(vec,events,end)
+      hp_obj <- fithp(vec,events)
       lambda0 <- hp_obj$lambda0
       alpha <- hp_obj$alpha
       beta <- hp_obj$beta

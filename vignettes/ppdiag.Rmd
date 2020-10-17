@@ -139,7 +139,7 @@ value given by `vec`. This can be a challenging optimisation problem
 and convergence is not guaranteed.
 ```{r}
 init <- rep(0.1,3)
-fit_hp <- fithp(init, hp_events$t, max(hp_events$t))
+fit_hp <- fithp(init, events=hp_events$t)
 fit_hp
 ```
 
