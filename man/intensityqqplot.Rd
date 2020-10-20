@@ -21,7 +21,8 @@ intensityqqplot(object, events, ...)
 \arguments{
 \item{object}{parameters for the models: hp, hpp, and mmhp}
 
-\item{events}{event times}
+\item{events}{event times (for mmhp, it's a list containing states of Markov Process, time of each 
+transition of Markov Process, state at each event, and times of Poisson events)}
 
 \item{...}{further arguments
 which is only important when using mmhp}

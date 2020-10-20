@@ -3,7 +3,8 @@
 #' Draw the intensity and q-q plot for models
 #'
 #' @param object parameters for the models: hp, hpp, and mmhp
-#' @param events event times
+#' @param events event times (for mmhp, it's a list containing states of Markov Process, time of each 
+#' transition of Markov Process, state at each event, and times of Poisson events)
 #' @param ... further arguments
 #' which is only important when using mmhp
 #' @importFrom graphics par
@@ -28,8 +29,7 @@ intensityqqplot.hp <- function(object, events, ...) {
   par(mar = c(2, 2,1,1))
   qqexp(r)
   par(mar = c(2, 2,1,1))
-  drawHPIntensity(object, start = min(events), end=max(events),
-                  events = events, add = FALSE, ...)
+  drawHPIntensity(object, events = events, add = FALSE, ...)
 }
 
 
@@ -43,8 +43,7 @@ intensityqqplot.hpp <- function(object, events, ...) {
   par(mar = c(2, 2, 1, 1))
   qqexp(r)  
   par(mar = c(2, 2, 1, 1))
-  drawHPPIntensity(object, events = events,
-                   plot_events = TRUE,int_title="Intensity plot of HPP",...)  
+  drawHPPIntensity(object, events = events, int_title="Intensity plot of HPP",...)  
 }
 
 
@@ -57,8 +56,7 @@ intensityqqplot.mmhp <- function(object, events, ...) {
   par(mar = c(2, 2, 1, 1))
   qqexp(r)  
   par(mar = c(2, 2, 1, 1))
-  drawUniMMHPIntensity(mmhp = object, 
-                       add=FALSE, ...)  
+  drawUniMMHPIntensity(mmhp = object, events, add=FALSE, ...)  
 }
 
 

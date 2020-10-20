@@ -4,16 +4,14 @@
 \alias{hpp}
 \title{Create a homogeneous poisson process model}
 \usage{
-hpp(lambda, start = 0, end = 1, n = NULL)
+hpp(lambda, n = NULL, events = NULL)
 }
 \arguments{
 \item{lambda}{rate of the poisson process}
 
-\item{start}{start time of events}
-
-\item{end}{end time of events}
-
 \item{n}{number of events}
+
+\item{events}{event times}
 }
 \value{
 hpp object
@@ -23,5 +21,5 @@ Create a homogeneous poisson process according to given parameters:
  lambda, start, end, and n.
 }
 \examples{
-hpp(lambda = 1, end = 10)
+hpp(lambda = 1)
 }

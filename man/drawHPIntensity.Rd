@@ -5,22 +5,21 @@
 \title{Draw the intensity of Hawkes Process}
 \usage{
 drawHPIntensity(
-  hp_obj,
-  start,
-  end,
+  hp,
+  start = 0,
+  end = max(events),
   history = 0,
   events,
   color = 1,
   i = 1,
   add = FALSE,
   fit = FALSE,
-  plot_events = FALSE,
-  vec = NULL,
+  vec = rep(0.1, 3),
   int_title = "Hawkes Intensity"
 )
 }
 \arguments{
-\item{hp_obj}{object parameters for Hawkes process}
+\item{hp}{object parameters for Hawkes process}
 
 \item{start}{the start time of current state}
 
@@ -39,9 +38,6 @@ which is only important when using mmhp}
 
 \item{fit}{a boolean indicating whether to fit a hp or 
 use the passed object}
-
-\item{plot_events}{a boolean indicating whether events
-inputted will be plotted}
 
 \item{vec}{vector of initial values of parameters used in fithp}
 

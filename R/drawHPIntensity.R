@@ -4,7 +4,7 @@
 #'  'drawUniMMHPIntensity'
 #' while also available independently
 #'
-#' @param hp_obj object parameters for Hawkes process
+#' @param hp object parameters for Hawkes process
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
@@ -13,8 +13,6 @@
 #' @param i state number this corresponds to a state jump directly before
 #' which is only important when using mmhp
 #' @param add whether to add the hawkes intensity to an existing plot
-#' @param plot_events a boolean indicating whether events
-#'  inputted will be plotted
 #' @param vec vector of initial values of parameters used in fithp
 #' @param int_title title of the intensity plot
 #' @param fit a boolean indicating whether to fit a hp or 
@@ -31,44 +29,36 @@
 #' events <- sims$t
 #' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 #' }
-drawHPIntensity <- function(hp_obj, 
-                            start, end, history=0, events,
-                            color = 1, i = 1, add=FALSE, fit=FALSE,
-                            plot_events=FALSE, vec=NULL, 
+drawHPIntensity <- function(hp, 
+                            start = 0, end = max(events), history=0, events,
+                            color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), 
                             int_title="Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
-  lambda0 <- hp_obj$lambda0
-  alpha <- hp_obj$alpha
-  beta <- hp_obj$beta
+  lambda0 <- hp$lambda0
+  alpha <- hp$alpha
+  beta <- hp$beta
+  old_events <- hp$events
   if(add==FALSE){
     #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
     #events <- c(history,t)
     #events <- t
 	  
-    if(plot_events==TRUE & fit==TRUE){
-      if(is.null(vec)){
-        # stop("To plot events instead of object, 
-        #      please enter vec which is the initial vector of parameters")
-        vec <- rep(0.1,3) ## use a random initialisation
-      }
-      message("Fitting a Hawkes process to the supplied events.
-              Specified object not used.")
-      hp_obj <- fithp(vec,events)
-      lambda0 <- hp_obj$lambda0
-      alpha <- hp_obj$alpha
-      beta <- hp_obj$beta
+    if(is.null(old_events)){
+      message("No events in object. Plotting provided events.")
     }
-    if(plot_events==TRUE & fit==FALSE){
-      message("Using specified hp object.")
-    }else{
-      message("Simulating events from a Hawkes process with 
-              the specified parameters.")
-      events <- simulatehp(hp_obj,start=start,end=end,history=history)$t
-      n <- length(events)
+    else if(!is.null(old_events) && !all(events==old_events)){
+        message("Events in object and events provided don't match. Plotting provided events.")
+    }
+    
+    if(fit==TRUE){
+      hp <- fithp(events=events,vec=vec)
+      lambda0 <- hp$lambda0
+      alpha <- hp$alpha
+      beta <- hp$beta
     }
 	  
-    y_max <- hawkes_max_intensity(hp_obj,events)
+    y_max <- hawkes_max_intensity(hp,events)
     ylim <-  c(0,y_max)
     graphics::plot(0, 0,
                    xlim = c(start, end),

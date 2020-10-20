@@ -9,6 +9,7 @@ drawUniMMHPIntensity(
   simulation,
   add = FALSE,
   color = 1,
+  fit = FALSE,
   given_main = "Intensity Plot of MMHP"
 )
 }
@@ -25,6 +26,8 @@ for the limits and log-scaling of the x-axis from the previous plot.
  if no graphics device is open.}
 
 \item{color}{A specification for the default plotting color.}
+
+\item{fit}{a boolean indicating whether to fit mmhp object}
 
 \item{given_main}{title of the plot.}
 }
