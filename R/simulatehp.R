@@ -8,15 +8,14 @@
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
 #' @param end end time of the Hawkes process.
-#' @importFrom stats runif
-
+#' @param n number of events
 #' @return simulated Hawkes Process
 #' @export
 #' @examples
 #' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-#' simulatehp(hp_obj,start = 0, end = 100)
+#' simulatehp(hp_obj,start = 0, end = 100, n=10)
 
-simulatehp <- function(hp, start=0, end, history=0) {
+simulatehp <- function(hp, start=0, end, history=0, n=NULL) {
   events <- hp$events
   if(!is.null(events)){
     stop("Event time already in the hp object.")
@@ -36,40 +35,77 @@ simulatehp <- function(hp, start=0, end, history=0) {
                                                      history[2:(j0 - 1)]))))
   lambda.max <- lambda.star
   t <- numeric(10)
-  n <- 1
+  i <- 1
   U <- runif(1)
   s <- -log(U) / lambda.star
   ti <- start + s
-  repeat {
-    if (ti > end) {
-      break
-    }
-
-    lambda.star <- lambda.star + alpha
-    t[n] <- ti
-    if (length(t) < n + 1) t <- c(t, numeric(10))
-
-    repeat{
-      U <- runif(1)
-      s <- s - log(U) / lambda.star
-      ti <- start + s
-      lambda.s <- lambda0 + 
-        alpha * sum(exp(-beta * c(rep(ti, n) - 
-                                    t[1:n], rep(ti, j0 - 1) - 
-                                    history[1:j0 - 1])))
-      D <- runif(1)
-      if (D <= lambda.s / lambda.star) {
-        lambda.star <- lambda.s
-        lambda.max <- ifelse(lambda.max > lambda.star,
-                             lambda.max, lambda.star)
+  
+  if(!is.null(n)){
+    repeat {
+      if (i > n) {
         break
       }
-      lambda.star <- lambda.s
-      lambda.max <- ifelse(lambda.max > lambda.star, lambda.max, lambda.star)
+      
+      lambda.star <- lambda.star + alpha
+      t[i] <- ti
+      if (length(t) < i + 1) t <- c(t, numeric(10))
+      
+      repeat{
+        U <- runif(1)
+        s <- s - log(U) / lambda.star
+        ti <- start + s
+        lambda.s <- lambda0 + 
+          alpha * sum(exp(-beta * c(rep(ti, i) - 
+                                      t[1:i], rep(ti, j0 - 1) - 
+                                      history[1:j0 - 1])))
+        D <- runif(1)
+        if (D <= lambda.s / lambda.star) {
+          lambda.star <- lambda.s
+          lambda.max <- ifelse(lambda.max > lambda.star,
+                               lambda.max, lambda.star)
+          break
+        }
+        lambda.star <- lambda.s
+        lambda.max <- ifelse(lambda.max > lambda.star, lambda.max, lambda.star)
+      }
+      
+      i <- i + 1
     }
-
-    n <- n + 1
+    message(paste(n,"events simulated. To simulate up to endtime set n=NULL."))
+  }else{
+    repeat {
+      if (ti > end) {
+        break
+      }
+      
+      lambda.star <- lambda.star + alpha
+      t[i] <- ti
+      if (length(t) < i + 1) t <- c(t, numeric(10))
+      
+      repeat{
+        U <- runif(1)
+        s <- s - log(U) / lambda.star
+        ti <- start + s
+        lambda.s <- lambda0 + 
+          alpha * sum(exp(-beta * c(rep(ti, i) - 
+                                      t[1:i], rep(ti, j0 - 1) - 
+                                      history[1:j0 - 1])))
+        D <- runif(1)
+        if (D <= lambda.s / lambda.star) {
+          lambda.star <- lambda.s
+          lambda.max <- ifelse(lambda.max > lambda.star,
+                               lambda.max, lambda.star)
+          break
+        }
+        lambda.star <- lambda.s
+        lambda.max <- ifelse(lambda.max > lambda.star, lambda.max, lambda.star)
+      }
+      
+      i <- i + 1
+    }
+    message("Simulating up to endtime. To simulate n events specify n.")
   }
+
   # t <- round(t,3)
-  return(list(t = t[1:(n - 1)], lambda.max = lambda.max))
+  return(list(t = t, lambda.max = lambda.max))
 }

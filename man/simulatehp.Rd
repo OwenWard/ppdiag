@@ -4,7 +4,7 @@
 \alias{simulatehp}
 \title{Simulate Hawkes process during active state}
 \usage{
-simulatehp(hp, start = 0, end, history = 0)
+simulatehp(hp, start = 0, end, history = 0, n = NULL)
 }
 \arguments{
 \item{hp}{hawkes process object, including parameters in list type 
@@ -15,6 +15,8 @@ simulatehp(hp, start = 0, end, history = 0)
 \item{end}{end time of the Hawkes process.}
 
 \item{history}{the past event times.}
+
+\item{n}{number of events}
 }
 \value{
 simulated Hawkes Process
@@ -25,5 +27,5 @@ Simulate Hawkes process during active state (including all the histoty),
 }
 \examples{
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-simulatehp(hp_obj,start = 0, end = 100)
+simulatehp(hp_obj,start = 0, end = 100, n=10)
 }

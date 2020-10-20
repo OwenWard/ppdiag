@@ -4,7 +4,6 @@
 #'  lambda, start, end, and n.
 #'
 #' @param lambda rate of the poisson process
-#' @param n number of events
 #' @param events event times
 #'
 #' @return hpp object
@@ -12,8 +11,8 @@
 #' @examples
 #' hpp(lambda = 1)
 
-hpp <- function(lambda, n = NULL, events = NULL) {
-  y <- c(list(lambda = lambda, n = n, events = NULL))
+hpp <- function(lambda, events = NULL) {
+  y <- c(list(lambda = lambda, events = NULL))
   class(y) <- "hpp"
   return(y)
 }

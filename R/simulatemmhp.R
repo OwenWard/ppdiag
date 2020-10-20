@@ -110,6 +110,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
     }
     # x <- round(x,3)
     # events <- round(events,3)
+    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     return(list(x = x[1:i], z = z[1:i], 
                 events = events[1:(n + 1)], zt = zt[1:(n + 1)],
                 lambda.max = lambda.max, start = x[1], end = x[i]))
@@ -160,6 +161,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
       }
     }
     # events <- round(events,3)
+    message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending],
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
                 lambda.max = lambda.max))

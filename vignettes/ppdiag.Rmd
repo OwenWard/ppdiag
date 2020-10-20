@@ -86,25 +86,31 @@ are  -->
 regardless of -->
 <!-- the end time specified.  -->
 
-This can simulate events up to a specified end time in `hp_obj$end`
+`simulatehpp(hpp, start=0, end, n=NULL)` can simulate events up to a specified end time.
 ```{r}
 hpp_events <- simulatehpp(hpp_obj, end=10)
 hpp_events
 ```
-or specify a vector of certain length.
+
+Or you can specify a vector of certain length.
 ```{r}
-hpp_obj$n <- 50
-simulatehpp(hpp_obj, end=10)
+simulatehpp(hpp_obj, end=10, n=50)
 ```
 
 - Hawkes Process: 
 
-`simulatehp(hp, start = 0, end, history = 0)` returns event times
+`simulatehp(hp, start = 0, end, history = 0, n=NULL)` returns event times
 simulated from the Hawkes process specified by `hp`, up to some end
 time, along with the maximum overall intensity of the Hawkes process
 given these events.
 ```{r}
 hp_events <- simulatehp(hp_obj, start = 0, end = 50)
+hp_events
+```
+
+You can also specify desired length of events. 
+```{r}
+hp_events <- simulatehp(hp_obj, start = 0, end = 50, n=10)
 hp_events
 ```
 
@@ -187,7 +193,7 @@ drawHPPIntensity(fit_hpp, events=hp_events$t,
 plots the intensity of a hawkes process.
 ```{r,fig.width=4,fig.height=5}
 drawHPIntensity(fit_hp, start = min(hp_events$t), end = max(hp_events$t),
-                history = 0, events = hp_events$t)
+               history = 0, events = hp_events$t)
 ```
 
 To plot the fitted intensity on the inputted events, specify fit=TRUE.

@@ -3,19 +3,19 @@
 #' @param hpp hpp object in list type, (lambda, start=0, end=1, n = NULL)
 #' @param start start time of events simulated
 #' @param end end time of events simulated
+#' @param n number of events
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' 
 #' @return a vector of length n
 #' @export
 #' @examples
-#' hpp_obj=hpp(lambda = 1, n=50)
-#' s=simulatehpp(hpp_obj, end=10)
+#' hpp_obj=hpp(lambda = 1)
+#' s=simulatehpp(hpp_obj, end=10, n=50)
 #' hist(s)
 
-simulatehpp <- function(hpp, start=0, end){
+simulatehpp <- function(hpp, start=0, end, n=NULL){
   lambda <- hpp$lambda
-  n <- hpp$n
   if(start == end) {
     stop("Start and end time identical")
   }
@@ -32,6 +32,7 @@ simulatehpp <- function(hpp, start=0, end){
     return (hpp[2:length(hpp)])
   }else{
     n <- rpois(n=1,lambda=lambda*end)
+    message("n is null, length of simulated events will be random. ")
     if(n==0){
       message("No events simulated since n is 0. ")
       return (NULL)

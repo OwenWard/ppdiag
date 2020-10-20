@@ -19,9 +19,7 @@ fithpp <- function(events){
 	}
 	n <- length(events)
 	lambda <- n/(end-start)
-	hpp_object <- list(lambda = lambda, start = start,
-	                end = end, n = n,
-	                events = events)
+	hpp_object <- list(lambda = lambda, events = events)
 	class(hpp_object) <- "hpp"
 	return(hpp_object)	
 }

@@ -4,7 +4,7 @@
 \alias{simulatehpp}
 \title{Simulate homogeneous poisson process events}
 \usage{
-simulatehpp(hpp, start = 0, end)
+simulatehpp(hpp, start = 0, end, n = NULL)
 }
 \arguments{
 \item{hpp}{hpp object in list type, (lambda, start=0, end=1, n = NULL)}
@@ -12,6 +12,8 @@ simulatehpp(hpp, start = 0, end)
 \item{start}{start time of events simulated}
 
 \item{end}{end time of events simulated}
+
+\item{n}{number of events}
 }
 \value{
 a vector of length n
@@ -20,7 +22,7 @@ a vector of length n
 Simulate homogeneous poisson process events
 }
 \examples{
-hpp_obj=hpp(lambda = 1, n=50)
-s=simulatehpp(hpp_obj, end=10)
+hpp_obj=hpp(lambda = 1)
+s=simulatehpp(hpp_obj, end=10, n=50)
 hist(s)
 }
