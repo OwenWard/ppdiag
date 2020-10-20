@@ -70,6 +70,5 @@ simulatehp <- function(hp, start=0, end, history=0) {
 
     n <- n + 1
   }
-  t <- round(t,3)
   return(list(t = t[1:(n - 1)], lambda.max = lambda.max))
 }

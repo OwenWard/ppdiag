@@ -37,7 +37,6 @@ simulatehpp <- function(hpp){
       return (NULL)
     }
     hpp <- (end-start)*runif(n)+start # to make this n events
-    hpp <- round(hpp,2)
     return (sort(hpp))
   }
 }

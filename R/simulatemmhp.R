@@ -159,7 +159,6 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         }
       }
     }
-    # events <- round(events,3)
     return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending],
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
                 lambda.max = lambda.max))
