@@ -22,14 +22,14 @@ intensityqqplot.default <- function(object, events, ...) {
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hp <- function(object, events, ...) {
-  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),heights = c(2, 2),
+  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   r <- compensator(object = object, events = events)  
-  par(mar = c(2, 2,1,1))
+  par(mar = c(2, 2, 1, 1))
   qqexp(r)
-  par(mar = c(2, 2,1,1))
-  drawHPIntensity(object, start = min(events), end=max(events),
-                  events = events, add = FALSE, plot_events= TRUE, ...)
+  par(mar = c(2, 2, 1, 1))
+  drawHPIntensity(object, start = 0, end=max(events),
+                  events = events, add = FALSE, plot_events = TRUE, ...)
 }
 
 

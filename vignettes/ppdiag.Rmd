@@ -245,7 +245,7 @@ rawresidual(hp_obj,hp_events$events)
 pearsonresidual(hp_obj,hp_events$events)
 ```
 
-`intensityqqplot(object, events, pzt=NULL)` gives both qqplot and intensity plot. 
+`intensityqqplot(object, events)` gives both qqplot and intensity plot. 
 
 ```{r,fig.width=7,fig.height=4}
 intensityqqplot(hp_obj, hp_events$events)
