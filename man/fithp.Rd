@@ -22,5 +22,5 @@ Determine the MLE of hawkes process numerically
 init=rep(0.1,3)
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
-fithp(init,sims$t)                  
+fithp(init,sims$events)                  
 }
