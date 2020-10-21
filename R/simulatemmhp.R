@@ -83,7 +83,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         class(hp_obj) <- "hp"
         simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
                                       events[1:(j - 1)])
-        hp <- simulate.result$t
+        hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
@@ -134,7 +134,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         class(hp_obj) <- "hp"
         simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
                                       events[1:(j - 1)])
-        hp <- simulate.result$t
+        hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {

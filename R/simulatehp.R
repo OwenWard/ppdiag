@@ -70,5 +70,5 @@ simulatehp <- function(hp, start=0, end, history=0) {
 
     n <- n + 1
   }
-  return(list(t = t[1:(n - 1)], lambda.max = lambda.max))
+  return(list(events = t[1:(n - 1)], lambda.max = lambda.max))
 }
