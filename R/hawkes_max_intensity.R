@@ -11,7 +11,7 @@ hawkes_max_intensity <- function(object, events) {
   N <- length(events)
   for(i in 2:N){
     r <- exp(-1*object$beta*(events[i]-events[i-1]))*(1+r)
-    if(isTRUE(r > r.max)) {
+    if(r > r.max) {
       r.max <- r
     } 
   }
