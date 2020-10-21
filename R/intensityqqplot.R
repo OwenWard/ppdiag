@@ -29,7 +29,7 @@ intensityqqplot.hp <- function(object, events, ...) {
   qqexp(r)
   par(mar = c(2, 2,1,1))
   drawHPIntensity(object, start = min(events), end=max(events),
-                  events = events, add = FALSE, ...)
+                  events = events, add = FALSE, plot_events= TRUE, ...)
 }
 
 

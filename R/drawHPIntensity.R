@@ -74,8 +74,8 @@ drawHPIntensity <- function(hp_obj,
                    xlim = c(start, end),
                    ylim = ylim, type = "n", xlab = "Time", 
                    ylab = "Intensity",main = int_title)
-    for(i in seq_along(events)){
-	    graphics::points(x=events[i],y=0,pch=1,col="blue")
+    for(j in seq_along(events)){
+	    graphics::points(x=events[j],y=0,pch=1,col="blue")
 	  }
     
     if (n == 0) {
