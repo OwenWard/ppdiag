@@ -4,17 +4,17 @@
 #' 
 #' @param vec vector containing initial values for the 
 #' object parameters (lambda0,alpha,beta) to be optimized.
-#' @param t vector containing event times.
+#' @param events vector containing event times.
 #' @param end the end time of event times.
 #' 
 #' @export
 
 
-negloglik_hp<-function(vec,t,end){
+negloglik_hp<-function(vec,events,end){
 	#transforms input list object into vector so that it can be used in optim 
 	object <- list(lambda0=vec[1], alpha=vec[2], beta=vec[3])
 	class(object) <- "hp"
-  negloglik(object=object, t=t, end=end)
+  negloglik(object=object, t=events, end=end)
 }
 
 
@@ -22,8 +22,7 @@ negloglik_hp<-function(vec,t,end){
 
 #' Determine the MLE of hawkes process numerically
 #' @param vec vector of initial parameter values
-#' @param t event times
-#' @param end end of observation period
+#' @param events event times
 #' @importFrom stats optim
 #' @return a hp object indicating the maximum 
 #' likelihood parameter values (lambda0,alpha,beta) for hawkes process.
@@ -32,10 +31,10 @@ negloglik_hp<-function(vec,t,end){
 #' init=rep(0.1,3)
 #' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 #' sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
-#' fithp(init,sims$t,max(sims$t))                  
-fithp <- function(vec = rep(0.1, 3), t, end){
+#' fithp(init,sims$t)                  
+fithp <- function(vec = rep(0.1, 3), events){
 	hawkes.par <- optim(par = vec, fn = negloglik_hp, 
-                    t = t, end = end, control = list(maxit = 1000),
+                    events = events, end = max(events), control = list(maxit = 1000),
                     lower = c(1e-4,1e-4,1e-4),
                   method = "L-BFGS-B")
     a <- hawkes.par$par[2]
@@ -49,7 +48,7 @@ fithp <- function(vec = rep(0.1, 3), t, end){
       else if(c==1){
         #if maxit reached, then we automatically refit
         hawkes.par <- optim(par=vec, fn=negloglik_hp, 
-                         t=t, end=end, control = list(maxit = 1000),
+                         events=events, end=max(events), control = list(maxit = 1000),
                          lower = c(1e-4,1e-4,1e-4),
                          method = "L-BFGS-B")
         a <- hawkes.par$par[2]
@@ -62,7 +61,7 @@ fithp <- function(vec = rep(0.1, 3), t, end){
         message("A stationary hawkes process requires alpha<beta. 
                 Now refitting.")
         hawkes.par <- optim(par=vec, fn=negloglik_hp, 
-                         t=t, end=end, control = list(maxit = 1000),
+                         events=events, end=max(events), control = list(maxit = 1000),
                          lower = c(1e-4,1e-4,1e-4),
                          method = "L-BFGS-B")
         a <- hawkes.par$par[2]
@@ -75,7 +74,7 @@ fithp <- function(vec = rep(0.1, 3), t, end){
       }
     }
     hp_object <-  list(lambda0=hawkes.par$par[1], 
-                       alpha=hawkes.par$par[2], beta=hawkes.par$par[3], t=t)
+                       alpha=hawkes.par$par[2], beta=hawkes.par$par[3], events=events)
     class(hp_object) <- "hp"
     return (hp_object)
 }
