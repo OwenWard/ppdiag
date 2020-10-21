@@ -139,7 +139,7 @@ value given by `vec`. This can be a challenging optimisation problem
 and convergence is not guaranteed.
 ```{r}
 init <- rep(0.1,3)
-fit_hp <- fithp(init, hp_events$t)
+fit_hp <- fithp(init, hp_events$events)
 fit_hp
 ```
 
@@ -180,8 +180,8 @@ add=FALSE, fit=FALSE, plot_events=FALSE, vec=NULL, int_title="Hawkes
 Intensity")`
 plots the intensity of a hawkes process.
 ```{r,fig.width=4,fig.height=5}
-drawHPIntensity(fit_hp, start = 0, end = max(hp_events$t),
-                history = 0, events = hp_events$t, plot_events = TRUE)
+drawHPIntensity(fit_hp, start = 0, end = max(hp_events$events),
+                history = 0, events = hp_events$events, plot_events = TRUE)
 ```
 
 `drawUniMMHPIntensity(mmhp, simulation, add = FALSE,
@@ -230,25 +230,25 @@ including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
 ```{r,fig.width=4,fig.height=4}
-diagpp(hp_obj,hp_events$t)
+diagpp(hp_obj,hp_events$events)
 ```
 
 `rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
 
 ```{r}
-rawresidual(hp_obj,hp_events$t)
+rawresidual(hp_obj,hp_events$events)
 ```
 
 `pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
 
 ```{r}
-pearsonresidual(hp_obj,hp_events$t)
+pearsonresidual(hp_obj,hp_events$events)
 ```
 
 `intensityqqplot(object, events, pzt=NULL)` gives both qqplot and intensity plot. 
 
 ```{r,fig.width=7,fig.height=4}
-intensityqqplot(hp_obj, hp_events$t)
+intensityqqplot(hp_obj, hp_events$events)
 ```
 
 
