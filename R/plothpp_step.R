@@ -8,8 +8,8 @@
 #' @importFrom stats stepfun
 #' @export
 #' @examples
-#' pois_y <- hpp(lambda = 1, end = 10, n=50)
-#' events <- simulatehpp(pois_y)
+#' pois_y <- hpp(lambda = 1)
+#' events <- simulatehpp(pois_y, end = 10, n=50)
 #' plothpp_step(events)
 
 

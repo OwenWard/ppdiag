@@ -1,21 +1,21 @@
 #' Simulate homogeneous poisson process events
 #'
-#' @param hpp hpp object in list type, (lambda, start=0, end=1, n = NULL)
+#' @param hpp hpp object in list type
+#' @param start start time of events simulated
+#' @param end end time of events simulated
+#' @param n number of events
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' 
 #' @return a vector of length n
 #' @export
 #' @examples
-#' hpp_obj=hpp(lambda = 1, end = 10, n=50)
-#' s=simulatehpp(hpp_obj)
+#' hpp_obj=hpp(lambda = 1)
+#' s=simulatehpp(hpp_obj, end = 10, n=50)
 #' hist(s)
 
-simulatehpp <- function(hpp){
+simulatehpp <- function(hpp, start=0, end, n=NULL){
   lambda <- hpp$lambda
-  end <- hpp$end
-  start <- hpp$start
-  n <- hpp$n
   if(start == end) {
     stop("Start and end time identical")
   }
@@ -28,10 +28,11 @@ simulatehpp <- function(hpp){
                     sep=""))
     }
     hpp <- cumsum(c(start,-log(runif(n))/lambda))
-    hpp <- round(hpp,2)
+    # hpp <- round(hpp,2)
     return (hpp[2:length(hpp)])
   }else{
     n <- rpois(n=1,lambda=lambda*end)
+    message("n not specified, length of simulated events will be randomly generated. ")
     if(n==0){
       message("No events simulated since n is 0. ")
       return (NULL)

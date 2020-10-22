@@ -7,8 +7,8 @@
 #' @return an hpp object fitted
 #' @export
 #' @examples
-#' pois_y <- hpp(lambda = 1, end = 10)
-#' events <- simulatehpp(pois_y)
+#' pois_y <- hpp(lambda = 1)
+#' events <- simulatehpp(pois_y, end=10)
 #' fithpp(events)
 
 fithpp <- function(events){
@@ -19,9 +19,7 @@ fithpp <- function(events){
 	}
 	n <- length(events)
 	lambda <- n/(end-start)
-	hpp_object <- list(lambda = lambda, start = start,
-	                end = end, n = n,
-	                events = events)
+	hpp_object <- list(lambda = lambda, events = events)
 	class(hpp_object) <- "hpp"
 	return(hpp_object)	
 }

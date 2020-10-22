@@ -9,7 +9,8 @@ drawUniMMHPIntensity(
   simulation,
   add = FALSE,
   color = 1,
-  given_main = "Intensity Plot of MMHP"
+  fit = FALSE,
+  int_title = "Intensity Plot of MMHP"
 )
 }
 \arguments{
@@ -26,7 +27,9 @@ for the limits and log-scaling of the x-axis from the previous plot.
 
 \item{color}{A specification for the default plotting color.}
 
-\item{given_main}{title of the plot.}
+\item{fit}{a boolean indicating whether to fit the events provided}
+
+\item{int_title}{title of the plot.}
 }
 \description{
 Take a mmhp object and draw its intensity accordingly

@@ -4,19 +4,19 @@
 #'  a helper function for "simulationmmhp"
 #'
 #' @param hp hawkes process object, including parameters in list type 
-#' (lambda0, alpha, beta, tau)
+#' (lambda0, alpha, beta, events)
 #' @param history the past event times.
 #' @param start start time of the Hawkes process.
 #' @param end end time of the Hawkes process.
+#' @param n number of events
 #' @importFrom stats runif
-
 #' @return simulated Hawkes Process
 #' @export
 #' @examples
 #' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 #' simulatehp(hp_obj,start = 0, end = 100)
 
-simulatehp <- function(hp, start=0, end, history=0) {
+simulatehp <- function(hp, start=0, end, history=0, n=NULL) {
   events <- hp$events
   if(!is.null(events)){
     stop("Event time already in the hp object.")

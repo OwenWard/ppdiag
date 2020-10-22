@@ -10,50 +10,53 @@
 #' @param fit a boolean indicating whether to fit a hpp or
 #'  use the passed object
 #' @param int_title the plot title
+#' @param start start of events
+#' @param end end of events
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points
 #' @export
 #' @examples
 #' \dontrun{
-#' pois_y <- hpp(lambda = 1, end = 10)
-#' drawHPPIntensity(pois_y,color = "red")
+#' pois_y <- hpp(lambda = 1)
+#' drawHPPIntensity(pois_y, events=simulatehpp(pois_y, end=10), color = "red")
 #' }
-drawHPPIntensity <- function(hpp, events = NULL, color = "red", 
+drawHPPIntensity <- function(hpp, events, color = "red", 
                              plot_events = FALSE,
                              fit = FALSE,
                              int_title = 
-                               "Intensity homogeneous Poisson Process"){
-	start <- hpp$start
-	end <- hpp$end
-	lambda <- hpp$lambda
-	n <- hpp$n
-	if(!is.null(events)){
-		if(plot_events==TRUE & fit == TRUE){
-			message("Fitting and plotting a HPP. Specified fit not used.")
-			hpp_obj <- fithpp(events)
-			start <- hpp_obj$start
-			end <- hpp_obj$end
-			lambda <- hpp_obj$lambda
-			n <- hpp_obj$n
-		}
-	  if(plot_events == TRUE & fit == FALSE){
-	    message("Fitting specified hpp.")
+                               "Intensity homogeneous Poisson Process", start = 0, end = max(events)){
+	old_events <- hpp$events
+	
+	if(is.null(old_events)){
+	  if(fit==TRUE){
+	    message("Fitting provided events.")
+	    hpp_obj <- fithpp(events)
+	    lambda <- hpp_obj$lambda
+	    n <- hpp_obj$n
+	  }else{
+	    message("Using events provided and not fitting. Set fit=TRUE to fit events. ")
+	    lambda=hpp$lambda
+	    n <- hpp$n
 	  }
-	  else{
-		  message("The inputted events not used, hpp object
-		          and simulated events will be plotted.")
-		  events <- simulatehpp(hpp)
-		}		
+	}else if(!is.null(old_events) && !all(events==old_events)){
+	  if(fit==TRUE){
+	    message("Events in object and events provided don't match. Fitting provided events.")
+	    hpp_obj <- fithpp(events)
+	    lambda <- hpp_obj$lambda
+	    n <- hpp_obj$n
+	  }else{
+	    message("Events in object and events provided don't match. Using the object. ")
+	    lambda=hpp$lambda
+	    events <- old_events
+	    end <- max(events)
+	    n <- hpp$n
+	  }
+	}else{
+	  lambda <- hpp$lambda
+	  n <- hpp$n
 	}
-	else if(!is.null(n)){
-		events <- simulatehpp(hpp) 
-		#if n not null, we need to simulate to get end
-		end <- max(events)
-	}
-	else{
-	  events <- simulatehpp(hpp)
-	}
+	
 	fisher <- 1/lambda
 	plot(c(start,end), c(0,(lambda+fisher)*2), type = "n",
 	     xlab = "event times", ylab = "lambda", 
@@ -61,8 +64,10 @@ drawHPPIntensity <- function(hpp, events = NULL, color = "red",
 	abline(h=lambda, col=color)
 	abline(h=lambda+fisher,lty=2)	
 	abline(h=lambda-fisher,lty=2)	
-	for(i in seq_along(events)){
-	  points(x=events[i],y=0,pch=1,col="blue")
+	if(plot_events==TRUE){
+	  for(i in seq_along(events)){
+	    points(x=events[i],y=0,pch=1,col="blue")
+	  }
 	}
 	legend("topleft", "Events", col = "blue", pch = 1)
 }

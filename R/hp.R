@@ -1,8 +1,8 @@
 #' Create a Hawkes Process(HP) model
 #'
 #' Create a Hawkes Process(HP) model according to the given parameters:
-#'  lambda0, alpha, beta and event times.
-#' If event time tau is missing, then it means that data will be
+#'  lambda0, alpha, beta and events.
+#' If events is missing, then it means that data will be
 #'  added later(e.g. simulated)
 #'
 #' @param beta exponential decay of intensity
