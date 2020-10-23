@@ -88,9 +88,9 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
                        alpha = alpha,
                        beta = beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp_internal(hp_obj, start = x[i - 1],
+        simulate.result <- suppressMessages( simulatehp(hp_obj, start = x[i - 1],
                                       end = x[i],
-                                      history = events[1:(j - 1)])
+                                      history = events[1:(j - 1)]) )
         # while (is.null(simulate.result$events)){
         #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
         #                                 history=events[1:(j - 1)])
@@ -149,8 +149,8 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         #   sim times of Hawkes Poisson events
         hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp_internal(hp_obj, start=x[i - 1], end=x[i],
-                                      history=events[1:(j - 1)])
+        simulate.result <- suppressMessages( simulatehp(hp_obj, start=x[i - 1], end=x[i],
+                                      history=events[1:(j - 1)]) )
         # while (is.null(simulate.result$events)){
         #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
         #                                 history=events[1:(j - 1)])
