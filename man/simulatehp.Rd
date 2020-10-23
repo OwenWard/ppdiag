@@ -24,7 +24,7 @@ simulatehp(hp, start = 0, end = NULL, history = 0, n = NULL, seed = NULL)
 simulated Hawkes Process
 }
 \description{
-Simulate Hawkes process during active state (including all the histoty),
+Simulate Hawkes process during active state (including all the history),
  a helper function for "simulationmmhp"
 }
 \examples{

@@ -94,7 +94,7 @@ hpp_events
 
 or specify a vector of certain length.
 ```{r}
-simulatehpp(hpp_obj, end=10, n=50)
+simulatehpp(hpp_obj, end = 10, n = 50)
 ```
 
 - Hawkes Process: 
