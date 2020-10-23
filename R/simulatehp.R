@@ -114,7 +114,7 @@ simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
           U <- runif(1)
         }
         s <- s - log(U) / lambda.star
-        ti <- s
+        ti <- start + s
         lambda.s <- lambda0 + 
           alpha * sum(exp(-beta * c(rep(ti, i) - 
                                       t[1:i], rep(ti, j0 - 1) - 
