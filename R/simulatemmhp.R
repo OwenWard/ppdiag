@@ -29,7 +29,12 @@
 #' simulatemmhp(x)
 simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
                          states = NULL, seed = NULL, ...) {
-  if (!is.null(seed)) set.seed(seed)
+  if(!is.null(seed)){
+    set.seed(seed)
+  }
+  if(!is.null(mmhp$events)){
+    stop("Event time already in the mmhp object.")
+  }
   m <- 2
   #------------------------
   if (sum(mmhp$delta) != 1) stop("Invalid delta")
@@ -81,8 +86,13 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         #   sim times of Hawkes Poisson events
         hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
-                                      events[1:(j - 1)])
+        simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+                                      history=events[1:(j - 1)])
+        
+        # while (is.null(simulate.result$events)){
+        #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+        #                                 history=events[1:(j - 1)])
+        # }
         hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)
@@ -133,8 +143,12 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         #   sim times of Hawkes Poisson events
         hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
-                                      events[1:(j - 1)])
+        simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+                                      history=events[1:(j - 1)])
+        # while (is.null(simulate.result$events)){
+        #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+        #                                 history=events[1:(j - 1)])
+        # }
         hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)

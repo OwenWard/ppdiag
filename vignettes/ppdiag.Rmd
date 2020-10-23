@@ -144,7 +144,7 @@ three parameters of the Hawkes process using `optim`, with the initial
 value given by `vec`. This can be a challenging optimisation problem
 and convergence is not guaranteed.
 ```{r}
-init <- rep(0.5,3)
+init <- rep(0.1,3)
 fit_hp <- fithp(init, hp_events$events)
 fit_hp
 ```

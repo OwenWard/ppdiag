@@ -4,7 +4,7 @@
 \alias{simulatehpp}
 \title{Simulate homogeneous poisson process events}
 \usage{
-simulatehpp(hpp, start = 0, end, n = NULL)
+simulatehpp(hpp, start = 0, end = NULL, n = NULL, seed = NULL)
 }
 \arguments{
 \item{hpp}{hpp object in list type}
@@ -14,6 +14,8 @@ simulatehpp(hpp, start = 0, end, n = NULL)
 \item{end}{end time of events simulated}
 
 \item{n}{number of events}
+
+\item{seed}{seed for simulation}
 }
 \value{
 a vector of length n

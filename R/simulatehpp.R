@@ -4,9 +4,9 @@
 #' @param start start time of events simulated
 #' @param end end time of events simulated
 #' @param n number of events
+#' @param seed seed for simulation
 #' @importFrom stats runif
 #' @importFrom stats rpois
-#' 
 #' @return a vector of length n
 #' @export
 #' @examples
@@ -14,30 +14,56 @@
 #' s=simulatehpp(hpp_obj, end = 10, n=50)
 #' hist(s)
 
-simulatehpp <- function(hpp, start=0, end, n=NULL){
-  lambda <- hpp$lambda
-  if(start == end) {
-    stop("Start and end time identical")
+simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
+  if(!is.null(seed)){
+    set.seed(seed)
   }
-  if(!is.null(n)){
-    if(n==0){
+  old_events <- hpp$events
+  if(!is.null(old_events)){
+    stop("Event time already in the hpp object.")
+  }
+  
+  if(!is.null(start) && !is.null(end)){
+    if(start >= end){
       return (NULL)
     }
-    if(end>start){
-      message(paste(n, " events simulated, end time ignored. To simulate up to an endtime don't specify n.",
+  }
+  
+  lambda <- hpp$lambda
+  
+  if(!is.null(n)){
+    if(n<=0){
+      stop("n must be positive for simulation.")
+    }
+    if(!is.null(end)){
+      message(paste(n, " events simulated. To simulate up to an endtime set n=NULL.",
                     sep=""))
     }
-    hpp <- cumsum(c(start,-log(runif(n))/lambda))
-    # hpp <- round(hpp,2)
+    hpp <- cumsum(c(0,-log(runif(n))/lambda))
     return (hpp[2:length(hpp)])
   }else{
-    n <- rpois(n=1,lambda=lambda*end)
-    message("n not specified, length of simulated events will be randomly generated. ")
-    if(n==0){
-      message("No events simulated since n is 0. ")
-      return (NULL)
+    if(is.null(end)){
+      stop("Specify either endtime or n to simulate events. ")
+    }else{
+      message("Simulating up to endtime. To simulate n events specify n.")
+      
+      u <- runif(1)
+      while(u==0){
+        u <- runif(1)
+      }
+      t <- -log(u)/lambda
+      hpp <- c()
+      while(t<=end){
+        hpp <- append(hpp,t)
+        u <- runif(1)
+        while(u==0){
+          u <- runif(1)
+        }
+        t <- t-log(u)/lambda
+      }
+      
+      return (sort(hpp))
     }
-    hpp <- (end-start)*runif(n)+start # to make this n events
-    return (sort(hpp))
+
   }
 }

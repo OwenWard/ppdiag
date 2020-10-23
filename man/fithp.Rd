@@ -19,8 +19,8 @@ likelihood parameter values (lambda0,alpha,beta) for hawkes process.
 Determine the MLE of hawkes process numerically
 }
 \examples{
-init=rep(0.1,3)
+init=rep(0.3,3)
 hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-sims <- simulatehp(hp_obj,start = 0, end = 100, history = 0)
+sims <- simulatehp(hp_obj,start = 0, end = 10, history = 0, seed=0)
 fithp(init,sims$events)                  
 }

@@ -14,8 +14,9 @@ test_that("test hpp", {
   #start>end
   hpp_obj <- hpp(lambda = 1)
   sim <- simulatehpp(hpp_obj, start=20, end = 10)
-  expect_type(sim, "double")
-  expect_true(!is.null(sim))
+  expect_null(sim)
+  sim <- simulatehpp(hpp_obj, start=20, end = 20)
+  expect_null(sim)
   
   #n=0
   hpp_obj <- hpp(lambda = 1)
@@ -23,9 +24,7 @@ test_that("test hpp", {
   expect_null(sim)
   
   #test for error messages
-  expect_error(simulatehpp(hpp(lambda=1),start=2,end=2),
-               "Start and end time identical")
   expect_message(simulatehpp(hpp(lambda=1),start=2,end=3,n=10),
-                 "10 events simulated, end time ignored. To simulate up to an endtime don't specify n")
+                 "10 events simulated. To simulate up to an endtime set n=NULL.")
   
 })
