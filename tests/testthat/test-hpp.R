@@ -15,16 +15,18 @@ test_that("test hpp", {
   hpp_obj <- hpp(lambda = 1)
   sim <- simulatehpp(hpp_obj, start=20, end = 10)
   expect_null(sim)
+  #start==end
   sim <- simulatehpp(hpp_obj, start=20, end = 20)
   expect_null(sim)
   
   #n=0
   hpp_obj <- hpp(lambda = 1)
-  sim <- simulatehpp(hpp_obj, start=20, end = 10,n=0)
-  expect_null(sim)
+  expect_error(simulatehpp(hpp_obj, start=2, end = 10,n=0),"n must be positive for simulation.")
   
-  #test for error messages
+  #test for messages
   expect_message(simulatehpp(hpp(lambda=1),start=2,end=3,n=10),
                  "10 events simulated. To simulate up to an endtime set n=NULL.")
-  
+  expect_message(simulatehpp(hpp(lambda=1),start=2,end=3),
+                 "Simulating up to endtime. To simulate n events specify n.")
+
 })
