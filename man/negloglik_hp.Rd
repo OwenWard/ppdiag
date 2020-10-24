@@ -4,13 +4,13 @@
 \alias{negloglik_hp}
 \title{Fit a hawkes process using negloglik and optim functions}
 \usage{
-negloglik_hp(vec, t, end)
+negloglik_hp(vec, events, end)
 }
 \arguments{
 \item{vec}{vector containing initial values for the 
 object parameters (lambda0,alpha,beta) to be optimized.}
 
-\item{t}{vector containing event times.}
+\item{events}{vector containing event times.}
 
 \item{end}{the end time of event times.}
 }

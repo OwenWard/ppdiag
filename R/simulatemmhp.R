@@ -26,10 +26,15 @@
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
-#' simulatemmhp(x)
+#' simulatemmhp(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
                          states = NULL, seed = NULL, ...) {
-  if (!is.null(seed)) set.seed(seed)
+  if(!is.null(seed)){
+    set.seed(seed)
+  }
+  # if(!is.null(mmhp$events)){
+  #   stop("Event time already in the mmhp object.")
+  # }
   m <- 2
   #------------------------
   if (sum(mmhp$delta) != 1) stop("Invalid delta")
@@ -79,17 +84,28 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
+        hp_obj <- list(lambda0 = lambda1,
+                       alpha = alpha,
+                       beta = beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
-                                      events[1:(j - 1)])
-        hp <- simulate.result$t
+        simulate.result <- suppressMessages( simulatehp(hp_obj, start = x[i - 1],
+                                      end = x[i],
+                                      history = events[1:(j - 1)]) )
+        # while (is.null(simulate.result$events)){
+        #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+        #                                 history=events[1:(j - 1)])
+        # }
+        hp <- simulate.result$events
+        if( is.null(hp)) {
+          hp <- 0
+        }
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
           j <- j + length(hp)
+          ## should this increment regardless?
         }
       }
 
@@ -110,6 +126,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
     }
     # x <- round(x,3)
     # events <- round(events,3)
+    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     return(list(x = x[1:i], z = z[1:i], 
                 events = events[1:(n + 1)], zt = zt[1:(n + 1)],
                 lambda.max = lambda.max, start = x[1], end = x[i]))
@@ -132,9 +149,13 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         #   sim times of Hawkes Poisson events
         hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
         class(hp_obj) <- "hp"
-        simulate.result <- simulatehp(hp_obj, x[i - 1], x[i],
-                                      events[1:(j - 1)])
-        hp <- simulate.result$t
+        simulate.result <- suppressMessages( simulatehp(hp_obj, start=x[i - 1], end=x[i],
+                                      history=events[1:(j - 1)]) )
+        # while (is.null(simulate.result$events)){
+        #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
+        #                                 history=events[1:(j - 1)])
+        # }
+        hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
                              lambda.max, simulate.result$lambda.max)
         if (!hp[1] == 0) {
@@ -159,6 +180,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
         }
       }
     }
+    message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending],
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
                 lambda.max = lambda.max))

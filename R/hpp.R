@@ -1,21 +1,19 @@
 #' Create a homogeneous poisson process model
 #'
 #' Create a homogeneous poisson process according to given parameters:
-#'  lambda, start, end, and n.
-#'
+#'  lambda, and events.
+#' If events is missing, then it means that data will be
+#'  added later(e.g. simulated)
 #' @param lambda rate of the poisson process
-#' @param n number of events
-#' @param start start time of events
-#' @param end end time of events
+#' @param events event times
 #'
 #' @return hpp object
 #' @export
 #' @examples
-#' hpp(lambda = 1, end = 10)
+#' hpp(lambda = 1)
 
-hpp <- function(lambda, start=0, end=1, n = NULL) {
-  y <- c(list(lambda = lambda, start = start, end = end,
-              n = n, events = NULL))
+hpp <- function(lambda, events = NULL) {
+  y <- c(list(lambda = lambda, events = NULL))
   class(y) <- "hpp"
   return(y)
 }

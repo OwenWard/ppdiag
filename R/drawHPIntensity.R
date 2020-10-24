@@ -4,7 +4,7 @@
 #'  'drawUniMMHPIntensity'
 #' while also available independently
 #'
-#' @param hp_obj object parameters for Hawkes process
+#' @param hp object parameters for Hawkes process
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
@@ -28,55 +28,78 @@
 #' \dontrun{
 #' hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 #' sims <- simulatehp(hp_obj, start = 0, end = 20, history = 0)
-#' events <- sims$t
+#' events <- sims$events
 #' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 #' }
-drawHPIntensity <- function(hp_obj, 
-                            start, end, history=0, events,
+drawHPIntensity <- function(hp, 
+                            start = 0, end = max(events), history=0, events,
                             color = 1, i = 1, add=FALSE, fit=FALSE,
                             plot_events=FALSE, vec=NULL, 
                             int_title="Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
-  lambda0 <- hp_obj$lambda0
-  alpha <- hp_obj$alpha
-  beta <- hp_obj$beta
+  old_events <- hp$events
+  
   if(add==FALSE){
     #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
     #events <- c(history,t)
     #events <- t
 	  
-    if(plot_events==TRUE & fit==TRUE){
-      if(is.null(vec)){
-        # stop("To plot events instead of object, 
-        #      please enter vec which is the initial vector of parameters")
-        vec <- rep(0.1,3) ## use a random initialisation
+    if(is.null(old_events)){
+      if(fit==TRUE){
+        message("Fitting provided events.")
+        if(is.null(vec)){
+          hp_obj <- fithp(events)
+        }else{
+          hp_obj <- fithp(vec=vec, events)
+        }
+        lambda0 <- hp$lambda0
+        alpha <- hp$alpha
+        beta <- hp$beta
+      }else{
+        message("Using events provided and not fitting. Set fit=TRUE to fit events. ")
+        lambda0 <- hp$lambda0
+        alpha <- hp$alpha
+        beta <- hp$beta
       }
-      message("Fitting a Hawkes process to the supplied events.
-              Specified object not used.")
-      hp_obj <- fithp(vec,events,end)
-      lambda0 <- hp_obj$lambda0
-      alpha <- hp_obj$alpha
-      beta <- hp_obj$beta
-    }
-    if(plot_events==TRUE & fit==FALSE){
-      message("Using specified hp object.")
+    }else if(!is.null(old_events) && !all(events==old_events)){
+      if(fit==TRUE){
+        message("Events in object and events provided don't match. Fitting provided events.")
+        if(is.null(vec)){
+          hp_obj <- fithp(events)
+        }else{
+          hp_obj <- fithp(vec=vec, events)
+        }
+        lambda0 <- hp$lambda0
+        alpha <- hp$alpha
+        beta <- hp$beta
+      }else{
+        message("Events in object and events provided don't match. Using the object. ")
+        lambda0 <- hp$lambda0
+        alpha <- hp$alpha
+        beta <- hp$beta
+        events <- old_events
+        end <- max(events)
+        n <- length(events)
+      }
     }else{
-      message("Simulating events from a Hawkes process with 
-              the specified parameters.")
-      events <- simulatehp(hp_obj,start=start,end=end,history=history)$t
+      lambda0 <- hp$lambda0
+      alpha <- hp$alpha
+      beta <- hp$beta
       n <- length(events)
     }
-	  
-    y_max <- hawkes_max_intensity(hp_obj,events)
+    
+    y_max <- hawkes_max_intensity(hp,events)
     ylim <-  c(0,y_max)
     graphics::plot(0, 0,
                    xlim = c(start, end),
                    ylim = ylim, type = "n", xlab = "Time", 
                    ylab = "Intensity",main = int_title)
-    for(i in seq_along(events)){
-	    graphics::points(x=events[i],y=0,pch=1,col="blue")
-	  }
+    if(plot_events==TRUE){
+      for(j in seq_along(events)){
+        graphics::points(x=events[j],y=0,pch=1,col="blue")
+      }
+    }
     
     if (n == 0) {
       if (i == 1) {
@@ -134,6 +157,10 @@ drawHPIntensity <- function(hp_obj,
   }
   else {
     # to add to an already created plot
+    lambda0 <- hp$lambda0
+    alpha <- hp$alpha
+    beta <- hp$beta
+    
     if (n == 0) {
       if (i == 1) {
         segments(x0 = start, x1 = end, y0 = lambda0)

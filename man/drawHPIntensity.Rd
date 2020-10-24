@@ -5,9 +5,9 @@
 \title{Draw the intensity of Hawkes Process}
 \usage{
 drawHPIntensity(
-  hp_obj,
-  start,
-  end,
+  hp,
+  start = 0,
+  end = max(events),
   history = 0,
   events,
   color = 1,
@@ -20,7 +20,7 @@ drawHPIntensity(
 )
 }
 \arguments{
-\item{hp_obj}{object parameters for Hawkes process}
+\item{hp}{object parameters for Hawkes process}
 
 \item{start}{the start time of current state}
 
@@ -56,7 +56,7 @@ while also available independently
 \dontrun{
 hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 sims <- simulatehp(hp_obj, start = 0, end = 20, history = 0)
-events <- sims$t
+events <- sims$events
 drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 }
 }

@@ -6,11 +6,13 @@
 \usage{
 drawHPPIntensity(
   hpp,
-  events = NULL,
+  events,
   color = "red",
   plot_events = FALSE,
   fit = FALSE,
-  int_title = "Intensity homogeneous Poisson Process"
+  int_title = "Intensity homogeneous Poisson Process",
+  start = 0,
+  end = max(events)
 )
 }
 \arguments{
@@ -27,13 +29,17 @@ inputted will be plotted}
 use the passed object}
 
 \item{int_title}{the plot title}
+
+\item{start}{start of events}
+
+\item{end}{end of events}
 }
 \description{
 Draw the intensity for homogeneous poisson process events
 }
 \examples{
 \dontrun{
-pois_y <- hpp(lambda = 1, end = 10)
-drawHPPIntensity(pois_y,color = "red")
+pois_y <- hpp(lambda = 1)
+drawHPPIntensity(pois_y, events=simulatehpp(pois_y, end=10), color = "red")
 }
 }

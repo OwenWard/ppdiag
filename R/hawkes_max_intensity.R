@@ -9,11 +9,13 @@ hawkes_max_intensity <- function(object, events) {
   r <- 0
   r.max <- 0
   N <- length(events)
-  for(i in 2:N){
+  i <- 2
+  while(i<=N){
     r <- exp(-1*object$beta*(events[i]-events[i-1]))*(1+r)
     if(r > r.max) {
       r.max <- r
     } 
+    i <- i+1
   }
   yupper <- object$lambda0 + object$alpha*r.max + object$alpha
   return(yupper)

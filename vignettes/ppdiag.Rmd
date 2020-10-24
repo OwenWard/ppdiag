@@ -38,7 +38,7 @@ point process to capture the temporal structure present in this data.
 `hpp(lambda, start=0, end=1, n = NULL)` creates an object of
 a list type in class 'hpp'. 
 ```{r}
-hpp_obj <- hpp(lambda = 1, end = 10)
+hpp_obj <- hpp(lambda = 1)
 hpp_obj
 ```
 
@@ -86,15 +86,15 @@ are  -->
 regardless of -->
 <!-- the end time specified.  -->
 
-This can simulate events up to a specified end time in `hp_obj$end`
+`simulatehpp(hpp, start=0, end, n=NULL)` can simulate events up to a specified end time.
 ```{r}
-hpp_events <- simulatehpp(hpp_obj)
+hpp_events <- simulatehpp(hpp_obj, end=10)
 hpp_events
 ```
+
 or specify a vector of certain length.
 ```{r}
-hpp_obj$n <- 50
-simulatehpp(hpp_obj)
+simulatehpp(hpp_obj, end = 10, n = 50)
 ```
 
 - Hawkes Process: 
@@ -105,6 +105,12 @@ time, along with the maximum overall intensity of the Hawkes process
 given these events.
 ```{r}
 hp_events <- simulatehp(hp_obj, start = 0, end = 50)
+hp_events
+```
+
+You can also specify desired length of events. 
+```{r}
+hp_events <- simulatehp(hp_obj, start = 0, end = 50, n=10)
 hp_events
 ```
 
@@ -139,7 +145,7 @@ value given by `vec`. This can be a challenging optimisation problem
 and convergence is not guaranteed.
 ```{r}
 init <- rep(0.1,3)
-fit_hp <- fithp(init, hp_events$t, max(hp_events$t))
+fit_hp <- fithp(init, hp_events$events)
 fit_hp
 ```
 
@@ -168,24 +174,31 @@ process fit to data.
 
 ### Visualize the intensity function
 
-To plot the inputted events with the intensity, specify plot_events=TRUE.
+`drawHPPIntensity(hpp, events, color = "red", start = 0, end = max(events), fit=FALSE, int_title = "Intensity homogeneous Poisson Process")` plots the intensity of a homogeneous poisson process. To plot the events along with intensity, set plot_events=TRUE. 
 ```{r,fig.width=4,fig.height=4}
 drawHPPIntensity(fit_hpp, events = hpp_events,
                  color = "red", plot_events=TRUE)
 ```
 
-
-`drawHPIntensity(hp_obj, start, end, history=0, events, color = 1, i = 1, 
-add=FALSE, fit=FALSE, plot_events=FALSE, vec=NULL, int_title="Hawkes 
-Intensity")`
-plots the intensity of a hawkes process.
-```{r,fig.width=4,fig.height=5}
-drawHPIntensity(fit_hp, start = 0, end = max(hp_events$t),
-                history = 0, events = hp_events$t, plot_events = TRUE)
+To plot the fitted intensity on the inputted events, specify fit=TRUE.
+```{r,fig.width=4,fig.height=4}
+drawHPPIntensity(fit_hpp, events=hp_events$events,
+                 color = "red", fit=TRUE, plot_events=TRUE)
 ```
 
-`drawUniMMHPIntensity(mmhp, simulation, add = FALSE,
-color = 1, given_main = "Intensity Plot of MMHP")` plots the intensity of a 
+`drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")` plots the intensity of a hawkes process. To plot the events along with intensity, set plot_events=TRUE. 
+```{r,fig.width=4,fig.height=5}
+drawHPIntensity(fit_hp, start = min(hp_events$events), end = max(hp_events$events), history = 0, events = hp_events$events, plot_events = TRUE)
+```
+
+To plot the fitted intensity on the inputted events, set fit=TRUE.
+```{r,fig.width=4,fig.height=5}
+drawHPIntensity(fit_hp, start = min(hp_events$events), end = max(hp_events$events),
+                history = 0, events = hp_events$events, fit=TRUE, plot_events=TRUE)
+```
+
+`drawUniMMHPIntensity(mmhp, simulation, add = FALSE, fit=FALSE, 
+color = 1, int_title = "Intensity Plot of MMHP")` plots the intensity of a 
 mmhp process. 
 ```{r,fig.width=4,fig.height=5}
 drawUniMMHPIntensity(mmhp_obj, mmhp_events)
@@ -230,25 +243,25 @@ including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
 ```{r,fig.width=4,fig.height=4}
-diagpp(hp_obj,hp_events$t)
+diagpp(hp_obj,hp_events$events)
 ```
 
 `rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
 
 ```{r}
-rawresidual(hp_obj,hp_events$t)
+rawresidual(hp_obj,hp_events$events)
 ```
 
 `pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
 
 ```{r}
-pearsonresidual(hp_obj,hp_events$t)
+pearsonresidual(hp_obj,hp_events$events)
 ```
 
 `intensityqqplot(object, events)` gives both qqplot and intensity plot. 
 
 ```{r,fig.width=7,fig.height=4}
-intensityqqplot(hp_obj, hp_events$t)
+intensityqqplot(hp_obj, hp_events$events)
 ```
 
 
