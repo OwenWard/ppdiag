@@ -4,13 +4,23 @@
 \alias{simulatemmhp}
 \title{Simulate Markov Modulated Hawkes Process}
 \usage{
-simulatemmhp(mmhp, n = 1, given_state = FALSE, states = NULL, seed = NULL, ...)
+simulatemmhp(
+  mmhp,
+  n = 1,
+  start = 0,
+  given_state = FALSE,
+  states = NULL,
+  seed = NULL,
+  ...
+)
 }
 \arguments{
 \item{mmhp}{a mmhp object including its Q, delta, events, lambda0, 
 lambda1, beta and alpha.}
 
 \item{n}{number of points to simulate.}
+
+\item{start}{start time for simulation}
 
 \item{given_state}{if the hidden state trajectory is given.
 If `TRUE`, then simulate according to the given state. 
