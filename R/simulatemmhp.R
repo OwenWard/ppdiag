@@ -7,6 +7,7 @@
 #' lambda1, beta and alpha.
 #' @param n number of points to simulate.
 #' @param seed seed for the random number generator.
+#' @param start start time for simulation
 #' @param given_state if the hidden state trajectory is given.
 #'  If `TRUE`, then simulate according to the given state. 
 #'  Default to `FALSE`
@@ -27,7 +28,7 @@
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x, n = 10)
-simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
+simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
                          states = NULL, seed = NULL, ...) {
   if(!is.null(seed)){
     set.seed(seed)
@@ -64,7 +65,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
     x <- rep(NA, n * 10)
     z <- rep(NA, n * 10)
     z[1] <- zt[1] <- initial
-    x[1] <- events[1] <- 0
+    x[1] <- events[1] <- start
     lambda.max <- 0
     i <- 1 # index for state
     j <- 2 # index for event
@@ -135,7 +136,7 @@ simulatemmhp <- function(mmhp, n = 1, given_state = FALSE,
     z <- states$z
     ending <- states$ending
     zt[1] <- z[1]
-    events[1] <- 0
+    events[1] <- start
     lambda.max <- 0
     i <- 1 # index for state
     j <- 2 # index for event
