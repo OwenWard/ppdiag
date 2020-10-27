@@ -30,7 +30,7 @@ These currently include:
 - Simulating data from a specified point process
 - Fitting a specified point process model to data
 - Evaluating the fit of a point process model to data using 
-several diagnostic tools.
+several diagnostic tools
 
 ## Installation
 
