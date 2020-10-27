@@ -3,7 +3,7 @@
 #' Compensators for MMHP, HP HPP, and MMPP models
 #'
 #' @param object a social network model
-#' @param events event times
+#' @param events event times, which can have first value as 0
 #' @return compensator vector of rescaled interevent times
 #' @export
 #'
@@ -44,7 +44,9 @@ compensator.hp <- function(object, events) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
-  
+  if(events[1] == 0 ){
+    events <- events[-1]
+  }
   N <- length(events)
   Lambda <- rep(0,N)
   r <- 0
@@ -68,9 +70,16 @@ compensator.mmhp <- function(object, events) {
   beta <- object$beta
   q1 <- object$Q[1, 2]
   q2 <- object$Q[2, 1]
-  n <- length(events) - 1
-  interevent <- events[-1] - events[-(n + 1)]
-  pzt <- mmhp_event_state(params = object, events)$pzt
+  if(events[1] == 0) {
+    n <- length(events) - 1
+    interevent <- events[-1] - events[-(n + 1)]
+    pzt <- mmhp_event_state(params = object, events[-1])$pzt
+  }
+  else {
+    n <- length(events)
+    interevent <- diff(c(0,events))
+    pzt <- mmhp_event_state(params = object, events)$pzt
+  }
   ## compute compensator for Hawkes process
   Lambda <- rep(0, n)
   A <- 0
@@ -87,6 +96,9 @@ compensator.mmhp <- function(object, events) {
 #' @rdname compensator
 #' @export
 compensator.hpp <- function(object, events) {
+  if(events[1] == 0) {
+    events <- events[-1]
+  }
   N <- length(events)
   lambda <- object$lambda
   Lambda <- rep(0,N)

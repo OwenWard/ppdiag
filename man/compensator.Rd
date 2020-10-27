@@ -24,7 +24,7 @@ compensator(object, events)
 \arguments{
 \item{object}{a social network model}
 
-\item{events}{event times}
+\item{events}{event times, which can have first value as 0}
 }
 \value{
 compensator vector of rescaled interevent times
