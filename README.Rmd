@@ -65,7 +65,7 @@ sim_hp
 We can readily evaluate the fit of a homogeneous Poisson process to this
 data.
 
-```{r fit hpp}
+```{r fit_hpp}
 est_hpp <- fithpp(sim_hp$events)
 est_hpp
 
@@ -73,7 +73,7 @@ diagpp(est_hpp, events = sim_hp$events)
 ```
 
 
-```{r fit hp}
+```{r fit_hp}
 hp_est <- fithp(events = sim_hp$events)
 diagpp(hp_est, events = sim_hp$events)
 
@@ -102,20 +102,20 @@ mmhp_events <- simulatemmhp(mmhp_obj, n = 50)
 We can easily fit a homogeneous Poisson process and visualise the goodness of 
 fit.
 
-```{r fit hpp to mmhp}
+```{r fit_hpp_to_mmhp}
 est_hpp <- fithpp(events = mmhp_events$events)
 diagpp(est_hpp,mmhp_events$events)
 ```
 
 Similarly for a Hawkes process.
 
-```{r fit hp to mmhp}
+```{r fit_hp_to_mmhp}
 est_hp <- fithp(events = mmhp_events$events)
 diagpp(est_hp,mmhp_events$events)
 ```
 
 We can then compare to the true point process model.
 
-```{r fit mmhp}
+```{r fit_mmhp}
 diagpp(mmhp_obj,mmhp_events$events)
 ```
