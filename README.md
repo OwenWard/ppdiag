@@ -55,24 +55,19 @@ sim_hp <- simulatehp(hp_obj, end = 200)
 #> Simulating up to endtime. To simulate n events specify n.
 sim_hp
 #> $events
-#>  [1]   2.723114   2.993199   3.963697   4.062089   4.733162   5.771615
-#>  [7]   5.801569   6.737178   7.324133   7.580205   7.927028   8.318965
-#> [13]   8.594809   8.700487   8.930449  11.034292  19.594631  23.587682
-#> [19]  24.249187  24.502221  24.730912  24.830784  25.455628  25.624256
-#> [25]  26.174545  27.384280  28.274065  35.660567  36.194102  37.395211
-#> [31]  50.831025  54.803144  55.540575  56.597133  57.734444  58.257178
-#> [37]  61.436918  62.139664  63.006682  79.273183  90.417723  91.214349
-#> [43]  93.394879  93.619564  95.868741  97.359707  99.655887 109.004057
-#> [49] 112.206048 112.634570 115.240553 115.434911 116.823687 116.900862
-#> [55] 116.945534 117.173174 117.347027 117.546846 118.774701 119.024396
-#> [61] 119.580934 119.623597 120.010155 120.833438 120.933445 120.937347
-#> [67] 121.490504 121.521778 141.603114 144.167430 148.089370 157.012320
-#> [73] 159.289656 161.772975 164.250479 164.696688 165.156135 165.440139
-#> [79] 165.679162 166.099657 168.119607 173.508999 183.401147 184.252067
-#> [85] 185.185439 189.379031 189.582998 195.823527
+#>  [1]   8.761899  21.036980  21.991337  23.391633  24.177857  24.511210
+#>  [7]  25.702796  25.937654  27.373773  31.520000  31.877112  34.467070
+#> [13]  38.461086  39.522600  39.964184  47.776783  49.943636  59.448151
+#> [19]  83.012201  99.536252 100.307178 100.372424 100.652395 101.729779
+#> [25] 121.426380 123.377771 128.142991 137.725687 138.118089 138.932666
+#> [31] 140.695602 145.911693 145.942575 147.400560 148.619123 150.197754
+#> [37] 152.238040 153.583899 157.581572 157.814416 157.815367 158.223065
+#> [43] 158.466506 159.474204 159.917234 160.623121 160.698534 162.257757
+#> [49] 162.703395 163.348421 164.191265 168.991314 179.069977 180.477806
+#> [55] 191.810877 195.686487 196.995866 197.788781 197.951924
 #> 
 #> $lambda.max
-#> [1] 1.59166
+#> [1] 1.086243
 ```
 
 We can readily evaluate the fit of a homogeneous Poisson process to this
@@ -82,24 +77,19 @@ data.
 est_hpp <- fithpp(sim_hp$events)
 est_hpp
 #> $lambda
-#> [1] 0.4557214
+#> [1] 0.3118558
 #> 
 #> $events
-#>  [1]   2.723114   2.993199   3.963697   4.062089   4.733162   5.771615
-#>  [7]   5.801569   6.737178   7.324133   7.580205   7.927028   8.318965
-#> [13]   8.594809   8.700487   8.930449  11.034292  19.594631  23.587682
-#> [19]  24.249187  24.502221  24.730912  24.830784  25.455628  25.624256
-#> [25]  26.174545  27.384280  28.274065  35.660567  36.194102  37.395211
-#> [31]  50.831025  54.803144  55.540575  56.597133  57.734444  58.257178
-#> [37]  61.436918  62.139664  63.006682  79.273183  90.417723  91.214349
-#> [43]  93.394879  93.619564  95.868741  97.359707  99.655887 109.004057
-#> [49] 112.206048 112.634570 115.240553 115.434911 116.823687 116.900862
-#> [55] 116.945534 117.173174 117.347027 117.546846 118.774701 119.024396
-#> [61] 119.580934 119.623597 120.010155 120.833438 120.933445 120.937347
-#> [67] 121.490504 121.521778 141.603114 144.167430 148.089370 157.012320
-#> [73] 159.289656 161.772975 164.250479 164.696688 165.156135 165.440139
-#> [79] 165.679162 166.099657 168.119607 173.508999 183.401147 184.252067
-#> [85] 185.185439 189.379031 189.582998 195.823527
+#>  [1]   8.761899  21.036980  21.991337  23.391633  24.177857  24.511210
+#>  [7]  25.702796  25.937654  27.373773  31.520000  31.877112  34.467070
+#> [13]  38.461086  39.522600  39.964184  47.776783  49.943636  59.448151
+#> [19]  83.012201  99.536252 100.307178 100.372424 100.652395 101.729779
+#> [25] 121.426380 123.377771 128.142991 137.725687 138.118089 138.932666
+#> [31] 140.695602 145.911693 145.942575 147.400560 148.619123 150.197754
+#> [37] 152.238040 153.583899 157.581572 157.814416 157.815367 158.223065
+#> [43] 158.466506 159.474204 159.917234 160.623121 160.698534 162.257757
+#> [49] 162.703395 163.348421 164.191265 168.991314 179.069977 180.477806
+#> [55] 191.810877 195.686487 196.995866 197.788781 197.951924
 #> 
 #> attr(,"class")
 #> [1] "hpp"
@@ -107,16 +97,16 @@ est_hpp
 diagpp(est_hpp, events = sim_hp$events)
 ```
 
-<img src="man/figures/README-fit_hpp-1.png" width="100%" /><img src="man/figures/README-fit_hpp-2.png" width="100%" />
+<img src="man/figures/README-fit_hpp-1.png" width="50%" /><img src="man/figures/README-fit_hpp-2.png" width="50%" />
 
     #> 
-    #> Raw residual: 88
-    #> Pearson residual: -1.838296
+    #> Raw residual: 59
+    #> Pearson residual: -4.892999
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.24484, p-value = 3.941e-05
+    #> D = 0.25528, p-value = 0.0007062
     #> alternative hypothesis: two-sided
 
 ``` r
@@ -124,15 +114,15 @@ hp_est <- fithp(events = sim_hp$events)
 diagpp(hp_est, events = sim_hp$events)
 ```
 
-<img src="man/figures/README-fit_hp-1.png" width="100%" /><img src="man/figures/README-fit_hp-2.png" width="100%" />
+<img src="man/figures/README-fit_hp-1.png" width="50%" /><img src="man/figures/README-fit_hp-2.png" width="50%" />
 
-    #> Raw residual: -0.0002747434
-    #> Pearson residual: 1.001754
+    #> Raw residual: -0.0003818003
+    #> Pearson residual: 3.40775
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.06227, p-value = 0.8633
+    #> D = 0.072544, p-value = 0.8931
     #> alternative hypothesis: two-sided
 
 ## MMHP Example
@@ -188,7 +178,7 @@ est_hpp <- fithpp(events = mmhp_events$events)
 diagpp(est_hpp,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_hpp_to_mmhp-1.png" width="100%" /><img src="man/figures/README-fit_hpp_to_mmhp-2.png" width="100%" />
+<img src="man/figures/README-fit_hpp_to_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_hpp_to_mmhp-2.png" width="50%" />
 
     #> 
     #> Raw residual: 51
@@ -197,7 +187,7 @@ diagpp(est_hpp,mmhp_events$events)
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.24383, p-value = 0.004205
+    #> D = 0.096536, p-value = 0.7036
     #> alternative hypothesis: two-sided
 
 Similarly for a Hawkes process.
@@ -207,15 +197,15 @@ est_hp <- fithp(events = mmhp_events$events)
 diagpp(est_hp,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_hp_to_mmhp-1.png" width="100%" /><img src="man/figures/README-fit_hp_to_mmhp-2.png" width="100%" />
+<img src="man/figures/README-fit_hp_to_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_hp_to_mmhp-2.png" width="50%" />
 
-    #> Raw residual: -9.295726e-05
-    #> Pearson residual: 0.2062409
+    #> Raw residual: -8.216385e-05
+    #> Pearson residual: 0.01676284
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.074583, p-value = 0.9242
+    #> D = 0.094115, p-value = 0.7321
     #> alternative hypothesis: two-sided
 
 We can then compare to the true point process model.
@@ -224,13 +214,13 @@ We can then compare to the true point process model.
 diagpp(mmhp_obj,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_mmhp-1.png" width="100%" /><img src="man/figures/README-fit_mmhp-2.png" width="100%" />
+<img src="man/figures/README-fit_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_mmhp-2.png" width="50%" />
 
-    #> Raw residual: 9.358327
-    #> Pearson residual: 13.55225
+    #> Raw residual: 12.40562
+    #> Pearson residual: 25.07594
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.077116, p-value = 0.9051
+    #> D = 0.17066, p-value = 0.09633
     #> alternative hypothesis: two-sided
