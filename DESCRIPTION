@@ -2,9 +2,8 @@ Package: ppdiag
 Type: Package
 Title: Diagnosis and Visualizations Tools for Temporal Point Processes
 Version: 0.0.0.9000
-Author: Sally Sun, Jing Wu, Owen G. Ward, Tian Zheng, Xiaoxi Zhao
 Authors@R: 
-    c(person(given = "Owen",
+    c(person(given = "Owen G.",
              family = "Ward",
              role = c("aut","cre"),
              email = "owengward@gmail.com",

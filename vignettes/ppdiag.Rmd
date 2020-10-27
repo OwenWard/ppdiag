@@ -271,4 +271,9 @@ intensityqqplot(hp_obj, hp_events$events)
 
 
 ### MMHP
-To be completed.
+
+
+```{r}
+diagpp(mmhp_obj,mmhp_events$events)
+```
+
