@@ -16,6 +16,9 @@ Authors@R:
              role = "aut"),
       person(given = "Xiaoxi",
              family = "Zhao",
+             role = "aut"),
+      person(given = "Tian",
+             family = "Zheng",
              role = "aut"))
 Description: A suite of diagnostic tools for univariate point processes.
     This includes tools for simulating and fitting both common and more
