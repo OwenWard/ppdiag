@@ -3,14 +3,14 @@ Type: Package
 Title: Diagnosis and Visualizations Tools for Temporal Point Processes
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "Owen G.",
+    c(person(given = "Sally",
+             family = "Sun",
+             role = "aut"),
+      person(given = "Owen G.",
              family = "Ward",
              role = c("aut","cre"),
              email = "owengward@gmail.com",
              comment = c(ORCID = "0000-0002-9678-3542")),
-      person(given = "Sally",
-             family = "Sun",
-             role = "aut"),
       person(given = "Jing",
              family = "Wu",
              role = "aut"),
