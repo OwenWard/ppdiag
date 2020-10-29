@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2020 Xiaoxi Zhao;Owen G Ward;Jing Wu;Sally Sun;
+Copyright (c) 2020 Owen G Ward;Jing Wu;Sally Sun;Xiaoxi Zhao;Tian Zheng;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
