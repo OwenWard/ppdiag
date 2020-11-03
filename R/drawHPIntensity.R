@@ -57,7 +57,7 @@ drawHPIntensity <- function(hp,
         alpha <- hp$alpha
         beta <- hp$beta
       }else{
-        message("Using events provided and not fitting. Set fit=TRUE to fit events. ")
+        message("Using the hp object. Set fit=TRUE to fit events. ")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta

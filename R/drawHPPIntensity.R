@@ -35,7 +35,7 @@ drawHPPIntensity <- function(hpp, events, color = "red",
 	    lambda <- hpp_obj$lambda
 	    n <- hpp_obj$n
 	  }else{
-	    message("Using events provided and not fitting. Set fit=TRUE to fit events. ")
+	    message("Using the hpp object. Set fit=TRUE to fit events. ")
 	    lambda=hpp$lambda
 	    n <- hpp$n
 	  }
