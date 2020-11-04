@@ -46,10 +46,13 @@ drawHPIntensity <- function(hp,
     #events <- t
 	  
     if(is.null(old_events)){
+      if(is.null(events)){
+        stop("Events must be provided either in the object or in the events argument. ")
+      }
       if(fit==TRUE){
         message("Fitting provided events.")
         if(is.null(vec)){
-          hp_obj <- fithp(events)
+          hp_obj <- fithp(events=events)
         }else{
           hp_obj <- fithp(vec=vec, events)
         }
@@ -57,37 +60,42 @@ drawHPIntensity <- function(hp,
         alpha <- hp$alpha
         beta <- hp$beta
       }else{
-        message("Using the hp object. Set fit=TRUE to fit events. ")
+        message("Using the hp object. Set fit=TRUE to fit events provided. ")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
-      }
-    }else if(!is.null(old_events) && !all(events==old_events)){
-      if(fit==TRUE){
-        message("Events in object and events provided don't match. Fitting provided events.")
-        if(is.null(vec)){
-          hp_obj <- fithp(events)
-        }else{
-          hp_obj <- fithp(vec=vec, events)
-        }
-        lambda0 <- hp$lambda0
-        alpha <- hp$alpha
-        beta <- hp$beta
-      }else{
-        message("Events in object and events provided don't match. Using the object. ")
-        lambda0 <- hp$lambda0
-        alpha <- hp$alpha
-        beta <- hp$beta
-        events <- old_events
-        end <- max(events)
-        n <- length(events)
       }
     }else{
-      lambda0 <- hp$lambda0
-      alpha <- hp$alpha
-      beta <- hp$beta
-      n <- length(events)
+      if(is.null(events)){
+        message("No events provided. Using the hpp object.")
+        lambda0 <- hp$lambda0
+        alpha <- hp$alpha
+        beta <- hp$beta
+        events <- hp$events
+        if(start>0){
+          start <- min(events)
+        }
+        end <- max(events)
+      }else{
+        if(fit==TRUE){
+          message("Fitting provided events. Set events=NULL to use the events in object.")
+          if(is.null(vec)){
+            hp_obj <- fithp(events=events)
+          }else{
+            hp_obj <- fithp(vec=vec, events)
+          }
+          lambda0 <- hp$lambda0
+          alpha <- hp$alpha
+          beta <- hp$beta
+        }else{
+          message("Using the hpp object. Set fit=TRUE to fit events provided. ")
+          lambda0 <- hp$lambda0
+          alpha <- hp$alpha
+          beta <- hp$beta
+        }
+      }
     }
+    
     
     y_max <- hawkes_max_intensity(hp,events)
     ylim <-  c(0,y_max)

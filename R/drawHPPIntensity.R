@@ -29,34 +29,42 @@ drawHPPIntensity <- function(hpp, events, color = "red",
 	old_events <- hpp$events
 	
 	if(is.null(old_events)){
+	  if(is.null(events)){
+	    stop("Events must be provided either in the object or in the events argument. ")
+	  }
 	  if(fit==TRUE){
 	    message("Fitting provided events.")
 	    hpp_obj <- fithpp(events)
 	    lambda <- hpp_obj$lambda
 	    n <- hpp_obj$n
 	  }else{
-	    message("Using the hpp object. Set fit=TRUE to fit events. ")
+	    message("Using the hpp object. Set fit=TRUE to fit events provided. ")
 	    lambda=hpp$lambda
-	    n <- hpp$n
-	  }
-	}else if(!is.null(old_events) && !all(events==old_events)){
-	  if(fit==TRUE){
-	    message("Events in object and events provided don't match. Fitting provided events.")
-	    hpp_obj <- fithpp(events)
-	    lambda <- hpp_obj$lambda
-	    n <- hpp_obj$n
-	  }else{
-	    message("Events in object and events provided don't match. Using the object. ")
-	    lambda=hpp$lambda
-	    events <- old_events
-	    end <- max(events)
 	    n <- hpp$n
 	  }
 	}else{
-	  lambda <- hpp$lambda
-	  n <- hpp$n
+	  if(is.null(events)){
+	    message("No events provided. Using the hpp object.")
+	    lambda <- hpp$lambda
+	    n <- hpp$n
+	    events <- hpp$events
+	    if(start>0){
+	      start <- min(events)
+	    }
+	    end <- max(events)
+	  }else{
+	    if(fit==TRUE){
+	      message("Fitting provided events. Set events=NULL to use the events in object.")
+	      hpp_obj <- fithpp(events)
+	      lambda <- hpp_obj$lambda
+	      n <- hpp_obj$n
+	    }else{
+	      message("Using the hpp object. Set fit=TRUE to fit events provided. ")
+	      lambda <- hpp$lambda
+	      n <- hpp$n
+	    }
+	  }
 	}
-	
 	fisher <- 1/lambda
 	plot(c(start,end), c(0,(lambda+fisher)*2), type = "n",
 	     xlab = "event times", ylab = "lambda", 
