@@ -49,6 +49,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/intro.html">`ppdiag`, diagnostic tools for temporal Point Processes</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -339,9 +351,11 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="fu"><a href="../reference/plothpp_step.html">plothpp_step</a></span><span class="op">(</span><span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span>, n<span class="op">=</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; 50 events simulated. To simulate up to an endtime set n=NULL.</span></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-14-1.png" width="384"></p>
-<p><code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")</a></code> plots the intensity of a hawkes process. To plot the events along with intensity, set plot_events=TRUE.</p>
+<p><code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")</a></code> plots the intensity of a hawkes process. To plot the events along with intensity, set <code>plot_events=TRUE</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, history <span class="op">=</span> <span class="fl">0</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, 
+                end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, history <span class="op">=</span> <span class="fl">0</span>,
+                events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-15-1.png" width="384"></p>
 <p>To plot the fitted intensity on the inputted events, set fit=TRUE.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
