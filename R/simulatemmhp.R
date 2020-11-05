@@ -51,6 +51,11 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
   alpha <- mmhp$alpha
   beta <- mmhp$beta
   
+  old_events <- mmhp$events
+  if(!is.null(old_events)){
+    message("Events in the mmhp object will be overwritten by simulated events.")
+  }
+  
   if(alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
   }
@@ -128,8 +133,9 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     # x <- round(x,3)
     # events <- round(events,3)
     message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
+    mmhp$events <- events[1:(n + 1)]
     return(list(x = x[1:i], z = z[1:i], 
-                events = events[1:(n + 1)], zt = zt[1:(n + 1)],
+                events = mmhp$events, zt = zt[1:(n + 1)],
                 lambda.max = lambda.max, start = x[1], end = x[i]))
   } else {
     x <- states$x
@@ -182,7 +188,8 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
       }
     }
     message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
-    return(list(events = events[1:(j - 1)][events[1:(j - 1)] <= ending],
+    mmhp$events <- events[1:(j - 1)][events[1:(j - 1)] <= ending]
+    return(list(events = mmhp$events,
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
                 lambda.max = lambda.max))
   }

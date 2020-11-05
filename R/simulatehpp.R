@@ -20,7 +20,7 @@ simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
   }
   old_events <- hpp$events
   if(!is.null(old_events)){
-    stop("Event time already in the hpp object.")
+    message("Events in the hpp object will be overwritten by simulated events.")
   }
   
   if(!is.null(start) && !is.null(end)){
@@ -39,8 +39,9 @@ simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
       message(paste(n, " events simulated. To simulate up to an endtime set n=NULL.",
                     sep=""))
     }
-    hpp <- cumsum(c(0,-log(runif(n))/lambda))
-    return (hpp[2:length(hpp)])
+    events <- cumsum(c(0,-log(runif(n))/lambda))
+    hpp$events <- events[2:length(events)]
+    return (hpp$events)
   }else{
     if(is.null(end)){
       stop("Specify either endtime or n to simulate events. ")
@@ -52,17 +53,17 @@ simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
         u <- runif(1)
       }
       t <- -log(u)/lambda
-      hpp <- c()
+      events <- c()
       while(t<=end){
-        hpp <- append(hpp,t)
+        events <- append(events,t)
         u <- runif(1)
         while(u==0){
           u <- runif(1)
         }
         t <- t-log(u)/lambda
       }
-      
-      return (sort(hpp))
+      hpp$events <- sort(events)
+      return (hpp$events)
     }
 
   }

@@ -23,7 +23,7 @@ simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
   }
   old_events <- hp$events
   if(!is.null(old_events)){
-    stop("Event time already in the hp object.")
+    message("Events in the hp object will be overwritten by simulated events.")
   }
   lambda0 <- hp$lambda0
   alpha <- hp$alpha
@@ -136,8 +136,8 @@ simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
       i <- i + 1
     }
   }
+  hp$events <- sort(t)
 
-  
-  return(list(events = sort(t), lambda.max = lambda.max))
+  return(list(events = hp$events, lambda.max = lambda.max))
 }
 
