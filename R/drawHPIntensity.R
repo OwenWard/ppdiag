@@ -67,7 +67,7 @@ drawHPIntensity <- function(hp,
       }
     }else{
       if(is.null(events)){
-        message("No events provided. Using the hpp object.")
+        message("No events provided. Using the hp object.")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
@@ -88,7 +88,7 @@ drawHPIntensity <- function(hp,
           alpha <- hp$alpha
           beta <- hp$beta
         }else{
-          message("Using the hpp object. Set fit=TRUE to fit events provided. ")
+          message("Using the hp object. Set fit=TRUE to fit events provided. ")
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
           beta <- hp$beta
@@ -162,6 +162,7 @@ drawHPIntensity <- function(hp,
       # maximum=TRUE)$objective)
       # }
     }
+    legend("topleft", "Events", col = "blue", pch = 1)
   }
   else {
     # to add to an already created plot
@@ -217,5 +218,5 @@ drawHPIntensity <- function(hp,
                lty = 2, col = color)
     }
   }
-  legend("topleft", "Events", col = "blue", pch = 1)
+  
 }
