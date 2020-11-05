@@ -87,16 +87,16 @@
 <!-- install.packages("ppdiag") -->
 <!-- ``` -->
 <p>The in development version of this package is available from <a href="https://github.com/OwenWard/ppdiag">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"OwenWard/ppdiag"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"OwenWard/ppdiag"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>To illustrate some of the basic functionality of this package, we can simulate data from a specified Hawkes process and examine our diagnostic results when we fit a homogeneous Poisson process to this data.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span>
 
 <span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hp.html">hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.35</span>, beta <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="va">sim_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulatehp.html">simulatehp</a></span><span class="op">(</span><span class="va">hp_obj</span>, end <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
@@ -115,10 +115,10 @@
 <span class="co">#&gt; [55] 191.810877 195.686487 196.995866 197.788781 197.951924</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $lambda.max</span>
-<span class="co">#&gt; [1] 1.086243</span></pre></div>
+<span class="co">#&gt; [1] 1.086243</span></code></pre></div>
 <p>We can readily evaluate the fit of a homogeneous Poisson process to this data.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
 <span class="va">est_hpp</span>
 <span class="co">#&gt; $lambda</span>
 <span class="co">#&gt; [1] 0.3118558</span>
@@ -138,7 +138,7 @@
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "hpp"</span>
 
-<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hpp</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hpp</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hpp-1.png" width="50%"><img src="reference/figures/README-fit_hpp-2.png" width="50%"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#&gt; </span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Raw residual: 59</span></span>
@@ -149,9 +149,9 @@
 <span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; data:  r</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; D = 0.25528, p-value = 0.0007062</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">hp_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hp_est</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hp_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hp_est</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp-1.png" width="50%"><img src="reference/figures/README-fit_hp-2.png" width="50%"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#&gt; Raw residual: -0.0003818003</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; Pearson residual: 3.40775</span></span>
@@ -166,8 +166,8 @@
 <h2 class="hasAnchor">
 <a href="#mmhp-example" class="anchor"></a>MMHP Example</h2>
 <p>This is particularly useful for more complex point processes, such as the Markov Modulated Hawkes Process. We can simulate events from this model and examine the fit of simpler point processes to this data.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mmhp.html">mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
           lambda0 <span class="op">=</span> <span class="fl">0.2</span>,
@@ -202,11 +202,11 @@
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "mmhp"</span>
 <span class="va">mmhp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulatemmhp.html">simulatemmhp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
-<span class="co">#&gt; 50 events simulated. To simulate up to endtime set given_states=TRUE and provide states.</span></pre></div>
+<span class="co">#&gt; 50 events simulated. To simulate up to endtime set given_states=TRUE and provide states.</span></code></pre></div>
 <p>We can easily fit a homogeneous Poisson process and visualise the goodness of fit.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hpp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hpp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hpp_to_mmhp-1.png" width="50%"><img src="reference/figures/README-fit_hpp_to_mmhp-2.png" width="50%"></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt; </span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; Raw residual: 51</span></span>
@@ -218,9 +218,9 @@
 <span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; D = 0.096536, p-value = 0.7036</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>Similarly for a Hawkes process.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">est_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">est_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">est_hp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp_to_mmhp-1.png" width="50%"><img src="reference/figures/README-fit_hp_to_mmhp-2.png" width="50%"></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#&gt; Raw residual: -8.216385e-05</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Pearson residual: 0.01676284</span></span>
@@ -231,8 +231,8 @@
 <span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; D = 0.094115, p-value = 0.7321</span></span>
 <span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>We can then compare to the true point process model.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_mmhp-1.png" width="50%"><img src="reference/figures/README-fit_mmhp-2.png" width="50%"></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#&gt; Raw residual: 12.40562</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">#&gt; Pearson residual: 25.07594</span></span>

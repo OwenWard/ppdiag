@@ -76,8 +76,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span></code></pre></div>
 <p>This vignette provides an introduction to the functions available in <code>ppdiag</code> to evaluate the fit of univariate temporal point processes.</p>
 <p>To achieve this, we currently include a range of functions which allow a user to:</p>
 <ul>
@@ -92,8 +92,8 @@
 <li>Homogeneous Poisson Process:</li>
 </ul>
 <p><code><a href="../reference/hpp.html">hpp(lambda, start=0, end=1, n = NULL)</a></code> creates an object of a list type in class ‘hpp’.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">hpp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hpp.html">hpp</a></span><span class="op">(</span>lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hpp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hpp.html">hpp</a></span><span class="op">(</span>lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="va">hpp_obj</span>
 <span class="co">#&gt; $lambda</span>
 <span class="co">#&gt; [1] 1</span>
@@ -102,13 +102,13 @@
 <span class="co">#&gt; NULL</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hpp"</span></pre></div>
+<span class="co">#&gt; [1] "hpp"</span></code></pre></div>
 <ul>
 <li>Hawkes Process:</li>
 </ul>
 <p><code><a href="../reference/hp.html">hp(lambda0, alpha, beta, events = NULL)</a></code> creates an object of list type in class ‘hp’.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hp.html">hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>,alpha <span class="op">=</span> <span class="fl">0.45</span>,beta <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hp.html">hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>,alpha <span class="op">=</span> <span class="fl">0.45</span>,beta <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 <span class="va">hp_obj</span>
 <span class="co">#&gt; $lambda0</span>
 <span class="co">#&gt; [1] 0.1</span>
@@ -123,13 +123,13 @@
 <span class="co">#&gt; NULL</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hp"</span></pre></div>
+<span class="co">#&gt; [1] "hp"</span></code></pre></div>
 <ul>
 <li>Markov-Modulated Hawkes Process:</li>
 </ul>
 <p><code><a href="../reference/mmhp.html">mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)</a></code> creates an object of type in class ‘mmhp’.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mmhp.html">mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
           lambda0 <span class="op">=</span> <span class="fl">0.2</span>,
@@ -162,7 +162,7 @@
 <span class="co">#&gt; [1] 0.2</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "mmhp"</span></pre></div>
+<span class="co">#&gt; [1] "mmhp"</span></code></pre></div>
 </div>
 <div id="simulating-data" class="section level2">
 <h2 class="hasAnchor">
@@ -176,15 +176,15 @@ which is expected number of  --> <!-- events, or end, which is the expected end 
 are  --> <!-- provided, then the function will automatically simulate n events 
 regardless of --> <!-- the end time specified.  --></p>
 <p><code><a href="../reference/simulatehpp.html">simulatehpp(hpp, start=0, end, n=NULL)</a></code> can simulate events up to a specified end time.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">hpp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hpp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; Simulating up to endtime. To simulate n events specify n.</span>
 <span class="va">hpp_events</span>
 <span class="co">#&gt; [1] 1.178415 2.534481 3.128104 6.003689 6.761803 7.487947 7.695707 8.689093</span>
-<span class="co">#&gt; [9] 9.293207</span></pre></div>
+<span class="co">#&gt; [9] 9.293207</span></code></pre></div>
 <p>or specify a vector of certain length.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; 50 events simulated. To simulate up to an endtime set n=NULL.</span>
 <span class="co">#&gt;  [1]  0.4700093  0.5953848  1.8670876  2.7871657  3.0582515  3.4601903</span>
 <span class="co">#&gt;  [7]  5.0468293  6.0753797  7.0984900  7.4691327  8.0931062  8.4344650</span>
@@ -194,13 +194,13 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt; [31] 21.9436400 22.0885265 22.3400895 22.5296732 23.0349735 23.7458127</span>
 <span class="co">#&gt; [37] 23.9938145 24.1168559 25.6884496 26.8690773 27.9761357 29.5922001</span>
 <span class="co">#&gt; [43] 31.0374198 32.3288162 32.8542123 34.2270352 36.3186528 37.7887380</span>
-<span class="co">#&gt; [49] 38.3036130 39.8575757</span></pre></div>
+<span class="co">#&gt; [49] 38.3036130 39.8575757</span></code></pre></div>
 <ul>
 <li>Hawkes Process:</li>
 </ul>
 <p><code><a href="../reference/simulatehp.html">simulatehp(hp, start = 0, end, history = 0)</a></code> returns event times simulated from the Hawkes process specified by <code>hp</code>, up to some end time, along with the maximum overall intensity of the Hawkes process given these events.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehp.html">simulatehp</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, end <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehp.html">simulatehp</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, end <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; Simulating up to endtime. To simulate n events specify n.</span>
 <span class="va">hp_events</span>
 <span class="co">#&gt; $events</span>
@@ -211,10 +211,10 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt; [29] 26.800339 26.941980 27.424358 39.928420 44.344075 44.504103 48.385345</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $lambda.max</span>
-<span class="co">#&gt; [1] 2.294513</span></pre></div>
+<span class="co">#&gt; [1] 2.294513</span></code></pre></div>
 <p>You can also specify desired length of events.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehp.html">simulatehp</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, end <span class="op">=</span> <span class="fl">50</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatehp.html">simulatehp</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, end <span class="op">=</span> <span class="fl">50</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; 10 events simulated. To simulate up to endtime set n=NULL.</span>
 <span class="va">hp_events</span>
 <span class="co">#&gt; $events</span>
@@ -222,13 +222,13 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt;  [9] 46.09706 47.12153</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $lambda.max</span>
-<span class="co">#&gt; [1] 0.8813544</span></pre></div>
+<span class="co">#&gt; [1] 0.8813544</span></code></pre></div>
 <ul>
 <li>Markov-Modulated Hawkes Process:</li>
 </ul>
 <p><code><a href="../reference/simulatemmhp.html">simulatemmhp(mmhp, n = 1, ...)</a></code> simulates events from a specified Markov Modulated Hawkes process.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">mmhp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatemmhp.html">simulatemmhp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mmhp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulatemmhp.html">simulatemmhp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; 50 events simulated. To simulate up to endtime set given_states=TRUE and provide states.</span>
 <span class="va">mmhp_events</span>
 <span class="co">#&gt; $x</span>
@@ -264,7 +264,7 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt; [1] 0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $end</span>
-<span class="co">#&gt; [1] 95.60679</span></pre></div>
+<span class="co">#&gt; [1] 95.60679</span></code></pre></div>
 </div>
 <div id="fitting-a-point-process" class="section level2">
 <h2 class="hasAnchor">
@@ -274,8 +274,8 @@ regardless of --> <!-- the end time specified.  --></p>
 <li>Homogeneous Poisson Process:</li>
 </ul>
 <p><code><a href="../reference/fithpp.html">fithpp(hpp_events)</a></code> returns an object of class <code>hpp</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">fit_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">hpp_events</span><span class="op">)</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fit_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">hpp_events</span><span class="op">)</span>
 <span class="va">fit_hpp</span>
 <span class="co">#&gt; $lambda</span>
 <span class="co">#&gt; [1] 1.109086</span>
@@ -285,13 +285,13 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt; [9] 9.293207</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hpp"</span></pre></div>
+<span class="co">#&gt; [1] "hpp"</span></code></pre></div>
 <ul>
 <li>Hawkes Process:</li>
 </ul>
 <p><code><a href="../reference/fithp.html">fithp(vec,t,end)</a></code> returns an object of class <code>hp</code>, estimating the three parameters of the Hawkes process using <code>optim</code>, with the initial value given by <code>vec</code>. This can be a challenging optimisation problem and convergence is not guaranteed.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">3</span><span class="op">)</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">3</span><span class="op">)</span>
 <span class="va">fit_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithp.html">fithp</a></span><span class="op">(</span><span class="va">init</span>, <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
 <span class="va">fit_hp</span>
 <span class="co">#&gt; $lambda0</span>
@@ -308,7 +308,7 @@ regardless of --> <!-- the end time specified.  --></p>
 <span class="co">#&gt;  [9] 46.09706 47.12153</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hp"</span></pre></div>
+<span class="co">#&gt; [1] "hp"</span></code></pre></div>
 </div>
 <div id="diagnosing-the-fit-of-a-point-process-to-data" class="section level2">
 <h2 class="hasAnchor">
@@ -323,35 +323,38 @@ regardless of --> <!-- the end time specified.  --></p>
 <h3 class="hasAnchor">
 <a href="#visualize-the-intensity-function" class="anchor"></a>Visualize the intensity function</h3>
 <p><code><a href="../reference/drawHPPIntensity.html">drawHPPIntensity(hpp, events, color = "red", start = 0, end = max(events), fit=FALSE, int_title = "Intensity homogeneous Poisson Process")</a></code> plots the intensity of a homogeneous poisson process. To plot the events along with intensity, set plot_events=TRUE.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events <span class="op">=</span> <span class="va">hpp_events</span>,
-                 color <span class="op">=</span> <span class="st">"red"</span>, plot_events<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events <span class="op">=</span> <span class="va">hpp_events</span>,
+                 color <span class="op">=</span> <span class="st">"red"</span>, plot_events<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; Using the hpp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-12-1.png" width="384"></p>
 <p>To plot the fitted intensity on the inputted events, specify fit=TRUE.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events<span class="op">=</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>,
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events<span class="op">=</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>,
                  color <span class="op">=</span> <span class="st">"red"</span>, fit<span class="op">=</span><span class="cn">TRUE</span>, plot_events<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Warning in events == old_events: longer object length is not a multiple of</span>
-<span class="co">#&gt; shorter object length</span>
-<span class="co">#&gt; Events in object and events provided don't match. Fitting provided events.</span></pre></div>
+<span class="co">#&gt; Fitting provided events. Set events=NULL to use the events in object.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-13-1.png" width="384"></p>
 <p>You can also plot the event time counts for the homogeneous poisson process.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="../reference/plothpp_step.html">plothpp_step</a></span><span class="op">(</span><span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span>, n<span class="op">=</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; 50 events simulated. To simulate up to an endtime set n=NULL.</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plothpp_step.html">plothpp_step</a></span><span class="op">(</span><span class="fu"><a href="../reference/simulatehpp.html">simulatehpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span>, n<span class="op">=</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; 50 events simulated. To simulate up to an endtime set n=NULL.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-14-1.png" width="384"></p>
-<p><code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")</a></code> plots the intensity of a hawkes process. To plot the events along with intensity, set plot_events=TRUE.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, history <span class="op">=</span> <span class="fl">0</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<p><code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")</a></code> plots the intensity of a hawkes process. To plot the events along with intensity, set <code>plot_events=TRUE</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, 
+                end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, history <span class="op">=</span> <span class="fl">0</span>,
+                events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-15-1.png" width="384"></p>
 <p>To plot the fitted intensity on the inputted events, set fit=TRUE.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>,
-                history <span class="op">=</span> <span class="fl">0</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, fit<span class="op">=</span><span class="cn">TRUE</span>, plot_events<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>,
+                history <span class="op">=</span> <span class="fl">0</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span>, fit<span class="op">=</span><span class="cn">TRUE</span>, plot_events<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; Fitting provided events. Set events=NULL to use the events in object.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-16-1.png" width="384"></p>
 <p><code><a href="../reference/drawUniMMHPIntensity.html">drawUniMMHPIntensity(mmhp, simulation, add = FALSE, fit=FALSE,  color = 1, int_title = "Intensity Plot of MMHP")</a></code> plots the intensity of a mmhp process.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="fu"><a href="../reference/drawUniMMHPIntensity.html">drawUniMMHPIntensity</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, <span class="va">mmhp_events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawUniMMHPIntensity.html">drawUniMMHPIntensity</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, <span class="va">mmhp_events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-17-1.png" width="384"></p>
 </div>
 <div id="diagnostics-tools-of-the-models" class="section level3">
@@ -361,8 +364,8 @@ regardless of --> <!-- the end time specified.  --></p>
 <li>Homogeneous Poisson Process</li>
 </ul>
 <p><code><a href="../reference/diagpp.html">diagpp(object, events, pzt = NULL)</a></code> gives diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals in one function.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-18-1.png" width="384"><img src="ppdiag_files/figure-html/unnamed-chunk-18-2.png" width="384"></p>
 <pre><code>#&gt; 
 #&gt; Raw residual: 9
@@ -374,24 +377,24 @@ regardless of --> <!-- the end time specified.  --></p>
 #&gt; D = 0.22546, p-value = 0.6711
 #&gt; alternative hypothesis: two-sided</code></pre>
 <p><code><a href="../reference/rawresidual.html">rawresidual(object, events, start = min(events),end = max(events))</a></code> gives rawresidual only.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="fu"><a href="../reference/rawresidual.html">rawresidual</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span>
-<span class="co">#&gt; [1] 9</span></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/rawresidual.html">rawresidual</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span>
+<span class="co">#&gt; [1] 9</span></code></pre></div>
 <p><code><a href="../reference/pearsonresidual.html">pearsonresidual(object, events, start = min(events),end = max(events))</a></code> gives pearsonresidual only.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="../reference/pearsonresidual.html">pearsonresidual</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.2932067</span></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pearsonresidual.html">pearsonresidual</a></span><span class="op">(</span><span class="va">hpp_obj</span>,<span class="va">hpp_events</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.2932067</span></code></pre></div>
 <p><code><a href="../reference/intensityqqplot.html">intensityqqplot(object, events)</a></code> gives both qqplot and intensity plot.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span><span class="va">hpp_obj</span>, <span class="va">hpp_events</span><span class="op">)</span>
-<span class="co">#&gt; Using events provided and not fitting. Set fit=TRUE to fit events.</span></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span><span class="va">hpp_obj</span>, <span class="va">hpp_events</span><span class="op">)</span>
+<span class="co">#&gt; Using the hpp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-21-1.png" width="672"></p>
 <ul>
 <li>Hawkes Process</li>
 </ul>
 <p><code><a href="../reference/diagpp.html">diagpp(object, events)</a></code> gives diagnostics of the model, including a qq plot, a ks plot, ks test, raw and pearson residuals in one function.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit">
-<span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-22-1.png" width="384"><img src="ppdiag_files/figure-html/unnamed-chunk-22-2.png" width="384"></p>
 <pre><code>#&gt; Raw residual: -1.336609
 #&gt; Pearson residual: 3.967234
@@ -402,24 +405,24 @@ regardless of --> <!-- the end time specified.  --></p>
 #&gt; D = 0.33794, p-value = 0.1605
 #&gt; alternative hypothesis: two-sided</code></pre>
 <p><code><a href="../reference/rawresidual.html">rawresidual(object, events, start = min(events),end = max(events))</a></code> gives rawresidual only.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit">
-<span class="fu"><a href="../reference/rawresidual.html">rawresidual</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="co">#&gt; [1] -1.336609</span></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/rawresidual.html">rawresidual</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="co">#&gt; [1] -1.336609</span></code></pre></div>
 <p><code><a href="../reference/pearsonresidual.html">pearsonresidual(object, events, start = min(events),end = max(events))</a></code> gives pearsonresidual only.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="fu"><a href="../reference/pearsonresidual.html">pearsonresidual</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="co">#&gt; [1] -1.651203</span></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pearsonresidual.html">pearsonresidual</a></span><span class="op">(</span><span class="va">hp_obj</span>,<span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="co">#&gt; [1] -1.651203</span></code></pre></div>
 <p><code><a href="../reference/intensityqqplot.html">intensityqqplot(object, events)</a></code> gives both qqplot and intensity plot.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit">
-<span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span><span class="va">hp_obj</span>, <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
-<span class="co">#&gt; Using events provided and not fitting. Set fit=TRUE to fit events.</span></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span><span class="va">hp_obj</span>, <span class="va">hp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
+<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-25-1.png" width="672"></p>
 </div>
 <div id="mmhp" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mmhp" class="anchor"></a>MMHP</h3>
-<div class="sourceCode" id="cb28"><pre class="downlit">
-<span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/diagpp.html">diagpp</a></span><span class="op">(</span><span class="va">mmhp_obj</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-26-1.png" width="700"><img src="ppdiag_files/figure-html/unnamed-chunk-26-2.png" width="700"></p>
 <pre><code>#&gt; Raw residual: 18.00889
 #&gt; Pearson residual: 22.23203
