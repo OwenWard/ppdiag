@@ -221,7 +221,7 @@ drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
-```{r,fig.width=4,fig.height=4}
+```{r,fig.width=7,fig.height=4}
 diagpp(hpp_obj,hpp_events)
 ```
 
@@ -249,7 +249,7 @@ intensityqqplot(hpp_obj, hpp_events)
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
-```{r,fig.width=4,fig.height=4}
+```{r,fig.width=7,fig.height=4}
 diagpp(hp_obj,hp_events$events)
 ```
 
@@ -275,7 +275,7 @@ intensityqqplot(hp_obj, hp_events$events)
 ### MMHP
 
 
-```{r}
+```{r,fig.width=7,fig.height=4}
 diagpp(mmhp_obj,mmhp_events$events)
 ```
 
