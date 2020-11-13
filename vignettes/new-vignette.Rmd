@@ -1,0 +1,106 @@
+---
+title: 'ppdiag: a diagnostic tool for temporal data'
+tags:
+- R
+- poisson process
+date: "13 November 2020"
+output:
+  rticles::joss_article: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+authors:
+- name: author names
+  affiliation: Columbia University
+year: 2020
+journal: JOSS
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(100) # to make it reproducible
+```
+# Summary
+This package provides functions to evaluate the fit of univariate temporal point processes. 
+
+Existing functions aim at: 
+- Simulating data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process.
+- Fitting a range of univariate point processes to data.
+- After fitting a point process to some data, evaluating the ability of that 
+point process to capture the temporal structure present in this data.
+
+# Applying the functions on the Brastings dataset
+```{r setup}
+library(ppdiag)
+library(SAPP)
+data(Brastings)
+```
+
+## Fitting HPP to the Brastings data
+```{r}
+hpp = fithpp(Brastings)
+```
+## Plotting intensity of the fitted HPP
+```{r}
+drawHPPIntensity(hpp, Brastings, plot_events=TRUE)
+```
+
+## Diagnosing the fitted HPP
+```{r}
+diagpp(hpp, Brastings)
+```
+
+## Fitting HP to the Brastings data
+```{r}
+hp = fithp(events=Brastings)
+```
+
+## Plotting intensity of the fitted HP
+```{r}
+first_15=Brastings[1:15]
+hp_15 = fithp(events=first_15)
+drawHPIntensity(hp_15, events=first_15, plot_events=TRUE, int_title="HP Intensity for the first 15 Brastings events")
+```
+
+## Diagnosing the fitted HP
+```{r}
+diagpp(hp, Brastings)
+```
+
+The diagnostics of the HPP model shows higher residuals (raw residual=627, pearson residual=-13.58), D-value=0.109 which is further away from 0, and p-value=6.75e-7 which is further from 1, while the diagnostics of the HP model shows lower residuals (raw resiual=-0.0117, pearson residual=14.5), D-value=0.037 which is closer to 0, and p-value=0.34 which is closer to 1. This indicates that the Brastings data is better fitted to the Hawkes model. 
+
+# Applying the functions on the email dataset
+```{r, message=FALSE}
+library(openintro)
+library(lubridate)
+first=ymd_hms(email$time[1],tz="EST")
+second=ymd_hms(email$time[2],tz="EST")
+time=(as.duration(interval(first, ymd_hms(email$time[-1],tz="EST")))/3600)[1:300]
+```
+## Fitting HPP to the email data
+```{r}
+hpp = fithpp(time)
+```
+## Plotting intensity of the fitted HPP
+```{r}
+drawHPPIntensity(hpp, time, plot_events=TRUE)
+```
+## Diagnosing the fitted HPP
+```{r}
+diagpp(hpp, time)
+```
+## Fitting HP to the email data
+```{r}
+#hp = fithp(vec=rep(0.5,3),events=time)
+```
+## Plotting intensity of the fitted HP
+```{r}
+#drawHPIntensity(hp, events=time, plot_events=TRUE)
+```
+## Diagnosing the fitted HP
+```{r}
+#diagpp(hp, time)
+```
