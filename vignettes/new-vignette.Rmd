@@ -2,17 +2,23 @@
 title: 'ppdiag: a diagnostic tool for temporal data'
 tags:
 - R
-- poisson process
-date: "13 November 2020"
+- point processes
+- event times
+date: "`r Sys.Date()`"
 output:
   rticles::joss_article: default
-  pdf_document: default
+  pdf_document: 
+    citation_package: biblatex
   html_document:
     df_print: paged
+    citation_package: biblatex
 authors:
 - name: author names
-  affiliation: Columbia University
-year: 2020
+  affiliation: 1
+affiliations:
+  name: Columbia University
+  index: 1
+bibliography: paper.bib
 journal: JOSS
 ---
 
@@ -27,8 +33,11 @@ set.seed(100) # to make it reproducible
 This package provides functions to evaluate the fit of univariate temporal point processes. 
 
 Existing functions aim at: 
+
 - Simulating data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process.
+
 - Fitting a range of univariate point processes to data.
+
 - After fitting a point process to some data, evaluating the ability of that 
 point process to capture the temporal structure present in this data.
 
@@ -70,7 +79,7 @@ drawHPIntensity(hp_15, events=first_15, plot_events=TRUE, int_title="HP Intensit
 diagpp(hp, Brastings)
 ```
 
-The diagnostics of the HPP model shows higher residuals (raw residual=627, pearson residual=-13.58), D-value=0.109 which is further away from 0, and p-value=6.75e-7 which is further from 1, while the diagnostics of the HP model shows lower residuals (raw resiual=-0.0117, pearson residual=14.5), D-value=0.037 which is closer to 0, and p-value=0.34 which is closer to 1. This indicates that the Brastings data is better fitted to the Hawkes model. 
+In the network setting, Pearson residual is more appropriate in measuring the models.[@Jing2020] The diagnostics of the HPP model shows pearson residual=-13.58, and the diagnostics of the HP model shows pearson residual=14.5. It seems the HPP model is overestimating the intensity while the HP model is underestimating the intensity. We then look at the k-s statistics, the D statistic is 0.109 for HPP and 0.037 for HP, which indicates that HP is a better fit of the intensity since the D statistic is closer to 0. Additionally, the p-value for the HP model is much higher than the p-value for the HPP model, which also shows that the HP model is stronger in this case. This indicates that the Brastings data is better fitted to the Hawkes model. 
 
 # Applying the functions on the email dataset
 ```{r, message=FALSE}
@@ -104,3 +113,5 @@ diagpp(hpp, time)
 ```{r}
 #diagpp(hp, time)
 ```
+
+# References

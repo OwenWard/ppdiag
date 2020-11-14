@@ -1,12 +1,12 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.11.13)  14 NOV 2020 00:13
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.11.13)  14 NOV 2020 14:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/preview-c
-7557ff53d6.dir/new-vignette.tex
+**/private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/preview-d
+2216c75f87c.dir/new-vignette.tex
 
-(/private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/preview-c7
-557ff53d6.dir/new-vignette.tex
+(/private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/preview-d2
+216c75f87c.dir/new-vignette.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03> (/Users/sallysun/Library/
 TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -999,32 +999,32 @@ line 40.
 (./new-vignette.aux)
 \openout1 = `new-vignette.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 229.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 230.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
-29.
+30.
 (/Users/sallysun/Library/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 229.
-LaTeX Font Info:    ... okay on input line 229.
-Package hyperref Info: Link coloring ON on input line 229.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 230.
+LaTeX Font Info:    ... okay on input line 230.
+Package hyperref Info: Link coloring ON on input line 230.
 (/Users/sallysun/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/Users/sallysun/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1036,9 +1036,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count455
 )
-LaTeX Info: Redefining \ref on input line 229.
-LaTeX Info: Redefining \pageref on input line 229.
-LaTeX Info: Redefining \nameref on input line 229.
+LaTeX Info: Redefining \ref on input line 230.
+LaTeX Info: Redefining \pageref on input line 230.
+LaTeX Info: Redefining \nameref on input line 230.
 (./new-vignette.out) (./new-vignette.out)
 \@outlinefile=\write8
 \openout8 = `new-vignette.out'.
@@ -1059,8 +1059,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'new-vignette.bbl' not found.
 No file new-vignette.bbl.
-Package biblatex Info: Reference section=0 on input line 229.
-Package biblatex Info: Reference segment=0 on input line 229.
+Package biblatex Info: Reference section=0 on input line 230.
+Package biblatex Info: Reference segment=0 on input line 230.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1095,25 +1095,35 @@ Package biblatex Info: Reference segment=0 on input line 229.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 231
+.
+(/Users/sallysun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 231
+.
+(/Users/sallysun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
-Package hyperref Warning: Suppressing link with empty target on input line 256.
+Package hyperref Warning: Suppressing link with empty target on input line 257.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 256.
+Package hyperref Warning: Suppressing link with empty target on input line 257.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 256.
+Package hyperref Warning: Suppressing link with empty target on input line 257.
 
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 277.
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-3-1.pdf Graphi
-c file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-3-1.pdf>
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 286.
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-3-1.pdf Graph
+ic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-3-1.pdf>
 File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
@@ -1125,30 +1135,30 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 307.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 316.
 [1
 
 ]
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-4-1.pdf Graphi
-c file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-4-1.pdf Graph
+ic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-4-1.pdf>
 File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
 wn/templates/joss/resources/JOSS-logo.png>
 [2]
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-6-1.pdf Graphi
-c file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-6-1.pdf>
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-7-1.pdf Graphi
-c file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-7-1.pdf>
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-6-1.pdf Graph
+ic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-7-1.pdf Graph
+ic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-7-1.pdf>
 File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
@@ -1159,21 +1169,21 @@ arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
 wn/templates/joss/resources/JOSS-logo.png>
 [4]
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-10-1.pdf Graph
-ic file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-10-1.pdf>
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-10-1.pdf Grap
+hic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-10-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--421
+Underfull \hbox (badness 10000) in paragraph at lines 432--434
 [][]
  []
 
-File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previ
-ew-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-11-1.pdf Graph
-ic file (type pdf)
-<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpEVZBhY/previe
-w-c7557ff53d6.dir/new-vignette_files/figure-latex/unnamed-chunk-11-1.pdf>
+File: /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previ
+ew-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-11-1.pdf Grap
+hic file (type pdf)
+<use /private/var/folders/mm/lp4d5ll90h19vl26vtbt12780000gn/T/RtmpLBPK1Q/previe
+w-d2216c75f87c.dir/new-vignette_files/figure-latex/unnamed-chunk-11-1.pdf>
 File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
@@ -1183,9 +1193,14 @@ File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
 wn/templates/joss/resources/JOSS-logo.png>
-[6] (./new-vignette.aux)
+[6]
+File: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rm
+arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
+</Library/Frameworks/R.framework/Versions/4.0/Resources/library/rticles/rmarkdo
+wn/templates/joss/resources/JOSS-logo.png>
+[7] (./new-vignette.aux)
 Package rerunfilecheck Info: File `new-vignette.out' has not changed.
-(rerunfilecheck)             Checksum: D831D2070C4F15155A3C7FCAB960DAD5;1274.
+(rerunfilecheck)             Checksum: 1BA7AFAD17D0AC90AF93445072FDD350;1325.
 
 LaTeX Warning: There were undefined references.
 
@@ -1199,12 +1214,12 @@ Package logreq Info: Writing requests to 'new-vignette.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33791 strings out of 479426
- 682175 string characters out of 5879914
- 1435607 words of memory out of 5000000
- 52661 multiletter control sequences out of 15000+600000
- 535600 words of font info for 49 fonts, out of 8000000 for 9000
+ 33859 strings out of 479426
+ 683245 string characters out of 5879914
+ 1437015 words of memory out of 5000000
+ 52706 multiletter control sequences out of 15000+600000
+ 541952 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 85i,12n,96p,837b,800s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,12n,96p,838b,800s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on new-vignette.pdf (6 pages).
+Output written on new-vignette.pdf (7 pages).
