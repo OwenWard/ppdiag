@@ -65,9 +65,7 @@ rawresidual.mmhp <- function(object, events, start = 0,
 rawresidual.hpp <- function(object, events, start = 0, 
                             end = max(events)) {
   N <- length(events)
-  event_obj <- list(events = events, start = start, end = end)
-  est.intensity <- intensity(object, event = event_obj,
-                             method = "integral")
-  all_Lambda <- sum(est.intensity)
+  
+  all_Lambda <- object$lambda*(end - start)
   return(N - all_Lambda)
 }
