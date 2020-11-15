@@ -172,7 +172,7 @@ intensity.mmpp <- function(object, event, method = "numeric") {
 
 #' @rdname intensity
 #' @export
-intensity.hpp <- function(object, event_obj, method = "numeric"){
+intensity.hpp <- function(object, event, method = "numeric"){
   lambda <- object$lambda
   start <- event_obj$start
   end <- event_obj$end

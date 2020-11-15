@@ -1,0 +1,30 @@
+---
+title: "A quick introduction to the `ppdiag` package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `ppdiag` package provides tools to evaluate the fit of some common temporal
+point processes to data. Here we 
+
+
+```{r setup}
+library(ppdiag)
+```
+
+
+```{r some data}
+library(openintro)
+email_time <- email$time
+
+```

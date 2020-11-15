@@ -19,7 +19,7 @@ intensity(object, event, method = "numeric")
 
 \method{intensity}{mmpp}(object, event, method = "numeric")
 
-\method{intensity}{hpp}(object, event, method = "numeric")
+\method{intensity}{hpp}(object, event_obj, method = "numeric")
 }
 \arguments{
 \item{object}{an object of MMHP/HP/MMPP
