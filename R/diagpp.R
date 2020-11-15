@@ -5,6 +5,8 @@
 #' @param object a social network model
 #' @param events event times
 #' @importFrom stats ks.test
+#' @importFrom graphics par
+#' @importFrom graphics layout
 #' @return print qq plot and ks plot, and print out pearson and raw residuals.
 #' @export
 
@@ -22,7 +24,11 @@ diagpp.default <- function(object, events) {
 #' @export
 diagpp.hp<-function(object, events){
   r <- compensator(object, events)
+  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
+         widths = c(2, 2))
+  par(mar = c(2, 2, 1, 1))
   qqexp(r)
+  par(mar = c(2, 2, 1, 1))
   ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
   pr <- pearsonresidual(object, events, start=min(events),
@@ -38,7 +44,11 @@ diagpp.hp<-function(object, events){
 #' @export
 diagpp.mmhp <- function(object, events){
   r <- compensator(object, events)
+  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
+         widths = c(2, 2))
+  par(mar = c(2, 2, 1, 1))
   qqexp(r)
+  par(mar = c(2, 2, 1, 1))
   ksplot(r)
   rr <- rawresidual(object, events, end = max(events), start = 0)
   pr <- pearsonresidual(object, events, end = max(events), start = 0)
@@ -53,7 +63,11 @@ diagpp.mmhp <- function(object, events){
 #' @export
 diagpp.hpp<-function(object, events){
   r <- compensator(object, events)
+  layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
+         widths = c(2, 2))
+  par(mar = c(2, 2, 1, 1))
   qqexp(r)
+  par(mar = c(2, 2, 1, 1))
   ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
   pr <-pearsonresidual(object, events, end = max(events))
