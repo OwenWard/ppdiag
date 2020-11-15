@@ -172,10 +172,12 @@ intensity.mmpp <- function(object, event, method = "numeric") {
 
 #' @rdname intensity
 #' @export
-intensity.hpp <- function(object, event, method = "numeric"){
+intensity.hpp <- function(object, event_obj, method = "numeric"){
   lambda <- object$lambda
-  start <- object$start
-  end <- object$end
+  start <- event_obj$start
+  end <- event_obj$end
+  event <- event_obj$event
+  
   ### what does this do?
   n <- length(event)
   # if(method=="function"){
