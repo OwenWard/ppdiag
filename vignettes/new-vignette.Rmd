@@ -1,24 +1,25 @@
 ---
-title: 'ppdiag: a diagnostic tool for temporal data'
+title: 'ppdiag: Diagnostic Tools for Temporal Point Processes'
 tags:
 - R
 - point processes
 - event times
 date: "`r Sys.Date()`"
-output:
-  pdf_document: 
-    citation_package: biblatex
-  rticles::joss_article: default
-  html_document:
-    df_print: paged
-    citation_package: biblatex
 authors:
-- name: author names
-  affiliation: 1
+  - name: Sally Sun
+    #affiliation: 1 # (Multiple affiliations must be quoted)
+  - name: Owen G. Ward
+    orcid: 0000-0002-9678-3542
+    #affiliation: 1
+  - name: Xiaoxi Zhao
+  - name: Jing Wu
+  - name: Tian Zheng
 affiliations:
   name: Columbia University
-  index: 1
+  # index: 1
+citation_author: Sun et. al.
 bibliography: paper.bib
+output: rticles::joss_article
 journal: JOSS
 ---
 
@@ -26,16 +27,21 @@ journal: JOSS
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.height = 4
+  fig.height = 3
 )
 set.seed(100) # to make it reproducible
 ```
+
 # Summary
-This package provides functions to evaluate the fit of univariate temporal point processes. 
+This package provides functions to evaluate the fit of 
+univariate temporal point 
+processes. 
 
 Existing functions aim at: 
 
-- Simulating data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process.
+- Simulating data from a range of common univariate point processes including 
+Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes 
+Process.
 
 - Fitting a range of univariate point processes to data.
 
@@ -43,7 +49,10 @@ Existing functions aim at:
 point process to capture the temporal structure present in this data.
 
 # Applying the functions on the Brastings dataset
-For demonstration of how this package would help users with diagnostics of models, we apply our functions to the following Brastings dataset from the SAPP package: 
+For demonstration of how this package would help users with diagnostics of 
+models, we apply our functions to the following Brastings dataset from the SAPP 
+package: 
+
 ```{r setup}
 library(ppdiag)
 library(SAPP)
@@ -55,6 +64,7 @@ Brastings <- Brastings[1:300]
 ```{r}
 hpp_fit <- fithpp(Brastings)
 ```
+
 ## Plotting intensity of the fitted HPP
 ```{r}
 drawHPPIntensity(hpp_fit, Brastings, plot_events=TRUE)
@@ -83,7 +93,15 @@ drawHPIntensity(hp_15, events=first_15, plot_events=TRUE,
 diagpp(hp_fit, Brastings)
 ```
 
-In the network setting, Pearson residual is more appropriate in measuring the models than raw residuals.[@Jing2020] The diagnostics of the HPP model shows pearson residual=-13.96, and the diagnostics of the HP model shows pearson residual=13.15. Both models seem to produce similar absolute residuals. We then look at the k-s statistics, for HPP, the D-statistic is 0.152 with p-value=1.85e-06; for HP, the D-statistic is 0.0461 with p-value=0.547. This indicates that HPP is a better fit of the intensity at significance level 0.01. So diagpp helps us to understand that Brastings data is better fitted to the Homogeneous Poisson model in comparison with the Hawkes model. 
+In the network setting, Pearson residual is more appropriate in measuring the 
+models than raw residuals.[@Jing2020] The diagnostics of the HPP model shows 
+pearson residual=-13.96, and the diagnostics of the HP model shows pearson 
+residual=13.15. Both models seem to produce similar absolute residuals. We then 
+look at the k-s statistics, for HPP, the D-statistic is 0.152 with 
+p-value=1.85e-06; for HP, the D-statistic is 0.0461 with p-value=0.547. This 
+indicates that HPP is a better fit of the intensity at significance level 0.01. 
+So diagpp helps us to understand that Brastings data is better fitted to the 
+Homogeneous Poisson model in comparison with the Hawkes model. 
 
 # Applying the functions on the email dataset
 ```{r, message=FALSE}

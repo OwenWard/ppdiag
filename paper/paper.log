@@ -1,12 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  1 DEC 2020 17:53
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  2 DEC 2020 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-vig
-nette.tex
-
-(c:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-vign
-ette.tex
+**paper.tex
+(./paper.tex
 LaTeX2e <2018-12-01>
 (c:/texlive/2018/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -1135,8 +1132,8 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 )
 \@quotelevel=\count443
 \@quotereset=\count444
-(./new-vignette.aux)
-\openout1 = `new-vignette.aux'.
+(./paper.aux)
+\openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
 LaTeX Font Info:    ... okay on input line 234.
@@ -1176,9 +1173,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 234.
 LaTeX Info: Redefining \pageref on input line 234.
 LaTeX Info: Redefining \nameref on input line 234.
-(./new-vignette.out) (./new-vignette.out)
+(./paper.out) (./paper.out)
 \@outlinefile=\write8
-\openout8 = `new-vignette.out'.
+\openout8 = `paper.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -1186,11 +1183,11 @@ Package biblatex Info: XeTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout6 = `new-vignette.bcf'.
+\openout6 = `paper.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'new-vignette.bbl' not found.
-No file new-vignette.bbl.
+Package biblatex Info: ... file 'paper.bbl' not found.
+No file paper.bbl.
 Package biblatex Info: Reference section=0 on input line 234.
 Package biblatex Info: Reference segment=0 on input line 234.
 *geometry* driver: auto-detecting
@@ -1254,11 +1251,14 @@ Package hyperref Warning: Suppressing link with empty target on input line 261.
 
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 294.
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-3-1.pdf>
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 282.
+File: paper_files/figure-latex/fit hpp-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/fit hpp-1.pdf>
+
+Overfull \hbox (15.14052pt too wide) in paragraph at lines 313--314
+[]\TU/lmr/m/n/10 hpp-1.bb [] 
+ []
+
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1270,14 +1270,17 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 325.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 315.
 [1
 
 ]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: paper_files/figure-latex/fit hawkes-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/fit hawkes-1.pdf>
+
+Overfull \hbox (29.34052pt too wide) in paragraph at lines 337--338
+[]\TU/lmr/m/n/10 hawkes-1.bb [] 
+ []
+
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1289,83 +1292,24 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-6-1.pdf>
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-7-1.pdf>
-File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
-ss/resources/JOSS-logo.png Graphic file (type bmp)
-<C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
-sources/JOSS-logo.png>
+File: paper_files/figure-latex/hawkes intensity-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/hawkes intensity-1.pdf>
 
-Package Fancyhdr Warning: \headheight is too small (62.59596pt): 
- Make it at least 63.55022pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-10-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 444--446
-[][]
+Overfull \hbox (36.02052pt too wide) in paragraph at lines 365--366
+[]\TU/lmr/m/n/10 intensity-1.bb [] 
  []
 
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-11-1.pdf>
-File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
-ss/resources/JOSS-logo.png Graphic file (type bmp)
-<C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
-sources/JOSS-logo.png>
-
-Package Fancyhdr Warning: \headheight is too small (62.59596pt): 
- Make it at least 63.55022pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-13-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
-[][]
- []
-
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-14-1.pdf>
-File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
-ss/resources/JOSS-logo.png Graphic file (type bmp)
-<C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
-sources/JOSS-logo.png>
-
-Package Fancyhdr Warning: \headheight is too small (62.59596pt): 
- Make it at least 63.55022pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5] (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+(c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 520.
+LaTeX Font Info:    Try loading font information for U+msa on input line 381.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 520.
+LaTeX Font Info:    Try loading font information for U+msb on input line 381.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1381,25 +1325,25 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 522.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 522.
-(./new-vignette.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 522.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 522.
-Package rerunfilecheck Info: File `new-vignette.out' has not changed.
-(rerunfilecheck)             Checksum: 0DC47C3C817CE28D4B4D0C32E9DADBDF.
-Package logreq Info: Writing requests to 'new-vignette.run.xml'.
-\openout1 = `new-vignette.run.xml'.
+[3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 388.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 388.
+(./paper.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 388.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 388.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 34F2B16FA71DA8D2881325B004C41E14.
+Package logreq Info: Writing requests to 'paper.run.xml'.
+\openout1 = `paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43222 strings out of 492933
- 850115 string characters out of 6136537
- 1323550 words of memory out of 5000000
- 46747 multiletter control sequences out of 15000+600000
+ 43191 strings out of 492933
+ 846282 string characters out of 6136537
+ 1324523 words of memory out of 5000000
+ 46719 multiletter control sequences out of 15000+600000
  534549 words of font info for 52 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 55i,12n,73p,1271b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,12n,73p,1194b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on new-vignette.pdf (6 pages).
+Output written on paper.pdf (3 pages).
