@@ -93,17 +93,12 @@ drawHPIntensity(hp_15, events=first_15, plot_events=TRUE,
 diagpp(hp_fit, Brastings)
 ```
 
-In the network setting, Pearson residual is more appropriate in measuring the 
-models than raw residuals.[@Jing2020] The diagnostics of the HPP model shows 
-pearson residual=-13.96, and the diagnostics of the HP model shows pearson 
-residual=13.15. Both models seem to produce similar absolute residuals. We then 
-look at the k-s statistics, for HPP, the D-statistic is 0.152 with 
-p-value=1.85e-06; for HP, the D-statistic is 0.0461 with p-value=0.547. This 
-indicates that HPP is a better fit of the intensity at significance level 0.01. 
-So diagpp helps us to understand that Brastings data is better fitted to the 
-Homogeneous Poisson model in comparison with the Hawkes model. 
+
+In the network setting, Pearson residual is more appropriate in measuring the models than raw residuals.[@Jing2020] The diagnostics of the HPP model shows pearson residual=-13.96, and the diagnostics of the HP model shows pearson residual=13.15. Both models seem to produce similar absolute residuals. We then look at the k-s statistics, for HPP, the D-statistic is 0.152 with p-value=1.85e-06; for HP, the D-statistic is 0.0461 with p-value=0.547. This indicates that HP is a better fit of the intensity with its D-statistic closer to 0 and a p-value closer to 1. So diagpp helps us to understand that Brastings data is better fitted to the Hawkes model in comparison with the Homogeneous Poisson model. 
+>>>>>>> e0f15025b4c6afd2861ca5bf59f9ba5ca5d313a2
 
 # Applying the functions on the email dataset
+For demonstration of how this package would help users with diagnostics of models, we apply our functions to the following email dataset from the openintro package: 
 ```{r, message=FALSE}
 library(openintro)
 library(lubridate)
@@ -138,5 +133,7 @@ drawHPIntensity(hp_fit, events=time, plot_events=TRUE)
 ```{r}
 diagpp(hp_fit, time)
 ```
+
+In the network setting, Pearson residual is more appropriate in measuring the models than raw residuals.[@Jing2020] The diagnostics of the HPP model shows pearson residual=-0.894, and the diagnostics of the HP model shows pearson residual=1.56. Both models seem to produce similar absolute residuals. We then look at the k-s statistics, for HPP, the D-statistic is 0.124 with p-value=0.000212; for HP, the D-statistic is 0.0416 with p-value=0.680. This indicates that HP is a better fit of the intensity with its D-statistic closer to 0 and a p-value closer to 1. So diagpp helps us to understand that the email data is better fitted to the Hawkes model in comparison with the Homogeneous Poisson model. 
 
 # References

@@ -1,12 +1,12 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  1 DEC 2020 17:53
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  2 DEC 2020 11:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-vig
-nette.tex
-
-(c:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-vign
+**C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-vign
 ette.tex
+
+(c:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-vigne
+tte.tex
 LaTeX2e <2018-12-01>
 (c:/texlive/2018/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -1255,10 +1255,10 @@ Package hyperref Warning: Suppressing link with empty target on input line 261.
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 294.
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-3-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-3-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1274,10 +1274,10 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
 [1
 
 ]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-4-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1289,14 +1289,14 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-6-1.pdf>
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-7-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-7-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1308,19 +1308,15 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 [3]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-10-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-10-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 444--446
+Underfull \hbox (badness 10000) in paragraph at lines 462--464
 [][]
  []
 
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-11-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1332,19 +1328,19 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-13-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-11-1.pdf>
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-13-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
+Underfull \hbox (badness 10000) in paragraph at lines 508--510
 [][]
  []
 
-File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new
--vignette_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec5b4d6cd7.dir/new-
-vignette_files/figure-latex/unnamed-chunk-14-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1355,17 +1351,22 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5] (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+[5]
+File: C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-
+vignette_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use C:/Users/owenw/AppData/Local/Temp/RtmpMjSvTM/preview-53ec7c593f1.dir/new-v
+ignette_files/figure-latex/unnamed-chunk-14-1.pdf>
+(c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 520.
+LaTeX Font Info:    Try loading font information for U+msa on input line 550.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 520.
+LaTeX Font Info:    Try loading font information for U+msb on input line 550.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1382,11 +1383,11 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 522.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 522.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
 (./new-vignette.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 522.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 522.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 552.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
 Package rerunfilecheck Info: File `new-vignette.out' has not changed.
 (rerunfilecheck)             Checksum: 0DC47C3C817CE28D4B4D0C32E9DADBDF.
 Package logreq Info: Writing requests to 'new-vignette.run.xml'.
@@ -1395,11 +1396,11 @@ Package logreq Info: Writing requests to 'new-vignette.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  43222 strings out of 492933
- 850115 string characters out of 6136537
+ 850085 string characters out of 6136537
  1323550 words of memory out of 5000000
  46747 multiletter control sequences out of 15000+600000
  534549 words of font info for 52 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 55i,12n,73p,1271b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,12n,73p,1270b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on new-vignette.pdf (6 pages).
