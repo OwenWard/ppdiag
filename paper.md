@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: Columbia University
 citation_author: Sun et. al.
-date: 3 December 2020
+date: "2020-12-24"
 year: 2020
 bibliography: paper.bib
 output: rticles::joss_article
@@ -39,7 +39,16 @@ selection of statistically motivated
 tools to analyse the goodness of fit of point processes to
 data, as have been utilised in @wu2020diagnostics.
 
-# Example
+# Statement of Need
+This package provides functions to evaluate the fit of univatiate temporal point processes. Existing functions aim at: 
+
+- Simulating data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process. 
+
+- Fitting a range of univariate point processes to data, and plotting the intensity function over data. 
+
+- After fitting a point process model to data, evaluating the ability of that model to capture the temporal structure present in data. Methods for diagnostics include raw and Pearson residuals, Kolmogrov-Smirnov test and plot, and Q-Q plot. 
+
+# Demonstration
 
 We illustrate the use of this functionality
 with a simple example of readily available 
@@ -49,15 +58,7 @@ email data [@openintro_20].
 ```r
 library(ppdiag)
 library(openintro)
-#> Loading required package: airports
-#> Loading required package: cherryblossom
-#> Loading required package: usdata
 library(lubridate)
-#> 
-#> Attaching package: 'lubridate'
-#> The following objects are masked from 'package:base':
-#> 
-#>     date, intersect, setdiff, union
 first <- ymd_hms(email$time[1],tz="EST")
 second <- ymd_hms(email$time[2],tz="EST")
 time <- (as.duration(interval(first,
@@ -72,15 +73,13 @@ goodness of fit of this model to the data.
 ```r
 email_hpp <- fithpp(time_data)
 diagpp(email_hpp, events = time_data)
-#> Warning in ks.test(r, "pexp"): ties should not be present for the Kolmogorov-
-#> Smirnov test
 ```
 
 ![](paper_files/figure-latex/fit hpp-1.pdf)<!-- --> 
 
 ```
 #> 
-#> Raw residual: -1.012849
+#> Raw residual: 298
 #> Pearson residual: -0.8935674
 #> 
 #> 	One-sample Kolmogorov-Smirnov test
@@ -122,23 +121,9 @@ process to this data.
 ```r
 drawHPIntensity(email_hp, events = time_data, 
                 plot_events = TRUE)
-#> Using the hp object. Set fit=TRUE to fit events provided.
 ```
 
 ![](paper_files/figure-latex/hawkes intensity-1.pdf)<!-- --> 
-
-
-<!-- # Citations -->
-
-<!-- Citations to entries in paper.bib should be in -->
-<!-- [rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) -->
-<!-- format. -->
-
-<!-- For a quick reference, the following citation commands can be used: -->
-<!-- - `@author:2001`  ->  "Author et al. (2001)" -->
-<!-- - `[@author:2001]` -> "(Author et al., 2001)" -->
-<!-- - `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)" -->
-
 
 
 # References
