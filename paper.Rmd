@@ -103,5 +103,7 @@ drawHPIntensity(email_hp, events = time_data,
                 plot_events = TRUE)
 ```
 
+# Comparison with Other Packages
+Though there are some packages that contain functions for simulating point processes, like [@hawkes_14] and [@Markov_17], to the best of our knowledge, there are no existing packages that provide methods for diagnostics of different point process models. 
 
 # References

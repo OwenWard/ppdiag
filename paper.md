@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: Columbia University
 citation_author: Sun et. al.
-date: "2020-12-24"
+date: "2020-12-25"
 year: 2020
 bibliography: paper.bib
 output: rticles::joss_article
@@ -125,5 +125,7 @@ drawHPIntensity(email_hp, events = time_data,
 
 ![](paper_files/figure-latex/hawkes intensity-1.pdf)<!-- --> 
 
+# Comparison with Other Packages
+Though there are some packages that contain functions for simulating point processes, like [@hawkes_14] and [@Markov_17], to the best of our knowledge, there are no existing packages that provide methods for diagnostics of different point process models. 
 
 # References
