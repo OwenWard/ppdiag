@@ -1,10 +1,11 @@
 #' Fit a homogeneous poisson process
 #'
-#' Compute maximum likelihood estimator for the hpp model with time events 
+#' Compute maximum likelihood estimator of the rate of a homogeneous Poisson
+#' process for the given events. 
 #' 
 #' @param events vector containing the event times.
 #'
-#' @return an hpp object fitted
+#' @return a hpp object containing the events and the estimated parameter 
 #' @export
 #' @examples
 #' pois_y <- hpp(lambda = 1)

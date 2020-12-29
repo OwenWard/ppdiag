@@ -10,7 +10,7 @@
 #' @importFrom utils tail
 #' @return list of the states of the Markov process (z.hat)
 #' and the times of the transitions between these times (x.hat).
-#' @export
+#' @noRd
 #'
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

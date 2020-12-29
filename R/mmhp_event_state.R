@@ -10,7 +10,7 @@
 #'
 #' @return probability of being in state 1 (active state) at each event,
 #' along with most likely state
-#' @export
+#' @noRd
 #'
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

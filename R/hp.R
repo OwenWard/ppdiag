@@ -1,9 +1,10 @@
-#' Create a Hawkes Process(HP) model
+#' Create a Hawkes Process object
 #'
-#' Create a Hawkes Process(HP) model according to the given parameters:
-#'  lambda0, alpha, beta and events.
-#' If events is missing, then it means that data will be
-#'  added later(e.g. simulated)
+#' Create a Hawkes Process with an exponential
+#' kernel according to the given parameters:
+#' lambda0, alpha, beta and events.
+#' If events are missing, then it means that data will be
+#' added later(simulated from this process)
 #'
 #' @param beta exponential decay of intensity
 #' @param alpha jump size in increase of intensity

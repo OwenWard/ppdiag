@@ -1,14 +1,14 @@
-#' Compute negative log likelihood for social network models
+#' Compute negative log likelihood for point process models
 #'
-#' Compute negative log likelihood for social network models
+#' Compute negative log likelihood for point process models
 #'  with model specified time events or simulated time events
 #'
-#' @param object social network model contating the parameters
+#' @param object point process object containing the parameters
 #' @param t vector containing the event times.
 #' @param end the end time of event times
 #'
 #' @return a scalar indicating the negative log likelihood
-#' @export
+#' @noRd
 
 negloglik <- function(object, t, end) {
   UseMethod("negloglik")

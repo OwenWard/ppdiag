@@ -3,6 +3,7 @@
 #' @param events events for Hawkes process.
 #'
 #' @return max of intensity
+#' @noRd
 #' 
 hawkes_max_intensity <- function(object, events) {
   r <- 0

@@ -1,11 +1,11 @@
-#' Create a homogeneous poisson process model
+#' Create a homogeneous Poisson process object
 #'
-#' Create a homogeneous poisson process according to given parameters:
-#'  lambda, and events.
-#' If events is missing, then it means that data will be
-#'  added later(e.g. simulated)
-#' @param lambda rate of the poisson process
-#' @param events event times
+#' Create a homogeneous Poisson object according to given parameters:
+#' lambda, and events.
+#' If events are missing, then it means that data will be
+#' added later(simulated from this process).
+#' @param lambda rate of the Poisson process
+#' @param events event times, optional
 #'
 #' @return hpp object
 #' @export
