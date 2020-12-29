@@ -1,7 +1,7 @@
-#' Compute the intensity of social network model
+#' Compute the intensity of a temporal point process
 #'
-#' Take an object of MMHP/HP/MMPP and generate its intensity 
-#' function accordingly
+#' Take a point process object and compute the intensity 
+#' function accordingly, either numerically or at each event.
 #'
 #' @param object an object of MMHP/HP/MMPP
 #' For example, MMHP object should includ its state, state_time,

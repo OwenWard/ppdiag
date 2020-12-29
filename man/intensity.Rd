@@ -7,7 +7,7 @@
 \alias{intensity.hp}
 \alias{intensity.mmpp}
 \alias{intensity.hpp}
-\title{Compute the intensity of social network model}
+\title{Compute the intensity of a temporal point process}
 \usage{
 intensity(object, event, method = "numeric")
 
@@ -37,8 +37,8 @@ The candidates are: `numeric`, and `atevent`, default to `numeric`.
 The intensity function of MMHP
 }
 \description{
-Take an object of MMHP/HP/MMPP and generate its intensity 
-function accordingly
+Take a point process object and compute the intensity 
+function accordingly, either numerically or at each event.
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
