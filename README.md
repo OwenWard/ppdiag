@@ -23,7 +23,7 @@ These currently include:
   - Evaluating the fit of a point process model to data using several
     diagnostic tools
 
-## Installation
+# Installation
 
 <!-- You can install the released version of ppdiag from [CRAN](https://CRAN.R-project.org) with: -->
 
@@ -41,7 +41,7 @@ The in development version of this package is available from
 devtools::install_github("OwenWard/ppdiag")
 ```
 
-## Example
+# Example
 
 To illustrate some of the basic functionality of this package, we can
 simulate data from a specified Hawkes process and examine our diagnostic
@@ -55,19 +55,21 @@ sim_hp <- simulatehp(hp_obj, end = 200)
 #> Simulating up to endtime. To simulate n events specify n.
 sim_hp
 #> $events
-#>  [1]   8.761899  21.036980  21.991337  23.391633  24.177857  24.511210
-#>  [7]  25.702796  25.937654  27.373773  31.520000  31.877112  34.467070
-#> [13]  38.461086  39.522600  39.964184  47.776783  49.943636  59.448151
-#> [19]  83.012201  99.536252 100.307178 100.372424 100.652395 101.729779
-#> [25] 121.426380 123.377771 128.142991 137.725687 138.118089 138.932666
-#> [31] 140.695602 145.911693 145.942575 147.400560 148.619123 150.197754
-#> [37] 152.238040 153.583899 157.581572 157.814416 157.815367 158.223065
-#> [43] 158.466506 159.474204 159.917234 160.623121 160.698534 162.257757
-#> [49] 162.703395 163.348421 164.191265 168.991314 179.069977 180.477806
-#> [55] 191.810877 195.686487 196.995866 197.788781 197.951924
+#>  [1]   2.916023   5.783456  22.404413  23.044874  23.153227  23.276124
+#>  [7]  33.313528  35.253957  44.478615  52.440900  53.338280  53.514269
+#> [13]  53.733039  54.941978  54.970953  55.039775  55.549487  55.586670
+#> [19]  55.959531  55.960063  57.428581  57.461721  63.725128  64.136814
+#> [25]  65.960233  68.397918  74.402604  74.458960  74.904348  75.539964
+#> [31]  75.712993  76.922587  77.199168  77.414282  78.893970  91.316587
+#> [37]  91.519747 102.263574 103.099690 112.604433 113.906237 122.746143
+#> [43] 125.166665 138.749346 138.978248 139.866113 149.596461 151.833134
+#> [49] 154.388409 156.386153 157.622489 158.519023 159.228525 159.938288
+#> [55] 159.940480 160.181665 160.457904 160.717399 162.483716 166.986370
+#> [61] 175.504747 179.593941 180.070925 182.624006 185.819246 189.839864
+#> [67] 196.234216 198.116098
 #> 
 #> $lambda.max
-#> [1] 1.086243
+#> [1] 1.715111
 ```
 
 We can readily evaluate the fit of a homogeneous Poisson process to this
@@ -77,19 +79,21 @@ data.
 est_hpp <- fithpp(sim_hp$events)
 est_hpp
 #> $lambda
-#> [1] 0.3118558
+#> [1] 0.3483605
 #> 
 #> $events
-#>  [1]   8.761899  21.036980  21.991337  23.391633  24.177857  24.511210
-#>  [7]  25.702796  25.937654  27.373773  31.520000  31.877112  34.467070
-#> [13]  38.461086  39.522600  39.964184  47.776783  49.943636  59.448151
-#> [19]  83.012201  99.536252 100.307178 100.372424 100.652395 101.729779
-#> [25] 121.426380 123.377771 128.142991 137.725687 138.118089 138.932666
-#> [31] 140.695602 145.911693 145.942575 147.400560 148.619123 150.197754
-#> [37] 152.238040 153.583899 157.581572 157.814416 157.815367 158.223065
-#> [43] 158.466506 159.474204 159.917234 160.623121 160.698534 162.257757
-#> [49] 162.703395 163.348421 164.191265 168.991314 179.069977 180.477806
-#> [55] 191.810877 195.686487 196.995866 197.788781 197.951924
+#>  [1]   2.916023   5.783456  22.404413  23.044874  23.153227  23.276124
+#>  [7]  33.313528  35.253957  44.478615  52.440900  53.338280  53.514269
+#> [13]  53.733039  54.941978  54.970953  55.039775  55.549487  55.586670
+#> [19]  55.959531  55.960063  57.428581  57.461721  63.725128  64.136814
+#> [25]  65.960233  68.397918  74.402604  74.458960  74.904348  75.539964
+#> [31]  75.712993  76.922587  77.199168  77.414282  78.893970  91.316587
+#> [37]  91.519747 102.263574 103.099690 112.604433 113.906237 122.746143
+#> [43] 125.166665 138.749346 138.978248 139.866113 149.596461 151.833134
+#> [49] 154.388409 156.386153 157.622489 158.519023 159.228525 159.938288
+#> [55] 159.940480 160.181665 160.457904 160.717399 162.483716 166.986370
+#> [61] 175.504747 179.593941 180.070925 182.624006 185.819246 189.839864
+#> [67] 196.234216 198.116098
 #> 
 #> attr(,"class")
 #> [1] "hpp"
@@ -97,16 +101,16 @@ est_hpp
 diagpp(est_hpp, events = sim_hp$events)
 ```
 
-<img src="man/figures/README-fit_hpp-1.png" width="50%" /><img src="man/figures/README-fit_hpp-2.png" width="50%" />
+<img src="man/figures/README-fit_hpp-1.png" width="50%" />
 
     #> 
-    #> Raw residual: 59
-    #> Pearson residual: -4.892999
+    #> Raw residual: 68
+    #> Pearson residual: -1.721097
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.25528, p-value = 0.0007062
+    #> D = 0.21683, p-value = 0.002755
     #> alternative hypothesis: two-sided
 
 ``` r
@@ -114,15 +118,15 @@ hp_est <- fithp(events = sim_hp$events)
 diagpp(hp_est, events = sim_hp$events)
 ```
 
-<img src="man/figures/README-fit_hp-1.png" width="50%" /><img src="man/figures/README-fit_hp-2.png" width="50%" />
+<img src="man/figures/README-fit_hp-1.png" width="50%" />
 
-    #> Raw residual: -0.0003818003
-    #> Pearson residual: 3.40775
+    #> Raw residual: -0.0003561931
+    #> Pearson residual: 0.8289376
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.072544, p-value = 0.8931
+    #> D = 0.046149, p-value = 0.9974
     #> alternative hypothesis: two-sided
 
 ## MMHP Example
@@ -178,16 +182,16 @@ est_hpp <- fithpp(events = mmhp_events$events)
 diagpp(est_hpp,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_hpp_to_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_hpp_to_mmhp-2.png" width="50%" />
+<img src="man/figures/README-fit_hpp_to_mmhp-1.png" width="50%" />
 
     #> 
     #> Raw residual: 51
-    #> Pearson residual: 0
+    #> Pearson residual: -7.105427e-15
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.096536, p-value = 0.7036
+    #> D = 0.29346, p-value = 0.0002608
     #> alternative hypothesis: two-sided
 
 Similarly for a Hawkes process.
@@ -197,15 +201,15 @@ est_hp <- fithp(events = mmhp_events$events)
 diagpp(est_hp,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_hp_to_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_hp_to_mmhp-2.png" width="50%" />
+<img src="man/figures/README-fit_hp_to_mmhp-1.png" width="50%" />
 
-    #> Raw residual: -8.216385e-05
-    #> Pearson residual: 0.01676284
+    #> Raw residual: -6.772639e-05
+    #> Pearson residual: -0.1020939
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.094115, p-value = 0.7321
+    #> D = 0.081728, p-value = 0.8651
     #> alternative hypothesis: two-sided
 
 We can then compare to the true point process model.
@@ -214,13 +218,20 @@ We can then compare to the true point process model.
 diagpp(mmhp_obj,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_mmhp-1.png" width="50%" /><img src="man/figures/README-fit_mmhp-2.png" width="50%" />
+<img src="man/figures/README-fit_mmhp-1.png" width="50%" />
 
-    #> Raw residual: 12.40562
-    #> Pearson residual: 25.07594
+    #> Raw residual: 9.341232
+    #> Pearson residual: 9.748232
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.17066, p-value = 0.09633
+    #> D = 0.12392, p-value = 0.3941
     #> alternative hypothesis: two-sided
+
+# Getting help and contributing
+
+Please file any issues
+[here](https://github.com/OwenWard/ppdiag/issues). Similarly, we would
+be delighted if anyone would like to contribute to this package (such as
+adding other point processes, kernel functions). Feel free to reach out.

@@ -32,7 +32,7 @@ These currently include:
 - Evaluating the fit of a point process model to data using 
 several diagnostic tools
 
-## Installation
+# Installation
 
 <!-- You can install the released version of ppdiag from [CRAN](https://CRAN.R-project.org) with: -->
 
@@ -47,7 +47,7 @@ package is available from [GitHub](https://github.com/OwenWard/ppdiag) with:
 # install.packages("devtools")
 devtools::install_github("OwenWard/ppdiag")
 ```
-## Example
+# Example
 
 To illustrate some of the basic functionality of this package,
 we can simulate data from a specified Hawkes process and examine
@@ -119,3 +119,11 @@ We can then compare to the true point process model.
 ```{r fit_mmhp}
 diagpp(mmhp_obj,mmhp_events$events)
 ```
+
+
+# Getting help and contributing
+
+Please file any issues [here](https://github.com/OwenWard/ppdiag/issues). 
+Similarly, we would be delighted if anyone would like to contribute to
+this package (such as adding other point processes, kernel functions). 
+Feel free to reach out.

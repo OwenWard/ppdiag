@@ -8,7 +8,7 @@ authors:
   - name: Sally Sun
     #affiliation: 1 # (Multiple affiliations must be quoted)
   - name: Owen G. Ward
-    orcid: 0000-0002-9678-3542
+    #orcid: 0000-0002-9678-3542
     #affiliation: 1
   - name: Xiaoxi Zhao
   - name: Jing Wu
@@ -50,13 +50,20 @@ tools to analyse the goodness of fit of point processes to
 data, as have been utilised in @wu2020diagnostics.
 
 # Statement of Need
-This package provides functions to evaluate the fit of univatiate temporal point processes. Existing functions aim at: 
+This package provides functions to evaluate the fit of
+univatiate temporal point processes. These functions allow: 
 
-- Simulating data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process. 
+- Simulation 
+of data from a range of common univariate point processes including Homogeneous 
+Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process. 
 
-- Fitting a range of univariate point processes to data, and plotting the intensity function over data. 
+- Fitting common univariate point processes to data,
+and plotting the intensity function over data. 
 
-- After fitting a point process model to data, evaluating the ability of that model to capture the temporal structure present in data. Methods for diagnostics include raw and Pearson residuals, Kolmogrov-Smirnov test and plot, and Q-Q plot. 
+- After fitting a point process model to data, evaluating the 
+ability of that model to capture the temporal structure present in data.
+Methods for diagnostics include raw and Pearson residuals, a Kolmogrov-Smirnov 
+test and corresponding diagnostic plots. 
 
 # Demonstration
 
@@ -104,6 +111,10 @@ drawHPIntensity(email_hp, events = time_data,
 ```
 
 # Comparison with Other Packages
-Though there are some packages that contain functions for simulating point processes, like [@hawkes_14] and [@Markov_17], to the best of our knowledge, there are no existing packages that provide methods for diagnostics of different point process models. 
+Though there are some packages that contain functions for simulating point 
+processes, [@hawkes_14],[@Markov_17], to the best of our knowledge, 
+there are no existing packages that provide methods for
+diagnostics of different 
+temporal point processes and for comparing the fit of these point processes. 
 
 # References
