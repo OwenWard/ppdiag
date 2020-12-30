@@ -27,7 +27,7 @@ intensityqqplot.hp <- function(object, events, ...) {
          widths = c(2, 2))
   r <- compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)
+  pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
   drawHPIntensity(object, start = 0, end = max(events),
                   events = events, add = FALSE, plot_events = TRUE, ...)
@@ -42,7 +42,7 @@ intensityqqplot.hpp <- function(object, events, ...) {
          heights = c(2, 2), widths = c(2, 2))
   r <- compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)  
+  pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
   drawHPPIntensity(object, events = events,
                    plot_events = TRUE, 
@@ -57,7 +57,7 @@ intensityqqplot.mmhp <- function(object, events, ...) {
          heights = c(2, 2),widths = c(2, 2))
   r <- compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)  
+  pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
   drawUniMMHPIntensity(mmhp = object, 
                        add=FALSE, ...)  

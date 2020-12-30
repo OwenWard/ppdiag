@@ -10,9 +10,9 @@
 #' @return a vector of length n
 #' @noRd
 #' @examples
-#' hpp_obj=hpp(lambda = 1)
-#' s=pp_simulate(hpp_obj, end = 10, n=50)
-#' hist(s)
+#' hpp_obj <- hpp(lambda = 1)
+#' s <- pp_simulate(hpp_obj, end = 10, n=50)
+#'
 
 simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
   if(!is.null(seed)){

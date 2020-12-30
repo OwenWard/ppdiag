@@ -29,9 +29,9 @@ diagpp.hp<-function(object, events){
          heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)
+  pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
-  ksplot(r)
+  pp_ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
   pr <- pearsonresidual(object, events, end = max(events))
   ks <- ks.test(r,"pexp")
@@ -47,9 +47,9 @@ diagpp.mmhp <- function(object, events){
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)
+  pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
-  ksplot(r)
+  pp_ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
   pr <- pearsonresidual(object, events, end = max(events))
   ks <- ks.test(r,"pexp")
@@ -66,9 +66,9 @@ diagpp.hpp<-function(object, events){
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)
+  pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
-  ksplot(r)
+  pp_ksplot(r)
   rr <- rawresidual(object, events, end = max(events))
   pr <-pearsonresidual(object, events, end = max(events))
   

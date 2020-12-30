@@ -2,7 +2,7 @@
 % Please edit documentation in R/pp_simulate.R
 \name{pp_simulate}
 \alias{pp_simulate}
-\title{Simulate point processes}
+\title{Simulate events from a temporal point process}
 \usage{
 pp_simulate(object, start = 0, end = 1, n = NULL)
 }
@@ -19,10 +19,10 @@ pp_simulate(object, start = 0, end = 1, n = NULL)
 a vector of event times
 }
 \description{
-Simulate point processes
+Currently available point processes are homogeneous Poisson,
+Hawkes with exponential kernel and MMHP
 }
 \examples{
-hpp_obj=hpp(lambda = 1)
-s=pp_simulate(hpp_obj, end = 10, n=50)
-hist(s)
+hpp_obj <- hpp(lambda = 1)
+s <- pp_simulate(hpp_obj, end = 10, n=50)
 }

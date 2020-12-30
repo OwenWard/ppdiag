@@ -1,8 +1,9 @@
-#' Plot Quantile-quantile plot for rescaled-inter-event-times
+#' Plot QQ-plot for rescaled-inter-event-times of fitted point process
 #'
 #' Generate Quantile-quantile plot for rescaled-inter-event-times,
-#'  which are supposedly to be independently 
-#'  and identically distributed as exponential random vairbales with rate 1.
+#' which are independently 
+#' and identically distributed as exponential random variables with rate 1
+#' under the true point process.
 #'
 #' @param r rescaled-inter-event-times
 #' @param ... other arguments for plots
@@ -15,7 +16,7 @@
 
 
 
-qqexp <- function(r, ...) {
+pp_qqexp <- function(r, ...) {
   p <- ppoints(100) # 100 equally spaced points on (0,1), excluding endpoints
   q <- quantile(r, p = p) # percentiles of the sample distribution
   max_range <- max(c(max(qexp(p)),q))

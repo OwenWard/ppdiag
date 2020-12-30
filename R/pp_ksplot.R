@@ -1,4 +1,4 @@
-#' KS plot to visualize the empirical and theoretical cdf curve
+#' KS plot of empirical and theoretical cdf curve of fitted point process
 #'
 #' Plot empirical cdf plot for rescaled-inter-event-times and
 #'  exponential cdf as a reference curve
@@ -10,7 +10,7 @@
 
 #' @export
 
-ksplot <- function(r, ...) {
+pp_ksplot <- function(r, ...) {
   par <- list(...)
   if ("title" %in% names(par)) {
     title <- par$title

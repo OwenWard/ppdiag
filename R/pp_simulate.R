@@ -1,4 +1,7 @@
-#' Simulate point processes
+#' Simulate events from a temporal point process
+#' 
+#' Currently available point processes are homogeneous Poisson,
+#' Hawkes with exponential kernel and MMHP
 #'
 #' @param object point process model object of type hpp, hp, or mmhp
 #' @param start start time of events simulated
@@ -7,9 +10,9 @@
 #' @return a vector of event times
 #' @export
 #' @examples
-#' hpp_obj=hpp(lambda = 1)
-#' s=pp_simulate(hpp_obj, end = 10, n=50)
-#' hist(s)
+#' hpp_obj <- hpp(lambda = 1)
+#' s <- pp_simulate(hpp_obj, end = 10, n=50)
+
 pp_simulate <- function(object, start = 0, end = 1, n = NULL){
   if(class(object) == "hpp"){
       simulatehpp(object, start = start, end = end, n = n, seed = 1)
@@ -24,7 +27,8 @@ pp_simulate <- function(object, start = 0, end = 1, n = NULL){
       if (is.null(n)){
         n <- 1
       }
-      simulatemmhp(object, n = n, start = start, given_state = FALSE, states = NULL, seed = 1)
+      simulatemmhp(object, n = n, start = start, 
+                   given_state = FALSE, states = NULL, seed = 1)
   }
   
   else{
