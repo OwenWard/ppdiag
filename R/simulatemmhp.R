@@ -59,6 +59,9 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
   if(alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
   }
+  if(is.null(Q)) {
+    stop("No Q matrix specified")
+  }
 
   Pi <- diag(m) - diag(1 / diag(Q)) %*% Q
   zt <- rep(NA, n + 1)

@@ -4,6 +4,7 @@
 #' process for the given events. 
 #' 
 #' @param events vector containing the event times.
+#' @param end end of observation starting from 0 (default final event)
 #'
 #' @return a hpp object containing the events and the estimated parameter 
 #' @export
@@ -12,9 +13,8 @@
 #' events <- pp_simulate(pois_y, end=10)
 #' fithpp(events)
 
-fithpp <- function(events){
-	start <- min(events)
-	end <- max(events)
+fithpp <- function(events, end = max(events)){
+  start <- 0
 	if(start==end){
 	  stop("Start and end time are equal.")
 	}

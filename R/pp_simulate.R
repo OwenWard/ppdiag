@@ -32,6 +32,6 @@ pp_simulate <- function(object, start = 0, end = 1, n = NULL){
   }
   
   else{
-    stop("Select the correct point process model from hpp, hp, and mmhp")
+    stop("Select a point process model from hpp, hp, and mmhp")
   }
 }

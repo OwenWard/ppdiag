@@ -16,7 +16,8 @@ test_that("test hp", {
   expect_null(sim)
   
   #n=0
-  expect_error(simulatehp(hp_obj, start=2, end = 10, n=0),"n must be positive for simulation.")
+  expect_error(simulatehp(hp_obj, start = 2, end = 10, n = 0),
+               "n must be positive for simulation.")
   
   #test for messages
   expect_message(simulatehp(hp_obj,start=2,end=3,n=10),
