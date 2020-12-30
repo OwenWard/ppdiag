@@ -58,7 +58,7 @@ to this data.
 library(ppdiag)
 
 hp_obj <- hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
-sim_hp <- simulatehp(hp_obj, end = 200)
+sim_hp <- pp_simulate(hp_obj, end = 200)
 sim_hp
 
 ```
@@ -96,7 +96,7 @@ mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3),
           beta = 0.8)
 
 mmhp_obj
-mmhp_events <- simulatemmhp(mmhp_obj, n = 50)
+mmhp_events <- pp_simulate(mmhp_obj, n = 50)
 ```
 
 We can easily fit a homogeneous Poisson process and visualise the goodness of 

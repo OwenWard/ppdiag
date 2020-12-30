@@ -69,14 +69,13 @@ mmhp_obj
 ```
 
 ## Simulating data
-Functions for simulating data include `simulatehpp`, `simulatehp`,
-and `simulatemmhp`, which take in objects of type `hpp`, `hp`, and `mmhp`,
+Functions for simulating data is pp_simulate, which take in model and objects of type `hpp`, `hp`, and `mmhp`,
 respectively, with additional parameters for simulation, and produces a vector
 of simulated event times. 
 
 - Homogeneous Poisson Process: 
 
-`simulatehpp(hpp)` takes a hpp object and returns a vector of event times
+`pp_simulate` takes a hpp object and returns a vector of event times
 simulated from the corresponding homogeneous Poisson process.
 <!-- In the hpp object, one can either specify n, 
 which is expected number of  -->
@@ -86,40 +85,40 @@ are  -->
 regardless of -->
 <!-- the end time specified.  -->
 
-`simulatehpp(hpp, start=0, end, n=NULL)` can simulate events up to a specified end time.
+`pp_simulate(pp_obj, start=0, end=NULL, n=NULL)` can simulate events up to a specified end time.
 ```{r}
-hpp_events <- simulatehpp(hpp_obj, end=10)
+hpp_events <- pp_simulate(hpp_obj, end=10)
 hpp_events
 ```
 
 or specify a vector of certain length.
 ```{r}
-simulatehpp(hpp_obj, end = 10, n = 50)
+pp_simulate(hpp_obj, end=10, n=5)
 ```
 
 - Hawkes Process: 
 
-`simulatehp(hp, start = 0, end, history = 0)` returns event times
+`pp_simulate(hp_obj, end=NULL, n=NULL)` returns event times
 simulated from the Hawkes process specified by `hp`, up to some end
 time, along with the maximum overall intensity of the Hawkes process
 given these events.
 ```{r}
-hp_events <- simulatehp(hp_obj, start = 0, end = 50)
+hp_events <- pp_simulate(hp_obj, start = 0, end = 50)
 hp_events
 ```
 
 You can also specify desired length of events. 
 ```{r}
-hp_events <- simulatehp(hp_obj, start = 0, end = 50, n=10)
+hp_events <- pp_simulate(hp_obj, start = 0, end = 50, n=10)
 hp_events
 ```
 
 - Markov-Modulated Hawkes Process: 
 
-`simulatemmhp(mmhp, n = 1, ...)` 
+`pp_simulate(mmhp_obj, n=NULL, end=NULL)` 
 simulates events from a specified Markov Modulated Hawkes process. 
 ```{r}
-mmhp_events <- simulatemmhp(mmhp_obj, n = 50)
+mmhp_events <- pp_simulate(mmhp_obj, n = 50)
 mmhp_events
 ```
 
@@ -188,7 +187,7 @@ drawHPPIntensity(fit_hpp, events=hp_events$events,
 
 You can also plot the event time counts for the homogeneous poisson process. 
 ```{r,fig.width=4,fig.height=4}
-plothpp_step(simulatehpp(hpp_obj, end = 10, n=50))
+plothpp_step(pp_simulate(hpp_obj, end = 10, n=50))
 ```
 
 `drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")` plots the intensity of a hawkes process. To plot the events along with intensity, set `plot_events=TRUE`. 

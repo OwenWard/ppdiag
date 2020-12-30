@@ -18,6 +18,6 @@ process for the given events.
 }
 \examples{
 pois_y <- hpp(lambda = 1)
-events <- simulatehpp(pois_y, end=10)
+events <- pp_simulate(pois_y, end=10)
 fithpp(events)
 }

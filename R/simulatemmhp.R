@@ -22,12 +22,12 @@
 #' including states of Markov Process, time of each 
 #' transition of Markoc Process, state at each event,
 #'  times of Poisson events.
-#' @export
+#' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
-#' simulatemmhp(x, n = 10)
+#' pp_simulate(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
                          states = NULL, seed = NULL, ...) {
   if(!is.null(seed)){
