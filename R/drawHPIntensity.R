@@ -30,16 +30,16 @@
 #' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 #' }
 drawHPIntensity <- function(hp, 
-                            start = 0, end = max(events), history=0, events,
-                            color = 1, i = 1, add=FALSE, fit=FALSE,
-                            plot_events=FALSE, vec=NULL, 
-                            int_title="Hawkes Intensity") {
+                            start = 0, end = max(events), history = 0, events,
+                            color = 1, i = 1, add = FALSE, fit = FALSE,
+                            plot_events = FALSE, vec = NULL, 
+                            int_title = "Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
   old_events <- hp$events
   
   if(add==FALSE){
-    #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
+    #hawkes_par <- list(lambda0 = lambda0, alpha = alpha, beta = beta)
     #events <- c(history,t)
     #events <- t
 	  
@@ -50,15 +50,15 @@ drawHPIntensity <- function(hp,
       if(fit==TRUE){
         message("Fitting provided events.")
         if(is.null(vec)){
-          hp_obj <- fithp(events=events)
+          hp_obj <- fithp(events = events)
         }else{
-          hp_obj <- fithp(vec=vec, events)
+          hp_obj <- fithp(vec = vec, events)
         }
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
       }else{
-        message("Using the hp object. Set fit=TRUE to fit events provided. ")
+        message("Using the hp object. Set fit = TRUE to fit events provided.")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
@@ -78,9 +78,9 @@ drawHPIntensity <- function(hp,
         if(fit==TRUE){
           message("Fitting provided events. Set events=NULL to use the events in object.")
           if(is.null(vec)){
-            hp_obj <- fithp(events=events)
+            hp_obj <- fithp(events = events)
           }else{
-            hp_obj <- fithp(vec=vec, events)
+            hp_obj <- fithp(vec = vec, events)
           }
           lambda0 <- hp$lambda0
           alpha <- hp$alpha

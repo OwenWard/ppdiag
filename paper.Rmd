@@ -51,7 +51,7 @@ data, as have been utilised in @wu2020diagnostics.
 
 # Statement of Need
 This package provides functions to evaluate the fit of
-univatiate temporal point processes. These functions allow: 
+univariate temporal point processes. These functions allow: 
 
 - Simulation 
 of data from a range of common univariate point processes including Homogeneous 
