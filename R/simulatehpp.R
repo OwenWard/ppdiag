@@ -8,10 +8,10 @@
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' @return a vector of length n
-#' @export
+#' @noRd
 #' @examples
 #' hpp_obj=hpp(lambda = 1)
-#' s=simulatehpp(hpp_obj, end = 10, n=50)
+#' s=pp_simulate(hpp_obj, end = 10, n=50)
 #' hist(s)
 
 simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
