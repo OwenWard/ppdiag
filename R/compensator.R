@@ -1,6 +1,6 @@
-## Calculate compensators for different models
+## Calculate compensators for point process models
 
-#' Compensators for MMHP, HP HPP, and MMPP models
+#' Compensators for mmhp, hp and hpp models
 #'
 #' @param object a social network model
 #' @param events event times, which can have first value as 0
@@ -27,7 +27,7 @@ compensator.mmpp <- function(object, events) {
   q2 <- object$q2
   n <- length(events) - 1
   message("Function not completed")
-  pzt <- rep(0.5,n)
+  pzt <- rep(0.5, n)
   interevent <- events[-1] - events[-(n + 1)]
   Lambda_mixed <- lambda0 * (1 + c) * interevent * pzt + 
     lambda0 * interevent * (1 - pzt)

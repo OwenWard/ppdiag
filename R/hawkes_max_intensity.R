@@ -4,6 +4,7 @@
 #'
 #' @return max of intensity
 #' @noRd
+#' @keywords Internal
 #' 
 hawkes_max_intensity <- function(object, events) {
   r <- 0

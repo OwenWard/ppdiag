@@ -1,6 +1,6 @@
 #' Draw Intensity of Homogeneous Poisson Process 
 #'
-#' Draw the intensity for homogeneous poisson process events
+#' Draw the intensity for a homogeneous Poisson process
 #'
 #' @param hpp object for homogeneous poisson process
 #' @param events event times input

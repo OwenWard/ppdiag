@@ -1,4 +1,4 @@
-#' Fit a homogeneous poisson process
+#' Fit a homogeneous poisson process to event data
 #'
 #' Compute maximum likelihood estimator of the rate of a homogeneous Poisson
 #' process for the given events. 

@@ -2,23 +2,23 @@
 % Please edit documentation in R/hpp.R
 \name{hpp}
 \alias{hpp}
-\title{Create a homogeneous poisson process model}
+\title{Create a homogeneous Poisson process object}
 \usage{
 hpp(lambda, events = NULL)
 }
 \arguments{
-\item{lambda}{rate of the poisson process}
+\item{lambda}{rate of the Poisson process}
 
-\item{events}{event times}
+\item{events}{event times, optional}
 }
 \value{
 hpp object
 }
 \description{
-Create a homogeneous poisson process according to given parameters:
- lambda, and events.
-If events is missing, then it means that data will be
- added later(e.g. simulated)
+Create a homogeneous Poisson object according to given parameters:
+lambda, and events.
+If events are missing, then it means that data will be
+added later(simulated from this process).
 }
 \examples{
 hpp(lambda = 1)

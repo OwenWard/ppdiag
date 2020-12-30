@@ -7,7 +7,7 @@
 \alias{compensator.hp}
 \alias{compensator.mmhp}
 \alias{compensator.hpp}
-\title{Compensators for MMHP, HP HPP, and MMPP models}
+\title{Compensators for mmhp, hp and hpp models}
 \usage{
 compensator(object, events)
 
@@ -30,5 +30,5 @@ compensator(object, events)
 compensator vector of rescaled interevent times
 }
 \description{
-Compensators for MMHP, HP HPP, and MMPP models
+Compensators for mmhp, hp and hpp models
 }

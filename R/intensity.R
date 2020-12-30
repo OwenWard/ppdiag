@@ -2,10 +2,9 @@
 #'
 #' Take a point process object and compute the intensity 
 #' function accordingly, either numerically or at each event.
+#' For processes with a latent state this will be inferred.
 #'
 #' @param object an object of MMHP/HP/MMPP
-#' For example, MMHP object should includ its state, state_time,
-#'  events, lambda0, lambda1, beta and alpha.
 #' @param event the observed/simulated events, including event times and 
 #' start/end of observation period
 #' @param method the method used to calculate intensity.

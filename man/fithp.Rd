@@ -2,7 +2,7 @@
 % Please edit documentation in R/fithp.R
 \name{fithp}
 \alias{fithp}
-\title{Determine the MLE of hawkes process numerically}
+\title{Determine the MLE of Hawkes process numerically}
 \usage{
 fithp(vec = rep(0.1, 3), events)
 }
@@ -13,14 +13,15 @@ fithp(vec = rep(0.1, 3), events)
 }
 \value{
 a hp object indicating the maximum 
-likelihood parameter values (lambda0,alpha,beta) for hawkes process.
+likelihood parameter values (lambda0,alpha,beta) for Hawkes process.
+This is a non-convex problem and a (unique) solution is not guaranteed.
 }
 \description{
-Determine the MLE of hawkes process numerically
+Determine the MLE of Hawkes process numerically
 }
 \examples{
-init=rep(0.3,3)
-hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-sims <- simulatehp(hp_obj,start = 0, end = 10, history = 0, seed=0)
+init <- rep(0.3,3)
+hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
+sims <- simulatehp(hp_obj, start = 0, end = 10, history = 0, seed=0)
 fithp(init,sims$events)                  
 }

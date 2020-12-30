@@ -22,9 +22,7 @@ intensity(object, event, method = "numeric")
 \method{intensity}{hpp}(object, event, method = "numeric")
 }
 \arguments{
-\item{object}{an object of MMHP/HP/MMPP
-For example, MMHP object should includ its state, state_time,
- events, lambda0, lambda1, beta and alpha.}
+\item{object}{an object of MMHP/HP/MMPP}
 
 \item{event}{the observed/simulated events, including event times and 
 start/end of observation period}
@@ -39,6 +37,7 @@ The intensity function of MMHP
 \description{
 Take a point process object and compute the intensity 
 function accordingly, either numerically or at each event.
+For processes with a latent state this will be inferred.
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

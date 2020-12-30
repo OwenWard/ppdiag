@@ -15,7 +15,7 @@
 #' @param lambda0 parameters for Poisson process.
 #'
 #' @return mmpp object
-#' @export
+#' @noRd
 
 mmpp <- function(lambda0, c, q1, q2, tau = NULL) {
   y <- c(list(c = c, tau = tau, lambda0 = lambda0, q1 = q1, q2 = q2))

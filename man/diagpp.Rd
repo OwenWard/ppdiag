@@ -6,7 +6,7 @@
 \alias{diagpp.hp}
 \alias{diagpp.mmhp}
 \alias{diagpp.hpp}
-\title{Generate diagnostic tools for different models, 
+\title{Generate diagnostic tools for different point process models, 
 including quantile-quantile plot, ks plot, 
 raw residual and pearson residual.}
 \usage{
@@ -21,15 +21,16 @@ diagpp(object, events)
 \method{diagpp}{hpp}(object, events)
 }
 \arguments{
-\item{object}{a social network model}
+\item{object}{a point process model}
 
 \item{events}{event times}
 }
 \value{
-print qq plot and ks plot, and print out pearson and raw residuals.
+Display QQ-plot and KS plot, along with printing Pearson
+ and raw residuals.
 }
 \description{
-Generate diagnostic tools for different models, 
+Generate diagnostic tools for different point process models, 
 including quantile-quantile plot, ks plot, 
 raw residual and pearson residual.
 }

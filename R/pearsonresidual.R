@@ -1,12 +1,12 @@
-#' Compute Pearson residuals for social network models
+#' Compute Pearson residuals for point process models
 #'
-#' Compute Pearson residuals for social network models 
-#' with model specified time events or simulated time events
+#' Compute Pearson residuals for point processes 
+#' with specified parameters and events.
 #'
 #' @param object social network model containing the parameters
-#' @param events vector of event happening time
-#' @param start start of observation period
-#' @param end termination time
+#' @param events vector of event times
+#' @param start start of observation period (default 0)
+#' @param end termination time (default final event)
 #' 
 #' @return the Pearson residual
 #' @importFrom stats integrate

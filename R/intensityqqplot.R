@@ -1,4 +1,5 @@
-#' Draw the intensity and q-q plot
+#' Draw Intensity of Fitted Point Process and QQ-Plot of Rescaled Events
+#' 
 #'
 #' Draw the intensity and q-q plot for models
 #'

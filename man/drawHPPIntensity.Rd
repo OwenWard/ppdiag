@@ -35,7 +35,7 @@ use the passed object}
 \item{end}{end of events}
 }
 \description{
-Draw the intensity for homogeneous poisson process events
+Draw the intensity for a homogeneous Poisson process
 }
 \examples{
 \dontrun{

@@ -1,8 +1,6 @@
 #' Draw the intensity of Hawkes Process
 #'
-#' Draw the intensity of Hawkes Process, a helper function for
-#'  'drawUniMMHPIntensity'
-#' while also available independently
+#' Draw the intensity of a Hawkes Process
 #'
 #' @param hp object parameters for Hawkes process
 #' @param start the start time of current state

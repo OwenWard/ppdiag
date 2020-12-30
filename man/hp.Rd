@@ -2,7 +2,7 @@
 % Please edit documentation in R/hp.R
 \name{hp}
 \alias{hp}
-\title{Create a Hawkes Process(HP) model}
+\title{Create a Hawkes Process object}
 \usage{
 hp(lambda0, alpha, beta, events = NULL)
 }
@@ -22,10 +22,11 @@ meaning that the data will be added later (e.g. simulated).}
 hp object
 }
 \description{
-Create a Hawkes Process(HP) model according to the given parameters:
- lambda0, alpha, beta and events.
-If events is missing, then it means that data will be
- added later(e.g. simulated)
+Create a Hawkes Process with an exponential
+kernel according to the given parameters:
+lambda0, alpha, beta and events.
+If events are missing, then it means that data will be
+added later(simulated from this process)
 }
 \examples{
 hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)

@@ -1,12 +1,12 @@
-#' Compute raw residuals for social network models
+#' Compute raw residuals for point process models
 #'
-#' Compute raw residuals for social network models with model
-#'  specified time events or simulated time events
+#' Compute raw residuals for for point processes 
+#' with specified parameters and events.
 #'
-#' @param object social network model containing the parameters
-#' @param events vector of event happening time
-#' @param start start of observation period
-#' @param end end of observation period
+#' @param object point process model containing the parameters
+#' @param events vector of event times
+#' @param start start of observation period (default 0)
+#' @param end end of observation period (default final event)
 #'
 #' @return the raw residual
 #' @export

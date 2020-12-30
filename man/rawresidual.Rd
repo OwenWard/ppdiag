@@ -6,7 +6,7 @@
 \alias{rawresidual.hp}
 \alias{rawresidual.mmhp}
 \alias{rawresidual.hpp}
-\title{Compute raw residuals for social network models}
+\title{Compute raw residuals for point process models}
 \usage{
 rawresidual(object, events, start, end)
 
@@ -19,20 +19,20 @@ rawresidual(object, events, start, end)
 \method{rawresidual}{hpp}(object, events, start = 0, end = max(events))
 }
 \arguments{
-\item{object}{social network model containing the parameters}
+\item{object}{point process model containing the parameters}
 
-\item{events}{vector of event happening time}
+\item{events}{vector of event times}
 
-\item{start}{start of observation period}
+\item{start}{start of observation period (default 0)}
 
-\item{end}{end of observation period}
+\item{end}{end of observation period (default final event)}
 }
 \value{
 the raw residual
 }
 \description{
-Compute raw residuals for social network models with model
- specified time events or simulated time events
+Compute raw residuals for for point processes 
+with specified parameters and events.
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

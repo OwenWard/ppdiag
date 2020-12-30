@@ -48,9 +48,7 @@ inputted will be plotted}
 \item{int_title}{title of the intensity plot}
 }
 \description{
-Draw the intensity of Hawkes Process, a helper function for
- 'drawUniMMHPIntensity'
-while also available independently
+Draw the intensity of a Hawkes Process
 }
 \examples{
 \dontrun{
