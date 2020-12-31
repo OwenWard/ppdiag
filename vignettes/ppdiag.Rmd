@@ -1,7 +1,7 @@
 ---
 title: "`ppdiag`, diagnostic tools for temporal Point Processes"
 output: rmarkdown::html_vignette
-author: Sally Sun, Owen G. Ward et al.
+author: Sally Sun, Owen G. Ward, Xiaoxi Zhao, Jing Wu, Tian Zheng.
 vignette: >
   %\VignetteIndexEntry{`ppdiag`, diagnostic tools for temporal Point Processes}
   %\VignetteEngine{knitr::rmarkdown}
