@@ -17,7 +17,7 @@
 #' @return mmpp object
 #' @noRd
 
-mmpp <- function(lambda0, c, q1, q2, tau = NULL) {
+pp_mmpp <- function(lambda0, c, q1, q2, tau = NULL) {
   y <- c(list(c = c, tau = tau, lambda0 = lambda0, q1 = q1, q2 = q2))
   class(y) <- "mmpp"
   return(y)

@@ -10,7 +10,7 @@
 #' @return a vector of length n
 #' @noRd
 #' @examples
-#' hpp_obj <- hpp(lambda = 1)
+#' hpp_obj <- pp_hpp(lambda = 1)
 #' s <- pp_simulate(hpp_obj, end = 10, n=50)
 #'
 

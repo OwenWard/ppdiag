@@ -21,9 +21,9 @@
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#' pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
-mmhp <- function(lambda0, lambda1, alpha, beta, Q = NULL,
+pp_mmhp <- function(lambda0, lambda1, alpha, beta, Q = NULL,
                  delta = NULL, events = NULL) {
   y <- c(list(Q = Q, delta = delta,
               events = events, lambda0 = lambda0, 

@@ -39,7 +39,7 @@ Draw the intensity for a homogeneous Poisson process
 }
 \examples{
 \dontrun{
-pois_y <- hpp(lambda = 1)
+pois_y <- pp_hpp(lambda = 1)
 drawHPPIntensity(pois_y, events=pp_simulate(pois_y, end=10), color = "red")
 }
 }

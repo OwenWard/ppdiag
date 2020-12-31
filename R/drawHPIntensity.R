@@ -24,7 +24,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
+#' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 #' sims <- pp_simulate(hp_obj, start = 0, end = 20, history = 0)
 #' events <- sims$events
 #' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)

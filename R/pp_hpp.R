@@ -10,9 +10,9 @@
 #' @return hpp object
 #' @export
 #' @examples
-#' hpp(lambda = 1)
+#' pp_hpp(lambda = 1)
 
-hpp <- function(lambda, events = NULL) {
+pp_hpp <- function(lambda, events = NULL) {
   y <- c(list(lambda = lambda, events = events))
   class(y) <- "hpp"
   return(y)

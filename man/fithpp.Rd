@@ -19,7 +19,7 @@ Compute maximum likelihood estimator of the rate of a homogeneous Poisson
 process for the given events.
 }
 \examples{
-pois_y <- hpp(lambda = 1)
+pois_y <- pp_hpp(lambda = 1)
 events <- pp_simulate(pois_y, end=10)
 fithpp(events)
 }

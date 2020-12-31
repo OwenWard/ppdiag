@@ -9,7 +9,7 @@
 #' @return a hpp object containing the events and the estimated parameter 
 #' @export
 #' @examples
-#' pois_y <- hpp(lambda = 1)
+#' pois_y <- pp_hpp(lambda = 1)
 #' events <- pp_simulate(pois_y, end=10)
 #' fithpp(events)
 
@@ -21,6 +21,6 @@ fithpp <- function(events, end = max(events)){
 	n <- length(events)
 	lambda <- n/(end-start)
 	hpp_object <- list(lambda = lambda, events = events)
-	class(hpp_object) <- "hpp"
+	class(hpp_object) <- "pp_hpp"
 	return(hpp_object)	
 }

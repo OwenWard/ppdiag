@@ -23,6 +23,6 @@ Currently available point processes are homogeneous Poisson,
 Hawkes with exponential kernel and MMHP
 }
 \examples{
-hpp_obj <- hpp(lambda = 1)
+hpp_obj <- pp_hpp(lambda = 1)
 s <- pp_simulate(hpp_obj, end = 10, n=50)
 }

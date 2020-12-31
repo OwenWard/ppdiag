@@ -1,6 +1,6 @@
 test_that("test hp", {
   #test simulate hp
-  sim <- simulatehp(hp = hp(1.5,0.1,0.2), end = 10)
+  sim <- simulatehp(hp = pp_hp(1.5,0.1,0.2), end = 10)
   expect_type(sim, "list")
   expect_equal(length(sim), 2)
   expect_true(!is.null(sim$events))
@@ -8,7 +8,7 @@ test_that("test hp", {
   
   #test for edge cases
   #start>end
-  hp_obj <- hp(1.5,0.1,0.2)
+  hp_obj <- pp_hp(1.5,0.1,0.2)
   sim <- simulatehp(hp_obj, start=20, end = 10)
   #start==end
   expect_null(sim)
@@ -16,7 +16,7 @@ test_that("test hp", {
   expect_null(sim)
   
   # test alpha >= beta
-  expect_error(simulatehp(hp(1.5,1.2,1), end = 10),
+  expect_error(simulatehp(pp_hp(1.5,1.2,1), end = 10),
                "A stationary Hawkes process requires alpha<beta.")
   
   #n=0

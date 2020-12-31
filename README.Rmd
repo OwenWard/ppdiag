@@ -57,7 +57,7 @@ to this data.
 ```{r example}
 library(ppdiag)
 
-hp_obj <- hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
+hp_obj <- pp_hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
 sim_hp <- pp_simulate(hp_obj, end = 200)
 sim_hp
 
@@ -89,7 +89,7 @@ and examine the fit of simpler point processes to this data.
 ```{r mmhp example}
 Q <- matrix(c(-0.2, 0.2, 0.1, -0.1), ncol = 2, byrow = TRUE)
 
-mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3), 
+mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), 
           lambda0 = 0.2,
           lambda1 = .75,
           alpha = 0.4,

@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#' mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
 #' interpolate_mmhp_latent(params = mmhp_obj, events = c(1, 2, 3, 5),
 #' zt = c(2, 1, 1, 2))

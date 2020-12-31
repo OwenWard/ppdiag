@@ -17,8 +17,8 @@
 #' @return hp object
 #' @export
 #' @examples
-#' hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-hp <- function(lambda0, alpha, beta, events = NULL) {
+#' pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+pp_hp <- function(lambda0, alpha, beta, events = NULL) {
   if(alpha >= beta){
     stop("A stationary Hawkes process requires alpha<beta.")
   }
