@@ -10,7 +10,7 @@
 #' 
 #' @return the Pearson residual
 #' @importFrom stats integrate
-#' @export
+#' @noRd
 #' @examples 
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 

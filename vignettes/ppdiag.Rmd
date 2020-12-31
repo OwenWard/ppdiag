@@ -224,16 +224,10 @@ and pearson residuals in one function.
 diagpp(hpp_obj,hpp_events)
 ```
 
-`rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
+`pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
 
 ```{r}
-rawresidual(hpp_obj,hpp_events)
-```
-
-`pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
-
-```{r}
-pearsonresidual(hpp_obj,hpp_events)
+pp_residual(hpp_obj,hpp_events)
 ```
 
 `intensityqqplot(object, events)` gives both qqplot and intensity plot. 
@@ -252,17 +246,12 @@ and pearson residuals in one function.
 diagpp(hp_obj,hp_events$events)
 ```
 
-`rawresidual(object, events, start = min(events),end = max(events))` gives rawresidual only. 
+`pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
 
 ```{r}
-rawresidual(hp_obj,hp_events$events)
+pp_residual(hp_obj,hp_events$events)
 ```
 
-`pearsonresidual(object, events, start = min(events),end = max(events))` gives pearsonresidual only. 
-
-```{r}
-pearsonresidual(hp_obj,hp_events$events)
-```
 
 `intensityqqplot(object, events)` gives both qqplot and intensity plot. 
 
