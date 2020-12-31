@@ -15,6 +15,10 @@ test_that("test hp", {
   sim <- simulatehp(hp_obj, start=20, end = 20)
   expect_null(sim)
   
+  # test alpha >= beta
+  expect_error(simulatehp(hp(1.5,1.2,1), end = 10),
+               "A stationary Hawkes process requires alpha<beta.")
+  
   #n=0
   expect_error(simulatehp(hp_obj, start = 2, end = 10, n = 0),
                "n must be positive for simulation.")

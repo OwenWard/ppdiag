@@ -7,6 +7,11 @@
 #' @keywords Internal
 #' 
 hawkes_max_intensity <- function(object, events) {
+  alpha <- object$alpha
+  beta <- object$beta
+  if(alpha >= beta) {
+    stop("A stationary Hawkes process requires alpha<beta.")
+  }
   r <- 0
   r.max <- 0
   N <- length(events)

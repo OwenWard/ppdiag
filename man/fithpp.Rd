@@ -4,10 +4,12 @@
 \alias{fithpp}
 \title{Fit a homogeneous poisson process to event data}
 \usage{
-fithpp(events)
+fithpp(events, end = max(events))
 }
 \arguments{
 \item{events}{vector containing the event times.}
+
+\item{end}{end of observation starting from 0 (default final event)}
 }
 \value{
 a hpp object containing the events and the estimated parameter

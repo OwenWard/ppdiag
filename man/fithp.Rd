@@ -4,12 +4,14 @@
 \alias{fithp}
 \title{Determine the MLE of Hawkes process numerically}
 \usage{
-fithp(vec = rep(0.1, 3), events)
+fithp(vec = rep(0.1, 3), events, end = max(events))
 }
 \arguments{
 \item{vec}{vector of initial parameter values}
 
 \item{events}{event times}
+
+\item{end}{end of observation period starting from 0 (default last event)}
 }
 \value{
 a hp object indicating the maximum 

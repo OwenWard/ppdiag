@@ -19,8 +19,8 @@
 #' @examples
 #' hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 hp <- function(lambda0, alpha, beta, events = NULL) {
-  if(alpha>=beta){
-    stop("A stationary hawkes process requires alpha<beta.")
+  if(alpha >= beta){
+    stop("A stationary Hawkes process requires alpha<beta.")
   }
   y <- c(list(lambda0 = lambda0, alpha = alpha, beta = beta,
               events = events))

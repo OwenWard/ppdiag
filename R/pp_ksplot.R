@@ -11,6 +11,17 @@
 #' @export
 
 pp_ksplot <- function(r, ...) {
+  if(is.null(r)) {
+    stop("No rescaled interevent times provided")
+  }
+  if(length(r) == 1) {
+    if(r == 0) {
+      stop("No rescaled interevent times provided") 
+    }
+  }
+  if(min(r) < 0) {
+    stop("Incorrect interevent times provided")
+  }
   par <- list(...)
   if ("title" %in% names(par)) {
     title <- par$title

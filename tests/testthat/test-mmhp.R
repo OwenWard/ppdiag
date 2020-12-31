@@ -7,6 +7,6 @@ test_that("multiplication works", {
   
   #test for error messages
   expect_error(simulatemmhp(mmhp(lambda0 = 0.9, lambda1 = 1.1,
-                                 alpha=1,beta=0.5)),
+                                 alpha = 1, beta = 0.5)),
                "Require alpha less than beta for a stationary process")
 })

@@ -55,7 +55,6 @@ rawresidual.mmhp <- function(object, events, start = 0,
   time.vec <- seq(from = start, to = end, length.out = 1000)
   N <- length(events)
   est.intensity <- intensity(object, event = event_obj, method = "numeric")
-  # is this next line correct?
   all_Lambda <- sum(est.intensity) * (time.vec[2] - time.vec[1])
   return(N - all_Lambda)
 }
@@ -67,6 +66,6 @@ rawresidual.hpp <- function(object, events, start = 0,
   N <- length(events)
   inten_obj <- list(events = events, start = start, end = end)
   est.intensity <- intensity(object, events, method = "integral")
-  all_Lambda <- sum(est.intensity)
+  all_Lambda <- object$lambda*(end - start)
   return(N - all_Lambda)
 }
