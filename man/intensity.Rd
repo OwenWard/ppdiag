@@ -22,17 +22,16 @@ intensity(object, event, method = "numeric")
 \method{intensity}{hpp}(object, event, method = "numeric")
 }
 \arguments{
-\item{object}{an object of MMHP/HP/MMPP}
+\item{object}{an object of MMHP/HP/HPP/MMPP}
 
 \item{event}{the observed/simulated events, including event times and 
 start/end of observation period}
 
 \item{method}{the method used to calculate intensity.
-The candidates are: `numeric`, and `atevent`, default to `numeric`. 
-### function currently removed as not needed}
+The candidates are: `numeric`, `atevent`, and `integral`, default to `numeric`.}
 }
 \value{
-The intensity function of MMHP
+The intensity function of MMHP/HP/HPP/MMPP
 }
 \description{
 Take a point process object and compute the intensity 

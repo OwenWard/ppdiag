@@ -4,13 +4,12 @@
 #' function accordingly, either numerically or at each event.
 #' For processes with a latent state this will be inferred.
 #'
-#' @param object an object of MMHP/HP/MMPP
+#' @param object an object of MMHP/HP/HPP/MMPP
 #' @param event the observed/simulated events, including event times and 
 #' start/end of observation period
 #' @param method the method used to calculate intensity.
-#'   The candidates are: `numeric`, and `atevent`, default to `numeric`. 
-#'   ### function currently removed as not needed
-#' @return The intensity function of MMHP
+#'   The candidates are: `numeric`, `atevent`, and `integral`, default to `numeric`. 
+#' @return The intensity function of MMHP/HP/HPP/MMPP
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
@@ -177,15 +176,8 @@ intensity.hpp <- function(object, event, method = "numeric"){
   end <- event$end
   event <- event$event
   
-  ### what does this do?
   n <- length(event)
-  # if(method=="function"){
-  #   intensity <- function(x) {
-  #     l=lambda
-  #     return(l)
-  #   }
-  #   return(Vectorize(intensity))
-  # } 
+
   if (method == "atevent"){
     return(rep(lambda,n))
   } 
@@ -193,6 +185,6 @@ intensity.hpp <- function(object, event, method = "numeric"){
     return ((end-start)*lambda)
   }  
   else if (method == "numeric") {
-    return(rep(lambda,1000))
+    return(rep(lambda,n))
   }
 }

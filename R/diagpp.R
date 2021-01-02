@@ -10,6 +10,12 @@
 #' @return Display QQ-plot and KS plot, along with printing Pearson
 #'  and raw residuals.
 #' @export
+#' @examples 
+#' \dontrun{
+#' hpp_obj <- pp_hpp(lambda = 1)
+#' events <- pp_simulate(hpp_obj, end=10)
+#' diagpp(hpp_obj, events)
+#' }
 
 diagpp <- function(object, events) {
   UseMethod("diagpp")

@@ -15,7 +15,7 @@
 #' @noRd
 #' @examples
 #' hp_obj <- pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
-#' pp_simulate(hp_obj,start = 0, end = 100)
+#' simulatehp(hp_obj,start = 0, end = 100)
 
 simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
   if(!is.null(seed)){

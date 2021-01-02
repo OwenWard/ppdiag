@@ -34,3 +34,10 @@ Generate diagnostic tools for different point process models,
 including quantile-quantile plot, ks plot, 
 raw residual and pearson residual.
 }
+\examples{
+\dontrun{
+hpp_obj <- pp_hpp(lambda = 1)
+events <- pp_simulate(hpp_obj, end=10)
+diagpp(hpp_obj, events)
+}
+}

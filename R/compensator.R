@@ -6,7 +6,10 @@
 #' @param events event times, which can have first value as 0
 #' @return compensator vector of rescaled interevent times
 #' @export
-#'
+#' @examples 
+#' hpp_obj <- pp_hpp(lambda = 1)
+#' events <- pp_simulate(hpp_obj, end=10)
+#' comp <- compensator(hpp_obj, events)
 
 compensator <- function(object, events) {
   UseMethod("compensator")

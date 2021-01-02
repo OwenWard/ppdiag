@@ -11,7 +11,7 @@
 #' @noRd
 #' @examples
 #' hpp_obj <- pp_hpp(lambda = 1)
-#' s <- pp_simulate(hpp_obj, end = 10, n=50)
+#' s <- simulatehpp(hpp_obj, end = 10, n=50)
 #'
 
 simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
