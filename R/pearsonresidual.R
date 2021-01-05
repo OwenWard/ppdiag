@@ -31,6 +31,9 @@ pearsonresidual.default <- function(object, events, start = 0,
 #' @export
 pearsonresidual.mmhp <- function(object, events, start = 0,
                                 end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
   # define time.vec,latent.vec,latent_event in intensity
   N <- length(events)
   event_obj <- list()
@@ -49,6 +52,9 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
 #' @export
 pearsonresidual.hp <- function(object, events, start = 0,
                                 end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta

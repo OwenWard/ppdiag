@@ -34,6 +34,9 @@ rawresidual.default <- function(object, events, start = 0,
 #' @export
 rawresidual.hp <- function(object, events, start = 0, 
                            end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
@@ -49,6 +52,9 @@ rawresidual.hp <- function(object, events, start = 0,
 #' @export
 rawresidual.mmhp <- function(object, events, start = 0,
                              end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
   event_obj <- list()
   event_obj$start <- start
   event_obj$end <- end
@@ -63,6 +69,9 @@ rawresidual.mmhp <- function(object, events, start = 0,
 #' @export
 rawresidual.hpp <- function(object, events, start = 0, 
                             end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
   N <- length(events)
   # est.intensity <- intensity(object, events, method = "integral")
   all_Lambda <- object$lambda*(end - start)
