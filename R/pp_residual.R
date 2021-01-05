@@ -16,6 +16,5 @@
 pp_residual <- function(object, events, start = 0, end = max(events)) {
   rr <- rawresidual(object, events, start, end)
   pr <- pearsonresidual(object, events, start, end)
-  cat("Raw residual: ", rr, "\n",sep = "")
-  cat("Pearson residual: ", pr, "\n",sep = "")
+  return(list(raw = rr, pearson = pr))
 }
