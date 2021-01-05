@@ -22,15 +22,13 @@ pearsonresidual <- function(object, events, start, end) {
   UseMethod("pearsonresidual")
 }
 
-#' @rdname pearsonresidual
-#' @export
+
 pearsonresidual.default <- function(object, events, start = 0,
                                 end = max(events)) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
-#' @rdname pearsonresidual
-#' @export
+
 pearsonresidual.mmhp <- function(object, events, start = 0,
                                 end = max(events)) {
   # define time.vec,latent.vec,latent_event in intensity
@@ -48,8 +46,7 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
   return(pr)
 }
 
-#' @rdname pearsonresidual
-#' @export
+
 pearsonresidual.hp <- function(object, events, start = 0,
                                 end = max(events)) {
   lambda0 <- object$lambda0
@@ -106,8 +103,7 @@ pearsonresidual.hp <- function(object, events, start = 0,
   }
 }
 
-#' @rdname pearsonresidual
-#' @export
+
 pearsonresidual.hpp <- function(object, events, start = 0,
                                 end = max(events)) {
   if(end != max(events)) {

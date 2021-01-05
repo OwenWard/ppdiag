@@ -1,6 +1,6 @@
-## Calculate compensators for point process models
-
-#' Compensators for mmhp, hp and hpp models
+#' Compensators for point processes
+#' 
+#' Computes the compensator for included point processes
 #'
 #' @param object a social network model
 #' @param events event times, which can have first value as 0
@@ -11,19 +11,19 @@
 #' events <- pp_simulate(hpp_obj, end=10)
 #' comp <- compensator(hpp_obj, events)
 
-compensator <- function(object, events) {
-  UseMethod("compensator")
+pp_compensator <- function(object, events) {
+  UseMethod("pp_compensator")
 }
 
-#' @rdname compensator
+#' @rdname pp_compensator
 #' @export
-compensator.default <- function(object, events) {
-  cat("please input the right model")
+pp_compensator.default <- function(object, events) {
+  cat("Please input the right model. Select from hp, hpp and mmhp.")
 }
 
-#' @rdname compensator
+#' @rdname pp_compensator
 #' @export
-compensator.mmpp <- function(object, events) {
+pp_compensator.mmpp <- function(object, events) {
   lambda0 <- object$lambda0
   c <- object$c
   q1 <- object$q1
@@ -37,9 +37,9 @@ compensator.mmpp <- function(object, events) {
   return(Lambda_mixed)
 }
 
-#' @rdname compensator
+#' @rdname pp_compensator
 #' @export
-compensator.hp <- function(object, events) {
+pp_compensator.hp <- function(object, events) {
   # input object: parameters for Hawkes process, include lambda0, alpha, beta 
   #       events: vector of events times
   # output Lambda: vector of compensator evaluated at each event time
@@ -50,10 +50,16 @@ compensator.hp <- function(object, events) {
   if(events[1] == 0 ){
     events <- events[-1]
   }
+  if(length(events) == 0) {
+    return(0)
+  }
   N <- length(events)
   Lambda <- rep(0,N)
   r <- 0
   Lambda[1] <- lambda0*(events[1]) # start at 0
+  if(N == 1) {
+    return(Lambda)
+  }
   for(i in 2:N){
     delta.t <- events[i]-events[i-1]
     temp.r <- exp(-beta*delta.t)*(r+1)
@@ -64,9 +70,9 @@ compensator.hp <- function(object, events) {
 
 }
 
-#' @rdname compensator
+#' @rdname pp_compensator
 #' @export
-compensator.mmhp <- function(object, events) {
+pp_compensator.mmhp <- function(object, events) {
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
@@ -96,17 +102,28 @@ compensator.mmhp <- function(object, events) {
   return(Lambda_mixed)
 }
 
-#' @rdname compensator
+#' @rdname pp_compensator
 #' @export
-compensator.hpp <- function(object, events) {
+pp_compensator.hpp <- function(object, events) {
   if(events[1] == 0) {
     events <- events[-1]
   }
-  N <- length(events)
-  lambda <- object$lambda
-  Lambda <- rep(0,N)
-  for (i in 2:N){
-    Lambda[i] <- (events[i]-events[i-1])*lambda
+  if(length(events) == 0) {
+    return(0)
   }
+  # if(length(events) == 1) {
+  #   return( (events - 0)*lambda )
+  # }
+  # if(length(events == 2)) {
+  #   Lambda <-
+  # }
+  # N <- length(events)
+  # lambda <- object$lambda
+  # Lambda <- rep(0,N)
+  # for (i in 2:N){
+  #   Lambda[i] <- (events[i]-events[i-1])*lambda
+  # }
+  lambda <- object$lambda
+  Lambda <- diff(c(0,events) ) *lambda
   return(Lambda)
 }

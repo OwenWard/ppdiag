@@ -16,5 +16,6 @@ test_that("Hawkes Max Intensity", {
   expect_error(hawkes_max_intensity(pp_hp(lambda = 1, alpha = 3.5, beta = 2.5),
                                     events),
                "A stationary Hawkes process requires alpha<beta.")
-  
+  expect_error(hawkes_max_intensity(pp_hp(lambda = 1, alpha = 3.5, beta = 2.5),
+                                    events))
 })

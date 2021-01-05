@@ -10,7 +10,7 @@
 #' @param method the method used to calculate intensity.
 #'   The candidates are: `numeric`, `atevent`, and `integral`, default to `numeric`. 
 #' @return The intensity function of MMHP/HP/HPP/MMPP
-#' @export
+#' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
@@ -22,14 +22,12 @@ intensity <- function(object, event, method = "numeric") {
   UseMethod("intensity")
 }
 
-#' @rdname intensity
-#' @export
+
 intensity.default <- function(object, event, method = "numeric") {
   cat("please input the right model")
 }
 
-#' @rdname intensity
-#' @export
+
 intensity.mmhp <- function(object, event, method = "numeric") {
   events <- event$events
   start <- event$start
@@ -89,8 +87,7 @@ intensity.mmhp <- function(object, event, method = "numeric") {
   # }
 }
 
-#' @rdname intensity
-#' @export
+
 intensity.hp <- function(object, event, method = "numeric") {
   if (method == "numeric") {
     time.vec <- event$time.vec
@@ -156,8 +153,7 @@ intensity.hp <- function(object, event, method = "numeric") {
   }
 }
 
-#' @rdname intensity
-#' @export
+
 intensity.mmpp <- function(object, event, method = "numeric") {
   ## latent.vec is vector with same length as time.vec, 
   ## each entry is the probability at state 1
@@ -168,8 +164,7 @@ intensity.mmpp <- function(object, event, method = "numeric") {
   return(lambda.t)
 }
 
-#' @rdname intensity
-#' @export
+
 intensity.hpp <- function(object, event, method = "numeric"){
   lambda <- object$lambda
   start <- event$start
