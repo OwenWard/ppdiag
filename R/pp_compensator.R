@@ -9,7 +9,7 @@
 #' @examples 
 #' hpp_obj <- pp_hpp(lambda = 1)
 #' events <- pp_simulate(hpp_obj, end=10)
-#' comp <- compensator(hpp_obj, events)
+#' comp <- pp_compensator(hpp_obj, events)
 
 pp_compensator <- function(object, events) {
   UseMethod("pp_compensator")

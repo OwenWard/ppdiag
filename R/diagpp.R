@@ -30,7 +30,7 @@ diagpp.default <- function(object, events) {
 #' @rdname diagpp
 #' @export
 diagpp.hp<-function(object, events){
-  r <- compensator(object, events)
+  r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2),
          widths = c(2, 2))
@@ -49,7 +49,7 @@ diagpp.hp<-function(object, events){
 #' @rdname diagpp
 #' @export
 diagpp.mmhp <- function(object, events){
-  r <- compensator(object, events)
+  r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
@@ -68,7 +68,7 @@ diagpp.mmhp <- function(object, events){
 #' @rdname diagpp
 #' @export
 diagpp.hpp<-function(object, events){
-  r <- compensator(object, events)
+  r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))

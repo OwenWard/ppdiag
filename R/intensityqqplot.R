@@ -25,7 +25,7 @@ intensityqqplot.default <- function(object, events, ...) {
 intensityqqplot.hp <- function(object, events, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
@@ -40,7 +40,7 @@ intensityqqplot.hpp <- function(object, events, ...) {
 	
   layout(mat = matrix(c(1, 2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
@@ -55,7 +55,7 @@ intensityqqplot.hpp <- function(object, events, ...) {
 intensityqqplot.mmhp <- function(object, events, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))

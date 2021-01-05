@@ -10,7 +10,7 @@
 #' 
 #' @return the Pearson residual
 #' @importFrom stats integrate
-#' @noRd
+#' @export
 #' @examples 
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
@@ -22,13 +22,13 @@ pearsonresidual <- function(object, events, start, end) {
   UseMethod("pearsonresidual")
 }
 
-
+#' @export
 pearsonresidual.default <- function(object, events, start = 0,
                                 end = max(events)) {
   cat("Please input the right model. Select from hp, hpp and mmhp. ")
 }
 
-
+#' @export
 pearsonresidual.mmhp <- function(object, events, start = 0,
                                 end = max(events)) {
   # define time.vec,latent.vec,latent_event in intensity
@@ -46,7 +46,7 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
   return(pr)
 }
 
-
+#' @export
 pearsonresidual.hp <- function(object, events, start = 0,
                                 end = max(events)) {
   lambda0 <- object$lambda0
@@ -103,7 +103,7 @@ pearsonresidual.hp <- function(object, events, start = 0,
   }
 }
 
-
+#' @export
 pearsonresidual.hpp <- function(object, events, start = 0,
                                 end = max(events)) {
   if(end != max(events)) {
