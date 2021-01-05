@@ -211,12 +211,12 @@ drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 
 - Homogeneous Poisson Process
 
-`diagpp(object, events, pzt = NULL)` gives diagnostics of the model,
+`pp_diag(object, events)` gives diagnostics of the model,
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
 ```{r,fig.width=7,fig.height=4}
-diagpp(hpp_obj,hpp_events)
+pp_diag(hpp_obj,hpp_events)
 ```
 
 `pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
@@ -233,12 +233,12 @@ intensityqqplot(hpp_obj, hpp_events)
 
 - Hawkes Process
 
-`diagpp(object, events)` gives diagnostics of the model,
+`pp_diag(object, events)` gives diagnostics of the model,
 including a qq plot, a ks plot, ks test, raw
 and pearson residuals in one function.
 
 ```{r,fig.width=7,fig.height=4}
-diagpp(hp_obj,hp_events$events)
+pp_diag(hp_obj,hp_events$events)
 ```
 
 `pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
@@ -259,6 +259,6 @@ intensityqqplot(hp_obj, hp_events$events)
 
 
 ```{r,fig.width=7,fig.height=4}
-diagpp(mmhp_obj,mmhp_events$events)
+pp_diag(mmhp_obj,mmhp_events$events)
 ```
 

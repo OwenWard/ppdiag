@@ -87,8 +87,7 @@ goodness of fit of this model to the data.
 
 ```{r fit hpp}
 email_hpp <- fithpp(time_data)
-diagpp(email_hpp, events = time_data)
-
+pp_diag(email_hpp, events = time_data)
 ```
 
 Similarly, we can fit a self exciting Hawkes process to this
@@ -96,7 +95,7 @@ data and examine the results of that fit.
 
 ```{r fit hawkes}
 email_hp <- fithp(events = time_data)
-diagpp(email_hp, time_data)
+pp_diag(email_hp, time_data)
 ```
 Examining the results of the Kolmogrov-Smirnov test, based
 on the time rescaling theorem [@brown2002time], indicates that

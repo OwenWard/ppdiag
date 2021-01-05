@@ -14,22 +14,22 @@
 #' \dontrun{
 #' hpp_obj <- pp_hpp(lambda = 1)
 #' events <- pp_simulate(hpp_obj, end=10)
-#' diagpp(hpp_obj, events)
+#' pp_diag(hpp_obj, events)
 #' }
 
-diagpp <- function(object, events) {
-  UseMethod("diagpp")
+pp_diag <- function(object, events) {
+  UseMethod("pp_diag")
 }
 
-#' @rdname diagpp
+#' @rdname pp_diag
 #' @export
-diagpp.default <- function(object, events) {
+pp_diag.default <- function(object, events) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")
 }
 
-#' @rdname diagpp
+#' @rdname pp_diag
 #' @export
-diagpp.hp<-function(object, events){
+pp_diag.hp<-function(object, events){
   r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2),
@@ -46,9 +46,9 @@ diagpp.hp<-function(object, events){
   print(ks)
 }
 
-#' @rdname diagpp
+#' @rdname pp_diag
 #' @export
-diagpp.mmhp <- function(object, events){
+pp_diag.mmhp <- function(object, events){
   r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
@@ -65,9 +65,9 @@ diagpp.mmhp <- function(object, events){
 }
 
 
-#' @rdname diagpp
+#' @rdname pp_diag
 #' @export
-diagpp.hpp<-function(object, events){
+pp_diag.hpp<-function(object, events){
   r <- pp_compensator(object, events)
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
