@@ -35,7 +35,7 @@ rawresidual.default <- function(object, events, start = 0,
 rawresidual.hp <- function(object, events, start = 0, 
                            end = max(events)) {
   if(end != max(events)) {
-    message("PR calculated to specified end time.")
+    message("RR calculated to specified end time.")
   }
   lambda0 <- object$lambda0
   alpha <- object$alpha
@@ -53,7 +53,7 @@ rawresidual.hp <- function(object, events, start = 0,
 rawresidual.mmhp <- function(object, events, start = 0,
                              end = max(events)) {
   if(end != max(events)) {
-    message("PR calculated to specified end time.")
+    message("RR calculated to specified end time.")
   }
   event_obj <- list()
   event_obj$start <- start
@@ -70,7 +70,7 @@ rawresidual.mmhp <- function(object, events, start = 0,
 rawresidual.hpp <- function(object, events, start = 0, 
                             end = max(events)) {
   if(end != max(events)) {
-    message("PR calculated to specified end time.")
+    message("RR calculated to specified end time.")
   }
   N <- length(events)
   # est.intensity <- intensity(object, events, method = "integral")
