@@ -12,7 +12,9 @@ test_that("raw residual functions", {
   obj <- pp_hpp(lambda = 1)
   expect_identical(rawresidual(object = obj, events = c(1,2)), 0)
   expect_identical(rawresidual(object = obj, events = c(1,2,2.5)), 0.5)
-  
+  expect_message(rawresidual(object = obj, events = c(1,2), 
+                                 end = 3),
+                 "RR calculated to specified end time.")
   ## special cases for Hawkes
   obj <- pp_hp(lambda = 1, alpha = 0, beta = 1)
   expect_identical(rawresidual(object = obj, events = c(1,2)), 0)
