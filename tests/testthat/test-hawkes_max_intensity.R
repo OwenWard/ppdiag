@@ -1,4 +1,4 @@
-test_that("Hawkes Max Intensity", {
+test_that("test hawkes_max_intensity", {
   
   ## alpha = 0
   hp_obj <- pp_hp(lambda = 1, alpha = 0, beta = 2)

@@ -73,6 +73,9 @@ pp_compensator.hp <- function(object, events) {
 #' @rdname pp_compensator
 #' @export
 pp_compensator.mmhp <- function(object, events) {
+  if(length(events)<=2){
+    stop("Length of events should be larger than 2.")
+  }
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha

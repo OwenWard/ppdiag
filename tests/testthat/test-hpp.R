@@ -1,4 +1,4 @@
-test_that("test hpp", {
+test_that("test pp_hpp", {
   
   #test fit hpp
   hpp_obj <- pp_hpp(lambda = 1)

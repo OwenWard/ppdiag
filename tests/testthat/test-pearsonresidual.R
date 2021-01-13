@@ -1,4 +1,4 @@
-test_that("pearson residual special cases", {
+test_that("test pearsonresidual", {
   
   ## pp obj not correct
   obj <- pp_hpp(lambda = 1)

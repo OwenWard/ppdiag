@@ -1,4 +1,4 @@
-test_that("raw residual functions", {
+test_that("test rawresidual", {
   
   ## pp obj not correct
   obj <- pp_hpp(lambda = 1)

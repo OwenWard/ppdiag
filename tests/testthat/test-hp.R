@@ -1,4 +1,4 @@
-test_that("test hp", {
+test_that("test pp_hp", {
   #test simulate hp
   sim <- simulatehp(hp = pp_hp(1.5,0.1,0.2), end = 10)
   expect_type(sim, "list")
