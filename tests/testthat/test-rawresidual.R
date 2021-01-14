@@ -22,5 +22,7 @@ test_that("test rawresidual", {
   expect_identical(rawresidual(object = obj, events = c(1,2)), 2)
   
   ## special cases for mmhp
-  
+  # Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+  # obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 1, lambda1 = 1, alpha = 0, beta = 1)
+  # expect_identical(rawresidual(object = obj, events = c(0,1)), 1)
 })

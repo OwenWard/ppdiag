@@ -35,10 +35,12 @@ test_that("test hp", {
   sims <- pp_simulate(hp_obj, start = 0, n = 10)
   expect_type(fithp(init, sims$events), "list")
   expect_length(fithp(init, sims$events), 4)
+  expect_length(fithp(init, sims$events)$events, 10)
   expect_lt(fithp(init, sims$events)$alpha,fithp(init, sims$events)$beta)
   
   expect_type(fithp(rep(3,3), sims$events), "list")
   expect_length(fithp(init, sims$events), 4)
+  expect_length(fithp(init, sims$events)$events, 10)
   expect_lt(fithp(init, sims$events)$alpha,fithp(init, sims$events)$beta)
   
 })
