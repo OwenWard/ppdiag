@@ -1,4 +1,4 @@
-#' Create a Hawkes Process object
+#' Create a Hawkes process object
 #'
 #' Create a Hawkes Process with an exponential
 #' kernel according to the given parameters:

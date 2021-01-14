@@ -1,4 +1,4 @@
-#' Draw Homogeneous Poisson Process 
+#' Draw step function for homogeneous Poisson process 
 #'
 #' Draw the event time counts for homogeneous poisson process
 #'

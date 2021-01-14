@@ -1,4 +1,4 @@
-#' Create a Markov-modulated Hawkes Process(MMHP) model
+#' Create a Markov-modulated Hawkes Process(MMHP) object
 #'
 #' Create a Markov-modulated Hawkes Process(MMHP) model 
 #' according to the given parameters: lambda0, lambda1, 

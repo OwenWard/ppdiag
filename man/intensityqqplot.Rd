@@ -6,7 +6,7 @@
 \alias{intensityqqplot.hp}
 \alias{intensityqqplot.hpp}
 \alias{intensityqqplot.mmhp}
-\title{Draw Intensity of Fitted Point Process and QQ-Plot of Rescaled Events}
+\title{Draw intensity of fitted point process and QQ-Plot of rescaled events}
 \usage{
 intensityqqplot(object, events, ...)
 

@@ -1,4 +1,5 @@
 #' max intensity of a hawkes process
+#' 
 #' @param object hawkes process object containing parameters for Hawkes process.
 #' @param events events for Hawkes process.
 #'

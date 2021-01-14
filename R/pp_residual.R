@@ -1,4 +1,5 @@
 #' Compute raw and pearson residuals for point process models
+
 #' @param object point process model containing the parameters
 #' @param events vector of event times
 #' @param start start of observation period (default 0)

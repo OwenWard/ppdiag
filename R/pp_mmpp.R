@@ -1,4 +1,4 @@
-#' Create a Markov-modulated Poisson Process(MMPP) model
+#' Create a Markov-modulated Poisson Process(MMPP) object
 #'
 #' Create a Markov-modulated Poisson Process(MMPP) model
 #'  according to the given parameters: lambda0, c, q1, q2 and event times.

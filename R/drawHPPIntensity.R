@@ -1,4 +1,4 @@
-#' Draw Intensity of Homogeneous Poisson Process 
+#' Draw intensity of homogeneous Poisson process 
 #'
 #' Draw the intensity for a homogeneous Poisson process
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pp_mmhp.R
 \name{pp_mmhp}
 \alias{pp_mmhp}
-\title{Create a Markov-modulated Hawkes Process(MMHP) model}
+\title{Create a Markov-modulated Hawkes Process(MMHP) object}
 \usage{
 pp_mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)
 }

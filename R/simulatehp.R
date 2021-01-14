@@ -1,7 +1,8 @@
-#' Simulate Hawkes process during active state
+#' Simulate Hawkes process events
 #'
 #' Simulate Hawkes process during active state (including all the history),
-#'  a helper function for "simulationmmhp"
+#'  a helper function for "simulationmmhp" and also available
+#'  independently
 #'
 #' @param hp hawkes process object, including parameters in list type 
 #' (lambda0, alpha, beta, events)

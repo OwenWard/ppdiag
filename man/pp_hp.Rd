@@ -2,7 +2,7 @@
 % Please edit documentation in R/pp_hp.R
 \name{pp_hp}
 \alias{pp_hp}
-\title{Create a Hawkes Process object}
+\title{Create a Hawkes process object}
 \usage{
 pp_hp(lambda0, alpha, beta, events = NULL)
 }

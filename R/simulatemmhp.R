@@ -1,4 +1,4 @@
-#' Simulate Markov Modulated Hawkes Process
+#' Simulate a Markov Modulated Hawkes Process
 #'
 #' Simulate Markov Modulated Hawkes Process (including all the history) 
 #' according to a mmhp object

@@ -1,3 +1,5 @@
+#' Summarise diagnostics for point process models
+#'
 #' Generate diagnostic tools for different point process models, 
 #' including quantile-quantile plot, ks plot, 
 #' raw residual and pearson residual.

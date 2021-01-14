@@ -6,9 +6,7 @@
 \alias{pp_diag.hp}
 \alias{pp_diag.mmhp}
 \alias{pp_diag.hpp}
-\title{Generate diagnostic tools for different point process models, 
-including quantile-quantile plot, ks plot, 
-raw residual and pearson residual.}
+\title{Summarise diagnostics for point process models}
 \usage{
 pp_diag(object, events)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/drawHPPIntensity.R
 \name{drawHPPIntensity}
 \alias{drawHPPIntensity}
-\title{Draw Intensity of Homogeneous Poisson Process}
+\title{Draw intensity of homogeneous Poisson process}
 \usage{
 drawHPPIntensity(
   hpp,
