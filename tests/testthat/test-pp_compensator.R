@@ -11,7 +11,6 @@ test_that("test pp_compensator", {
   
   Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
   obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
-  expect_error(pp_compensator(object = obj, events = c(0,1)), "Length of events should be larger than 2.")
   
   expect_identical(pp_compensator(object = pp_hp(lambda = 1,
                                                  alpha = 0, 
