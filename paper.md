@@ -79,7 +79,7 @@ goodness of fit of this model to the data.
 
 ```r
 email_hpp <- fithpp(time_data)
-diagpp(email_hpp, events = time_data)
+pp_diag(email_hpp, events = time_data)
 ```
 
 ![](paper_files/figure-latex/fit hpp-1.pdf)<!-- --> 
@@ -102,7 +102,7 @@ data and examine the results of that fit.
 
 ```r
 email_hp <- fithp(events = time_data)
-diagpp(email_hp, time_data)
+pp_diag(email_hp, time_data)
 ```
 
 ![](paper_files/figure-latex/fit hawkes-1.pdf)<!-- --> 
