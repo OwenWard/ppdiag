@@ -43,4 +43,6 @@ test_that("test hp", {
   expect_length(fithp(init, sims$events)$events, 10)
   expect_lt(fithp(init, sims$events)$alpha,fithp(init, sims$events)$beta)
   
+  sims <- pp_simulate(hp_obj, start = 0, end = 20)
+  expect_error(fithp(events = sims$events),"Refitting exceeded 10 times. Try a different initial vector. ")
 })
