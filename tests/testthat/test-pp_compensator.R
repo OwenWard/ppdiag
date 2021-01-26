@@ -6,11 +6,13 @@ test_that("test pp_compensator", {
   expect_identical(pp_compensator(object = pp_hpp(lambda = 1), events = 0), 0)
   expect_identical(pp_compensator(object = pp_hpp(lambda = 1), 
                                   events = c(0,1)), 1)
-  ## need to deal with cases with only one or two events here also
-  ## for mmhp
   
   Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-  obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1, alpha = 0.8, beta = 1.2)
+  obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), 
+                 lambda0 = 0.9,
+                 lambda1 = 1.1,
+                 alpha = 0.8, beta = 1.2)
+  expect_identical(pp_compensator(object = obj, events = NULL), 0)
   
   expect_identical(pp_compensator(object = pp_hp(lambda = 1,
                                                  alpha = 0, 

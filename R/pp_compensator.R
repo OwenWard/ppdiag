@@ -79,6 +79,9 @@ pp_compensator.mmhp <- function(object, events) {
   beta <- object$beta
   q1 <- object$Q[1, 2]
   q2 <- object$Q[2, 1]
+  if(length(events) == 0){
+    return(0)
+  }
   if(events[1] == 0) {
     n <- length(events) - 1
     interevent <- events[-1] - events[-(n + 1)]
@@ -93,10 +96,12 @@ pp_compensator.mmhp <- function(object, events) {
   Lambda <- rep(0, n)
   A <- 0
   Lambda[1] <- lambda0 * (interevent[1])
-  for (i in 2:n) {
-    A <- 1 + exp(-beta * (interevent[i - 1])) * A
-    Lambda[i] <- lambda1 * (interevent[i]) + 
-      alpha / beta * (1 - exp(-beta * interevent[i])) * A
+  if( n > 1) {
+    for (i in 2:n) {
+      A <- 1 + exp(-beta * (interevent[i - 1])) * A
+      Lambda[i] <- lambda1 * (interevent[i]) + 
+        alpha / beta * (1 - exp(-beta * interevent[i])) * A
+    }
   }
   Lambda_mixed <- Lambda * pzt + lambda0 * interevent * (1 - pzt)
   return(Lambda_mixed)
