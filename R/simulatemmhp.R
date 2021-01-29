@@ -20,8 +20,8 @@
 #'
 #' @return simulated Markov Modulated Hawkes Process, 
 #' including states of Markov Process, time of each 
-#' transition of Markoc Process, state at each event,
-#'  times of Poisson events.
+#' transition of Markov Process, state at each event,
+#'  times of events.
 #' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

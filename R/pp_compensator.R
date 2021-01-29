@@ -29,8 +29,8 @@ pp_compensator.mmpp <- function(object, events) {
   q1 <- object$q1
   q2 <- object$q2
   n <- length(events) - 1
-  message("Function not completed")
-  pzt <- rep(0.5, n)
+  event_state <- mmpp_event_state(params = object, events = events)
+  pzt <- event_state$pzt
   interevent <- events[-1] - events[-(n + 1)]
   Lambda_mixed <- lambda0 * (1 + c) * interevent * pzt + 
     lambda0 * interevent * (1 - pzt)

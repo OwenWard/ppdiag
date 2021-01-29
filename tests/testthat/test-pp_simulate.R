@@ -60,6 +60,6 @@ test_that("test pp_simulate", {
   y <- pp_hpp(lambda = 1)
   class(y) <- "non_pp"
   expect_error(pp_simulate(y),
-  "Select a point process model from hpp, hp, and mmhp")
+  "Select a point process model from hpp, hp, mmpp and mmhp")
   
 })

@@ -118,7 +118,7 @@ hp_events
 `pp_simulate(mmhp_obj, n=NULL, end=NULL)` 
 simulates events from a specified Markov Modulated Hawkes process. 
 ```{r}
-mmhp_events <- pp_simulate(mmhp_obj, n = 50)
+mmhp_events <- pp_simulate(object = mmhp_obj, n = 50)
 mmhp_events
 ```
 

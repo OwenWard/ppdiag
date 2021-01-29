@@ -4,21 +4,21 @@
 \alias{pp_mmpp}
 \title{Create a Markov-modulated Poisson Process(MMPP) object}
 \usage{
-pp_mmpp(lambda0, c, q1, q2, events = NULL)
+pp_mmpp(lambda0, c, Q, events = NULL, delta = NULL)
 }
 \arguments{
 \item{lambda0}{parameters for Poisson process.}
 
 \item{c}{the proportion of intensity 1 over intensity 2}
 
-\item{q1}{transition probability}
-
-\item{q2}{transition probability}
+\item{Q}{transition probability matrix}
 
 \item{events}{vector containing the event times.
 Note that the first event is often specified as zero. 
 Alternatively, events could be specified as NULL,
  meaning that the data will be added later (e.g. simulated).}
+
+\item{delta}{initial state probability.}
 }
 \value{
 mmpp object
@@ -30,5 +30,6 @@ If event time tau is missing,
 then it means that data will be added later(e.g. simulated)
 }
 \examples{
-pp_mmpp(lambda0 = 1, c = 1.5, q1 = 0.4, q2 = 0.2)
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
 }

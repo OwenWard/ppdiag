@@ -7,7 +7,7 @@
 pp_simulate(object, start = 0, end = 1, n = NULL)
 }
 \arguments{
-\item{object}{point process model object of type hpp, hp, or mmhp}
+\item{object}{point process model object of type hpp, hp, mmpp or mmhp}
 
 \item{start}{start time of events simulated}
 
