@@ -159,7 +159,18 @@ intensity.mmpp <- function(object, event, method = "numeric") {
   ## each entry is the probability at state 1
   lambda0 <- object$lambda0
   c <- object$c
-  latent.vec <- event$latent.vec
+  ####
+  ### only have numeric here at the moment
+  start <- event$start
+  end <- event$end
+  time.vec <- seq(from = start, to = end, length.out = 1000)
+  event_state <- mmpp_event_state(params = object, events = event$events,
+                                  start = event$start)
+  latent_inter <- mmpp_latent(params = object,
+                              events = events,
+                              zt = event_state$zt)
+  step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
+  latent.vec <- step_fun_est(time.vec)
   lambda.t <- lambda0 * (1 + c) * latent.vec + lambda0 * (1 - latent.vec)
   return(lambda.t)
 }
