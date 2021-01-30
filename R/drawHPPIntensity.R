@@ -9,7 +9,7 @@
 #' inputted will be plotted
 #' @param fit a boolean indicating whether to fit a hpp or
 #'  use the passed object
-#'  @param add whether to add the hpp intensity to an existing plot
+#' @param add whether to add the hpp intensity to an existing plot
 #' @param int_title the plot title
 #' @param start start of events
 #' @param end end of events

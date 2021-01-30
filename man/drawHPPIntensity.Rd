@@ -27,8 +27,9 @@ drawHPPIntensity(
 inputted will be plotted}
 
 \item{fit}{a boolean indicating whether to fit a hpp or
-use the passed object
-@param add whether to add the hpp intensity to an existing plot}
+use the passed object}
+
+\item{add}{whether to add the hpp intensity to an existing plot}
 
 \item{int_title}{the plot title}
 
