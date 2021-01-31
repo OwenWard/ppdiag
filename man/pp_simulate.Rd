@@ -7,7 +7,7 @@
 pp_simulate(object, start = 0, end = 1, n = NULL)
 }
 \arguments{
-\item{object}{point process model object of type hpp, hp, mmpp or mmhp}
+\item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
 
 \item{start}{start time of events simulated}
 
@@ -20,7 +20,7 @@ a vector of event times
 }
 \description{
 Currently available point processes are homogeneous Poisson,
-Hawkes with exponential kernel and MMHP
+Hawkes with exponential kernel, MMHP and MMPP
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)

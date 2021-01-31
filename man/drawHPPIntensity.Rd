@@ -10,6 +10,7 @@ drawHPPIntensity(
   color = "red",
   plot_events = FALSE,
   fit = FALSE,
+  add = FALSE,
   int_title = "Intensity homogeneous Poisson Process",
   start = 0,
   end = max(events)
@@ -27,6 +28,8 @@ inputted will be plotted}
 
 \item{fit}{a boolean indicating whether to fit a hpp or
 use the passed object}
+
+\item{add}{whether to add the hpp intensity to an existing plot}
 
 \item{int_title}{the plot title}
 
