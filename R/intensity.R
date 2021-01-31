@@ -159,20 +159,38 @@ intensity.mmpp <- function(object, event, method = "numeric") {
   ## each entry is the probability at state 1
   lambda0 <- object$lambda0
   c <- object$c
-  ####
-  ### only have numeric here at the moment
+  events <- event$events
   start <- event$start
   end <- event$end
   time.vec <- seq(from = start, to = end, length.out = 1000)
-  event_state <- mmpp_event_state(params = object, events = event$events,
+  event_state <- mmpp_event_state(params = object, events = events,
                                   start = event$start)
-  latent_inter <- mmpp_latent(params = object,
-                              events = events,
-                              zt = event_state$zt)
-  step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
-  latent.vec <- step_fun_est(time.vec)
-  lambda.t <- lambda0 * (1 + c) * latent.vec + lambda0 * (1 - latent.vec)
-  return(lambda.t)
+  if(method == "numeric") {
+    latent_inter <- mmpp_latent(params = object,
+                                events = events,
+                                zt = event_state$zt)
+    step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
+    latent.vec <- step_fun_est(time.vec)
+    lambda.t <- lambda0 * (1 + c) * latent.vec + lambda0 * (1 - latent.vec)
+    return(lambda.t)
+  }
+  if(method == "atevent") {
+    lam_vec <- c(lambda0, lambda0*(1+c))
+    return(lam_vec[c(event_state$zt)])
+  }
+  if(method == "integral") {
+    latent_inter <- mmpp_latent(params = object,
+                                events = events,
+                                zt = event_state$zt)
+    ## then use end to sum these over the length.
+    ## this could probably be cleaner
+    jumps <- latent_inter$x.hat
+    states <- latent_inter$z.hat
+    jumps <- jumps[jumps < end]
+    states <- states[jumps < end]
+    return(diff(jumps)*states[-length(states)] + 
+             (end-jumps[length(jumps)])*states[length(states)] )
+  }
 }
 
 

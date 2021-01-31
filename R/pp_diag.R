@@ -66,6 +66,23 @@ pp_diag.mmhp <- function(object, events){
   print(ks)
 }
 
+#' @rdname pp_diag
+#' @export
+pp_diag.mmpp <- function(object, events){
+  r <- pp_compensator(object, events)
+  layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
+         widths = c(2, 2))
+  par(mar = c(2, 2, 1, 1))
+  pp_qqexp(r)
+  par(mar = c(2, 2, 1, 1))
+  pp_ksplot(r)
+  rr <- rawresidual(object, events, end = max(events))
+  pr <- pearsonresidual(object, events, end = max(events))
+  ks <- ks.test(r,"pexp")
+  cat("Raw residual: ", rr, "\n",sep = "")
+  cat("Pearson residual: ", pr, "\n",sep = "")
+  print(ks)
+}
 
 #' @rdname pp_diag
 #' @export

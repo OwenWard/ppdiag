@@ -5,6 +5,7 @@
 \alias{pp_diag.default}
 \alias{pp_diag.hp}
 \alias{pp_diag.mmhp}
+\alias{pp_diag.mmpp}
 \alias{pp_diag.hpp}
 \title{Summarise diagnostics for point process models}
 \usage{
@@ -15,6 +16,8 @@ pp_diag(object, events)
 \method{pp_diag}{hp}(object, events)
 
 \method{pp_diag}{mmhp}(object, events)
+
+\method{pp_diag}{mmpp}(object, events)
 
 \method{pp_diag}{hpp}(object, events)
 }

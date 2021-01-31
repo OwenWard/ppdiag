@@ -116,9 +116,29 @@ pearsonresidual.hpp <- function(object, events, start = 0,
     message("PR calculated to specified end time.")
   }
   est.intensity <- sqrt(object$lambda)*(end-start)
-  ### this pr looks incorrect to me
   N <- length(events)
   int_events <- rep(object$lambda,N)
   pr <- sum(1 / sqrt(int_events)) - est.intensity
+  return(pr)
+}
+
+
+#' @export
+pearsonresidual.mmpp <- function(object, events, start = 0,
+                                 end = max(events)) {
+  if(end != max(events)) {
+    message("PR calculated to specified end time.")
+  }
+  N <- length(events)
+  event_obj <- list()
+  event_obj$events <- events
+  event_obj$start <- start
+  event_obj$end <- end
+  time.vec <- seq(from = start, to = end, length.out = 1000)
+  est.intensity <- intensity(object,event = event_obj,method = "numeric")
+  est.intensity.events <- intensity(object, event = event_obj,
+                                    method = "atevent")
+  pr <- sum(1 / sqrt(est.intensity.events)) -
+    sum(sqrt(est.intensity)) * (time.vec[2] - time.vec[1])
   return(pr)
 }

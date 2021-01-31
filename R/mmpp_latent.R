@@ -9,10 +9,8 @@
 #'
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
-#'  alpha = 0.8, beta = 1.2)
-#' interpolate_mmhp_latent(params = mmhp_obj, events = c(1, 2, 3, 5),
-#' zt = c(2, 1, 1, 2))
+#' mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.1)
+#' mmpp_latent(params = mmhp_obj, events = c(1, 2, 3, 5), zt = c(2, 1, 1, 2))
 #' 
 mmpp_latent <- function(params = list(lambda0, c, Q),
                         events,
@@ -27,8 +25,10 @@ mmpp_latent <- function(params = list(lambda0, c, Q),
   #         x.hat: time of each transition of Markov process
   lambda0 <- params$lambda0
   c <- params$c
-  q1 <- params$q1
-  q2 <- params$q2
+  Q <- params$Q
+  q1 <- Q[1,2]
+  q2 <- Q[2,1]
+  interevent <- diff(c(start,events))
   N <- length(interevent) #+1
   temp.t <- cumsum(interevent)
   if(length(unique(zt))==1){
