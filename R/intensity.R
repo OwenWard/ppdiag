@@ -8,7 +8,8 @@
 #' @param event the observed/simulated events, including event times and 
 #' start/end of observation period
 #' @param method the method used to calculate intensity.
-#'   The candidates are: `numeric`, `atevent`, and `integral`, default to `numeric`. 
+#'   The candidates are: `numeric`, `atevent`, and `integral`, 
+#'   default to `numeric`. 
 #' @return The intensity function of MMHP/HP/HPP/MMPP
 #' @noRd
 #' @examples
@@ -23,7 +24,8 @@ intensity <- function(object, event, method = "numeric") {
 }
 
 
-intensity.default <- function(object, event, method = "numeric") {
+intensity.default <- function(object, event, 
+                              method = "numeric") {
   cat("please input the right model")
 }
 

@@ -1,4 +1,4 @@
-test_that("test pp_qqexp", {
+test_that("test pp_qqexp simple cases", {
   expect_error(pp_qqexp(r = NULL),
                "No rescaled interevent times provided")
   expect_error(pp_qqexp(r = 0),

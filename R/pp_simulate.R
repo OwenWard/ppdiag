@@ -38,16 +38,6 @@ pp_simulate <- function(object, start = 0, end = 1, n = NULL){
     simulatemmhp(object, n = n, start = start, 
                  given_state = FALSE, states = NULL, seed = 1)
   }
-  
-  else if(class(object) == "mmpp"){
-    if (is.null(n)){
-      n <- 1
-    }
-    simulatemmpp(object, n = n, start = start, 
-                 given_state = FALSE, states = NULL, seed = 1)
-  }
-  
-  
   else{
     stop("Select a point process model from hpp, hp, mmpp and mmhp")
   }

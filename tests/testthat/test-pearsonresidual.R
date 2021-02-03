@@ -23,6 +23,8 @@ test_that("test pearsonresidual", {
   obj <- pp_hp(lambda = 0, alpha = 0, beta = 1)
   expect_identical(pearsonresidual(object = obj, events = c(1,2)), Inf)
   
+  ## special cases for mmpp
+  
   
   ## special cases for mmhp
   

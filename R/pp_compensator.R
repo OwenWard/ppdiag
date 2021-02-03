@@ -28,9 +28,16 @@ pp_compensator.mmpp <- function(object, events) {
   c <- object$c
   q1 <- object$q1
   q2 <- object$q2
-  n <- length(events) - 1
-  event_state <- mmpp_event_state(params = object, events = events)
-  pzt <- event_state$pzt
+  if(events[1] == 0) {
+    n <- length(events) - 1
+    interevent <- events[-1] - events[-(n + 1)]
+    pzt <- mmpp_event_state(params = object, events[-1])$pzt
+  }
+  else {
+    n <- length(events)
+    interevent <- diff(c(0,events))
+    pzt <- mmpp_event_state(params = object, events)$pzt
+  }
   interevent <- events[-1] - events[-(n + 1)]
   Lambda_mixed <- lambda0 * (1 + c) * interevent * pzt + 
     lambda0 * interevent * (1 - pzt)
