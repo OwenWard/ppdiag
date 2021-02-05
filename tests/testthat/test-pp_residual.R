@@ -4,7 +4,7 @@ test_that("test pp_residual", {
   x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
   lambda1 = 1.1, alpha = 0.8, beta = 1.2)
   y <- pp_simulate(x, n = 10)
-  r <- pp_residual(x, events = y$events[-1])
+  r <- pp_residual(x, events = y$events)
   expect_type(r, "list")
   
   expect_type(r$raw, "double")

@@ -5,35 +5,42 @@
 #' For processes with a latent state this will be inferred.
 #'
 #' @param object an object of MMHP/HP/HPP/MMPP
-#' @param event the observed/simulated events, including event times and 
-#' start/end of observation period
+#' @param event_info list object, containing events, start and end of
+#' observation period
 #' @param method the method used to calculate intensity.
 #'   The candidates are: `numeric`, `atevent`, and `integral`, 
 #'   default to `numeric`. 
-#' @return The intensity function of MMHP/HP/HPP/MMPP
+#' @param steps the number of pieces the observation window will be 
+#' broken into for numeric integration, default 1000
+#' @return The intensity function of the specified point process, either
+#' at the given events, integrated over the observation time, or numerically
 #' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
 #' lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 #' y <- pp_simulate(x, n = 10)
-#' z <- intensity(x, y) 
+#' z <- intensity.mmhp(x, y) 
 #'
-intensity <- function(object, event, method = "numeric") {
-  UseMethod("intensity")
+pp_intensity <- function(object, event_info,
+                         method = "numeric", steps = 1000) {
+  UseMethod("pp_intensity")
 }
 
 
-intensity.default <- function(object, event, 
-                              method = "numeric") {
+pp_intensity.default <- function(object, event_info, 
+                              method = "numeric", steps = 1000) {
   cat("please input the right model")
 }
 
 
-intensity.mmhp <- function(object, event, method = "numeric") {
-  events <- event$events
-  start <- event$start
-  end <- event$end
+pp_intensity.mmhp <- function(object,
+                           event_info,
+                           method = "numeric",
+                           steps = 1000) {
+  events <- event_info$events
+  start <- event_info$start
+  end <- event_info$end
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
   alpha <- object$alpha
@@ -43,7 +50,7 @@ intensity.mmhp <- function(object, event, method = "numeric") {
                                   events = events, start = start)
   if (method == "numeric") {
     # return the numeric intensity value at each time segment
-    time.vec <- seq(from = start, to = end, length.out = 1000)
+    time.vec <- seq(from = start, to = end, length.out = steps)
     
     latent_inter <- interpolate_mmhp_latent(params = object,
                                             events = events,
@@ -53,8 +60,8 @@ intensity.mmhp <- function(object, event, method = "numeric") {
     latent.vec <- step_fun_est(time.vec)
     ###
     hp_object <- pp_hp(lambda1, alpha, beta)
-    hp_event <- list(events = events, time.vec = time.vec)
-    lambda1.t <- intensity.hp(hp_object, hp_event, method = "numeric")
+    hp_event <- list(events = events, start = start, end = end)
+    lambda1.t <- pp_intensity.hp(hp_object, hp_event, method = "numeric")
     lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
     return(lambda.t)
   } 
@@ -80,24 +87,38 @@ intensity.mmhp <- function(object, event, method = "numeric") {
       }
     }
     return(lambda.t)
-  } # else if (method =="attime"){
-  # return intensity evaluates at event times (output is an vector)
-  #   events<-event$events
-  #   latent_z <-event$z
-  #   latent$x <-event$x
-  #   current_time <- event$current_time
-  # }
+  } 
+  else if (method =="integral"){
+    time.vec <- seq(from = start, to = end, length.out = steps)
+    
+    latent_inter <- interpolate_mmhp_latent(params = object,
+                                            events = events,
+                                            zt = event_state$zt)
+    # then use a step function on this
+    step_fun_est <- stepfun(latent_inter$x.hat, 2 - latent_inter$z.hat)
+    latent.vec <- step_fun_est(time.vec)
+    ###
+    hp_object <- pp_hp(lambda1, alpha, beta)
+    hp_event <- list(events = events, time.vec = time.vec)
+    lambda1.t <- pp_intensity.hp(hp_object, hp_event, method = "numeric")
+    lambda.t <- lambda1.t * latent.vec + lambda0 * (1 - latent.vec)
+    return( sum(lambda1.t)*(time.vec[2] - time.vec[1]) )
+  }
 }
 
 
-intensity.hp <- function(object, event, method = "numeric") {
+pp_intensity.hp <- function(object, 
+                         event_info, 
+                         method = "numeric",
+                         steps = 1000) {
   if (method == "numeric") {
-    time.vec <- event$time.vec
-    # assume this time.vec contains start and termination
-    events <- event$events
-    lambda<-object$lambda0
-    beta<-object$beta
-    alpha<-object$alpha
+    start <- event_info$start
+    end <- event_info$end
+    time.vec <- seq(from = start, to = end, length.out = steps)
+    events <- event_info$events
+    lambda <- object$lambda0
+    beta <- object$beta
+    alpha <- object$alpha
     lambda1.t <- rep(0, length(time.vec))
     event.idx <- 1
     r <- 0
@@ -132,9 +153,9 @@ intensity.hp <- function(object, event, method = "numeric") {
     lambda0 <- object$lambda0
     alpha <- object$alpha
     beta <- object$beta
-    events <- event$events
-    start <- event$start
-    end <- event$end
+    events <- event_info$events
+    start <- event_info$start
+    end <- event_info$end
     N <- length(events) 
     r <- 0
 
@@ -156,17 +177,19 @@ intensity.hp <- function(object, event, method = "numeric") {
 }
 
 
-intensity.mmpp <- function(object, event, method = "numeric") {
+pp_intensity.mmpp <- function(object, event_info, 
+                              method = "numeric",
+                              steps = 1000) {
   ## latent.vec is vector with same length as time.vec, 
   ## each entry is the probability at state 1
   lambda0 <- object$lambda0
   c <- object$c
-  events <- event$events
-  start <- event$start
-  end <- event$end
-  time.vec <- seq(from = start, to = end, length.out = 1000)
+  events <- event_info$events
+  start <- event_info$start
+  end <- event_info$end
+  time.vec <- seq(from = start, to = end, length.out = steps)
   event_state <- mmpp_event_state(params = object, events = events,
-                                  start = event$start)
+                                  start = start)
   if(method == "numeric") {
     latent_inter <- mmpp_latent(params = object,
                                 events = events,
@@ -196,13 +219,14 @@ intensity.mmpp <- function(object, event, method = "numeric") {
 }
 
 
-intensity.hpp <- function(object, event, method = "numeric"){
+pp_intensity.hpp <- function(object, event_info,
+                             method = "numeric"){
   lambda <- object$lambda
-  start <- event$start
-  end <- event$end
-  event <- event$event
+  start <- event_info$start
+  end <- event_info$end
+  events <- event_info$events
   
-  n <- length(event)
+  n <- length(events)
 
   if (method == "atevent"){
     return(rep(lambda,n))

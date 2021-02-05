@@ -4,7 +4,7 @@
 \alias{pearsonresidual}
 \title{Compute Pearson residuals for point process models}
 \usage{
-pearsonresidual(object, events, start, end)
+pearsonresidual(object, events, start, end, steps = 1000)
 }
 \arguments{
 \item{object}{social network model containing the parameters}
@@ -14,6 +14,8 @@ pearsonresidual(object, events, start, end)
 \item{start}{start of observation period (default 0)}
 
 \item{end}{termination time (default final event)}
+
+\item{steps}{number of steps for numeric integration (if needed)}
 }
 \value{
 the Pearson residual
