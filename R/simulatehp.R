@@ -20,7 +20,7 @@
 
 simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
   if(!is.null(seed)){
-    set.seed(seed)
+    set.seed(100)
   }
   old_events <- hp$events
   if(!is.null(old_events)){

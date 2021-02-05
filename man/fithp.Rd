@@ -4,14 +4,14 @@
 \alias{fithp}
 \title{Determine the MLE of Hawkes process numerically}
 \usage{
-fithp(vec = rep(0.1, 3), events, end = max(events))
+fithp(events, end = max(events), vec = c(0.1, 0.2, 0.3))
 }
 \arguments{
-\item{vec}{vector of initial parameter values}
-
 \item{events}{event times}
 
 \item{end}{end of observation period starting from 0 (default last event)}
+
+\item{vec}{vector of initial parameter values}
 }
 \value{
 a hp object indicating the maximum 
@@ -22,8 +22,8 @@ This is a non-convex problem and a (unique) solution is not guaranteed.
 Determine the MLE of Hawkes process numerically
 }
 \examples{
-init <- rep(0.3,3)
+init <- c(0.1,0.2,3)
 hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 sims <- pp_simulate(hp_obj, start = 0, n = 10)
-fithp(init, sims$events)                  
+fithp(sims$events)                  
 }
