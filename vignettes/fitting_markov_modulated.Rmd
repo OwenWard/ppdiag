@@ -1,0 +1,58 @@
+---
+title: "Fitting Markov Modulated Point Process Models"
+output: rmarkdown::html_vignette
+author: Sally Sun, Owen G. Ward.
+vignette: >
+  %\VignetteIndexEntry{Fitting Markov Modulated Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(100) # to make it reproducible
+```
+
+```{r setup}
+library(ppdiag)
+library(rstan)
+library(cmdstanr)
+```
+
+
+We include functions for fitting standard Hawkes and Poisson
+point processes to data in `ppdiag`. However, currently, we do not
+include fitting algorithms for Markov modulated point processes,
+as these rely on the use of `rstan` or (more recently), `cmdstanr` to
+perform Bayesian inference for the model parameters.
+
+Here we provide a instructions on how to fit these models so 
+that the can easily be used in conjunction with the diagnostic tools
+of  `ppdiag`.
+
+# Installing RStan or Cmdstanr
+
+- Instructions for installing RStan can be found at https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started 
+- Instructions for installing CmdStanR can be found at https://mc-stan.org/cmdstanr/articles/cmdstanr.html. As mentioned in this
+link there are some differences between RStan and CmdStanR. In our experience,
+CmdStanR does seem to be maybe more reliable and less prone to crashing.
+- If you are having trouble installing or using Stan there is lots of great help
+available at https://discourse.mc-stan.org/, where someone else has probably
+already answered your question!
+
+
+# The Stan code for MMPP/MMHP
+
+We first include the stan code to fit each of these Markov modulated
+models to a temporal point process.
+
+
+
+# Fitting these models in Cmdstanr
+
+# Fitting these models in RStan
+
+# Using the Stan output with `ppdiag`
