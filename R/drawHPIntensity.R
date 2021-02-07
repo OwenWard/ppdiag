@@ -13,7 +13,6 @@
 #' @param add whether to add the hawkes intensity to an existing plot
 #' @param plot_events a boolean indicating whether events
 #'  inputted will be plotted
-#' @param vec vector of initial values of parameters used in fithp
 #' @param int_title title of the intensity plot
 #' @param fit a boolean indicating whether to fit a hp or 
 #' use the passed object
@@ -32,7 +31,7 @@
 drawHPIntensity <- function(hp, 
                             start = 0, end = max(events), history = 0, events,
                             color = 1, i = 1, add = FALSE, fit = FALSE,
-                            plot_events = FALSE, vec = NULL, 
+                            plot_events = FALSE,
                             int_title = "Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
@@ -49,11 +48,7 @@ drawHPIntensity <- function(hp,
       }
       if(fit==TRUE){
         message("Fitting provided events.")
-        if(is.null(vec)){
-          hp_obj <- fithp(events = events)
-        }else{
-          hp_obj <- fithp(vec = vec, events)
-        }
+        hp_obj <- fithp(events)
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
@@ -77,11 +72,7 @@ drawHPIntensity <- function(hp,
       }else{
         if(fit==TRUE){
           message("Fitting provided events. Set events=NULL to use the events in object.")
-          if(is.null(vec)){
-            hp_obj <- fithp(events = events)
-          }else{
-            hp_obj <- fithp(vec = vec, events)
-          }
+          hp_obj <- fithp(events)
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
           beta <- hp$beta

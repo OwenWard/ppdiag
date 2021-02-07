@@ -7,6 +7,7 @@
 #' @param events vector of event times
 #' @param start start of observation period (default 0)
 #' @param end end of observation period (default final event)
+#' @param steps number of steps for numeric integration (if needed)
 #' @return the raw residual
 #' @export
 #' @examples 
@@ -21,19 +22,19 @@
 
 
 #' @export
-rawresidual <- function(object, events, start, end) {
+rawresidual <- function(object, events, start, end, steps = 1000) {
   UseMethod("rawresidual")
 }
 
 #' @export
 rawresidual.default <- function(object, events, start = 0,
-                                end = max(events)) {
+                                end = max(events), steps) {
   cat("Please input the right model. Select from hp, hpp and mmhp.")
 }
 
 #' @export
 rawresidual.hp <- function(object, events, start = 0, 
-                           end = max(events)) {
+                           end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("RR calculated to specified end time.")
   }
@@ -41,34 +42,46 @@ rawresidual.hp <- function(object, events, start = 0,
   alpha <- object$alpha
   beta <- object$beta
   hawkes_obj <- object
+  if(events[1] == 0) {
+    events <- events[-1]
+  }
   event_obj <- list(events = events,
                     start = start,
                     end = end)
   N <- length(events)
-  result <- intensity(hawkes_obj,event = event_obj, method = "integral")
+  result <- pp_intensity(hawkes_obj,
+                         event_info = event_obj,
+                         method = "integral")
   return(N - result)
 }
 
 #' @export
 rawresidual.mmhp <- function(object, events, start = 0,
-                             end = max(events)) {
+                             end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("RR calculated to specified end time.")
+  }
+  if(events[1] == 0) {
+    events <- events[-1]
   }
   event_obj <- list()
   event_obj$start <- start
   event_obj$end <- end
   event_obj$events <- events
-  time.vec <- seq(from = start, to = end, length.out = 1000)
   N <- length(events)
-  est.intensity <- intensity(object, event = event_obj, method = "numeric")
+  est.intensity <- pp_intensity(object, event_info = event_obj,
+                             method = "numeric", steps = steps)
+  time.vec <- seq(from = start, to = end, length.out = steps)
   all_Lambda <- sum(est.intensity) * (time.vec[2] - time.vec[1])
   return(N - all_Lambda)
 }
 
 #' @export
 rawresidual.hpp <- function(object, events, start = 0, 
-                            end = max(events)) {
+                            end = max(events), steps = 1000) {
+  if(events[1] == 0){
+    events <- events[-1]
+  }
   if(end != max(events)) {
     message("RR calculated to specified end time.")
   }
@@ -80,17 +93,21 @@ rawresidual.hpp <- function(object, events, start = 0,
 
 #' @export
 rawresidual.mmpp <- function(object, events, start = 0,
-                             end = max(events)) {
+                             end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("RR calculated to specified end time.")
+  }
+  if( events[1] == 0) {
+    events <- events[-1]
   }
   N <- length(events)
   event_obj <- list()
   event_obj$start <- start
   event_obj$end <- end
   event_obj$events <- events
-  time.vec <- seq(from = start, to = end, length.out = 1000)
-  est.intensity <- intensity(object, event = event_obj, method = "numeric")
+  est.intensity <- pp_intensity(object, event_info = event_obj,
+                             method = "numeric", steps = steps)
+  time.vec <- seq(from = start, to = end, length.out = steps)
   all_Lambda <- sum(est.intensity) * (time.vec[2] - time.vec[1])
   return(N - all_Lambda)
 }

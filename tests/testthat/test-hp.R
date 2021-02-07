@@ -30,19 +30,14 @@ test_that("test hp", {
                  "Simulating up to endtime. To simulate n events specify n.")
   
   #test fit hp
-  init <- rep(0.3,3)
   hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
   sims <- pp_simulate(hp_obj, start = 0, n = 10)
-  expect_type(fithp(init, sims$events), "list")
-  expect_length(fithp(init, sims$events), 4)
-  expect_length(fithp(init, sims$events)$events, 10)
-  expect_lt(fithp(init, sims$events)$alpha,fithp(init, sims$events)$beta)
+  expect_type(fithp(sims$events), "list")
+  expect_length(fithp(sims$events), 4)
+  expect_length(fithp(sims$events)$events, 10)
+  expect_lt(fithp(sims$events)$alpha, fithp(sims$events)$beta)
+  # sims <- pp_simulate(hp_obj, start = 0, end = 20)
+  # expect_error(fithp(events = sims$events),
+  # "Refitting exceeded 10 times. Try a different initial vector. ")
   
-  expect_type(fithp(rep(3,3), sims$events), "list")
-  expect_length(fithp(init, sims$events), 4)
-  expect_length(fithp(init, sims$events)$events, 10)
-  expect_lt(fithp(init, sims$events)$alpha,fithp(init, sims$events)$beta)
-  
-  sims <- pp_simulate(hp_obj, start = 0, end = 20)
-  expect_error(fithp(events = sims$events),"Refitting exceeded 10 times. Try a different initial vector. ")
 })

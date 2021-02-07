@@ -10,7 +10,7 @@
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.1)
-#' mmpp_latent(params = mmhp_obj, events = c(1, 2, 3, 5), zt = c(2, 1, 1, 2))
+#' mmpp_latent(params = mmpp_obj, events = c(1, 2, 3, 5), zt = c(2, 1, 1, 2))
 #' 
 mmpp_latent <- function(params = list(lambda0, c, Q),
                         events,
@@ -54,7 +54,9 @@ mmpp_latent <- function(params = list(lambda0, c, Q),
     }
   }
   if(exists("temp.count")){
-    return(list(x.hat=c(x.hat[1:temp.count],tail(temp.t,1))+start,z.hat=c(z.hat[1:temp.count],3-z.hat[temp.count])))
+    return(list(x.hat=c(x.hat[1:temp.count],
+                        tail(temp.t,1))+start,
+                z.hat = c(z.hat[1:temp.count], 3 - z.hat[temp.count])))
   }else{
     return(list(x.hat=x.hat,z.hat=z.hat))
   }

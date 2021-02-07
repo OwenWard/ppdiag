@@ -1,0 +1,418 @@
+---
+title: "Fitting Markov Modulated Point Process Models"
+output: rmarkdown::html_vignette
+author: Sally Sun, Owen G. Ward.
+vignette: >
+  %\VignetteIndexEntry{Fitting Markov Modulated Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(100) # to make it reproducible
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+```{r setup}
+library(ppdiag)
+library(rstan)
+library(cmdstanr)
+library(tidyverse)
+library(bayesplot)
+```
+
+
+We include functions for fitting standard Hawkes and Poisson
+point processes to data in `ppdiag`. However, currently, we do not
+include fitting algorithms for Markov modulated point processes,
+as these rely on the use of `rstan` or (more recently), `cmdstanr` to
+perform Bayesian inference for the model parameters.
+
+Here we provide a instructions on how to fit these models so 
+that the can easily be used in conjunction with the diagnostic tools
+of  `ppdiag`.
+
+# Installing RStan or Cmdstanr
+
+- Instructions for installing RStan can be found at https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started 
+- Instructions for installing CmdStanR can be found at https://mc-stan.org/cmdstanr/articles/cmdstanr.html. As mentioned in this
+link there are some differences between RStan and CmdStanR. In our experience,
+CmdStanR does seem to be maybe more reliable and less prone to crashing.
+- If you are having trouble installing or using Stan there is lots of great help
+available at https://discourse.mc-stan.org/, where someone else has probably
+already answered your question!
+
+
+# The Stan code for MMPP/MMHP
+
+We first include the stan code to fit each of these Markov modulated
+models to a temporal point process.
+
+```{r mmpp-stan-code}
+mmpp_stan_code <- "
+data{
+  int<lower=1> num_events; //maximum of number of events for each pair each window => max(unlist(lapply(return_df$event.times,length))))
+  vector[num_events+1] time_matrix; // include termination time in the last entry
+}
+parameters{
+  real<lower=0> lambda0; //baseline rate for each pair
+  real<lower=0> c; //baseline rate for each pair
+  real<lower=0,upper=1> w1; //CTMC transition rate
+  real<lower=0,upper=1> w2; //CTMC transition rate
+}
+transformed parameters{
+  real<lower=0> q1;
+  real<lower=0> q2;
+  q1 = (lambda0).*w1;
+  q2 = (lambda0).*w2;
+}
+model{
+  real integ; // Placeholder variable for calculating integrals
+  row_vector[2] forward[num_events]; // Forward variables from forward-backward algorithm
+  row_vector[2] forward_termination; 
+  row_vector[2] probs_1[num_events+1]; // Probability vector for transition to state 1 (active state)
+  row_vector[2] probs_2[num_events+1]; // Probability vector for transition to state 2 (inactive state)
+  vector[num_events+1] interevent;
+  
+  //priors
+  c ~ lognormal(0,1);
+  w1 ~ beta(0.5,0.5);
+  w2 ~ beta(0.5,0.5);
+  
+  lambda0 ~ gamma(1, 1);
+  interevent = time_matrix;
+  // ---- prepare for forward algorithm
+  // --- log probability of Markov transition logP_ij(t)
+  for(n in 1:(num_events + 1)){
+    probs_1[n][1] = log(q2/(q1+q2)+q1/(q1+q2)*exp(-(q1+q2)*interevent[n])); //1->1
+    probs_2[n][2] = log(q1/(q1+q2)+q2/(q1+q2)*exp(-(q1+q2)*interevent[n])); //2->2
+    probs_1[n][2] = log1m_exp(probs_2[n][2]); //2->1
+    probs_2[n][1] = log1m_exp(probs_1[n][1]); //1->2
+  }
+  //consider n = 1
+  integ = interevent[1]*lambda0;
+  forward[1][1] = log_sum_exp(probs_1[1]) + log(lambda0*(1+c)) - integ*(1+c); 
+  forward[1][2] = log_sum_exp(probs_2[1]) + log(lambda0) - integ; 
+  
+  if(num_events>1){
+    for(n in 2:num_events){
+      integ = interevent[n]*lambda0;
+      forward[n][1] = log_sum_exp(forward[n-1] + probs_1[n]) + log(lambda0*(1+c))- integ*(1+c);
+      forward[n][2] = log_sum_exp(forward[n-1] + probs_2[n]) + log(lambda0) - integ;
+    }
+  }
+  
+  integ = interevent[num_events]*lambda0;
+  forward_termination[1] = log_sum_exp(forward[num_events] + probs_1[num_events]) - integ*(1+c);
+  forward_termination[2] = log_sum_exp(forward[num_events] + probs_2[num_events]) - integ;
+  
+  target += log_sum_exp(forward_termination);
+}
+"
+
+```
+
+```{r mmhp-stan-code}
+mmhp_stan_code <- "
+data{
+  int<lower=1> num_events; //number of events
+  vector[num_events+1] time_matrix; // include termination time as last entry
+}
+parameters{
+  real<lower=0> lambda0; //baseline rate for each pair
+  real<lower=0> w_lambda;
+  real<lower=0, upper=1> w_q1; //CTMC transition rate
+  real<lower=0, upper=1> w_q2; //
+  real<lower=0> alpha;
+  real<lower=0> beta_delta;
+  real<lower=0,upper=1> delta_1; // P(initial state = 1)
+}
+transformed parameters{
+  real<lower=0> lambda1;
+  real<lower=0> q1;
+  real<lower=0> q2;
+  row_vector[2] log_delta;
+  real<lower=0> beta;
+  lambda1 = (lambda0).*(1+w_lambda); 
+  q2 = (lambda0).*w_q2;
+  q1 = (lambda0).*w_q1;
+  log_delta[1] = log(delta_1);
+  log_delta[2] = log(1-delta_1);
+  beta = alpha*(1+beta_delta);
+}
+model{
+  real integ; // Placeholder variable for calculating integrals
+  row_vector[2] forward[num_events]; // Forward variables from forward-backward algorithm
+  row_vector[2] forward_termination; // Forward variables at termination time
+  row_vector[2] probs_1[num_events+1]; // Probability vector for transition to state 1 (active state)
+  row_vector[2] probs_2[num_events+1]; // Probability vector for transition to state 2 (inactive state)
+  row_vector[2] int_1[num_events+1]; // Integration of lambda when state transit to 1 (active state)
+  row_vector[2] int_2[num_events+1]; // Integration of lambda when state transit to 2 (inactive state)
+  real R[num_events+1]; // record variable for Hawkes process
+  vector[num_events+1] interevent;
+  real K0;
+  real K1;
+  real K2;
+  real K3;
+  real K4;
+  real K5;
+  //priors
+  w_lambda ~ gamma(1,1);
+  alpha ~ gamma(1,1);//lognormal(0,1);
+  beta_delta ~ lognormal(0,2);//normal(0,10);
+  //delta_1 ~ beta(2,2);
+  w_q1 ~ beta(2,2);
+  w_q2 ~ beta(2,2);
+  
+
+  lambda0 ~ gamma(1,1);
+  interevent = time_matrix;
+  if(num_events==0){ // there is no event occured in this period
+    //--- prepare for forward calculation
+    probs_1[1][1] = log(q2/(q1+q2)+q1/(q1+q2)*exp(-(q1+q2)*interevent[1])); //1->1
+    probs_2[1][2] = log(q1/(q1+q2)+q2/(q1+q2)*exp(-(q1+q2)*interevent[1])); //2->2
+    probs_1[1][2] = log1m_exp(probs_2[1][2]); //2->1
+    probs_2[1][1] = log1m_exp(probs_1[1][1]); //1->2
+    R[1] = 0;
+    K0 = exp(-(q1+q2)*interevent[1]);
+    K1 = (1-exp(-(q1+q2)*interevent[1]))/(q1+q2);
+    K2 = (1-exp(-(q1+q2)*interevent[1]))/(q1+q2);
+    int_1[1][1] = ((q2^2*lambda1+q2*q1*lambda0)*interevent[1] +
+                     (q1^2*lambda1+q2*q1*lambda0)*K0*interevent[1] +
+                     (lambda1-lambda0)*q2*q1*K1 + (lambda1-lambda0)*q2*q1*K2)/(q1+q2)^2/exp(probs_1[1][1]); //1->1
+    int_1[1][2] = ((q2^2*lambda1+lambda0*q1*q2)*interevent[1] -
+                     (lambda1*q1*q2+lambda0*q2^2)*K0*interevent[1] +
+                     (lambda0-lambda1)*q2^2*K1 + (lambda1-lambda0)*q1*q2*K2)/(q1+q2)^2/exp(probs_1[1][2]); //2->1
+    int_2[1][1] = ((q1*q2*lambda1+q1^2*lambda0)*interevent[1] -
+                     (q1^2*lambda1+q1*q2*lambda0)*K0*interevent[1] +
+                     (lambda1-lambda0)*q1^2*K1 + q1*q2*(lambda0-lambda1)*K2)/(q1+q2)^2/exp(probs_2[1][1]); //1->2
+    int_2[1][2] = ((q1*q2*lambda1+lambda0*q1^2)*interevent[1] +
+                     (q1*q2*lambda1+lambda0*q2^2)*K0*interevent[1] +
+                     (lambda0-lambda1)*q1*q2*K1 + (lambda0-lambda1)*q1*q2*K2)/(q1+q2)^2/exp(probs_2[1][2]); //2->2
+    
+    forward_termination[1] = log_sum_exp(log_delta + probs_1[1] - int_1[1]);
+    forward_termination[2] = log_sum_exp(log_delta + probs_2[1] - int_2[1]);
+    target += log_sum_exp(forward_termination);
+    //target += -lambda0*interevent[1]*delta_1-lambda1*interevent[1]*(1-delta_1);
+  }else{ // there is event occured
+    // ---- prepare for forward algorithm
+    // --- log probability of Markov transition logP_ij(t)
+    for(n in 1:(num_events + 1)){ //changed this
+      probs_1[n][1] = log(q2/(q1+q2)+q1/(q1+q2)*exp(-(q1+q2)*interevent[n])); //1->1
+      probs_2[n][2] = log(q1/(q1+q2)+q2/(q1+q2)*exp(-(q1+q2)*interevent[n])); //2->2
+      probs_1[n][2] = log1m_exp(probs_2[n][2]); //2->1
+      probs_2[n][1] = log1m_exp(probs_1[n][1]); //1->2
+    }
+    
+    // --- R for Hawkes
+    R[1] = 0;
+    for(n in 2:(num_events + 1)){ // and this
+      R[n] = exp(-beta*interevent[n])*(R[n-1]+1);
+    }
+    
+    // Integration of lambda
+    for(n in 1:(num_events)){ //and this
+      K0 = exp(-(q1+q2)*interevent[n]);
+      K1 = (1-exp(-(q1+q2)*interevent[n]))/(q1+q2);
+      K2 = (1-exp(-(q1+q2)*interevent[n]))/(q1+q2);
+      K3 = R[n]*(exp(beta*interevent[n])-1)/beta;
+      K4 = R[n]*(1-exp(-(beta+q1+q2)*interevent[n]))*exp(beta*interevent[n])/(beta+q1+q2);
+      K5 = R[n]*(1-exp(-(q1+q2-beta)*interevent[n]))/(q1+q2-beta);
+      int_1[n][1] = ((q2^2*lambda1+q2*q1*lambda0)*interevent[n] +
+                       (q1^2*lambda1+q2*q1*lambda0)*K0*interevent[n] +
+                       (lambda1-lambda0)*q2*q1*K1 + (lambda1-lambda0)*q2*q1*K2 +
+                       alpha*K3*(q2^2+q1^2*K0) +
+                       alpha*q1*q2*K4 + alpha*q1*q2*K5)/(q1+q2)^2/exp(probs_1[n][1]); //1->1
+      int_1[n][2] = ((q2^2*lambda1+lambda0*q1*q2)*interevent[n] -
+                       (lambda1*q1*q2+lambda0*q2^2)*K0*interevent[n] +
+                       (lambda0-lambda1)*q2^2*K1 + (lambda1-lambda0)*q1*q2*K2 +
+                       alpha*q2*K3*(q2-q1*K0) -
+                       alpha*q2^2*K4 + alpha*q1*q2*K5)/(q1+q2)^2/exp(probs_1[n][2]); //2->1
+      int_2[n][1] = ((q1*q2*lambda1+q1^2*lambda0)*interevent[n] -
+                       (q1^2*lambda1+q1*q2*lambda0)*K0*interevent[n] +
+                       (lambda1-lambda0)*q1^2*K1 + q1*q2*(lambda0-lambda1)*K2 +
+                       alpha*q1*K3*(q2-q1*K0) +
+                       alpha*q1^2*K4 - alpha*q2*q1*K5)/(q1+q2)^2/exp(probs_2[n][1]); //1->2
+      int_2[n][2] = ((q1*q2*lambda1+lambda0*q1^2)*interevent[n] +
+                       (q1*q2*lambda1+lambda0*q2^2)*K0*interevent[n] +
+                       (lambda0-lambda1)*q1*q2*K1 + (lambda0-lambda1)*q1*q2*K2 +
+                       alpha*q1*q2*K3*(1+K0) -
+                       alpha*q1*q2*K4 - alpha*q1*q2*K5)/(q1+q2)^2/exp(probs_2[n][2]); //2->2
+    }
+    
+    //consider n = 1
+    forward[1][1] = log(lambda1) + log_sum_exp(probs_1[1]-int_1[1]+log_delta); 
+    forward[1][2] = log(lambda0) + log_sum_exp(probs_2[1]-int_2[1]+log_delta); 
+    
+    if(num_events>1){
+      for(n in 2:num_events){
+        forward[n][1] = log_sum_exp(forward[n-1] + probs_1[n] - int_1[n]) + log(lambda1+alpha*R[n]);
+        forward[n][2] = log_sum_exp(forward[n-1] + probs_2[n] - int_2[n]) + log(lambda0);
+      }
+    }
+    
+    forward_termination[1] = log_sum_exp(forward[num_events] + probs_1[num_events] - int_1[num_events]);
+    forward_termination[2] = log_sum_exp(forward[num_events] + probs_2[num_events] - int_2[num_events]);
+    // lots of places with max_Nm and Nm got rid of the +1
+    target += log_sum_exp(forward_termination);
+  }
+}
+"
+
+```
+
+# Fitting these models in Cmdstanr
+
+To demonstrate how to use these models, we will simulate some data
+from each of these models and fit the included `stan` models.
+
+
+```{r sim-mmpp}
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+mmpp_obj <- pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
+
+sim_mmpp <- pp_simulate(mmpp_obj, n = 50)
+```
+
+Having simulated this data we compile the Stan model and draw posterior 
+samples.
+
+```{r mmpp-fit}
+mmpp_file <- write_stan_file(mmpp_stan_code)
+mmpp_stan <- cmdstan_model(stan_file = mmpp_file)
+
+mmpp_data <- list(num_events = length(sim_mmpp$events) - 1, 
+                  # as first event is start time (0)
+                  time_matrix = diff(c(sim_mmpp$events, sim_mmpp$end))
+                  #interevent arrival time
+                  )
+
+
+fit_mmpp <- mmpp_stan$sample(data = mmpp_data,
+                             seed = 123,
+                             chains = 4,
+                             parallel_chains = 4,
+                             refresh = 500)
+
+fit_mmpp$summary()
+```
+
+The fit of this model can be evaluated in several ways, including
+some of the tools in the `bayesplot` package, which are important to
+ensure the fit is reasonable. 
+```{r mmpp-plot}
+bayesplot::mcmc_hist(fit_mmpp$draws(), 
+                     pars = c("lambda0", "c"))
+```
+
+To use the results of this fit with 
+the functions of `ppdiag`, we want to extract an estimate
+of each of the parameters. This can be achieved using the
+posterior mean.
+
+```{r mmpp-extract-post-mean}
+mmpp_post <- fit_mmpp$summary() %>%
+  select(variable, mean) %>%
+  deframe() %>%
+  as.list()
+```
+
+```{r compile-mmhp}
+mmhp_file <- write_stan_file(mmhp_stan_code)
+mmhp_stan <- cmdstan_model(stan_file = mmhp_file)
+
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+mmhp_obj <- pp_mmhp(Q = Q, lambda0 = 0.5, lambda1 = 1.5,
+                    alpha = 0.5, beta = 0.75, delta = c(1/3, 2/3))
+
+sim_mmhp <- pp_simulate(mmhp_obj, n = 50)
+
+
+# use the mmpp data here for now
+mmhp_data <- list(num_events = length(sim_mmhp$events) - 1, 
+                  # as first event is start time (0)
+                  time_matrix = diff(c(sim_mmhp$events, sim_mmhp$end))
+                  #interevent arrival time
+                  )
+
+fit_mmhp <- mmhp_stan$sample(data = mmhp_data,
+                             seed = 123,
+                             chains = 4,
+                             parallel_chains = 4,
+                             refresh = 500)
+
+
+```
+
+```{r plot-draws-mmhp}
+bayesplot::mcmc_hist(fit_mmhp$draws(),
+                     pars = c("lambda0", "lambda1","alpha","beta"))
+```
+
+
+# Fitting these models in RStan
+
+We also show how to run these models using `rstan` for the MMPP 
+example.
+
+```{r rstan-mmpp, eval=FALSE}
+mmpp_rstan <- stan(file = mmpp_file, 
+                   data = mmpp_data)
+mmpp_sim <- rstan::extract(mmpp_rstan)
+```
+
+The desired posterior quantities can then be extracted from this object.
+
+
+# Using the Stan output with `ppdiag`
+
+Having obtained estimates from fitting these stan models, we
+can now pass these parameter estimates into `ppdiag` to 
+evaluate model fit.
+
+```{r mmpp-ppdiag, eval=FALSE}
+mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
+                     c = mmpp_post$c,
+                     Q = matrix( c(-mmpp_post$q1,
+                                   mmpp_post$q1,
+                                   mmpp_post$q2,
+                                   -mmpp_post$q2),
+                                 nrow = 2, ncol = 2, byrow = T) )
+
+
+pp_diag(mmpp_fit_obj, events = sim_mmpp$events)
+
+event_state <- ppdiag:::mmpp_event_state(params = mmpp_fit_obj,
+                                         events = sim_mmpp$events[-1])
+latent_inter <- ppdiag:::mmpp_latent(params = mmpp_fit_obj,
+                                events = sim_mmpp$events[-1],
+                                zt = event_state$zt)
+# this looks like it's the problem here
+# can write a test for this also, same for mmhp
+
+pp_residual(object = mmpp_fit_obj, events = sim_mmpp$events)
+```
+
+```{r mmhp-ppdiag}
+mmhp_post <- fit_mmhp$summary() %>%
+  select(variable, mean) %>%
+  deframe() %>%
+  as.list()
+
+mmhp_fit_obj <- pp_mmhp(lambda0 = mmhp_post$lambda0,
+                        lambda1 = mmhp_post$lambda1,
+                        alpha = mmhp_post$alpha,
+                        beta = mmhp_post$beta,
+                        Q = matrix( c(-mmhp_post$q1,
+                                      mmhp_post$q1,
+                                      mmhp_post$q2,
+                                      -mmhp_post$q2),
+                                 nrow = 2, ncol = 2, byrow = T) )
+
+pp_diag(mmhp_fit_obj, events = sim_mmhp$events)
+
+```

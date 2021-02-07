@@ -7,6 +7,7 @@
 #' @param events vector of event times
 #' @param start start of observation period (default 0)
 #' @param end termination time (default final event)
+#' @param steps number of steps for numeric integration (if needed)
 #' 
 #' @return the Pearson residual
 #' @importFrom stats integrate
@@ -18,21 +19,24 @@
 #' y <- pp_simulate(x, n = 10)
 #' pearsonresidual(x, events = y$events[-1])
 
-pearsonresidual <- function(object, events, start, end) {
+pearsonresidual <- function(object, events, start, end, steps = 1000) {
   UseMethod("pearsonresidual")
 }
 
 #' @export
 pearsonresidual.default <- function(object, events, start = 0,
-                                end = max(events)) {
-  cat("Please input the right model. Select from hp, hpp and mmhp. ")
+                                end = max(events), steps = 1000) {
+  cat("Please input the right model. Select from hp, hpp, mmpp and mmhp. ")
 }
 
 #' @export
 pearsonresidual.mmhp <- function(object, events, start = 0,
-                                end = max(events)) {
+                                end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
+  }
+  if(events[1] == 0 ) {
+    events <- events[-1]
   }
   # define time.vec,latent.vec,latent_event in intensity
   N <- length(events)
@@ -40,9 +44,10 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
   event_obj$events <- events
   event_obj$start <- start
   event_obj$end <- end
-  time.vec <- seq(from = start, to = end, length.out = 1000)
-  est.intensity <- intensity(object,event = event_obj,method = "numeric")
-  est.intensity.events <- intensity(object, event = event_obj,
+  time.vec <- seq(from = start, to = end, length.out = steps)
+  est.intensity <- pp_intensity(object, event_info = event_obj,
+                             method = "numeric", steps = steps)
+  est.intensity.events <- pp_intensity(object, event_info = event_obj,
                                     method = "atevent")
   pr <- sum(1 / sqrt(est.intensity.events)) -
     sum(sqrt(est.intensity)) * (time.vec[2] - time.vec[1])
@@ -51,9 +56,12 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
 
 #' @export
 pearsonresidual.hp <- function(object, events, start = 0,
-                                end = max(events)) {
+                                end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
+  }
+  if(events[1] == 0) {
+    events <- events[-1]
   }
   lambda0 <- object$lambda0
   alpha <- object$alpha
@@ -111,9 +119,12 @@ pearsonresidual.hp <- function(object, events, start = 0,
 
 #' @export
 pearsonresidual.hpp <- function(object, events, start = 0,
-                                end = max(events)) {
+                                end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
+  }
+  if(events[1] == 0) {
+    events <- events[-1]
   }
   est.intensity <- sqrt(object$lambda)*(end-start)
   N <- length(events)
@@ -125,18 +136,22 @@ pearsonresidual.hpp <- function(object, events, start = 0,
 
 #' @export
 pearsonresidual.mmpp <- function(object, events, start = 0,
-                                 end = max(events)) {
+                                 end = max(events), steps = 1000) {
   if(end != max(events)) {
     message("PR calculated to specified end time.")
+  }
+  if( events[1] == 0 ) {
+    events <- events[-1]
   }
   N <- length(events)
   event_obj <- list()
   event_obj$events <- events
   event_obj$start <- start
   event_obj$end <- end
-  time.vec <- seq(from = start, to = end, length.out = 1000)
-  est.intensity <- intensity(object,event = event_obj,method = "numeric")
-  est.intensity.events <- intensity(object, event = event_obj,
+  time.vec <- seq(from = start, to = end, length.out = steps)
+  est.intensity <- pp_intensity(object, event_info = event_obj,
+                             method = "numeric", steps = steps)
+  est.intensity.events <- pp_intensity(object, event_info = event_obj,
                                     method = "atevent")
   pr <- sum(1 / sqrt(est.intensity.events)) -
     sum(sqrt(est.intensity)) * (time.vec[2] - time.vec[1])

@@ -206,7 +206,7 @@ interpolate_mmhp_latent <- function(params,
         # initial.delta <- events[1]/2 
         # x.hat <- c(initial.delta, x.hat)
         # z.hat <- c(initial.state, z.hat)
-        message("Not completed.")
+        # message("Not completed.")
         ## if not change
       }
     }

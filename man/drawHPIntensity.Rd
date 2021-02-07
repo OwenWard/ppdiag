@@ -15,7 +15,6 @@ drawHPIntensity(
   add = FALSE,
   fit = FALSE,
   plot_events = FALSE,
-  vec = NULL,
   int_title = "Hawkes Intensity"
 )
 }
@@ -42,8 +41,6 @@ use the passed object}
 
 \item{plot_events}{a boolean indicating whether events
 inputted will be plotted}
-
-\item{vec}{vector of initial values of parameters used in fithp}
 
 \item{int_title}{title of the intensity plot}
 }

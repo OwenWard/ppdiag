@@ -109,8 +109,8 @@ hp_events
 
 You can also specify desired length of events. 
 ```{r}
-hp_events <- pp_simulate(hp_obj, start = 0, end = 50, n=10)
-hp_events
+hp_events <- pp_simulate(hp_obj, start = 0, end = 50, n=1000)
+# hp_events
 ```
 
 - Markov-Modulated Hawkes Process: 
@@ -139,13 +139,12 @@ fit_hpp
 - Hawkes Process: 
 
 `fithp(vec,t,end)` returns an object of class `hp`, estimating the
-three parameters of the Hawkes process using `optim`, with the initial
-value given by `vec`. This can be a challenging optimisation problem
+three parameters of the Hawkes process using `constrOptim`, to
+ensure the solution is feasible. This can be a challenging optimisation problem
 and convergence is not guaranteed.
 ```{r}
-init <- rep(0.1,3)
-fit_hp <- fithp(init, hp_events$events)
-fit_hp
+fit_hp <- fithp(hp_events$events)
+fit_hp[1:3]
 ```
 
 ## Diagnosing the fit of a point process to data
@@ -192,10 +191,14 @@ drawHPIntensity(fit_hp, start = min(hp_events$events),
                 events = hp_events$events, plot_events = TRUE)
 ```
 
-To plot the fitted intensity on the inputted events, set fit=TRUE.
+To plot the fitted intensity on the input events, set `fit=TRUE`.
 ```{r,fig.width=4,fig.height=5}
-drawHPIntensity(fit_hp, start = min(hp_events$events), end = max(hp_events$events),
-                history = 0, events = hp_events$events, fit=TRUE, plot_events=TRUE)
+drawHPIntensity(fit_hp, start = min(hp_events$events), 
+                end = max(hp_events$events),
+                history = 0,
+                events = hp_events$events, 
+                fit=TRUE,
+                plot_events=TRUE)
 ```
 
 `drawUniMMHPIntensity(mmhp, simulation, add = FALSE, fit=FALSE, 

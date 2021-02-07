@@ -6,7 +6,6 @@ test_that("test drawHPIntensity", {
   sims <- pp_simulate(hp_obj, start = 0, end = 20)
   events <- sims$events
   expect_message(drawHPIntensity(hp_obj, events = events),"Using the hp object. Set fit = TRUE to fit events provided.")
-  expect_error(drawHPIntensity(hp_obj, events = events, fit = TRUE),"Refitting exceeded 10 times. Try a different initial vector.")
   
   sims <- pp_simulate(hp_obj, start = 0, n = 10)
   events <- sims$events

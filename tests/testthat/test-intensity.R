@@ -4,6 +4,6 @@ test_that("test intensity", {
   x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
                alpha = 0.8, beta = 1.2)
   y <- pp_simulate(x, n = 10)
-  expect_type(intensity(x, y),"double")
+  expect_type(pp_intensity.mmhp(x, y),"double")
   
 })

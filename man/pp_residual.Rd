@@ -4,7 +4,7 @@
 \alias{pp_residual}
 \title{Compute raw and pearson residuals for point process models}
 \usage{
-pp_residual(object, events, start = 0, end = max(events))
+pp_residual(object, events, start = 0, end = max(events), steps = 1000)
 }
 \arguments{
 \item{object}{point process model containing the parameters}
@@ -14,6 +14,8 @@ pp_residual(object, events, start = 0, end = max(events))
 \item{start}{start of observation period (default 0)}
 
 \item{end}{end of observation period (default final event)}
+
+\item{steps}{number of steps for numeric integration (if needed)}
 }
 \value{
 the raw and pearson residuals
@@ -26,5 +28,5 @@ Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
 lambda1 = 1.1, alpha = 0.8, beta = 1.2)
 y <- pp_simulate(x, n = 10)
-pp_residual(x, events = y$events[-1])
+pp_residual(x, events = y$events)
 }
