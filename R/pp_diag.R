@@ -26,7 +26,7 @@ pp_diag <- function(object, events) {
 #' @rdname pp_diag
 #' @export
 pp_diag.default <- function(object, events) {
-  cat("Please input the right model. Select from hp, hpp, and mmhp. ")
+  cat("Please input the right model. Select from hp, hpp, mmpp and mmhp. ")
 }
 
 #' @rdname pp_diag

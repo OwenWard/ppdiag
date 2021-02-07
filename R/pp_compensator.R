@@ -26,8 +26,9 @@ pp_compensator.default <- function(object, events) {
 pp_compensator.mmpp <- function(object, events) {
   lambda0 <- object$lambda0
   c <- object$c
-  q1 <- object$q1
-  q2 <- object$q2
+  Q <- object$Q
+  q1 <- Q[1, 2]
+  q2 <- Q[2, 1]
   if(events[1] == 0) {
     n <- length(events) - 1
     interevent <- events[-1] - events[-(n + 1)]

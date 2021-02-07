@@ -22,6 +22,7 @@ library(ppdiag)
 library(rstan)
 library(cmdstanr)
 library(tidyverse)
+library(bayesplot)
 ```
 
 
@@ -274,7 +275,7 @@ from each of these models and fit the included `stan` models.
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 mmpp_obj <- pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
 
-sim <- pp_simulate(mmpp_obj, n = 50)
+sim_mmpp <- pp_simulate(mmpp_obj, n = 50)
 ```
 
 Having simulated this data we compile the Stan model and draw posterior 
@@ -284,9 +285,9 @@ samples.
 mmpp_file <- write_stan_file(mmpp_stan_code)
 mmpp_stan <- cmdstan_model(stan_file = mmpp_file)
 
-mmpp_data <- list(num_events = length(sim$events) - 1, 
+mmpp_data <- list(num_events = length(sim_mmpp$events) - 1, 
                   # as first event is start time (0)
-                  time_matrix = diff(c(sim$events, sim$end))
+                  time_matrix = diff(c(sim_mmpp$events, sim_mmpp$end))
                   #interevent arrival time
                   )
 
@@ -304,26 +305,37 @@ The fit of this model can be evaluated in several ways, including
 some of the tools in the `bayesplot` package, which are important to
 ensure the fit is reasonable. 
 ```{r mmpp-plot}
-bayesplot::mcmc_hist(fit_mmpp$draws())
+bayesplot::mcmc_hist(fit_mmpp$draws(), 
+                     pars = c("lambda0", "c"))
 ```
 
 To use the results of this fit with 
 the functions of `ppdiag`, we want to extract an estimate
-of each of the parameters. This can be achieved using either the
-posterior mean or posterior median.
+of each of the parameters. This can be achieved using the
+posterior mean.
 
 ```{r mmpp-extract-post-mean}
-## TBD
+mmpp_post <- fit_mmpp$summary() %>%
+  select(variable, mean) %>%
+  deframe() %>%
+  as.list()
 ```
 
 ```{r compile-mmhp}
 mmhp_file <- write_stan_file(mmhp_stan_code)
 mmhp_stan <- cmdstan_model(stan_file = mmhp_file)
 
+Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
+mmhp_obj <- pp_mmhp(Q = Q, lambda0 = 0.5, lambda1 = 1.5,
+                    alpha = 0.5, beta = 0.75, delta = c(1/3, 2/3))
+
+sim_mmhp <- pp_simulate(mmhp_obj, n = 50)
+
+
 # use the mmpp data here for now
-mmhp_data <- list(num_events = length(sim$events) - 1, 
+mmhp_data <- list(num_events = length(sim_mmhp$events) - 1, 
                   # as first event is start time (0)
-                  time_matrix = diff(c(sim$events, sim$end))
+                  time_matrix = diff(c(sim_mmhp$events, sim_mmhp$end))
                   #interevent arrival time
                   )
 
@@ -336,7 +348,71 @@ fit_mmhp <- mmhp_stan$sample(data = mmhp_data,
 
 ```
 
+```{r plot-draws-mmhp}
+bayesplot::mcmc_hist(fit_mmhp$draws(),
+                     pars = c("lambda0", "lambda1","alpha","beta"))
+```
+
 
 # Fitting these models in RStan
 
+We also show how to run these models using `rstan` for the MMPP 
+example.
+
+```{r rstan-mmpp, eval=FALSE}
+mmpp_rstan <- stan(file = mmpp_file, 
+                   data = mmpp_data)
+mmpp_sim <- rstan::extract(mmpp_rstan)
+```
+
+The desired posterior quantities can then be extracted from this object.
+
+
 # Using the Stan output with `ppdiag`
+
+Having obtained estimates from fitting these stan models, we
+can now pass these parameter estimates into `ppdiag` to 
+evaluate model fit.
+
+```{r mmpp-ppdiag, eval=FALSE}
+mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
+                     c = mmpp_post$c,
+                     Q = matrix( c(-mmpp_post$q1,
+                                   mmpp_post$q1,
+                                   mmpp_post$q2,
+                                   -mmpp_post$q2),
+                                 nrow = 2, ncol = 2, byrow = T) )
+
+
+pp_diag(mmpp_fit_obj, events = sim_mmpp$events)
+
+event_state <- ppdiag:::mmpp_event_state(params = mmpp_fit_obj,
+                                         events = sim_mmpp$events[-1])
+latent_inter <- ppdiag:::mmpp_latent(params = mmpp_fit_obj,
+                                events = sim_mmpp$events[-1],
+                                zt = event_state$zt)
+# this looks like it's the problem here
+# can write a test for this also, same for mmhp
+
+pp_residual(object = mmpp_fit_obj, events = sim_mmpp$events)
+```
+
+```{r mmhp-ppdiag}
+mmhp_post <- fit_mmhp$summary() %>%
+  select(variable, mean) %>%
+  deframe() %>%
+  as.list()
+
+mmhp_fit_obj <- pp_mmhp(lambda0 = mmhp_post$lambda0,
+                        lambda1 = mmhp_post$lambda1,
+                        alpha = mmhp_post$alpha,
+                        beta = mmhp_post$beta,
+                        Q = matrix( c(-mmhp_post$q1,
+                                      mmhp_post$q1,
+                                      mmhp_post$q2,
+                                      -mmhp_post$q2),
+                                 nrow = 2, ncol = 2, byrow = T) )
+
+pp_diag(mmhp_fit_obj, events = sim_mmhp$events)
+
+```
