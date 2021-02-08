@@ -387,12 +387,12 @@ evaluate model fit.
 
 ```{r mmpp-ppdiag, include = FALSE, eval=FALSE}
 mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
-                     c = mmpp_post$c,
-                     Q = matrix( c(-mmpp_post$q1,
-                                   mmpp_post$q1,
-                                   mmpp_post$q2,
-                                   -mmpp_post$q2),
-                                 nrow = 2, ncol = 2, byrow = T) )
+                       c = mmpp_post$c,
+                       Q = matrix( c(-mmpp_post$q1,
+                                     mmpp_post$q1,
+                                     mmpp_post$q2,
+                                     -mmpp_post$q2),
+                                   nrow = 2, ncol = 2, byrow = T) )
 
 
 pp_diag(mmpp_fit_obj, events = sim_mmpp$events)
