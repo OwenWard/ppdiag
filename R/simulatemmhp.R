@@ -1,4 +1,4 @@
-#' Simulate Markov Modulated Hawkes Process
+#' Simulate a Markov Modulated Hawkes Process
 #'
 #' Simulate Markov Modulated Hawkes Process (including all the history) 
 #' according to a mmhp object
@@ -20,12 +20,12 @@
 #'
 #' @return simulated Markov Modulated Hawkes Process, 
 #' including states of Markov Process, time of each 
-#' transition of Markoc Process, state at each event,
-#'  times of Poisson events.
-#' @export
+#' transition of Markov Process, state at each event,
+#'  times of events.
+#' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
@@ -58,6 +58,9 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
   
   if(alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
+  }
+  if(is.null(Q)) {
+    stop("No Q matrix specified")
   }
 
   Pi <- diag(m) - diag(1 / diag(Q)) %*% Q

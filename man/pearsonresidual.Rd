@@ -2,42 +2,32 @@
 % Please edit documentation in R/pearsonresidual.R
 \name{pearsonresidual}
 \alias{pearsonresidual}
-\alias{pearsonresidual.default}
-\alias{pearsonresidual.mmhp}
-\alias{pearsonresidual.hp}
-\alias{pearsonresidual.hpp}
-\title{Compute Pearson residuals for social network models}
+\title{Compute Pearson residuals for point process models}
 \usage{
-pearsonresidual(object, events, start, end)
-
-\method{pearsonresidual}{default}(object, events, start = 0, end = max(events))
-
-\method{pearsonresidual}{mmhp}(object, events, start = 0, end = max(events))
-
-\method{pearsonresidual}{hp}(object, events, start = 0, end = max(events))
-
-\method{pearsonresidual}{hpp}(object, events, start = 0, end = max(events))
+pearsonresidual(object, events, start, end, steps = 1000)
 }
 \arguments{
 \item{object}{social network model containing the parameters}
 
-\item{events}{vector of event happening time}
+\item{events}{vector of event times}
 
-\item{start}{start of observation period}
+\item{start}{start of observation period (default 0)}
 
-\item{end}{termination time}
+\item{end}{termination time (default final event)}
+
+\item{steps}{number of steps for numeric integration (if needed)}
 }
 \value{
 the Pearson residual
 }
 \description{
-Compute Pearson residuals for social network models 
-with model specified time events or simulated time events
+Compute Pearson residuals for point processes 
+with specified parameters and events.
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-x <- mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
+x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, 
 lambda1 = 1.1, alpha = 0.8, beta = 1.2)
-y <- simulatemmhp(x, n = 10)
+y <- pp_simulate(x, n = 10)
 pearsonresidual(x, events = y$events[-1])
 }

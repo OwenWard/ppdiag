@@ -2,7 +2,7 @@
 % Please edit documentation in R/drawHPPIntensity.R
 \name{drawHPPIntensity}
 \alias{drawHPPIntensity}
-\title{Draw Intensity of Homogeneous Poisson Process}
+\title{Draw intensity of homogeneous Poisson process}
 \usage{
 drawHPPIntensity(
   hpp,
@@ -10,6 +10,7 @@ drawHPPIntensity(
   color = "red",
   plot_events = FALSE,
   fit = FALSE,
+  add = FALSE,
   int_title = "Intensity homogeneous Poisson Process",
   start = 0,
   end = max(events)
@@ -28,6 +29,8 @@ inputted will be plotted}
 \item{fit}{a boolean indicating whether to fit a hpp or
 use the passed object}
 
+\item{add}{whether to add the hpp intensity to an existing plot}
+
 \item{int_title}{the plot title}
 
 \item{start}{start of events}
@@ -35,11 +38,11 @@ use the passed object}
 \item{end}{end of events}
 }
 \description{
-Draw the intensity for homogeneous poisson process events
+Draw the intensity for a homogeneous Poisson process
 }
 \examples{
 \dontrun{
-pois_y <- hpp(lambda = 1)
-drawHPPIntensity(pois_y, events=simulatehpp(pois_y, end=10), color = "red")
+pois_y <- pp_hpp(lambda = 1)
+drawHPPIntensity(pois_y, events=pp_simulate(pois_y, end=10), color = "red")
 }
 }

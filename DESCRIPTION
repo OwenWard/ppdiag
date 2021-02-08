@@ -17,6 +17,9 @@ Authors@R:
       person(given = "Xiaoxi",
              family = "Zhao",
              role = "aut"),
+      person(given = "Lihao",
+             family = "Xiao",
+             role = "ctb"),
       person(given = "Tian",
              family = "Zheng",
              role = "aut"))

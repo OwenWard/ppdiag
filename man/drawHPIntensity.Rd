@@ -15,7 +15,6 @@ drawHPIntensity(
   add = FALSE,
   fit = FALSE,
   plot_events = FALSE,
-  vec = NULL,
   int_title = "Hawkes Intensity"
 )
 }
@@ -43,19 +42,15 @@ use the passed object}
 \item{plot_events}{a boolean indicating whether events
 inputted will be plotted}
 
-\item{vec}{vector of initial values of parameters used in fithp}
-
 \item{int_title}{title of the intensity plot}
 }
 \description{
-Draw the intensity of Hawkes Process, a helper function for
- 'drawUniMMHPIntensity'
-while also available independently
+Draw the intensity of a Hawkes Process
 }
 \examples{
 \dontrun{
-hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
-sims <- simulatehp(hp_obj, start = 0, end = 20, history = 0)
+hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
+sims <- pp_simulate(hp_obj, start = 0, end = 20)
 events <- sims$events
 drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 }

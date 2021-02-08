@@ -32,7 +32,7 @@ These currently include:
 - Evaluating the fit of a point process model to data using 
 several diagnostic tools
 
-## Installation
+# Installation
 
 <!-- You can install the released version of ppdiag from [CRAN](https://CRAN.R-project.org) with: -->
 
@@ -47,7 +47,7 @@ package is available from [GitHub](https://github.com/OwenWard/ppdiag) with:
 # install.packages("devtools")
 devtools::install_github("OwenWard/ppdiag")
 ```
-## Example
+# Example
 
 To illustrate some of the basic functionality of this package,
 we can simulate data from a specified Hawkes process and examine
@@ -57,8 +57,8 @@ to this data.
 ```{r example}
 library(ppdiag)
 
-hp_obj <- hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
-sim_hp <- simulatehp(hp_obj, end = 200)
+hp_obj <- pp_hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
+sim_hp <- pp_simulate(hp_obj, end = 200)
 sim_hp
 
 ```
@@ -89,14 +89,14 @@ and examine the fit of simpler point processes to this data.
 ```{r mmhp example}
 Q <- matrix(c(-0.2, 0.2, 0.1, -0.1), ncol = 2, byrow = TRUE)
 
-mmhp_obj <- mmhp(Q, delta = c(1 / 3, 2 / 3), 
+mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), 
           lambda0 = 0.2,
           lambda1 = .75,
           alpha = 0.4,
           beta = 0.8)
 
 mmhp_obj
-mmhp_events <- simulatemmhp(mmhp_obj, n = 50)
+mmhp_events <- pp_simulate(mmhp_obj, n = 50)
 ```
 
 We can easily fit a homogeneous Poisson process and visualise the goodness of 
@@ -119,3 +119,11 @@ We can then compare to the true point process model.
 ```{r fit_mmhp}
 diagpp(mmhp_obj,mmhp_events$events)
 ```
+
+
+# Getting help and contributing
+
+Please file any issues [here](https://github.com/OwenWard/ppdiag/issues). 
+Similarly, we would be delighted if anyone would like to contribute to
+this package (such as adding other point processes, kernel functions). 
+Feel free to reach out.

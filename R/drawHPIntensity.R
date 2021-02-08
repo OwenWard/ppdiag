@@ -1,8 +1,6 @@
 #' Draw the intensity of Hawkes Process
 #'
-#' Draw the intensity of Hawkes Process, a helper function for
-#'  'drawUniMMHPIntensity'
-#' while also available independently
+#' Draw the intensity of a Hawkes Process
 #'
 #' @param hp object parameters for Hawkes process
 #' @param start the start time of current state
@@ -15,7 +13,6 @@
 #' @param add whether to add the hawkes intensity to an existing plot
 #' @param plot_events a boolean indicating whether events
 #'  inputted will be plotted
-#' @param vec vector of initial values of parameters used in fithp
 #' @param int_title title of the intensity plot
 #' @param fit a boolean indicating whether to fit a hp or 
 #' use the passed object
@@ -26,22 +23,22 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' hp_obj <- hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
-#' sims <- simulatehp(hp_obj, start = 0, end = 20, history = 0)
+#' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
+#' sims <- pp_simulate(hp_obj, start = 0, end = 20)
 #' events <- sims$events
 #' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
 #' }
 drawHPIntensity <- function(hp, 
-                            start = 0, end = max(events), history=0, events,
-                            color = 1, i = 1, add=FALSE, fit=FALSE,
-                            plot_events=FALSE, vec=NULL, 
-                            int_title="Hawkes Intensity") {
+                            start = 0, end = max(events), history = 0, events,
+                            color = 1, i = 1, add = FALSE, fit = FALSE,
+                            plot_events = FALSE,
+                            int_title = "Hawkes Intensity") {
   n <- length(events)
   m <- length(history)
   old_events <- hp$events
   
   if(add==FALSE){
-    #hawkes_par <- list(lambda0 = lambda0,alpha = alpha, beta = beta)
+    #hawkes_par <- list(lambda0 = lambda0, alpha = alpha, beta = beta)
     #events <- c(history,t)
     #events <- t
 	  
@@ -51,16 +48,12 @@ drawHPIntensity <- function(hp,
       }
       if(fit==TRUE){
         message("Fitting provided events.")
-        if(is.null(vec)){
-          hp_obj <- fithp(events=events)
-        }else{
-          hp_obj <- fithp(vec=vec, events)
-        }
+        hp_obj <- fithp(events)
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
       }else{
-        message("Using the hp object. Set fit=TRUE to fit events provided. ")
+        message("Using the hp object. Set fit = TRUE to fit events provided.")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
@@ -79,11 +72,7 @@ drawHPIntensity <- function(hp,
       }else{
         if(fit==TRUE){
           message("Fitting provided events. Set events=NULL to use the events in object.")
-          if(is.null(vec)){
-            hp_obj <- fithp(events=events)
-          }else{
-            hp_obj <- fithp(vec=vec, events)
-          }
+          hp_obj <- fithp(events)
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
           beta <- hp$beta

@@ -1,4 +1,5 @@
-#' Draw the intensity and q-q plot
+#' Draw intensity of fitted point process and QQ-Plot of rescaled events
+#' 
 #'
 #' Draw the intensity and q-q plot for models
 #'
@@ -24,11 +25,11 @@ intensityqqplot.default <- function(object, events, ...) {
 intensityqqplot.hp <- function(object, events, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)
+  pp_qqexp(r)
   par(mar = c(2, 2, 1, 1))
-  drawHPIntensity(object, start = 0, end=max(events),
+  drawHPIntensity(object, start = 0, end = max(events),
                   events = events, add = FALSE, plot_events = TRUE, ...)
 }
 
@@ -39,12 +40,13 @@ intensityqqplot.hpp <- function(object, events, ...) {
 	
   layout(mat = matrix(c(1, 2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)  
+  pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
   drawHPPIntensity(object, events = events,
-                   plot_events = TRUE,int_title="Intensity plot of HPP",...)  
+                   plot_events = TRUE, 
+                   int_title = "Intensity plot of HPP", ...)  
 }
 
 
@@ -53,9 +55,9 @@ intensityqqplot.hpp <- function(object, events, ...) {
 intensityqqplot.mmhp <- function(object, events, ...) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
-  r <- compensator(object = object, events = events)  
+  r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
-  qqexp(r)  
+  pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
   drawUniMMHPIntensity(mmhp = object, 
                        add=FALSE, ...)  

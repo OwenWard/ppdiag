@@ -1,7 +1,8 @@
-#' Simulate Hawkes process during active state
+#' Simulate Hawkes process events
 #'
 #' Simulate Hawkes process during active state (including all the history),
-#'  a helper function for "simulationmmhp"
+#'  a helper function for "simulationmmhp" and also available
+#'  independently
 #'
 #' @param hp hawkes process object, including parameters in list type 
 #' (lambda0, alpha, beta, events)
@@ -12,14 +13,14 @@
 #' @param seed seed for simulation
 #' @importFrom stats runif
 #' @return simulated Hawkes Process
-#' @export
+#' @noRd
 #' @examples
-#' hp_obj <- hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+#' hp_obj <- pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
 #' simulatehp(hp_obj,start = 0, end = 100)
 
 simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
   if(!is.null(seed)){
-    set.seed(seed)
+    set.seed(100)
   }
   old_events <- hp$events
   if(!is.null(old_events)){

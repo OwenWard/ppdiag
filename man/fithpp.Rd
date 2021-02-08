@@ -2,21 +2,24 @@
 % Please edit documentation in R/fithpp.R
 \name{fithpp}
 \alias{fithpp}
-\title{Fit a homogeneous poisson process}
+\title{Fit a homogeneous poisson process to event data}
 \usage{
-fithpp(events)
+fithpp(events, end = max(events))
 }
 \arguments{
 \item{events}{vector containing the event times.}
+
+\item{end}{end of observation starting from 0 (default final event)}
 }
 \value{
-an hpp object fitted
+a hpp object containing the events and the estimated parameter
 }
 \description{
-Compute maximum likelihood estimator for the hpp model with time events
+Compute maximum likelihood estimator of the rate of a homogeneous Poisson
+process for the given events.
 }
 \examples{
-pois_y <- hpp(lambda = 1)
-events <- simulatehpp(pois_y, end=10)
+pois_y <- pp_hpp(lambda = 1)
+events <- pp_simulate(pois_y, end=10)
 fithpp(events)
 }
