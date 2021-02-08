@@ -20,7 +20,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```{r setup}
 library(ppdiag)
 library(rstan)
-library(cmdstanr)
+# library(cmdstanr)
 library(tidyverse)
 library(bayesplot)
 ```
@@ -265,7 +265,8 @@ model{
 
 ```
 
-# Fitting these models in Cmdstanr
+
+# Fitting these models in RStan
 
 To demonstrate how to use these models, we will simulate some data
 from each of these models and fit the included `stan` models.
@@ -278,35 +279,31 @@ mmpp_obj <- pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
 sim_mmpp <- pp_simulate(mmpp_obj, n = 50)
 ```
 
-Having simulated this data we compile the Stan model and draw posterior 
-samples.
 
-```{r mmpp-fit}
-mmpp_file <- write_stan_file(mmpp_stan_code)
-mmpp_stan <- cmdstan_model(stan_file = mmpp_file)
 
+
+We also show how to run these models using `rstan` for the MMPP 
+example.
+
+```{r rstan-mmpp}
 mmpp_data <- list(num_events = length(sim_mmpp$events) - 1, 
                   # as first event is start time (0)
                   time_matrix = diff(c(sim_mmpp$events, sim_mmpp$end))
                   #interevent arrival time
                   )
 
-
-fit_mmpp <- mmpp_stan$sample(data = mmpp_data,
-                             seed = 123,
-                             chains = 4,
-                             parallel_chains = 4,
-                             refresh = 500)
-
-fit_mmpp$summary()
+mmpp_rstan <- stan(model_code = mmpp_stan_code, 
+                   data = mmpp_data,
+                   chains = 2)
+mmpp_sim <- rstan::extract(mmpp_rstan)
 ```
 
 The fit of this model can be evaluated in several ways, including
 some of the tools in the `bayesplot` package, which are important to
 ensure the fit is reasonable. 
+
 ```{r mmpp-plot}
-bayesplot::mcmc_hist(fit_mmpp$draws(), 
-                     pars = c("lambda0", "c"))
+bayesplot::mcmc_hist(as.matrix(mmpp_rstan), pars = c("lambda0", "c"))
 ```
 
 To use the results of this fit with 
@@ -314,17 +311,15 @@ the functions of `ppdiag`, we want to extract an estimate
 of each of the parameters. This can be achieved using the
 posterior mean.
 
-```{r mmpp-extract-post-mean}
-mmpp_post <- fit_mmpp$summary() %>%
-  select(variable, mean) %>%
-  deframe() %>%
-  as.list()
+The desired posterior quantities can then be extracted from this object.
+
+```{r mmpp-post}
+mmpp_post <- lapply(mmpp_sim, mean)
 ```
 
-```{r compile-mmhp}
-mmhp_file <- write_stan_file(mmhp_stan_code)
-mmhp_stan <- cmdstan_model(stan_file = mmhp_file)
+Similarly, we can fit the MMHP model to simulated data also.
 
+```{r sim-mmhp}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 mmhp_obj <- pp_mmhp(Q = Q, lambda0 = 0.5, lambda1 = 1.5,
                     alpha = 0.5, beta = 0.75, delta = c(1/3, 2/3))
@@ -332,40 +327,56 @@ mmhp_obj <- pp_mmhp(Q = Q, lambda0 = 0.5, lambda1 = 1.5,
 sim_mmhp <- pp_simulate(mmhp_obj, n = 50)
 
 
-# use the mmpp data here for now
 mmhp_data <- list(num_events = length(sim_mmhp$events) - 1, 
                   # as first event is start time (0)
                   time_matrix = diff(c(sim_mmhp$events, sim_mmhp$end))
                   #interevent arrival time
                   )
+```
+
+```{r rstan-mmhp}
+mmhp_rstan <- stan(model_code = mmhp_stan_code, 
+                   data = mmhp_data,
+                   chains = 2)
+mmhp_sim <- rstan::extract(mmhp_rstan)
+mmhp_post <- lapply(mmhp_sim, mean)
+```
+
+```{r plot-draws-mmhp}
+bayesplot::mcmc_hist(as.matrix(mmhp_rstan),
+                     pars = c("lambda0", "lambda1", "alpha", "beta"))
+```
+
+
+
+# Fitting these models in Cmdstanr
+
+We can also fit these models using `cmdstanr`. We include the code
+to fit these examples below (which is not run here).
+
+```{r mmpp-fit, eval=FALSE}
+mmpp_file <- write_stan_file(mmpp_stan_code)
+mmpp_stan <- cmdstan_model(stan_file = mmpp_file)
+
+fit_mmpp <- mmpp_stan$sample(data = mmpp_data,
+                             seed = 123,
+                             chains = 4,
+                             parallel_chains = 4,
+                             refresh = 500)
+```
+
+Similarly, we can fit the MMHP model in `cmdstanr`.
+
+```{r compile-mmhp, eval=FALSE}
+mmhp_file <- write_stan_file(mmhp_stan_code)
+mmhp_stan <- cmdstan_model(stan_file = mmhp_file)
 
 fit_mmhp <- mmhp_stan$sample(data = mmhp_data,
                              seed = 123,
                              chains = 4,
                              parallel_chains = 4,
                              refresh = 500)
-
-
 ```
-
-```{r plot-draws-mmhp}
-bayesplot::mcmc_hist(fit_mmhp$draws(),
-                     pars = c("lambda0", "lambda1","alpha","beta"))
-```
-
-
-# Fitting these models in RStan
-
-We also show how to run these models using `rstan` for the MMPP 
-example.
-
-```{r rstan-mmpp, eval=FALSE}
-mmpp_rstan <- stan(file = mmpp_file, 
-                   data = mmpp_data)
-mmpp_sim <- rstan::extract(mmpp_rstan)
-```
-
-The desired posterior quantities can then be extracted from this object.
 
 
 # Using the Stan output with `ppdiag`
@@ -374,7 +385,7 @@ Having obtained estimates from fitting these stan models, we
 can now pass these parameter estimates into `ppdiag` to 
 evaluate model fit.
 
-```{r mmpp-ppdiag, eval=FALSE}
+```{r mmpp-ppdiag, include = FALSE, eval=FALSE}
 mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
                      c = mmpp_post$c,
                      Q = matrix( c(-mmpp_post$q1,
@@ -397,12 +408,7 @@ latent_inter <- ppdiag:::mmpp_latent(params = mmpp_fit_obj,
 pp_residual(object = mmpp_fit_obj, events = sim_mmpp$events)
 ```
 
-```{r mmhp-ppdiag}
-mmhp_post <- fit_mmhp$summary() %>%
-  select(variable, mean) %>%
-  deframe() %>%
-  as.list()
-
+```{r mmhp-ppdiag, fig.width=8}
 mmhp_fit_obj <- pp_mmhp(lambda0 = mmhp_post$lambda0,
                         lambda1 = mmhp_post$lambda1,
                         alpha = mmhp_post$alpha,
