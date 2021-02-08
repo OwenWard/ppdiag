@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • ppdiag</title>
+<title>Create a Hawkes process object — pp_hp • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,12 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Create a Hawkes process object — pp_hp" />
+<meta property="og:description" content="Create a Hawkes Process with an exponential
+kernel according to the given parameters:
+lambda0, alpha, beta and events.
+If events are missing, then it means that data will be
+added later(simulated from this process)" />
 
 
 
@@ -58,7 +63,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -115,150 +120,68 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Create a Hawkes process object</h1>
+    
+    <div class="hidden name"><code>pp_hp.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create a Hawkes Process with an exponential
+kernel according to the given parameters:
+lambda0, alpha, beta and events.
+If events are missing, then it means that data will be
+added later(simulated from this process)</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>pp_hp</span><span class='op'>(</span><span class='va'>lambda0</span>, <span class='va'>alpha</span>, <span class='va'>beta</span>, events <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="drawHPIntensity.html">drawHPIntensity()</a></code> </p>
-        </td>
-        <td><p>Draw the intensity of Hawkes Process</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drawHPPIntensity.html">drawHPPIntensity()</a></code> </p>
-        </td>
-        <td><p>Draw intensity of homogeneous Poisson process</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drawUniMMHPIntensity.html">drawUniMMHPIntensity()</a></code> </p>
-        </td>
-        <td><p>Draw the intensity of the Markov-modulated Hawkes Process(MMHP)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drawUniMMPPIntensity.html">drawUniMMPPIntensity()</a></code> </p>
-        </td>
-        <td><p>Draw the intensity of the Markov-modulated Poisson Process(MMPP)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fithp.html">fithp()</a></code> </p>
-        </td>
-        <td><p>Determine the MLE of Hawkes process numerically</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fithpp.html">fithpp()</a></code> </p>
-        </td>
-        <td><p>Fit a homogeneous poisson process to event data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="intensityqqplot.html">intensityqqplot()</a></code> </p>
-        </td>
-        <td><p>Draw intensity of fitted point process and QQ-Plot of rescaled events</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pearsonresidual.html">pearsonresidual()</a></code> </p>
-        </td>
-        <td><p>Compute Pearson residuals for point process models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_compensator.html">pp_compensator()</a></code> </p>
-        </td>
-        <td><p>Compensators for point processes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_diag.html">pp_diag()</a></code> </p>
-        </td>
-        <td><p>Summarise diagnostics for point process models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_hp.html">pp_hp()</a></code> </p>
-        </td>
-        <td><p>Create a Hawkes process object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_hpp.html">pp_hpp()</a></code> </p>
-        </td>
-        <td><p>Create a homogeneous Poisson process object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_ksplot.html">pp_ksplot()</a></code> </p>
-        </td>
-        <td><p>KS plot of empirical and theoretical cdf curve of fitted point process</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_mmhp.html">pp_mmhp()</a></code> </p>
-        </td>
-        <td><p>Create a Markov-modulated Hawkes Process(MMHP) object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_mmpp.html">pp_mmpp()</a></code> </p>
-        </td>
-        <td><p>Create a Markov-modulated Poisson Process(MMPP) object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_qqexp.html">pp_qqexp()</a></code> </p>
-        </td>
-        <td><p>Plot QQ-plot for rescaled-inter-event-times of fitted point process</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_residual.html">pp_residual()</a></code> </p>
-        </td>
-        <td><p>Compute raw and pearson residuals for point process models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pp_simulate.html">pp_simulate()</a></code> </p>
-        </td>
-        <td><p>Simulate events from a temporal point process</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rawresidual.html">rawresidual()</a></code> </p>
-        </td>
-        <td><p>Compute raw residuals for point process models</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>lambda0</th>
+      <td><p>initial intensity at the start time</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>jump size in increase of intensity</p></td>
+    </tr>
+    <tr>
+      <th>beta</th>
+      <td><p>exponential decay of intensity</p></td>
+    </tr>
+    <tr>
+      <th>events</th>
+      <td><p>vector containing the event times. 
+Note that the first event is at time zero. 
+Alternatively, events could be specified as NULL, 
+meaning that the data will be added later (e.g. simulated).</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>hp object</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>pp_hp</span><span class='op'>(</span>lambda0 <span class='op'>=</span> <span class='fl'>0.1</span>,alpha <span class='op'>=</span> <span class='fl'>0.45</span>,beta <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $lambda0
+#&gt; [1] 0.1
+#&gt; 
+#&gt; $alpha
+#&gt; [1] 0.45
+#&gt; 
+#&gt; $beta
+#&gt; [1] 0.5
+#&gt; 
+#&gt; $events
+#&gt; NULL
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "hp"</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
