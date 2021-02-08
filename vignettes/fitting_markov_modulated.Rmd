@@ -33,7 +33,7 @@ include fitting algorithms for Markov modulated point processes,
 as these rely on the use of `rstan` or (more recently), `cmdstanr` to
 perform Bayesian inference for the model parameters.
 
-Here we provide a instructions on how to fit these models so 
+Here we provide instructions on how to fit these models so 
 that the can easily be used in conjunction with the diagnostic tools
 of  `ppdiag`.
 
