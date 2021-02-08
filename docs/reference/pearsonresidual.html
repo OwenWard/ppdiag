@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Pearson residuals for social network models — pearsonresidual • ppdiag</title>
+<title>Compute Pearson residuals for point process models — pearsonresidual • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Compute Pearson residuals for social network models — pearsonresidual" />
-<meta property="og:description" content="Compute Pearson residuals for social network models 
-with model specified time events or simulated time events" />
+<meta property="og:title" content="Compute Pearson residuals for point process models — pearsonresidual" />
+<meta property="og:description" content="Compute Pearson residuals for point processes 
+with specified parameters and events." />
 
 
 
@@ -81,7 +81,7 @@ with model specified time events or simulated time events" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -99,7 +99,7 @@ with model specified time events or simulated time events" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/intro.html">`ppdiag`, diagnostic tools for temporal Point Processes</a>
+      <a href="../articles/fitting_markov_modulated.html">Fitting Markov Modulated Point Process Models</a>
     </li>
   </ul>
 </li>
@@ -119,29 +119,17 @@ with model specified time events or simulated time events" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Pearson residuals for social network models</h1>
+    <h1>Compute Pearson residuals for point process models</h1>
     
     <div class="hidden name"><code>pearsonresidual.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute Pearson residuals for social network models 
-with model specified time events or simulated time events</p>
+    <p>Compute Pearson residuals for point processes 
+with specified parameters and events.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, <span class='va'>start</span>, <span class='va'>end</span><span class='op'>)</span>
-
-<span class='co'># S3 method for default</span>
-<span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># S3 method for mmhp</span>
-<span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># S3 method for hp</span>
-<span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># S3 method for hpp</span>
-<span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, <span class='va'>start</span>, <span class='va'>end</span>, steps <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,15 +140,19 @@ with model specified time events or simulated time events</p>
     </tr>
     <tr>
       <th>events</th>
-      <td><p>vector of event happening time</p></td>
+      <td><p>vector of event times</p></td>
     </tr>
     <tr>
       <th>start</th>
-      <td><p>start of observation period</p></td>
+      <td><p>start of observation period (default 0)</p></td>
     </tr>
     <tr>
       <th>end</th>
-      <td><p>termination time</p></td>
+      <td><p>termination time (default final event)</p></td>
+    </tr>
+    <tr>
+      <th>steps</th>
+      <td><p>number of steps for numeric integration (if needed)</p></td>
     </tr>
     </table>
 
@@ -170,11 +162,11 @@ with model specified time events or simulated time events</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.4</span>, <span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='op'>-</span><span class='fl'>0.2</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mmhp.html'>mmhp</a></span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, 
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_mmhp.html'>pp_mmhp</a></span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, 
 lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>, alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span><span class='op'>)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='simulatemmhp.html'>simulatemmhp</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>10 events simulated. To simulate up to endtime set given_states=TRUE and provide states.</span></div><div class='input'><span class='fu'>pearsonresidual</span><span class='op'>(</span><span class='va'>x</span>, events <span class='op'>=</span> <span class='va'>y</span><span class='op'>$</span><span class='va'>events</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1.741051</div></pre>
+</div><div class='output co'>#&gt; [1] 1.279156</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

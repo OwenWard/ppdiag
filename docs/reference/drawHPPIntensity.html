@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Draw Intensity of Homogeneous Poisson Process — drawHPPIntensity • ppdiag</title>
+<title>Draw intensity of homogeneous Poisson process — drawHPPIntensity • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Draw Intensity of Homogeneous Poisson Process — drawHPPIntensity" />
-<meta property="og:description" content="Draw the intensity for homogeneous poisson process events" />
+<meta property="og:title" content="Draw intensity of homogeneous Poisson process — drawHPPIntensity" />
+<meta property="og:description" content="Draw the intensity for a homogeneous Poisson process" />
 
 
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -98,7 +98,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/intro.html">`ppdiag`, diagnostic tools for temporal Point Processes</a>
+      <a href="../articles/fitting_markov_modulated.html">Fitting Markov Modulated Point Process Models</a>
     </li>
   </ul>
 </li>
@@ -118,13 +118,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Draw Intensity of Homogeneous Poisson Process</h1>
+    <h1>Draw intensity of homogeneous Poisson process</h1>
     
     <div class="hidden name"><code>drawHPPIntensity.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Draw the intensity for homogeneous poisson process events</p>
+    <p>Draw the intensity for a homogeneous Poisson process</p>
     </div>
 
     <pre class="usage"><span class='fu'>drawHPPIntensity</span><span class='op'>(</span>
@@ -133,6 +133,7 @@
   color <span class='op'>=</span> <span class='st'>"red"</span>,
   plot_events <span class='op'>=</span> <span class='cn'>FALSE</span>,
   fit <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add <span class='op'>=</span> <span class='cn'>FALSE</span>,
   int_title <span class='op'>=</span> <span class='st'>"Intensity homogeneous Poisson Process"</span>,
   start <span class='op'>=</span> <span class='fl'>0</span>,
   end <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span>
@@ -164,6 +165,10 @@ inputted will be plotted</p></td>
 use the passed object</p></td>
     </tr>
     <tr>
+      <th>add</th>
+      <td><p>whether to add the hpp intensity to an existing plot</p></td>
+    </tr>
+    <tr>
       <th>int_title</th>
       <td><p>the plot title</p></td>
     </tr>
@@ -180,8 +185,8 @@ use the passed object</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>pois_y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hpp.html'>hpp</a></span><span class='op'>(</span>lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='fu'>drawHPPIntensity</span><span class='op'>(</span><span class='va'>pois_y</span>, events<span class='op'>=</span><span class='fu'><a href='simulatehpp.html'>simulatehpp</a></span><span class='op'>(</span><span class='va'>pois_y</span>, end<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+<span class='va'>pois_y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_hpp.html'>pp_hpp</a></span><span class='op'>(</span>lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>drawHPPIntensity</span><span class='op'>(</span><span class='va'>pois_y</span>, events<span class='op'>=</span><span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>pois_y</span>, end<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
