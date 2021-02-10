@@ -53,7 +53,7 @@ interpolate_mmhp_latent <- function(params,
           frequent.par <- q2 - q1 + 
             params$lambda0 - params$lambda1
           
-          if(frequent.par<=0){
+          if(frequent.par <= 0){
             x.hat[1] <- tail(events,1) 
             z.hat[2] <- default.inactive
             x.hat[2] <- termination.time
@@ -96,7 +96,6 @@ interpolate_mmhp_latent <- function(params,
   }else{
     z.hat <- rep(NA, sum(diff(zt)!=0) + 1)
     x.hat <- rep(NA, sum(diff(zt)!=0) + 1)
-    
     ## helper variables
     A.m <- cumsum(exp(params$beta*events)) 
     #length = n; A=alpha/beta*A.m
