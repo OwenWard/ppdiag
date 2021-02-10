@@ -43,9 +43,9 @@ several diagnostic tools
 The in development version of this
 package is available from [GitHub](https://github.com/OwenWard/ppdiag) with:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("OwenWard/ppdiag")
+```{r}
+# install.packages("remotes")
+remotes::install_github("OwenWard/ppdiag")
 ```
 # Example
 
@@ -69,13 +69,13 @@ data.
 est_hpp <- fithpp(sim_hp$events)
 est_hpp
 
-diagpp(est_hpp, events = sim_hp$events)
+pp_diag(est_hpp, events = sim_hp$events)
 ```
 
 
 ```{r fit_hp}
 hp_est <- fithp(events = sim_hp$events)
-diagpp(hp_est, events = sim_hp$events)
+pp_diag(hp_est, events = sim_hp$events)
 
 ```
 
@@ -104,20 +104,20 @@ fit.
 
 ```{r fit_hpp_to_mmhp}
 est_hpp <- fithpp(events = mmhp_events$events)
-diagpp(est_hpp,mmhp_events$events)
+pp_diag(est_hpp,mmhp_events$events)
 ```
 
 Similarly for a Hawkes process.
 
 ```{r fit_hp_to_mmhp}
 est_hp <- fithp(events = mmhp_events$events)
-diagpp(est_hp,mmhp_events$events)
+pp_diag(est_hp,mmhp_events$events)
 ```
 
 We can then compare to the true point process model.
 
 ```{r fit_mmhp}
-diagpp(mmhp_obj,mmhp_events$events)
+pp_diag(mmhp_obj,mmhp_events$events)
 ```
 
 
