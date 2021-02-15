@@ -127,3 +127,7 @@ Please file any issues [here](https://github.com/OwenWard/ppdiag/issues).
 Similarly, we would be delighted if anyone would like to contribute to
 this package (such as adding other point processes, kernel functions). 
 Feel free to reach out.
+
+# References
+
+- Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, https://arxiv.org/abs/2001.09359

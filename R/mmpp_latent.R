@@ -9,8 +9,8 @@
 #'
 #' @examples
 #' Q <- matrix(c(-0.04, 0.04, 0.02, -0.02), ncol = 2, byrow = TRUE)
-#' mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.1)
-#' ppdiag:::mmpp_latent(params = mmpp_obj, events = c(1, 2, 3, 5), zt = c(2, 1, 1, 2))
+#' mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 1, c = 1)
+#' ppdiag:::mmpp_latent(params = mmpp_obj, events = c(1, 2, 3), zt = c(2, 1, 1))
 #' 
 mmpp_latent <- function(params = list(lambda0, c, Q),
                         events,
@@ -18,7 +18,7 @@ mmpp_latent <- function(params = list(lambda0, c, Q),
   # input pars
   #       events: length N
   #       zt: inferred latent state, 1 or 2 , length N
-  # output  z.hat: states of Markov process
+  # output  z.hat: states of Markov process including initial state
   #         x.hat: time of each transition of Markov process
   lambda0 <- params$lambda0
   c <- params$c
@@ -43,40 +43,27 @@ mmpp_latent <- function(params = list(lambda0, c, Q),
       if(zt[l]==1 & zt[l-1]==2){  #0 -> 1
         ##
         if(freq_par < 0) {
-          x.hat[temp.count] <- events[l]
+          x.hat[temp.count] <- events[l] 
         }
         else if(freq_par > 0) {
-          x.hat[temp.count] <- events[l-1]
+          x.hat[temp.count] <- events[l-1] 
         }
         ##
         z.hat[temp.count + 1] <- 1
         temp.count <- temp.count + 1
       }
       if(zt[l]==2 & zt[l-1]==1){ # 1 -> 0
-        cat(events[l], freq_par, "----\n")
-        if( -freq_par < 0) {
+        if( freq_par > 0) {
           x.hat[temp.count] <- events[l]
         }
-        else if(-freq_par > 0) {
+        else if(freq_par < 0) {
           x.hat[temp.count] <- events[l-1]
         }
         z.hat[temp.count + 1] <- 2
         temp.count <- temp.count + 1
-        # x.hat[temp.count] <- temp.t[l-1]
-        # z.hat[temp.count] <- 2
       }
     }
   }
-  if(exists("temp.count")){
-    # not sure this is needed now
-    # x.hat <- c(x.hat[1:temp.count],
-    #           tail(temp.t, 1 ) ) + start
-    return(list(x.hat = x.hat,#[-1],
-                z.hat = z.hat))
-                #z.hat = c(z.hat[1:temp.count], 3 - z.hat[temp.count]))
-           
-  }else{
-    return(list(x.hat = x.hat,#[-1],
-                z.hat = z.hat))
-  }
+  list(x.hat = x.hat,
+       z.hat = z.hat)
 }

@@ -37,15 +37,15 @@ The in development version of this package is available from
 # install.packages("remotes")
 remotes::install_github("OwenWard/ppdiag")
 #> Downloading GitHub repo OwenWard/ppdiag@HEAD
-#>          checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpA5DVuI\remotes34646df6a41\OwenWard-ppdiag-0094bdd/DESCRIPTION' ...  v  checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpA5DVuI\remotes34646df6a41\OwenWard-ppdiag-0094bdd/DESCRIPTION'
-#>       -  preparing 'ppdiag': (1.3s)
+#>          checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpSugSAF\remotes297c267950b7\OwenWard-ppdiag-0094bdd/DESCRIPTION' ...  v  checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpSugSAF\remotes297c267950b7\OwenWard-ppdiag-0094bdd/DESCRIPTION'
+#>       -  preparing 'ppdiag': (2s)
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
 #>       -  checking for LF line-endings in source and make files and shell scripts
 #>       -  checking for empty or unneeded directories
 #>       -  building 'ppdiag_0.0.0.9000.tar.gz'
 #>      
 #> 
-#> Installing package into 'C:/Users/owenw/AppData/Local/Temp/RtmpURtGj9/temp_libpathe54417849d'
+#> Installing package into 'C:/Users/owenw/AppData/Local/Temp/RtmpCyw8V9/temp_libpath59b42388497c'
 #> (as 'lib' is unspecified)
 ```
 
@@ -205,3 +205,8 @@ Please file any issues
 [here](https://github.com/OwenWard/ppdiag/issues). Similarly, we would
 be delighted if anyone would like to contribute to this package (such as
 adding other point processes, kernel functions). Feel free to reach out.
+
+# References
+
+-   Wu et al., Diagnostics and Visualization of Point Process Models for
+    Event Times on a Social Network, <https://arxiv.org/abs/2001.09359>
