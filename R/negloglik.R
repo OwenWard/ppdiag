@@ -36,11 +36,11 @@ negloglik.hp <- function(object, events, end) {
   }
   if (is.null(end)) {
     loglik <- -events[n] * lambda0
-    end <- t[n]
+    end <- events[n]
   } else {
     loglik <- -end * lambda0
   }
-  loglik <- loglik + alpha / beta * sum(exp(-beta * (end - t)) - 1)
+  loglik <- loglik + alpha / beta * sum(exp(-beta * (end - events)) - 1)
   if (any(lambda0 + alpha * r <= 0)) {
     loglik <- -1e+10
   } else {
@@ -61,7 +61,7 @@ negloglik.mmhp <- function(object, events, end) {
   q1 <- object$Q[1, 2]
   q2 <- object$Q[2, 1]
 
-  n <- length(t) - 1
+  n <- length(events) - 1
   interevent <- events[-1] - events[-(n + 1)]
 
   forward <- matrix(0, ncol = 2, nrow = n)

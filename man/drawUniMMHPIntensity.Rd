@@ -7,10 +7,10 @@
 drawUniMMHPIntensity(
   mmhp,
   simulation,
-  add = FALSE,
+  int_title = "Intensity of MMHP",
+  leg_location = "topright",
   color = 1,
-  fit = FALSE,
-  int_title = "Intensity Plot of MMHP"
+  add = FALSE
 )
 }
 \arguments{
@@ -19,17 +19,17 @@ events, lambda0, lambda1, beta and alpha.}
 
 \item{simulation}{the simulated Markov-modulated Hawkes Process(MMHP)}
 
+\item{int_title}{title of the plot.}
+
+\item{leg_location}{location of legend, if moving needed}
+
+\item{color}{A specification for the default plotting color.}
+
 \item{add}{logical; if TRUE add to an already existing plot;
 if NA start a new plot taking the defaults 
 for the limits and log-scaling of the x-axis from the previous plot.
  Taken as FALSE (with a warning if a different value is supplied) 
  if no graphics device is open.}
-
-\item{color}{A specification for the default plotting color.}
-
-\item{fit}{a boolean indicating whether to fit the events provided}
-
-\item{int_title}{title of the plot.}
 }
 \description{
 Take a mmhp object and draw its intensity accordingly
@@ -39,7 +39,7 @@ Take a mmhp object and draw its intensity accordingly
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
  alpha = 0.8, beta = 1.2)
-y <- pp_simulate(x)
+y <- pp_simulate(x, n = 25)
 drawUniMMHPIntensity(x, y)
 }
 }

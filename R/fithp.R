@@ -15,7 +15,7 @@ negloglik_hp <- function(vec, events, end = max(events)){
 	#transforms input list object into vector so that it can be used in optim 
 	object <- list(lambda0 = vec[1], alpha = vec[2], beta = vec[3])
 	class(object) <- "hp"
-  negloglik(object = object, t = events, end = end)
+  negloglik(object = object, events = events, end = end)
 }
 
 
@@ -33,7 +33,6 @@ negloglik_hp <- function(vec, events, end = max(events)){
 #' This is a non-convex problem and a (unique) solution is not guaranteed.
 #' @export
 #' @examples
-#' init <- c(0.1,0.2,3)
 #' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 #' sims <- pp_simulate(hp_obj, start = 0, n = 10)
 #' fithp(sims$events)                  
@@ -91,6 +90,6 @@ fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
                        alpha = hawkes.par$par[2],
                        beta = hawkes.par$par[3],
                        events = events)
-    class(hp_object) <- "pp_hp"
+    class(hp_object) <- "hp"
     return (hp_object)
 }

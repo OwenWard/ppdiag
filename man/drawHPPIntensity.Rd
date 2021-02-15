@@ -7,13 +7,13 @@
 drawHPPIntensity(
   hpp,
   events,
-  color = "red",
-  plot_events = FALSE,
-  fit = FALSE,
-  add = FALSE,
-  int_title = "Intensity homogeneous Poisson Process",
+  int_title = "Homogeneous Poisson Process",
   start = 0,
-  end = max(events)
+  end = max(events),
+  color = "red",
+  plot_events = TRUE,
+  fit = FALSE,
+  add = FALSE
 )
 }
 \arguments{
@@ -21,21 +21,20 @@ drawHPPIntensity(
 
 \item{events}{event times input}
 
-\item{color}{a specification for the default plotting color.}
-
-\item{plot_events}{a boolean indicating whether events 
-inputted will be plotted}
-
-\item{fit}{a boolean indicating whether to fit a hpp or
-use the passed object}
-
-\item{add}{whether to add the hpp intensity to an existing plot}
-
 \item{int_title}{the plot title}
 
 \item{start}{start of events}
 
 \item{end}{end of events}
+
+\item{color}{a specification for the default plotting color.}
+
+\item{plot_events}{a boolean indicating whether input events will be plotted}
+
+\item{fit}{a boolean indicating whether to fit a hpp or
+use the passed object}
+
+\item{add}{whether to add the hpp intensity to an existing plot}
 }
 \description{
 Draw the intensity for a homogeneous Poisson process
@@ -43,6 +42,6 @@ Draw the intensity for a homogeneous Poisson process
 \examples{
 \dontrun{
 pois_y <- pp_hpp(lambda = 1)
-drawHPPIntensity(pois_y, events=pp_simulate(pois_y, end=10), color = "red")
+drawHPPIntensity(pois_y, events = pp_simulate(pois_y,end=10), color = "red")
 }
 }

@@ -138,7 +138,7 @@ fit_hpp
 
 - Hawkes Process: 
 
-`fithp(vec,t,end)` returns an object of class `hp`, estimating the
+`fithp(events)` returns an object of class `hp`, estimating the
 three parameters of the Hawkes process using `constrOptim`, to
 ensure the solution is feasible. This can be a challenging optimisation problem
 and convergence is not guaranteed.
