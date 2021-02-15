@@ -31,17 +31,16 @@ drawHPIntensity(
 
 \item{history}{the past event times}
 
-\item{color}{A specification for the default plotting color.}
+\item{color}{specify the default plotting color.}
 
 \item{i}{state number, used only for drawUniMMHPIntensity}
 
-\item{add}{whether to add the hawkes intensity to an existing plot}
+\item{add}{whether to add the hawkes intensity to an existing plot, used
+for drawUniMMHPIntensity}
 
-\item{fit}{a boolean indicating whether to fit a hp or 
-use the passed object}
+\item{fit}{a boolean indicating whether to fit a new HP to events}
 
-\item{plot_events}{a boolean indicating whether events
-inputted will be plotted}
+\item{plot_events}{indicate whether events will be plotted}
 }
 \description{
 Draw the intensity of a Hawkes Process

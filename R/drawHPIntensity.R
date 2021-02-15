@@ -4,17 +4,16 @@
 #'
 #' @param hp object parameters for Hawkes process
 #' @param events the event times happened in this state
+#' @param int_title title of the intensity plot
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
-#' @param color A specification for the default plotting color.
+#' @param color specify the default plotting color.
 #' @param i state number, used only for drawUniMMHPIntensity
-#' @param add whether to add the hawkes intensity to an existing plot
-#' @param plot_events a boolean indicating whether events
-#'  inputted will be plotted
-#' @param int_title title of the intensity plot
-#' @param fit a boolean indicating whether to fit a hp or 
-#' use the passed object
+#' @param add whether to add the hawkes intensity to an existing plot, used
+#' for drawUniMMHPIntensity
+#' @param plot_events indicate whether events will be plotted
+#' @param fit a boolean indicating whether to fit a new HP to events
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom stats optimize
