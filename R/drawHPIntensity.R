@@ -3,13 +3,12 @@
 #' Draw the intensity of a Hawkes Process
 #'
 #' @param hp object parameters for Hawkes process
+#' @param events the event times happened in this state
 #' @param start the start time of current state
 #' @param end the end time of current state
 #' @param history the past event times
-#' @param events the event times happened in this state
 #' @param color A specification for the default plotting color.
-#' @param i state number this corresponds to a state jump directly before
-#' which is only important when using mmhp
+#' @param i state number, used only for drawUniMMHPIntensity
 #' @param add whether to add the hawkes intensity to an existing plot
 #' @param plot_events a boolean indicating whether events
 #'  inputted will be plotted
@@ -23,16 +22,21 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
+#' hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
 #' sims <- pp_simulate(hp_obj, start = 0, end = 20)
 #' events <- sims$events
-#' drawHPIntensity(hp_obj, start = 0, end = max(events), history = 0, events)
+#' drawHPIntensity(hp_obj,events)
 #' }
-drawHPIntensity <- function(hp, 
-                            start = 0, end = max(events), history = 0, events,
-                            color = 1, i = 1, add = FALSE, fit = FALSE,
-                            plot_events = FALSE,
-                            int_title = "Hawkes Intensity") {
+drawHPIntensity <- function(hp, events,
+                            int_title = "Hawkes Intensity",
+                            start = 0,
+                            end = max(events),
+                            history = NULL,
+                            color = 1,
+                            i = 1,
+                            add = FALSE,
+                            fit = FALSE,
+                            plot_events = TRUE) {
   n <- length(events)
   m <- length(history)
   old_events <- hp$events
@@ -87,7 +91,7 @@ drawHPIntensity <- function(hp,
     
     
     y_max <- hawkes_max_intensity(hp,events)
-    ylim <-  c(0,y_max)
+    ylim <-  c(0,y_max + 2)
     graphics::plot(0, 0,
                    xlim = c(start, end),
                    ylim = ylim, type = "n", xlab = "Time", 
@@ -114,8 +118,10 @@ drawHPIntensity <- function(hp,
       if (i == 1) {
         graphics::segments(x0 = start, x1 = events[1], 
                            y0 = lambda0, col = color)
-        segments(x0 = events[1], y0 = lambda0, 
-                 y1 = lambda0 + alpha, col = color)
+        segments(x0 = events[1],
+                 y0 = lambda0,
+                 y1 = lambda0 + alpha,
+                 col = color)
       } else {
         lambda.n <- function(s) lambda0 + 
           alpha * sum(exp(-beta * (rep(s, m) - history)))
@@ -124,7 +130,8 @@ drawHPIntensity <- function(hp,
                  lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, 
                         to = events[1], add = TRUE, col = color)
-        segments(x0 = events[1], y0 = lambda.n(events[1]),
+        segments(x0 = events[1], 
+                 y0 = lambda.n(events[1]),
                  y1 = lambda.n(events[1]) + alpha, col = color)
       }
       if (n > 1) {
@@ -151,7 +158,10 @@ drawHPIntensity <- function(hp,
       # maximum=TRUE)$objective)
       # }
     }
-    legend("topleft", "Events", col = "blue", pch = 1)
+    legend("topleft", c("Events", "Intensity"),
+           col = c("blue", "black"), 
+           pch = c(1,NA),
+           lty = c(NA, 1), cex = 0.75)
   }
   else {
     # to add to an already created plot
