@@ -8,9 +8,9 @@
 [![R build
 status](https://github.com/OwenWard/ppdiag/workflows/R-CMD-check/badge.svg)](https://github.com/OwenWard/ppdiag/actions)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Codecov test
-coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/master/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=master)
+coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
 <!-- badges: end -->
 
 `ppdiag` is an `R` package which provides a collection of tools which
@@ -37,7 +37,7 @@ The in development version of this package is available from
 # install.packages("remotes")
 remotes::install_github("OwenWard/ppdiag")
 #> Downloading GitHub repo OwenWard/ppdiag@HEAD
-#>          checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpSugSAF\remotes297c267950b7\OwenWard-ppdiag-0094bdd/DESCRIPTION' ...  v  checking for file 'C:\Users\owenw\AppData\Local\Temp\RtmpSugSAF\remotes297c267950b7\OwenWard-ppdiag-0094bdd/DESCRIPTION'
+#>          checking for file 'C:\Users\owenw\AppData\Local\Temp\Rtmpc52pHZ\remotes46205e4b136a\OwenWard-ppdiag-0094bdd/DESCRIPTION' ...  v  checking for file 'C:\Users\owenw\AppData\Local\Temp\Rtmpc52pHZ\remotes46205e4b136a\OwenWard-ppdiag-0094bdd/DESCRIPTION' (359ms)
 #>       -  preparing 'ppdiag': (2s)
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
 #>       -  checking for LF line-endings in source and make files and shell scripts
@@ -45,7 +45,7 @@ remotes::install_github("OwenWard/ppdiag")
 #>       -  building 'ppdiag_0.0.0.9000.tar.gz'
 #>      
 #> 
-#> Installing package into 'C:/Users/owenw/AppData/Local/Temp/RtmpCyw8V9/temp_libpath59b42388497c'
+#> Installing package into 'C:/Users/owenw/AppData/Local/Temp/RtmpiOQlgi/temp_libpath24e81d611629'
 #> (as 'lib' is unspecified)
 ```
 
@@ -188,7 +188,7 @@ We can then compare to the true point process model.
 pp_diag(mmhp_obj,mmhp_events$events)
 ```
 
-<img src="man/figures/README-fit_mmhp-1.png" width="50%" />
+<img src="man/figures/README-fit_mmhp-1.png" width="75%" />
 
     #> Raw residual: 11.9952
     #> Pearson residual: 16.41573

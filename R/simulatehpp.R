@@ -4,7 +4,6 @@
 #' @param start start time of events simulated
 #' @param end end time of events simulated
 #' @param n number of events
-#' @param seed seed for simulation
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' @return a vector of length n
@@ -14,10 +13,8 @@
 #' s <- simulatehpp(hpp_obj, end = 10, n=50)
 #'
 
-simulatehpp <- function(hpp, start=0, end=NULL, n=NULL, seed=NULL){
-  if(!is.null(seed)){
-    set.seed(seed)
-  }
+simulatehpp <- function(hpp, start = 0,
+                        end = NULL, n = NULL){
   old_events <- hpp$events
   if(!is.null(old_events)){
     message("Events in the hpp object will be overwritten by simulated events.")

@@ -4,7 +4,7 @@
 #' process for the given events. 
 #' 
 #' @param events vector containing the event times.
-#' @param end end of observation starting from 0 (default final event)
+#' @param end end of observation period, starting from 0 (default is last event)
 #'
 #' @return a hpp object containing the events and the estimated parameter 
 #' @export

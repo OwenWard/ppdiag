@@ -9,7 +9,7 @@ fithpp(events, end = max(events))
 \arguments{
 \item{events}{vector containing the event times.}
 
-\item{end}{end of observation starting from 0 (default final event)}
+\item{end}{end of observation period, starting from 0 (default is last event)}
 }
 \value{
 a hpp object containing the events and the estimated parameter

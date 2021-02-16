@@ -56,7 +56,7 @@ drawUniMMHPIntensity <- function(mmhp, simulation,
                          alpha = alpha,
                          beta = beta)
       if(length(hawkes_time)>1) {
-        ylim <- append(ylim,hawkes_max_intensity(hawkes_obj,hawkes_time))
+        ylim <- append(ylim, hawkes_max_intensity(hawkes_obj, hawkes_time))
       }
     }
   }

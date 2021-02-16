@@ -2,9 +2,21 @@
 % Please edit documentation in R/pp_simulate.R
 \name{pp_simulate}
 \alias{pp_simulate}
+\alias{pp_simulate.hpp}
+\alias{pp_simulate.hp}
+\alias{pp_simulate.mmpp}
+\alias{pp_simulate.mmhp}
 \title{Simulate events from a temporal point process}
 \usage{
-pp_simulate(object, start = 0, end = 1, n = NULL)
+pp_simulate(object, start, end = 1, n = NULL)
+
+\method{pp_simulate}{hpp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{hp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{mmpp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL)
 }
 \arguments{
 \item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
@@ -24,5 +36,7 @@ Hawkes with exponential kernel, MMHP and MMPP
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
-s <- pp_simulate(hpp_obj, end = 10, n=50)
+s <- pp_simulate(hpp_obj, n=50)
+
+
 }
