@@ -4,7 +4,7 @@
 #' process for the given events. 
 #' 
 #' @param events vector containing the event times.
-#' @param end end of observation starting from 0 (default final event)
+#' @param end end of observation period, starting from 0 (default is last event)
 #'
 #' @return a hpp object containing the events and the estimated parameter 
 #' @export
@@ -15,12 +15,12 @@
 
 fithpp <- function(events, end = max(events)){
   start <- 0
-	if(start==end){
+	if(start == end){
 	  stop("Start and end time are equal.")
 	}
 	n <- length(events)
 	lambda <- n/(end-start)
 	hpp_object <- list(lambda = lambda, events = events)
-	class(hpp_object) <- "pp_hpp"
+	class(hpp_object) <- "hpp"
 	return(hpp_object)	
 }

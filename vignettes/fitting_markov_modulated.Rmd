@@ -1,7 +1,7 @@
 ---
 title: "Fitting Markov Modulated Point Process Models"
 output: rmarkdown::html_vignette
-author: Sally Sun, Owen G. Ward.
+author: Owen G. Ward.
 vignette: >
   %\VignetteIndexEntry{Fitting Markov Modulated Models}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,20 +21,20 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```{r setup}
 library(ppdiag)
 library(rstan)
-# library(cmdstanr)
+library(cmdstanr)
 library(tidyverse)
 library(bayesplot)
 ```
 
 
-We include functions for fitting standard Hawkes and Poisson
-point processes to data in `ppdiag`. However, currently, we do not
+Functions for fitting standard Hawkes and Poisson
+point processes to data are included in `ppdiag`. However, currently, we do not
 include fitting algorithms for Markov modulated point processes,
 as these rely on the use of `rstan` or (more recently), `cmdstanr` to
 perform Bayesian inference for the model parameters.
 
 Here we provide instructions on how to fit these models so 
-that the can easily be used in conjunction with the diagnostic tools
+that they can easily be used in conjunction with the diagnostic tools
 of  `ppdiag`.
 
 # Installing RStan or Cmdstanr
@@ -386,7 +386,7 @@ Having obtained estimates from fitting these stan models, we
 can now pass these parameter estimates into `ppdiag` to 
 evaluate model fit.
 
-```{r mmpp-ppdiag, include = FALSE, eval=FALSE}
+```{r mmpp-ppdiag, fig.width=8}
 mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
                        c = mmpp_post$c,
                        Q = matrix( c(-mmpp_post$q1,
@@ -398,15 +398,6 @@ mmpp_fit_obj <- pp_mmpp(lambda0 = mmpp_post$lambda0,
 
 pp_diag(mmpp_fit_obj, events = sim_mmpp$events)
 
-event_state <- ppdiag:::mmpp_event_state(params = mmpp_fit_obj,
-                                         events = sim_mmpp$events[-1])
-latent_inter <- ppdiag:::mmpp_latent(params = mmpp_fit_obj,
-                                events = sim_mmpp$events[-1],
-                                zt = event_state$zt)
-# this looks like it's the problem here
-# can write a test for this also, same for mmhp
-
-pp_residual(object = mmpp_fit_obj, events = sim_mmpp$events)
 ```
 
 ```{r mmhp-ppdiag, fig.width=8}

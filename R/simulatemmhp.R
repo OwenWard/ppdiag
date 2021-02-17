@@ -6,7 +6,6 @@
 #' @param mmhp a mmhp object including its Q, delta, events, lambda0, 
 #' lambda1, beta and alpha.
 #' @param n number of points to simulate.
-#' @param seed seed for the random number generator.
 #' @param start start time for simulation
 #' @param given_state if the hidden state trajectory is given.
 #'  If `TRUE`, then simulate according to the given state. 
@@ -29,10 +28,7 @@
 #'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
-                         states = NULL, seed = NULL, ...) {
-  if(!is.null(seed)){
-    set.seed(seed)
-  }
+                         states = NULL, ...) {
   # if(!is.null(mmhp$events)){
   #   stop("Event time already in the mmhp object.")
   # }
@@ -135,7 +131,7 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     }
     # x <- round(x,3)
     # events <- round(events,3)
-    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
+    # message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     mmhp$events <- events[1:(n + 1)]
     return(list(x = x[1:i], z = z[1:i], 
                 events = mmhp$events, zt = zt[1:(n + 1)],
@@ -193,7 +189,8 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     mmhp$events <- events[1:(j - 1)][events[1:(j - 1)] <= ending]
     return(list(events = mmhp$events,
-                zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending],
-                lambda.max = lambda.max))
+                zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending])
+                # lambda.max = lambda.max)
+    )  
   }
 }

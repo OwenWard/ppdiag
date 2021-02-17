@@ -1,7 +1,7 @@
 #' Estimate the latent state for events of an MMPP
 #' 
 #' Given a MMPP object and events from that MMPP, infer the
-#' most likely state of the Markov Process and each event time, along
+#' most likely state of the Markov Process at each event time, along
 #' with the probability of being in the active state.
 #'
 #' @param params the parameters of the chosen MMPP

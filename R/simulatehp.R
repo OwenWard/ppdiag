@@ -10,18 +10,16 @@
 #' @param start start time of the Hawkes process
 #' @param end end time of the Hawkes process
 #' @param n number of events
-#' @param seed seed for simulation
 #' @importFrom stats runif
 #' @return simulated Hawkes Process
 #' @noRd
 #' @examples
-#' hp_obj <- pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+#' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 #' simulatehp(hp_obj,start = 0, end = 100)
 
-simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
-  if(!is.null(seed)){
-    set.seed(100)
-  }
+simulatehp <- function(hp, start = 0,
+                       end = NULL, history = NULL,
+                       n = NULL) {
   old_events <- hp$events
   if(!is.null(old_events)){
     message("Events in the hp object will be overwritten by simulated events.")
@@ -37,7 +35,12 @@ simulatehp <- function(hp, start=0, end=NULL, history=0, n=NULL, seed=NULL) {
       return (NULL)
     }
   }
-  j0 <- length(history) + 1
+  if(is.null(history)) {
+    j0 <- 2
+  }
+  else{
+    j0 <- length(history) + 1
+  }
   lambda.star <- ifelse(j0 == 2, lambda0, lambda0 + 
                           alpha * sum(exp(-beta * (rep(start, j0 - 2) - 
                                                      history[2:(j0 - 1)]))))

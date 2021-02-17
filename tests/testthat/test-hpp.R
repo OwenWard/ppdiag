@@ -31,9 +31,12 @@ test_that("test hpp", {
                  "9 events simulated. To simulate up to an endtime set n=NULL.")
   expect_message(simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3),
                  "Simulating up to endtime. To simulate n events specify n.")
-  expect_identical(simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3, n = 9,
-                               seed = 1),
-                  sort(simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3, n = 9,
-                                   seed = 1)))
+  set.seed(100)
+  y <- simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3, n = 9)
+  set.seed(100)
+  z <- sort(simulatehpp(pp_hpp(lambda = 1), 
+                        start = 2, end = 3,
+                        n = 9))
+  expect_identical(y, z)
 
 })

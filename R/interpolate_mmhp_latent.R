@@ -3,12 +3,9 @@
 #' @param params parameters of the MMHP, an MMHP object
 #' @param events events (not including 0, but assumes start at 0)
 #' @param zt inferred latent state of events
-#' @param initial.state initial state, if given
-#' @param termination.time termination time, if given
-#' @param termination.state termination state, if given
-#' @param default.inactive default inactive state, 2
 #' @importFrom utils tail
-#' @return list of the states of the Markov process (z.hat)
+#' @return list of the states of the Markov process (z.hat), including 
+#' initial state
 #' and the times of the transitions between these times (x.hat).
 #' @noRd
 #'
@@ -16,14 +13,11 @@
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
-#' interpolate_mmhp_latent(params = mmhp_obj, events = c(1, 2, 3, 5),
-#' zt = c(2, 1, 1, 2))
+#' ppdiag:::interpolate_mmhp_latent(params = mmhp_obj,
+#'  events = c(1, 2, 3, 5), zt = c(2, 1, 1, 2))
 interpolate_mmhp_latent <- function(params, 
-                                        events, zt, 
-                                        initial.state = NULL,
-                                        termination.time = NULL,
-                                        termination.state = NULL,
-                                        default.inactive = 2){
+                                    events,
+                                    zt){
   
   interevent <- diff(c(0, events))
   N <- length(interevent)
@@ -40,69 +34,15 @@ interpolate_mmhp_latent <- function(params,
     ## no change at all
     z.hat <- rep(unique(zt),2)
     x.hat <- tail(events,1)
-    
-    ## termination state
-    
-    if(!is.null(termination.time)){
-      if(is.null(termination.state)){
-        if(unique(zt)==1){
-          ## check whether state can change between last event and
-          # termination time, if change
-          ## helper variables
-          A.m <- cumsum(exp(params$beta*events)) 
-          frequent.par <- q2 - q1 + 
-            params$lambda0 - params$lambda1
-          
-          if(frequent.par<=0){
-            x.hat[1] <- tail(events,1) 
-            z.hat[2] <- default.inactive
-            x.hat[2] <- termination.time
-            z.hat[3] <- default.inactive
-          }else{
-            if(is.finite(A.m[N])){
-              l_0 <- params$alpha/params$beta * A.m[N] * 
-                exp(-params$beta * events[N])
-              l_Delta <- frequent.par * (termination.time-events[N]) +
-                params$alpha/params$beta * A.m[N] * 
-                exp(-params$beta*termination.time)
-              if(l_0>l_Delta){
-                x.hat[1] <- tail(events,1) 
-                z.hat[2] <- default.inactive
-                x.hat[2] <- termination.time
-                z.hat[3] <- default.inactive
-              }
-            }
-          }
-        }
-      }else{
-        x.hat[1] <- tail(events,1) 
-        z.hat[2] <- termination.state
-        x.hat[2] <- termination.time
-        z.hat[3] <- termination.state
-      }
-    }
-    
-    ## initial state
-    if(!is.null(initial.state)){
-      if(initial.state!=unique(zt)){
-        ## check whether state can change between 0 and first event time, if change
-        # initial.delta <- events[1]/2 #TODO
-        # x.hat <- c(initial.delta,x.hat)
-        # z.hat <- c(initial.state,z.hat)
-        
-        ## if not change
-      }
-    }
   }else{
     z.hat <- rep(NA, sum(diff(zt)!=0) + 1)
-    x.hat <- rep(NA, sum(diff(zt)!=0) + 1)
-    
+    x.hat <- rep(NA, sum(diff(zt)!=0) )
     ## helper variables
     A.m <- cumsum(exp(params$beta*events)) 
     #length = n; A=alpha/beta*A.m
     frequent.par <- q2 - q1 + 
       params$lambda0 - params$lambda1
-    
+    # print(frequent.par)
     z.hat[1] <- zt[1]
     #x.hat[1] <- 0
     temp.count <- 1
@@ -153,64 +93,65 @@ interpolate_mmhp_latent <- function(params,
       }
     }
     
-    ## termination
-    if(is.null(termination.time)){
-      x.hat[temp.count] <- tail(events,1)
-      z.hat[temp.count+1] <- z.hat[temp.count]
-    }else{
-      if(is.null(termination.state)){
-        if(z.hat[temp.count]==1){
-          ## check whether state can change between last event 
-          # and termination time, if change
-          if(frequent.par<=0){
-            x.hat[temp.count] <- tail(events,1)
-            z.hat[temp.count + 1] <- inactive_state
-            x.hat[temp.count + 1] <- termination.time
-            z.hat[temp.count + 2] <- inactive_state
-          }else{
-            l_0 <- params$alpha/params$beta * A.m[N] * 
-              exp(-params$beta*events[N])
-            l_Delta <- frequent.par * (termination.time - events[N]) + 
-              params$alpha/params$beta*A.m[N] * 
-              exp(-params$beta*termination.time)
-            if(is.finite(A.m[N])){
-              if(l_0>l_Delta){
-                x.hat[temp.count] <- tail(events,1)
-                z.hat[temp.count + 1] <- inactive_state
-                x.hat[temp.count + 1] <- termination.time
-                z.hat[temp.count + 2] <- inactive_state
-              }else{
-                x.hat[temp.count] <- termination.time
-                z.hat[temp.count + 1] <- z.hat[temp.count]
-              }
-            }else{
-              x.hat[temp.count] <- termination.time
-              z.hat[temp.count+1] <- z.hat[temp.count]
-            }
-          }
-        }else{
-          x.hat[temp.count] <- termination.time
-          z.hat[temp.count + 1] <- z.hat[temp.count]
-        }
-      }else{
-        x.hat[temp.count] <- termination.time
-        z.hat[temp.count + 1] <- termination.state
-      }
-    }
+    # ## termination
+    # if(is.null(termination.time)){
+    #   x.hat[temp.count] <- tail(events,1)
+    #   z.hat[temp.count+1] <- z.hat[temp.count]
+    # }else{
+    #   if(is.null(termination.state)){
+    #     if(z.hat[temp.count]==1){
+    #       ## check whether state can change between last event
+    #       # and termination time, if change
+    #       if(frequent.par<=0){
+    #         x.hat[temp.count] <- tail(events,1)
+    #         z.hat[temp.count + 1] <- inactive_state
+    #         x.hat[temp.count + 1] <- termination.time
+    #         z.hat[temp.count + 2] <- inactive_state
+    #       }else{
+    #         l_0 <- params$alpha/params$beta * A.m[N] *
+    #           exp(-params$beta*events[N])
+    #         l_Delta <- frequent.par * (termination.time - events[N]) +
+    #           params$alpha/params$beta*A.m[N] *
+    #           exp(-params$beta*termination.time)
+    #         if(is.finite(A.m[N])){
+    #           if(l_0>l_Delta){
+    #             x.hat[temp.count] <- tail(events,1)
+    #             z.hat[temp.count + 1] <- inactive_state
+    #             x.hat[temp.count + 1] <- termination.time
+    #             z.hat[temp.count + 2] <- inactive_state
+    #           }else{
+    #             x.hat[temp.count] <- termination.time
+    #             z.hat[temp.count + 1] <- z.hat[temp.count]
+    #           }
+    #         }else{
+    #           x.hat[temp.count] <- termination.time
+    #           z.hat[temp.count+1] <- z.hat[temp.count]
+    #         }
+    #       }
+    #     }else{
+    #       x.hat[temp.count] <- termination.time
+    #       z.hat[temp.count + 1] <- z.hat[temp.count]
+    #     }
+    #   }else{
+    #     x.hat[temp.count] <- termination.time
+    #     z.hat[temp.count + 1] <- termination.state
+    #   }
+    # }
     
     ## initial
-    if(!is.null(initial.state)){
-      if(initial.state!=zt[1]){
-        ## check whether state can change between
-        # 0 and first event time, if change
-        # initial.delta <- events[1]/2 
-        # x.hat <- c(initial.delta, x.hat)
-        # z.hat <- c(initial.state, z.hat)
-        # message("Not completed.")
-        ## if not change
-      }
-    }
+    # if(!is.null(initial.state)){
+    #   if(initial.state!=zt[1]){
+    #     ## check whether state can change between
+    #     # 0 and first event time, if change
+    #     # initial.delta <- events[1]/2 
+    #     # x.hat <- c(initial.delta, x.hat)
+    #     # z.hat <- c(initial.state, z.hat)
+    #     # message("Not completed.")
+    #     ## never applicable currently
+    # }
+    # }
   }
-  return(list(x.hat=x.hat,z.hat=z.hat))
+  list(x.hat = x.hat,
+       z.hat = z.hat)
 }
 

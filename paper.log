@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  29 DEC 2020 15:57
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2019.1.30)  12 FEB 2021 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,12 +1094,12 @@ Package microtype Info: Loading configuration file microtype.cfg.
 (c:/texlive/2018/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
 ))
-Package hyperref Info: Option `unicode' set `true' on input line 149.
+Package hyperref Info: Option `unicode' set `true' on input line 151.
 (c:/texlive/2018/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 149.
+Package hyperref Info: Option `breaklinks' set `true' on input line 151.
 (c:/texlive/2018/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2019/01/15
 Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
@@ -1125,6 +1125,8 @@ Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
 ) (c:/texlive/2018/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2019-01-16 v2.0c non-zero parskip adjustments
 )
+\csllabelwidth=\skip92
+\cslhangindent=\skip93
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 (c:/texlive/2018/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -1135,34 +1137,34 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 234.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 234.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 262.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 262.
 
 (c:/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    ... okay on input line 262.
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box69
-Package hyperref Info: Link coloring ON on input line 234.
+Package hyperref Info: Link coloring ON on input line 262.
 (c:/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (c:/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1170,9 +1172,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count445
 )
-LaTeX Info: Redefining \ref on input line 234.
-LaTeX Info: Redefining \pageref on input line 234.
-LaTeX Info: Redefining \nameref on input line 234.
+LaTeX Info: Redefining \ref on input line 262.
+LaTeX Info: Redefining \pageref on input line 262.
+LaTeX Info: Redefining \nameref on input line 262.
 (./paper.out) (./paper.out)
 \@outlinefile=\write8
 \openout8 = `paper.out'.
@@ -1188,8 +1190,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'paper.bbl' not found.
 No file paper.bbl.
-Package biblatex Info: Reference section=0 on input line 234.
-Package biblatex Info: Reference segment=0 on input line 234.
+Package biblatex Info: Reference section=0 on input line 262.
+Package biblatex Info: Reference segment=0 on input line 262.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1224,7 +1226,7 @@ Package biblatex Info: Reference segment=0 on input line 234.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 234.
+LaTeX Info: Redefining \microtypecontext on input line 262.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1239,25 +1241,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Package hyperref Warning: Suppressing link with empty target on input line 261.
+Package hyperref Warning: Suppressing link with empty target on input line 289.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 261.
+Package hyperref Warning: Suppressing link with empty target on input line 289.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 261.
+Package hyperref Warning: Suppressing link with empty target on input line 289.
 
-
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 303.
-File: paper_files/figure-latex/fit hpp-1.pdf Graphic file (type pdf)
-<use paper_files/figure-latex/fit hpp-1.pdf>
-
-Overfull \hbox (15.14052pt too wide) in paragraph at lines 324--325
-[]\TU/lmr/m/n/10 hpp-1.bb [] 
- []
 
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
@@ -1270,32 +1263,14 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 326.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 355.
 [1
 
 ]
-File: paper_files/figure-latex/fit hawkes-1.pdf Graphic file (type pdf)
-<use paper_files/figure-latex/fit hawkes-1.pdf>
-
-Overfull \hbox (29.34052pt too wide) in paragraph at lines 348--349
-[]\TU/lmr/m/n/10 hawkes-1.bb [] 
- []
-
-File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
-ss/resources/JOSS-logo.png Graphic file (type bmp)
-<C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
-sources/JOSS-logo.png>
-
-Package Fancyhdr Warning: \headheight is too small (62.59596pt): 
- Make it at least 63.55022pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[2]
 File: paper_files/figure-latex/hawkes intensity-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/hawkes intensity-1.pdf>
 
-Overfull \hbox (36.02052pt too wide) in paragraph at lines 375--376
+Overfull \hbox (36.02052pt too wide) in paragraph at lines 378--379
 []\TU/lmr/m/n/10 intensity-1.bb [] 
  []
 
@@ -1303,13 +1278,13 @@ Overfull \hbox (36.02052pt too wide) in paragraph at lines 375--376
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 401.
+LaTeX Font Info:    Try loading font information for U+msa on input line 406.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 401.
+LaTeX Font Info:    Try loading font information for U+msb on input line 406.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1325,7 +1300,7 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3]
+[2]
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1336,12 +1311,12 @@ Package Fancyhdr Warning: \headheight is too small (62.59596pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 417.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 417.
+[3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 424.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 424.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 417.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 417.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 424.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 424.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: EA1DDBA122670FB1354137718F28C6DD.
 Package logreq Info: Writing requests to 'paper.run.xml'.
@@ -1350,11 +1325,11 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  43189 strings out of 492933
- 846264 string characters out of 6136537
- 1325523 words of memory out of 5000000
- 46719 multiletter control sequences out of 15000+600000
+ 846051 string characters out of 6136537
+ 1325610 words of memory out of 5000000
+ 46722 multiletter control sequences out of 15000+600000
  534541 words of font info for 51 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  55i,12n,73p,1194b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (4 pages).
+Output written on paper.pdf (3 pages).

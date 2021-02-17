@@ -22,8 +22,7 @@ This is a non-convex problem and a (unique) solution is not guaranteed.
 Determine the MLE of Hawkes process numerically
 }
 \examples{
-init <- c(0.1,0.2,3)
 hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 sims <- pp_simulate(hp_obj, start = 0, n = 10)
-fithp(sims$events)                  
+fithp(sims)                  
 }

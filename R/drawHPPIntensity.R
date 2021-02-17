@@ -5,8 +5,7 @@
 #' @param hpp object for homogeneous poisson process
 #' @param events event times input
 #' @param color a specification for the default plotting color.
-#' @param plot_events a boolean indicating whether events 
-#' inputted will be plotted
+#' @param plot_events a boolean indicating whether input events will be plotted
 #' @param fit a boolean indicating whether to fit a hpp or
 #'  use the passed object
 #' @param add whether to add the hpp intensity to an existing plot
@@ -20,14 +19,18 @@
 #' @examples
 #' \dontrun{
 #' pois_y <- pp_hpp(lambda = 1)
-#' drawHPPIntensity(pois_y, events=pp_simulate(pois_y, end=10), color = "red")
+#' drawHPPIntensity(pois_y, events = pp_simulate(pois_y,end=10), color = "red")
 #' }
-drawHPPIntensity <- function(hpp, events, color = "red", 
-                             plot_events = FALSE,
-                             fit = FALSE,
-                             add = FALSE,
+drawHPPIntensity <- function(hpp = NULL,
+                             events,
                              int_title = 
-                               "Intensity homogeneous Poisson Process", start = 0, end = max(events)){
+                               "Homogeneous Poisson Process",
+                             start = 0, 
+                             end = max(events),
+                             color = "red", 
+                             plot_events = TRUE,
+                             fit = FALSE,
+                             add = FALSE){
 	old_events <- hpp$events
 	if (add==FALSE){
 	  if(is.null(old_events)){
@@ -68,8 +71,8 @@ drawHPPIntensity <- function(hpp, events, color = "red",
 	    }
 	  }
 	  fisher <- 1/lambda
-	  plot(c(start,end), c(0,(lambda+fisher)*2), type = "n",
-	       xlab = "event times", ylab = "lambda", 
+	  plot(c(start,end), c(0,(lambda+fisher)*3), type = "n",
+	       xlab = "Event Times", ylab = "Intensity", 
 	       main=int_title)
 	  abline(h=lambda, col=color)
 	  abline(h=lambda+fisher,lty=2)	
@@ -79,7 +82,11 @@ drawHPPIntensity <- function(hpp, events, color = "red",
 	      points(x=events[i],y=0,pch=1,col="blue")
 	    }
 	  }
-	  legend("topleft", "Events", col = "blue", pch = 1)
+	  legend("topleft", c("Events", "Fisher Inf."),
+	         lty = c(NA, 2),
+	         col = c("blue", "black"),
+	         pch = c(1,NA),
+	         cex = 0.75)
 	}
 	
 	

@@ -2,21 +2,39 @@
 % Please edit documentation in R/pp_simulate.R
 \name{pp_simulate}
 \alias{pp_simulate}
+\alias{pp_simulate.default}
+\alias{pp_simulate.hpp}
+\alias{pp_simulate.hp}
+\alias{pp_simulate.mmpp}
+\alias{pp_simulate.mmhp}
 \title{Simulate events from a temporal point process}
 \usage{
 pp_simulate(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{default}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{hpp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{hp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{mmpp}(object, start = 0, end = 1, n = NULL)
+
+\method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL)
 }
 \arguments{
 \item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
 
-\item{start}{start time of events simulated}
+\item{start}{start time of events simulated. Not used for Markov modulated
+models}
 
-\item{end}{end time of events simulated}
+\item{end}{end time of events simulated. Not used for Markov modulated models}
 
-\item{n}{number of events}
+\item{n}{number of events simulated. Required for Markov modulated models, 
+optional otherwise}
 }
 \value{
-a vector of event times
+a vector of event times for all models. For Markov modulated models,
+also returns details on the underlying latent process
 }
 \description{
 Currently available point processes are homogeneous Poisson,
@@ -24,5 +42,7 @@ Hawkes with exponential kernel, MMHP and MMPP
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
-s <- pp_simulate(hpp_obj, end = 10, n=50)
+s <- pp_simulate(hpp_obj, n=50)
+
+
 }

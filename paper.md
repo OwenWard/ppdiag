@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: Columbia University
 citation_author: Sun et. al.
-date: "2020-12-29"
+date: "2021-02-12"
 year: 2020
 bibliography: paper.bib
 output: rticles::joss_article
@@ -41,7 +41,7 @@ data, as have been utilised in @wu2020diagnostics.
 
 # Statement of Need
 This package provides functions to evaluate the fit of
-univatiate temporal point processes. These functions allow: 
+univariate temporal point processes. These functions allow: 
 
 - Simulation 
 of data from a range of common univariate point processes including Homogeneous 
@@ -80,20 +80,7 @@ goodness of fit of this model to the data.
 ```r
 email_hpp <- fithpp(time_data)
 pp_diag(email_hpp, events = time_data)
-```
-
-![](paper_files/figure-latex/fit hpp-1.pdf)<!-- --> 
-
-```
-#> 
-#> Raw residual: -1.012849
-#> Pearson residual: -0.8935674
-#> 
-#> 	One-sample Kolmogorov-Smirnov test
-#> 
-#> data:  r
-#> D = 0.12391, p-value = 0.0002123
-#> alternative hypothesis: two-sided
+#> Please input the right model. Select from hp, hpp, mmpp and mmhp.
 ```
 
 Similarly, we can fit a self exciting Hawkes process to this
@@ -103,19 +90,7 @@ data and examine the results of that fit.
 ```r
 email_hp <- fithp(events = time_data)
 pp_diag(email_hp, time_data)
-```
-
-![](paper_files/figure-latex/fit hawkes-1.pdf)<!-- --> 
-
-```
-#> Raw residual: 0.0001270847
-#> Pearson residual: 1.560215
-#> 
-#> 	One-sample Kolmogorov-Smirnov test
-#> 
-#> data:  r
-#> D = 0.041649, p-value = 0.6795
-#> alternative hypothesis: two-sided
+#> Please input the right model. Select from hp, hpp, mmpp and mmhp.
 ```
 Examining the results of the Kolmogrov-Smirnov test, based
 on the time rescaling theorem [@brown2002time], indicates that

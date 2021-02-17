@@ -4,43 +4,43 @@
 #'  with model specified time events or simulated time events
 #'
 #' @param object point process object containing the parameters
-#' @param t vector containing the event times.
+#' @param events vector containing the event times.
 #' @param end the end time of event times
 #' @return a scalar indicating the negative log likelihood
 #' @keywords Internal
 #' @noRd
 
 
-negloglik <- function(object, t, end) {
+negloglik <- function(object, events, end) {
   UseMethod("negloglik")
 }
 
 #' @rdname negloglik
 #' @noRd
-negloglik.default <- function(object, t, end) {
+negloglik.default <- function(object, events, end) {
   cat("please input the right model")
 }
 
 #' @rdname negloglik
 #' @noRd
-negloglik.hp <- function(object, t, end) {
+negloglik.hp <- function(object, events, end) {
   lambda0 <- object$lambda0
   alpha <- object$alpha
   beta <- object$beta
-  n <- length(t)
+  n <- length(events)
   r <- rep(0, n)
   if (n > 2) {
     for (i in 2:n) {
-      r[i] <- exp(-beta * (t[i] - t[i - 1])) * (1 + r[i - 1])
+      r[i] <- exp(-beta * (events[i] - events[i - 1])) * (1 + r[i - 1])
     }
   }
   if (is.null(end)) {
-    loglik <- -t[n] * lambda0
-    end <- t[n]
+    loglik <- -events[n] * lambda0
+    end <- events[n]
   } else {
     loglik <- -end * lambda0
   }
-  loglik <- loglik + alpha / beta * sum(exp(-beta * (end - t)) - 1)
+  loglik <- loglik + alpha / beta * sum(exp(-beta * (end - events)) - 1)
   if (any(lambda0 + alpha * r <= 0)) {
     loglik <- -1e+10
   } else {
@@ -52,7 +52,7 @@ negloglik.hp <- function(object, t, end) {
 #' @rdname negloglik
 #' @noRd
 
-negloglik.mmhp <- function(object, t, end) {
+negloglik.mmhp <- function(object, events, end) {
   # t is event time, t[1]=0
   lambda0 <- object$lambda0
   lambda1 <- object$lambda1
@@ -61,8 +61,8 @@ negloglik.mmhp <- function(object, t, end) {
   q1 <- object$Q[1, 2]
   q2 <- object$Q[2, 1]
 
-  n <- length(t) - 1
-  interevent <- t[-1] - t[-(n + 1)]
+  n <- length(events) - 1
+  interevent <- events[-1] - events[-(n + 1)]
 
   forward <- matrix(0, ncol = 2, nrow = n)
   probs_1 <- matrix(0, ncol = 2, nrow = n) 

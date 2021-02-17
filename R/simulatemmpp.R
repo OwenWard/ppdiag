@@ -6,7 +6,6 @@
 #' @param mmpp a mmpp object including its Q, delta, events, lambda0, c,
 #' with lambda1 = lambda0(1 + c)
 #' @param n number of points to simulate.
-#' @param seed seed for the random number generator.
 #' @param start start time for simulation
 #' @param given_state if the hidden state trajectory is given.
 #'  If `TRUE`, then simulate according to the given state. 
@@ -28,10 +27,7 @@
 #' x <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.2)
 #' simulatemmpp(x, n = 10)
 simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
-                         states = NULL, seed = NULL, ...) {
-  if(!is.null(seed)){
-    set.seed(seed)
-  }
+                         states = NULL, ...) {
   ## check c > 0
   # if(!is.null(mmhp$events)){
   #   stop("Event time already in the mmhp object.")
@@ -117,7 +113,7 @@ simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
         }
       }
     }
-    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
+    # message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     mmpp$events <- events[1:(n + 1)]
     return(list(x = x[1:i], z = z[1:i], 
                 events = mmpp$events, zt = zt[1:(n + 1)],
