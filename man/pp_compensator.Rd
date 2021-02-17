@@ -22,7 +22,7 @@ pp_compensator(object, events)
 \method{pp_compensator}{hpp}(object, events)
 }
 \arguments{
-\item{object}{a social network model}
+\item{object}{a point process model}
 
 \item{events}{event times, which can have first value as 0}
 }

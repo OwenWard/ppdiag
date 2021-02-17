@@ -2,7 +2,7 @@
 #' 
 #' Computes the compensator for included point processes
 #'
-#' @param object a social network model
+#' @param object a point process model
 #' @param events event times, which can have first value as 0
 #' @return compensator vector of rescaled interevent times
 #' @export

@@ -3,7 +3,7 @@
 #' Compute Pearson residuals for point processes 
 #' with specified parameters and events.
 #'
-#' @param object social network model containing the parameters
+#' @param object point process model
 #' @param events vector of event times
 #' @param start start of observation period (default 0)
 #' @param end termination time (default final event)
