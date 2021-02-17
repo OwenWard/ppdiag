@@ -2,7 +2,7 @@
 #'
 #' Draw the intensity of a Hawkes Process
 #'
-#' @param hp object parameters for Hawkes process
+#' @param hp object parameters for Hawkes process. 
 #' @param events the event times happened in this state
 #' @param int_title title of the intensity plot
 #' @param start the start time of current state
@@ -21,11 +21,10 @@
 #' @examples
 #' \dontrun{
 #' hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
-#' sims <- pp_simulate(hp_obj, start = 0, end = 20)
-#' events <- sims$events
+#' events <- pp_simulate(hp_obj, start = 0, end = 20)
 #' drawHPIntensity(hp_obj,events)
 #' }
-drawHPIntensity <- function(hp, events,
+drawHPIntensity <- function(hp = NULL , events,
                             int_title = "Hawkes Intensity",
                             start = 0,
                             end = max(events),
@@ -50,7 +49,7 @@ drawHPIntensity <- function(hp, events,
       }
       if(fit==TRUE){
         message("Fitting provided events.")
-        hp_obj <- fithp(events)
+        hp <- fithp(events)
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta

@@ -21,7 +21,7 @@
 #' pois_y <- pp_hpp(lambda = 1)
 #' drawHPPIntensity(pois_y, events = pp_simulate(pois_y,end=10), color = "red")
 #' }
-drawHPPIntensity <- function(hpp,
+drawHPPIntensity <- function(hpp = NULL,
                              events,
                              int_title = 
                                "Homogeneous Poisson Process",
