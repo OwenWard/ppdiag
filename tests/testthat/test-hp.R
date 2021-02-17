@@ -24,18 +24,18 @@ test_that("test hp", {
                "n must be positive for simulation.")
   
   #test for messages
-  expect_message(simulatehp(hp_obj,start=2,end=3,n=10),
+  expect_message(simulatehp(hp_obj, start = 2, end = 3, n = 10),
                  "10 events simulated. To simulate up to endtime set n=NULL.")
-  expect_message(simulatehp(hp_obj,start=2,end=3),
+  expect_message(simulatehp(hp_obj, start = 2, end = 3),
                  "Simulating up to endtime. To simulate n events specify n.")
   
   #test fit hp
   hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
   sims <- pp_simulate(hp_obj, start = 0, n = 10)
-  expect_type(fithp(sims$events), "list")
-  expect_length(fithp(sims$events), 4)
-  expect_length(fithp(sims$events)$events, 10)
-  expect_lt(fithp(sims$events)$alpha, fithp(sims$events)$beta)
+  expect_type(fithp(sims), "list")
+  expect_length(fithp(sims), 4)
+  expect_length(fithp(sims)$events, 10)
+  expect_lt(fithp(sims)$alpha, fithp(sims)$beta)
   # sims <- pp_simulate(hp_obj, start = 0, end = 20)
   # expect_error(fithp(events = sims$events),
   # "Refitting exceeded 10 times. Try a different initial vector. ")

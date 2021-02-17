@@ -35,7 +35,7 @@ negloglik_hp <- function(vec, events, end = max(events)){
 #' @examples
 #' hp_obj <- pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 #' sims <- pp_simulate(hp_obj, start = 0, n = 10)
-#' fithp(sims$events)                  
+#' fithp(sims)                  
 fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
   con_mat <- matrix(0, nrow = 4, ncol = 3)
   con_mat[1:3, 1:3] <- diag(1, nrow = 3) # constraint all positive

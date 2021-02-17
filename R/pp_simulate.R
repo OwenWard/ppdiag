@@ -4,24 +4,28 @@
 #' Hawkes with exponential kernel, MMHP and MMPP
 #'
 #' @param object point process model object of type hpp, hp, mmpp, mmhp, or mmpp
-#' @param start start time of events simulated
-#' @param end end time of events simulated
-#' @param n number of events
-#' @return a vector of event times
+#' @param start start time of events simulated. Not used for Markov modulated
+#' models
+#' @param end end time of events simulated. Not used for Markov modulated models
+#' @param n number of events simulated. Required for Markov modulated models, 
+#' optional otherwise
+#' @importFrom utils capture.output
+#' @return a vector of event times for all models. For Markov modulated models,
+#' also returns details on the underlying latent process
 #' @export
 #' @examples
 #' hpp_obj <- pp_hpp(lambda = 1)
 #' s <- pp_simulate(hpp_obj, n=50)
 #' 
 #' 
-pp_simulate <- function(object, start, end = 1, n = NULL) {
+pp_simulate <- function(object, start = 0, end = 1, n = NULL) {
   UseMethod("pp_simulate")
 }
 
 
-#'  @rdname pp_simulate
-#'  @export
-pp_simulate.default <- function(object, events, start, end = 1, n = NULL) {
+#' @rdname pp_simulate
+#' @export
+pp_simulate.default <- function(object, start = 0, end = 1, n = NULL) {
   cat("Please input the right model. Select from hp, hpp and mmhp.")
 } 
 
@@ -46,7 +50,8 @@ pp_simulate.hp <- function(object, start = 0, end = 1, n = NULL) {
 #' @export
 pp_simulate.mmpp <- function(object, start = 0, end = 1, n = NULL) {
   if (is.null(n)){
-    n <- 1
+    message("n a required argument for MMPP. Simulating 10 events")
+    n <- 10
   }
   simulatemmpp(object, n = n, start = start, 
                given_state = FALSE, states = NULL)
@@ -59,7 +64,8 @@ pp_simulate.mmpp <- function(object, start = 0, end = 1, n = NULL) {
 #' @export
 pp_simulate.mmhp <- function(object, start = 0, end = 1, n = NULL) {
   if (is.null(n)){
-    n <- 1
+    message("n a required argument for MMHP. Simulating 10 events")
+    n <- 10
   }
   simulatemmhp(object, n = n, start = start, 
                given_state = FALSE, states = NULL)

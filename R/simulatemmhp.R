@@ -131,7 +131,7 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     }
     # x <- round(x,3)
     # events <- round(events,3)
-    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
+    # message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     mmhp$events <- events[1:(n + 1)]
     return(list(x = x[1:i], z = z[1:i], 
                 events = mmhp$events, zt = zt[1:(n + 1)],

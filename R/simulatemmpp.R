@@ -113,7 +113,7 @@ simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
         }
       }
     }
-    message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
+    # message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     mmpp$events <- events[1:(n + 1)]
     return(list(x = x[1:i], z = z[1:i], 
                 events = mmpp$events, zt = zt[1:(n + 1)],

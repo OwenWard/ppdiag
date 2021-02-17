@@ -16,7 +16,6 @@
 #' @param fit a boolean indicating whether to fit a new HP to events
 #' @importFrom graphics curve
 #' @importFrom graphics segments
-#' @importFrom stats optimize
 #' @importFrom graphics points
 #' @export
 #' @examples

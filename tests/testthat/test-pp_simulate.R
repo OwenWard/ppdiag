@@ -59,7 +59,7 @@ test_that("test pp_simulate", {
   ## other tests
   y <- pp_hpp(lambda = 1)
   class(y) <- "non_pp"
-  expect_error(pp_simulate(y),
-  "Select a point process model from hpp, hp, mmpp and mmhp")
+  expect_output(pp_simulate(y),
+               "Please input the right model. Select from hp, hpp and mmhp.")
   
 })
