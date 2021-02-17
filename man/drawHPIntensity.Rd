@@ -5,7 +5,7 @@
 \title{Draw the intensity of Hawkes Process}
 \usage{
 drawHPIntensity(
-  hp,
+  hp = NULL,
   events,
   int_title = "Hawkes Intensity",
   start = 0,
@@ -19,7 +19,7 @@ drawHPIntensity(
 )
 }
 \arguments{
-\item{hp}{object parameters for Hawkes process}
+\item{hp}{object parameters for Hawkes process.}
 
 \item{events}{the event times happened in this state}
 
@@ -48,8 +48,7 @@ Draw the intensity of a Hawkes Process
 \examples{
 \dontrun{
 hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
-sims <- pp_simulate(hp_obj, start = 0, end = 20)
-events <- sims$events
+events <- pp_simulate(hp_obj, start = 0, end = 20)
 drawHPIntensity(hp_obj,events)
 }
 }

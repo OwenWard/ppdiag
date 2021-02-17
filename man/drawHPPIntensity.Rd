@@ -5,7 +5,7 @@
 \title{Draw intensity of homogeneous Poisson process}
 \usage{
 drawHPPIntensity(
-  hpp,
+  hpp = NULL,
   events,
   int_title = "Homogeneous Poisson Process",
   start = 0,

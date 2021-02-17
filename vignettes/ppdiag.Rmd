@@ -4,8 +4,11 @@ output: rmarkdown::html_vignette
 author: Sally Sun, Owen G. Ward, Xiaoxi Zhao, Jing Wu, Tian Zheng.
 vignette: >
   %\VignetteIndexEntry{`ppdiag`, diagnostic tools for temporal Point Processes}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include = FALSE}
@@ -17,47 +20,64 @@ set.seed(100) # to make it reproducible
 ```
 
 ```{r setup}
+# remotes::install_github("OwenWard/ppdiag")
 library(ppdiag)
 ```
 
-This vignette provides an introduction to the functions 
-available in `ppdiag` to evaluate the fit of univariate temporal 
-point processes.
+This vignette provides an introduction to the functions available in
+`ppdiag` to evaluate the fit of univariate temporal point processes.
 
-To achieve this, we currently include a range of functions which allow
-a user to:
+To achieve this, we currently include a range of functions which allow a
+user to:
 
-- Simulate data from a range of common univariate point processes.
-- Fit a range of univariate point processes to data.
-- After fitting a point process to some data, evaluate the ability of that 
-point process to capture the temporal structure present in this data.
+-   Simulate data from a range of common univariate point processes.
+-   Fit a range of univariate point processes to data.
+-   After fitting a point process to some data, evaluate the ability of
+    that point process to capture the temporal structure present in this
+    data.
 
 ## Classes
-- Homogeneous Poisson Process: 
 
-`hpp(lambda, start=0, end=1, n = NULL)` creates an object of
-a list type in class 'hpp'. 
+We create classes for each of the point process models included in the 
+package. Currently, these are:
+
+-   Homogeneous Poisson Process
+
+`pp_hpp(lambda)` creates a `hpp` object with
+rate parameter `lambda`.
+
 ```{r}
 hpp_obj <- pp_hpp(lambda = 1)
 hpp_obj
 ```
 
-- Hawkes Process: 
+-   Hawkes Process:
 
-`hp(lambda0, alpha, beta, events = NULL)` creates an object of list 
-type in class 'hp'.
+`pp_hp(lambda0, alpha, beta, events = NULL)` creates a `hp` object.
+
 ```{r}
-hp_obj <- pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.2, beta = 0.5)
 hp_obj
 ```
 
-- Markov-Modulated Hawkes Process: 
+-   Markov Modulated Poisson Process:
+`pp_mmpp(lambda0, lambda1, alpha, beta, Q, delta)` creates an `mmpp` object.
 
-`mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)` 
-creates an object of type in class 'mmhp'. 
 ```{r}
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 
+mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), 
+          lambda0 = 0.8,
+          c = 1.2)
+
+mmpp_obj
+```
+
+-   Markov-Modulated Hawkes Process:
+
+`pp_mmhp(lambda0, lambda1, alpha, beta, Q, delta)` creates an `mmhp` object.
+
+```{r}
 mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), 
           lambda0 = 0.2,
           lambda1 = .75,
@@ -69,199 +89,215 @@ mmhp_obj
 ```
 
 ## Simulating data
-Functions for simulating data is pp_simulate, which take in model and objects of type `hpp`, `hp`, and `mmhp`,
-respectively, with additional parameters for simulation, and produces a vector
-of simulated event times. 
 
-- Homogeneous Poisson Process: 
+To simulate data from a given point process, we use the function
+`pp_simulate(pp_obj, ...)`. Here the first argument specifies one of the
+above point processes, while the remaining arguments specify either the
+number of events simulated or the length of the observation period for
+possible events.
 
-`pp_simulate` takes a hpp object and returns a vector of event times
-simulated from the corresponding homogeneous Poisson process.
-<!-- In the hpp object, one can either specify n, 
-which is expected number of  -->
-<!-- events, or end, which is the expected end time of event times. If both 
-are  -->
-<!-- provided, then the function will automatically simulate n events 
-regardless of -->
-<!-- the end time specified.  -->
+For example, we can simulate events up to a specified end time.
 
-`pp_simulate(pp_obj, start=0, end=NULL, n=NULL)` can simulate events up to a specified end time.
 ```{r}
-hpp_events <- pp_simulate(hpp_obj, end=10)
+hpp_events <- pp_simulate(hpp_obj, end = 10)
 hpp_events
 ```
 
-or specify a vector of certain length.
-```{r}
-pp_simulate(hpp_obj, end=10, n=5)
-```
+Alternatively, we can specify the number of events we wish to simulate.
 
-- Hawkes Process: 
-
-`pp_simulate(hp_obj, end=NULL, n=NULL)` returns event times
-simulated from the Hawkes process specified by `hp`, up to some end
-time, along with the maximum overall intensity of the Hawkes process
-given these events.
 ```{r}
-hp_events <- pp_simulate(hp_obj, start = 0, end = 50)
+hp_events <- pp_simulate(hp_obj, start = 0, n = 20)
 hp_events
+
 ```
 
-You can also specify desired length of events. 
-```{r}
-hp_events <- pp_simulate(hp_obj, start = 0, end = 50, n=1000)
-# hp_events
-```
+This returns the simulated events of the specified point process. For
+Markov Modulated processes, the states (and the times of these states)
+are also returned. In this scenario only a specified number of events
+can be simulated (currently).
 
-- Markov-Modulated Hawkes Process: 
-
-`pp_simulate(mmhp_obj, n=NULL, end=NULL)` 
-simulates events from a specified Markov Modulated Hawkes process. 
 ```{r}
-mmhp_events <- pp_simulate(object = mmhp_obj, n = 50)
+mmhp_events <- pp_simulate(object = mmhp_obj, n = 20)
 mmhp_events
 ```
 
-
-
 ## Fitting a point process
-Functions for fitting objects include fithpp and fithp, which take in event times and produce object of type hpp and hp, respectively. 
 
-- Homogeneous Poisson Process: 
+For completeness, we include functions for fitting both homogeneous
+Poisson and Hawkes processes to data. Fitting a Markov modulated model
+is more complex, although we describe this procedure in an included
+vignette.
 
-`fithpp(hpp_events)` returns an object of class `hpp`.
+`fithpp(hpp_events)` returns an object of class `hpp`, estimating the
+MLE of a homogenous Poisson process for `hpp_events`
 
 ```{r}
 fit_hpp <- fithpp(hpp_events)
 fit_hpp
 ```
 
-- Hawkes Process: 
+Similarly, `fithp(hp_events)` returns an object of class `hp`,
+estimating the three parameters of the Hawkes process from `hp_events`
+using `constrOptim`. This ensures that the returned solution (if one can
+be obtained), satisfies the stationary condition of a Hawkes process.
 
-`fithp(events)` returns an object of class `hp`, estimating the
-three parameters of the Hawkes process using `constrOptim`, to
-ensure the solution is feasible. This can be a challenging optimisation problem
-and convergence is not guaranteed.
 ```{r}
-fit_hp <- fithp(hp_events$events)
-fit_hp[1:3]
+hp_events <- pp_simulate(hp_obj, n = 500)
+fit_hp <- fithp(hp_events)
+fit_hp$lambda0
+fit_hp$alpha
+fit_hp$beta
 ```
 
 ## Diagnosing the fit of a point process to data
 
-There are several existing methods which can be used to assess the goodness of fit of a point process to temporal data. In this package we allow a user to:
+The main goal of this package is to provide users with tools
+to examine the fit of a specified point process to some data.
+There are several methods which can be used to assess the
+goodness of fit of a point process to temporal data. In this package we
+allow a user to:
 
-- Examine the distribution of the rescaled interevent times, by utilising the
-time rescaling theorem.
-- Examine the residual process of an estimated point process, 
-in particular computing the raw and Pearson residuals for a given point 
-process fit to data.
-- Visually inspect the estimated intensity of the point process.
-
-<!-- `drawHPPIntensity(hpp, events = NULL, color = "red",  -->
-<!-- plot_events = FALSE, -->
-<!-- fit = FALSE, int_title = "Intensity homogeneous Poisson Process")` -->
-<!-- plots the intensity of a homogeneous poisson process.  -->
-
-<!-- To plot the simulated events with the intensity, specify plot_events=FALSE.  -->
-<!-- ```{r} -->
-<!-- drawHPPIntensity(fit_hpp, events = hpp_events, color = "red", -->
-<!--                  plot_events = FALSE) -->
-<!-- ``` -->
+-   Visually inspect the estimated intensity of the point process.
+-   Examine the fitted intensity along with the distribution of rescaled 
+    inter-event times to help identify causes for lack of fit.
+-   Examine the distribution of the rescaled inter-event times, by
+    utilising the time rescaling theorem.
+-   Examine the residual process of an estimated point process, in
+    particular computing the raw and Pearson residuals for a given point
+    process fit to data.
 
 
 ### Visualize the intensity function
 
-`drawHPPIntensity(hpp, events, color = "red", start = 0, end = max(events), fit=FALSE, int_title = "Intensity homogeneous Poisson Process")` plots the intensity of a homogeneous poisson process. To plot the events along with intensity, set plot_events=TRUE. 
+`drawHPPIntensity(hpp, events)`
+plots the intensity of a homogeneous Poisson process.
+
 ```{r,fig.width=4,fig.height=4}
 drawHPPIntensity(fit_hpp, events = hpp_events,
-                 color = "red", plot_events=TRUE)
+                 color = "red")
 ```
 
-To plot the fitted intensity on the inputted events, specify fit=TRUE.
-```{r,fig.width=4,fig.height=4}
-drawHPPIntensity(fit_hpp, events=hp_events$events,
-                 color = "red", fit=TRUE, plot_events=TRUE)
-```
+Similarly, `drawHPIntensity(hp, events)`
+plots the intensity of a Hawkes process. 
 
-`drawHPIntensity(hp, start = 0, end = max(events), history=0, events, color = 1, i = 1, add=FALSE, fit=FALSE, vec=rep(0.1,3), int_title="Hawkes Intensity")` plots the intensity of a hawkes process. To plot the events along with intensity, set `plot_events=TRUE`. 
 ```{r,fig.width=4,fig.height=5}
-drawHPIntensity(fit_hp, start = min(hp_events$events), 
-                end = max(hp_events$events), history = 0,
-                events = hp_events$events, plot_events = TRUE)
+drawHPIntensity(fit_hp, events = hp_events)
 ```
 
 To plot the fitted intensity on the input events, set `fit=TRUE`.
+
 ```{r,fig.width=4,fig.height=5}
-drawHPIntensity(fit_hp, start = min(hp_events$events), 
-                end = max(hp_events$events),
-                history = 0,
-                events = hp_events$events, 
-                fit=TRUE,
-                plot_events=TRUE)
+drawHPIntensity(events = hp_events, fit = TRUE)
 ```
 
-`drawUniMMHPIntensity(mmhp, simulation, add = FALSE, fit=FALSE, 
-color = 1, int_title = "Intensity Plot of MMHP")` plots the intensity of a 
-mmhp process. 
+
+Similarly, 
+`drawUniMMHPIntensity(mmhp, mmhp_events)`
+plots the intensity of a Markov modulated 
+Hawkes process, with a similar 
+function for Markov modulated Poisson processes. This requires both the point
+process object and the output from `pp_simulate` which describes
+the latent process.
+
 ```{r,fig.width=4,fig.height=5}
 drawUniMMHPIntensity(mmhp_obj, mmhp_events)
 ```
 
+### Visualize intensity and goodness of fit jointly
 
+<!-- The main goal of this package is to provide tools to  -->
+<!-- diagnose the fit of a given point process to data.  -->
+<!-- To do this, we include several functions: -->
 
-### Diagnostics tools of the models
+- `intensityqqplot` displays the estimated intensity of a given
+point process along with a QQ-plot of the rescaled inter-event times. 
+These together can often be useful in identifying issues with model fit for a chosen point process.
 
-- Homogeneous Poisson Process
-
-`pp_diag(object, events)` gives diagnostics of the model,
-including a qq plot, a ks plot, ks test, raw
-and pearson residuals in one function.
-
-```{r,fig.width=7,fig.height=4}
-pp_diag(hpp_obj,hpp_events)
-```
-
-`pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
-
-```{r}
-pp_residual(hpp_obj,hpp_events)
-```
-
-`intensityqqplot(object, events)` gives both qqplot and intensity plot. 
-
-```{r,fig.width=7,fig.height=4}
-intensityqqplot(hpp_obj, hpp_events)
-```
-
-- Hawkes Process
-
-`pp_diag(object, events)` gives diagnostics of the model,
-including a qq plot, a ks plot, ks test, raw
-and pearson residuals in one function.
-
-```{r,fig.width=7,fig.height=4}
-pp_diag(hp_obj,hp_events$events)
-```
-
-`pp_residual(object, events, start = min(events),end = max(events))` gives raw and pearson residuals. 
-
-```{r}
-pp_residual(hp_obj,hp_events$events)
+```{r intensityqqplot, fig.width=6, fig.height=5}
+intensityqqplot(object = fit_hp, events = hp_events )
 ```
 
 
-`intensityqqplot(object, events)` gives both qqplot and intensity plot. 
 
-```{r,fig.width=7,fig.height=4}
-intensityqqplot(hp_obj, hp_events$events)
+```{r intqqpot mmhp, eval=FALSE}
+# this gives an error currently
+intensityqqplot(object = mmhp_obj, events = mmhp_events$events)
 ```
 
 
-### MMHP
+### Residual Analysis
 
+- `pp_residual` returns both raw and Pearson residuals from fitting
+the specified point process to the given events.
 
-```{r,fig.width=7,fig.height=4}
-pp_diag(mmhp_obj,mmhp_events$events)
+```{r mmhp_residual}
+pp_residual(object = mmhp_obj, events = mmhp_events$events)
+
+pp_residual(object = fit_hp, events = hp_events)
+
 ```
 
+
+### Overall summary of fit
+
+- Finally, `pp_diag` summarises (both graphically and numerically) the fit
+of a specified point process to the data. For a given point process
+it computes the residuals (both raw and Pearson) obtained from fitting
+that point process to the data, performs a goodness of fit test
+based on the rescaled inter-event times, and displays graphical
+summaries of this diagnostic.
+
+```{r ppdiag hp, fig.width = 6, fig.height=4}
+pp_diag(object = fit_hp, events = hp_events)
+```
+
+
+<!-- -   Homogeneous Poisson Process -->
+
+<!-- `pp_diag(object, events)` gives diagnostics of the model, including a qq -->
+<!-- plot, a ks plot and the corresponding ks test, -->
+<!-- along with raw and Pearson residuals in one function. -->
+
+<!-- ```{r,fig.width=7,fig.height=4} -->
+<!-- pp_diag(hpp_obj,hpp_events) -->
+<!-- ``` -->
+
+<!-- `pp_residual(object, events)` -->
+<!-- returns only the raw and Pearson residuals. -->
+
+<!-- ```{r} -->
+<!-- pp_residual(hpp_obj,hpp_events) -->
+<!-- ``` -->
+
+<!-- `intensityqqplot(object, events)` gives both qqplot and intensity plot. -->
+
+<!-- ```{r,fig.width=7,fig.height=4} -->
+<!-- intensityqqplot(hpp_obj, hpp_events) -->
+<!-- ``` -->
+
+<!-- -   Hawkes Process -->
+
+<!-- `pp_diag(object, events)` gives diagnostics of the model, including a qq -->
+<!-- plot, a ks plot, ks test, raw and pearson residuals in one function. -->
+
+<!-- ```{r,fig.width=7,fig.height=4} -->
+<!-- pp_diag(hp_obj,hp_events) -->
+<!-- ``` -->
+
+<!-- `pp_residual(object, events)` gives raw and pearson residuals. -->
+
+<!-- ```{r} -->
+<!-- pp_residual(hp_obj,hp_events) -->
+<!-- ``` -->
+
+<!-- `intensityqqplot(object, events)` gives both qqplot and intensity plots. -->
+
+<!-- ```{r,fig.width=7,fig.height=4} -->
+<!-- intensityqqplot(hp_obj, hp_events) -->
+<!-- ``` -->
+
+<!-- ### MMHP -->
+
+<!-- ```{r,fig.width=7,fig.height=4} -->
+<!-- pp_diag(mmhp_obj,mmhp_events$events) -->
+<!-- ``` -->

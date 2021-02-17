@@ -1,7 +1,7 @@
 ---
 title: "Fitting Markov Modulated Point Process Models"
 output: rmarkdown::html_vignette
-author: Sally Sun, Owen G. Ward.
+author: Owen G. Ward.
 vignette: >
   %\VignetteIndexEntry{Fitting Markov Modulated Models}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,20 +21,20 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```{r setup}
 library(ppdiag)
 library(rstan)
-# library(cmdstanr)
+library(cmdstanr)
 library(tidyverse)
 library(bayesplot)
 ```
 
 
-We include functions for fitting standard Hawkes and Poisson
-point processes to data in `ppdiag`. However, currently, we do not
+Functions for fitting standard Hawkes and Poisson
+point processes to data are included in `ppdiag`. However, currently, we do not
 include fitting algorithms for Markov modulated point processes,
 as these rely on the use of `rstan` or (more recently), `cmdstanr` to
 perform Bayesian inference for the model parameters.
 
 Here we provide instructions on how to fit these models so 
-that the can easily be used in conjunction with the diagnostic tools
+that they can easily be used in conjunction with the diagnostic tools
 of  `ppdiag`.
 
 # Installing RStan or Cmdstanr

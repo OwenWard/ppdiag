@@ -82,7 +82,7 @@ drawHPPIntensity <- function(hpp = NULL,
 	      points(x=events[i],y=0,pch=1,col="blue")
 	    }
 	  }
-	  legend("topleft", c("Events", "Fisher"),
+	  legend("topleft", c("Events", "Fisher Inf."),
 	         lty = c(NA, 2),
 	         col = c("blue", "black"),
 	         pch = c(1,NA),
