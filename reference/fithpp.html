@@ -140,7 +140,7 @@ process for the given events.</p>
     </tr>
     <tr>
       <th>end</th>
-      <td><p>end of observation starting from 0 (default final event)</p></td>
+      <td><p>end of observation period, starting from 0 (default is last event)</p></td>
     </tr>
     </table>
 
@@ -153,14 +153,14 @@ process for the given events.</p>
 <span class='va'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>pois_y</span>, end<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Simulating up to endtime. To simulate n events specify n.</span></div><div class='input'><span class='fu'>fithpp</span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $lambda
-#&gt; [1] 1.102757
+#&gt; [1] 1.004804
 #&gt; 
 #&gt; $events
-#&gt;  [1] 1.326108 2.314636 2.871762 2.968044 4.569107 4.676259 4.733173 5.147480
-#&gt;  [9] 5.610923 8.394997 9.974999
+#&gt; [1] 0.3731586 3.8395243 5.3286822 6.5298894 6.9817143 7.7177178 8.5566511
+#&gt; [8] 8.9041768 8.9569696
 #&gt; 
 #&gt; attr(,"class")
-#&gt; [1] "pp_hpp"</div></pre>
+#&gt; [1] "hpp"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

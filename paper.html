@@ -135,7 +135,7 @@
 <li>name: Xiaoxi Zhao</li>
 <li>name: Jing Wu</li>
 <li>name: Tian Zheng affiliations:</li>
-<li>name: Columbia University citation_author: Sun et. al. date: “2020-12-29” year: 2020 bibliography: paper.bib output: rticles::joss_article csl: apa.csl journal: JOSS —</li>
+<li>name: Columbia University citation_author: Sun et. al. date: “2021-02-12” year: 2020 bibliography: paper.bib output: rticles::joss_article csl: apa.csl journal: JOSS —</li>
 </ul>
 <div id="summary" class="section level1">
 
@@ -144,7 +144,7 @@
 <div id="statement-of-need" class="section level1">
 <h1 class="hasAnchor">
 <a href="#statement-of-need" class="anchor"></a>Statement of Need</h1>
-<p>This package provides functions to evaluate the fit of univatiate temporal point processes. These functions allow:</p>
+<p>This package provides functions to evaluate the fit of univariate temporal point processes. These functions allow:</p>
 <ul>
 <li><p>Simulation of data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process.</p></li>
 <li><p>Fitting common univariate point processes to data, and plotting the intensity function over data.</p></li>
@@ -167,33 +167,16 @@
 <p>We can fit a homogeneous Poisson process and look at the goodness of fit of this model to the data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">time_data</span><span class="op">)</span>
-<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hpp</span>, events <span class="op">=</span> <span class="va">time_data</span><span class="op">)</span></code></pre></div>
-<p><embed src="paper_files/figure-latex/fit%20hpp-1.pdf"></embed><!-- --></p>
-<pre><code>#&gt; 
-#&gt; Raw residual: -1.012849
-#&gt; Pearson residual: -0.8935674
-#&gt; 
-#&gt;  One-sample Kolmogorov-Smirnov test
-#&gt; 
-#&gt; data:  r
-#&gt; D = 0.12391, p-value = 0.0002123
-#&gt; alternative hypothesis: two-sided</code></pre>
+<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hpp</span>, events <span class="op">=</span> <span class="va">time_data</span><span class="op">)</span>
+<span class="co">#&gt; Please input the right model. Select from hp, hpp, mmpp and mmhp.</span></code></pre></div>
 <p>Similarly, we can fit a self exciting Hawkes process to this data and examine the results of that fit.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">time_data</span><span class="op">)</span>
-<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hp</span>, <span class="va">time_data</span><span class="op">)</span></code></pre></div>
-<p><embed src="paper_files/figure-latex/fit%20hawkes-1.pdf"></embed><!-- --></p>
-<pre><code>#&gt; Raw residual: 0.0001270847
-#&gt; Pearson residual: 1.560215
-#&gt; 
-#&gt;  One-sample Kolmogorov-Smirnov test
-#&gt; 
-#&gt; data:  r
-#&gt; D = 0.041649, p-value = 0.6795
-#&gt; alternative hypothesis: two-sided</code></pre>
+<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hp</span>, <span class="va">time_data</span><span class="op">)</span>
+<span class="co">#&gt; Please input the right model. Select from hp, hpp, mmpp and mmhp.</span></code></pre></div>
 <p>Examining the results of the Kolmogrov-Smirnov test, based on the time rescaling theorem [@brown2002time], indicates that a Hawkes process better describes these events.</p>
 <p>We can then examine the estimated intensity of this Hawkes process to this data.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">email_hp</span>, events <span class="op">=</span> <span class="va">time_data</span>, 
                 plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><embed src="paper_files/figure-latex/hawkes%20intensity-1.pdf"></embed><!-- --></p>
