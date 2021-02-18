@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R build status](https://github.com/OwenWard/ppdiag/workflows/R-CMD-check/badge.svg)](https://github.com/OwenWard/ppdiag/actions)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Codecov test coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
 <!-- badges: end -->
 
@@ -40,10 +40,10 @@ several diagnostic tools
 <!-- install.packages("ppdiag") -->
 <!-- ``` -->
 
-The in development version of this
+The current version of this
 package is available from [GitHub](https://github.com/OwenWard/ppdiag) with:
 
-```{r}
+```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("OwenWard/ppdiag")
 ```
@@ -66,16 +66,16 @@ We can readily evaluate the fit of a homogeneous Poisson process to this
 data.
 
 ```{r fit_hpp}
-est_hpp <- fithpp(sim_hp$events)
+est_hpp <- fithpp(sim_hp)
 est_hpp
 
-pp_diag(est_hpp, events = sim_hp$events)
+pp_diag(est_hpp, events = sim_hp)
 ```
 
 
 ```{r fit_hp}
-hp_est <- fithp(events = sim_hp$events)
-pp_diag(hp_est, events = sim_hp$events)
+hp_est <- fithp(events = sim_hp)
+pp_diag(hp_est, events = sim_hp)
 
 ```
 
@@ -117,7 +117,7 @@ pp_diag(est_hp,mmhp_events$events)
 We can then compare to the true point process model.
 
 ```{r fit_mmhp}
-pp_diag(mmhp_obj,mmhp_events$events)
+pp_diag(mmhp_obj, mmhp_events$events)
 ```
 
 
