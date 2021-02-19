@@ -76,7 +76,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting Markov Modulated Point Process Models</h1>
-                        <h4 class="author">Sally Sun, Owen G. Ward.</h4>
+                        <h4 class="author">Owen G. Ward.</h4>
             
       
       
@@ -89,11 +89,11 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan">rstan</a></span><span class="op">)</span>
-<span class="co"># library(cmdstanr)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr">cmdstanr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot">bayesplot</a></span><span class="op">)</span></code></pre></div>
-<p>We include functions for fitting standard Hawkes and Poisson point processes to data in <code>ppdiag</code>. However, currently, we do not include fitting algorithms for Markov modulated point processes, as these rely on the use of <code>rstan</code> or (more recently), <code>cmdstanr</code> to perform Bayesian inference for the model parameters.</p>
-<p>Here we provide instructions on how to fit these models so that the can easily be used in conjunction with the diagnostic tools of <code>ppdiag</code>.</p>
+<p>Functions for fitting standard Hawkes and Poisson point processes to data are included in <code>ppdiag</code>. However, currently, we do not include fitting algorithms for Markov modulated point processes, as these rely on the use of <code>rstan</code> or (more recently), <code>cmdstanr</code> to perform Bayesian inference for the model parameters.</p>
+<p>Here we provide instructions on how to fit these models so that they can easily be used in conjunction with the diagnostic tools of <code>ppdiag</code>.</p>
 <div id="installing-rstan-or-cmdstanr" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installing-rstan-or-cmdstanr" class="anchor"></a>Installing RStan or Cmdstanr</h1>
@@ -170,8 +170,8 @@
 <a href="#fitting-these-models-in-cmdstanr" class="anchor"></a>Fitting these models in Cmdstanr</h1>
 <p>We can also fit these models using <code>cmdstanr</code>. We include the code to fit these examples below (which is not run here).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mmpp_file</span> <span class="op">&lt;-</span> <span class="fu">write_stan_file</span><span class="op">(</span><span class="va">mmpp_stan_code</span><span class="op">)</span>
-<span class="va">mmpp_stan</span> <span class="op">&lt;-</span> <span class="fu">cmdstan_model</span><span class="op">(</span>stan_file <span class="op">=</span> <span class="va">mmpp_file</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mmpp_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/write_stan_file.html">write_stan_file</a></span><span class="op">(</span><span class="va">mmpp_stan_code</span><span class="op">)</span>
+<span class="va">mmpp_stan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/cmdstan_model.html">cmdstan_model</a></span><span class="op">(</span>stan_file <span class="op">=</span> <span class="va">mmpp_file</span><span class="op">)</span>
 
 <span class="va">fit_mmpp</span> <span class="op">&lt;-</span> <span class="va">mmpp_stan</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mmpp_data</span>,
                              seed <span class="op">=</span> <span class="fl">123</span>,
@@ -180,8 +180,8 @@
                              refresh <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
 <p>Similarly, we can fit the MMHP model in <code>cmdstanr</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mmhp_file</span> <span class="op">&lt;-</span> <span class="fu">write_stan_file</span><span class="op">(</span><span class="va">mmhp_stan_code</span><span class="op">)</span>
-<span class="va">mmhp_stan</span> <span class="op">&lt;-</span> <span class="fu">cmdstan_model</span><span class="op">(</span>stan_file <span class="op">=</span> <span class="va">mmhp_file</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mmhp_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/write_stan_file.html">write_stan_file</a></span><span class="op">(</span><span class="va">mmhp_stan_code</span><span class="op">)</span>
+<span class="va">mmhp_stan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/cmdstan_model.html">cmdstan_model</a></span><span class="op">(</span>stan_file <span class="op">=</span> <span class="va">mmhp_file</span><span class="op">)</span>
 
 <span class="va">fit_mmhp</span> <span class="op">&lt;-</span> <span class="va">mmhp_stan</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mmhp_data</span>,
                              seed <span class="op">=</span> <span class="fl">123</span>,
@@ -195,6 +195,17 @@
 </h1>
 <p>Having obtained estimates from fitting these stan models, we can now pass these parameter estimates into <code>ppdiag</code> to evaluate model fit.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mmpp_fit_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmpp.html">pp_mmpp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="va">mmpp_post</span><span class="op">$</span><span class="va">lambda0</span>,
+                       c <span class="op">=</span> <span class="va">mmpp_post</span><span class="op">$</span><span class="va">c</span>,
+                       Q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="va">mmpp_post</span><span class="op">$</span><span class="va">q1</span>,
+                                     <span class="va">mmpp_post</span><span class="op">$</span><span class="va">q1</span>,
+                                     <span class="va">mmpp_post</span><span class="op">$</span><span class="va">q2</span>,
+                                     <span class="op">-</span><span class="va">mmpp_post</span><span class="op">$</span><span class="va">q2</span><span class="op">)</span>,
+                                   nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">)</span>
+
+
+<span class="fu"><a href="../reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">mmpp_fit_obj</span>, events <span class="op">=</span> <span class="va">sim_mmpp</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mmhp_fit_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmhp.html">pp_mmhp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="va">mmhp_post</span><span class="op">$</span><span class="va">lambda0</span>,
                         lambda1 <span class="op">=</span> <span class="va">mmhp_post</span><span class="op">$</span><span class="va">lambda1</span>,
                         alpha <span class="op">=</span> <span class="va">mmhp_post</span><span class="op">$</span><span class="va">alpha</span>,

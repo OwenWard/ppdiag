@@ -130,10 +130,10 @@
     <pre class="usage"><span class='fu'>drawUniMMHPIntensity</span><span class='op'>(</span>
   <span class='va'>mmhp</span>,
   <span class='va'>simulation</span>,
-  add <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  int_title <span class='op'>=</span> <span class='st'>"Intensity of MMHP"</span>,
+  leg_location <span class='op'>=</span> <span class='st'>"topright"</span>,
   color <span class='op'>=</span> <span class='fl'>1</span>,
-  fit <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  int_title <span class='op'>=</span> <span class='st'>"Intensity Plot of MMHP"</span>
+  add <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -149,24 +149,24 @@ events, lambda0, lambda1, beta and alpha.</p></td>
       <td><p>the simulated Markov-modulated Hawkes Process(MMHP)</p></td>
     </tr>
     <tr>
-      <th>add</th>
-      <td><p>logical; if TRUE add to an already existing plot;
-if NA start a new plot taking the defaults 
-for the limits and log-scaling of the x-axis from the previous plot.
- Taken as FALSE (with a warning if a different value is supplied) 
- if no graphics device is open.</p></td>
+      <th>int_title</th>
+      <td><p>title of the plot.</p></td>
+    </tr>
+    <tr>
+      <th>leg_location</th>
+      <td><p>location of legend, if moving needed</p></td>
     </tr>
     <tr>
       <th>color</th>
       <td><p>A specification for the default plotting color.</p></td>
     </tr>
     <tr>
-      <th>fit</th>
-      <td><p>a boolean indicating whether to fit the events provided</p></td>
-    </tr>
-    <tr>
-      <th>int_title</th>
-      <td><p>title of the plot.</p></td>
+      <th>add</th>
+      <td><p>logical; if TRUE add to an already existing plot;
+if NA start a new plot taking the defaults 
+for the limits and log-scaling of the x-axis from the previous plot.
+ Taken as FALSE (with a warning if a different value is supplied) 
+ if no graphics device is open.</p></td>
     </tr>
     </table>
 
@@ -176,7 +176,7 @@ for the limits and log-scaling of the x-axis from the previous plot.
 <span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.4</span>, <span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='op'>-</span><span class='fl'>0.2</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_mmhp.html'>pp_mmhp</a></span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>,
  alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span><span class='op'>)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span>
 <span class='fu'>drawUniMMHPIntensity</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>

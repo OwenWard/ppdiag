@@ -3,7 +3,7 @@ title: "Fitting Markov Modulated Point Process Models"
 output: rmarkdown::html_vignette
 author: Owen G. Ward.
 vignette: >
-  %\VignetteIndexEntry{Fitting Markov Modulated Models}
+  %\VignetteIndexEntry{Fitting Markov Modulated Point Process Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
