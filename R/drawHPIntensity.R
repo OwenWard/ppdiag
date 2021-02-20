@@ -54,6 +54,9 @@ drawHPIntensity <- function(hp = NULL , events,
         alpha <- hp$alpha
         beta <- hp$beta
       }else{
+        if(is.null(hp)){
+          stop("No object provided, set fit=TRUE to fit the events provided.")
+        }
         message("Using the hp object. Set fit = TRUE to fit events provided.")
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
@@ -78,6 +81,9 @@ drawHPIntensity <- function(hp = NULL , events,
           alpha <- hp$alpha
           beta <- hp$beta
         }else{
+          if(is.null(hp)){
+            stop("No object provided, set fit=TRUE to fit the events provided.")
+          }
           message("Using the hp object. Set fit=TRUE to fit events provided. ")
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
