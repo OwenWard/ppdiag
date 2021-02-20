@@ -221,7 +221,7 @@ intensityqqplot(object = fit_hp, events = hp_events )
 
 ```{r intqqpot mmhp, eval=FALSE}
 # this gives an error currently
-intensityqqplot(object = mmhp_obj, events = mmhp_events$events)
+intensityqqplot(object = mmhp_obj, markov_states = mmhp_events)
 ```
 
 

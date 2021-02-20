@@ -9,22 +9,24 @@
 \alias{intensityqqplot.mmhp}
 \title{Draw intensity of fitted point process and QQ-Plot of rescaled events}
 \usage{
-intensityqqplot(object, events)
+intensityqqplot(object, events, markov_states)
 
-\method{intensityqqplot}{default}(object, events)
+\method{intensityqqplot}{default}(object, events, markov_states)
 
-\method{intensityqqplot}{hp}(object, events)
+\method{intensityqqplot}{hp}(object, events, markov_states = NULL)
 
-\method{intensityqqplot}{hpp}(object, events)
+\method{intensityqqplot}{hpp}(object, events, markov_states = NULL)
 
-\method{intensityqqplot}{mmpp}(object, events)
+\method{intensityqqplot}{mmpp}(object, events = markov_states$events, markov_states)
 
-\method{intensityqqplot}{mmhp}(object, events)
+\method{intensityqqplot}{mmhp}(object, events = markov_states$events, markov_states)
 }
 \arguments{
 \item{object}{parameters for the models: hp, hpp, and mmhp}
 
 \item{events}{event times}
+
+\item{markov_states}{only for mmhp and mmpp, markov states simulation output}
 }
 \description{
 Draw the intensity and q-q plot for models
