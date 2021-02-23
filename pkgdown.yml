@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   fitting_markov_modulated: fitting_markov_modulated.html
   ppdiag: ppdiag.html
-last_built: 2021-02-23T21:26Z
+last_built: 2021-02-23T21:32Z
 urls:
   reference: https://owenward.github.io/ppdiag/reference
   article: https://owenward.github.io/ppdiag/articles
