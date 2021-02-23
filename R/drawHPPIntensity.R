@@ -43,6 +43,9 @@ drawHPPIntensity <- function(hpp = NULL,
 	      lambda <- hpp_obj$lambda
 	      n <- hpp_obj$n
 	    }else{
+	      if(is.null(hpp)){
+	        stop("No object provided, set fit=TRUE to fit the events provided.")
+	      }
 	      message("Using the hpp object. Set fit=TRUE to fit events provided. ")
 	      lambda=hpp$lambda
 	      n <- hpp$n
@@ -64,6 +67,9 @@ drawHPPIntensity <- function(hpp = NULL,
 	        lambda <- hpp_obj$lambda
 	        n <- hpp_obj$n
 	      }else{
+	        if(is.null(hpp)){
+	          stop("No object provided, set fit=TRUE to fit the events provided.")
+	        }
 	        message("Using the hpp object. Set fit=TRUE to fit events provided. ")
 	        lambda <- hpp$lambda
 	        n <- hpp$n

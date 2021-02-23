@@ -14,4 +14,8 @@ test_that("test drawHPIntensity", {
   hp_obj$events <- events
   expect_message(drawHPIntensity(hp_obj, events = NULL, fit = TRUE),"No events provided. Using the hp object.")
   expect_message(drawHPIntensity(hp_obj, events = events),"Using the hp object. Set fit=TRUE to fit events provided. ")
+
+  #test if only events is provided
+  expect_error(drawHPIntensity(events = events),"No object provided, set fit=TRUE to fit the events provided.")
+  expect_message(drawHPIntensity(events = events, fit = TRUE),"Fitting provided events.")
 })

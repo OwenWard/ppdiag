@@ -5,22 +5,23 @@
 #'
 #' @param object parameters for the models: hp, hpp, and mmhp
 #' @param events event times
+#' @param markov_states only for mmhp and mmpp, markov states simulation output 
 #' @importFrom graphics par
 #' @importFrom graphics layout
 #' @export
-intensityqqplot <- function(object, events){
+intensityqqplot <- function(object, events, markov_states){
 	UseMethod("intensityqqplot")
 }
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.default <- function(object, events) {
+intensityqqplot.default <- function(object, events, markov_states) {
   cat("Please input the right model. Select from hp, hpp, and mmhp. ")   
 }
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hp <- function(object, events) {
+intensityqqplot.hp <- function(object, events, markov_states = NULL) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
@@ -34,7 +35,7 @@ intensityqqplot.hp <- function(object, events) {
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.hpp <- function(object, events) {
+intensityqqplot.hpp <- function(object, events, markov_states = NULL) {
 	
   layout(mat = matrix(c(1, 2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
@@ -50,27 +51,27 @@ intensityqqplot.hpp <- function(object, events) {
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.mmpp <- function(object, events) {
+intensityqqplot.mmpp <- function(object, events = markov_states$events, markov_states) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
-  drawUniMMPPIntensity(mmpp = object, 
+  drawUniMMPPIntensity(mmpp = object, simulation = markov_states,
                        add=FALSE)  
 }
 
 #' @rdname intensityqqplot
 #' @export
-intensityqqplot.mmhp <- function(object, events) {
+intensityqqplot.mmhp <- function(object, events = markov_states$events, markov_states) {
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
   par(mar = c(2, 2, 1, 1))
-  drawUniMMHPIntensity(mmhp = object, 
+  drawUniMMHPIntensity(mmhp = object, simulation = markov_states,
                        add=FALSE)  
 }
 
