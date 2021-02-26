@@ -1,3 +1,11 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Updated the URL in readme which had been moved.
+* Added a reference in Description describe the method being used more clearly.
+
+
 ## Test environments
 * local Windows R 4.0.4
 * ubuntu 20.04 (github actions) R 4.0.4
