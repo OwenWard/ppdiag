@@ -18,7 +18,7 @@
 #' @return no return value, intensity plot of homogeneous Poisson process
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' pois_y <- pp_hpp(lambda = 1)
 #' drawHPPIntensity(pois_y, events = pp_simulate(pois_y,end=10), color = "red")
 #' }

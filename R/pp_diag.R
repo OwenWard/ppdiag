@@ -13,7 +13,7 @@
 #'  and raw residuals.
 #' @export
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' hpp_obj <- pp_hpp(lambda = 1)
 #' events <- pp_simulate(hpp_obj, end=10)
 #' pp_diag(hpp_obj, events)
