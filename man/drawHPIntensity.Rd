@@ -15,7 +15,8 @@ drawHPIntensity(
   i = 1,
   add = FALSE,
   fit = FALSE,
-  plot_events = TRUE
+  plot_events = TRUE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ for drawUniMMHPIntensity}
 \item{fit}{a boolean indicating whether to fit a new HP to events}
 
 \item{plot_events}{indicate whether events will be plotted}
+
+\item{verbose}{whether to output informative messages as running}
 }
 \value{
 no return value, intensity plot of Hawkes process
@@ -49,9 +52,7 @@ no return value, intensity plot of Hawkes process
 Draw the intensity of a Hawkes Process
 }
 \examples{
-\donttest{
 hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
 events <- pp_simulate(hp_obj, start = 0, end = 20)
 drawHPIntensity(hp_obj,events)
-}
 }

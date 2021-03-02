@@ -41,6 +41,10 @@ fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
   con_mat[1:3, 1:3] <- diag(1, nrow = 3) # constraint all positive
   con_mat[4,] <- c(0, -1, 1) # constrain beta > alpha
   const <- rep(0, 4)
+  start <- 0
+  if(start == end){
+    stop("Start and end time are equal.")
+  }
 	hawkes.par <- constrOptim(vec, f = negloglik_hp, 
                     events = events, end = end, 
                     ui = con_mat,
@@ -50,12 +54,9 @@ fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
     b <- hawkes.par$par[3]
     c <- hawkes.par$convergence[1]
     i <- 1
-    while(a>=b){
-      if(c==51 || c==52){
-        message(hawkes.par$message)
-      }
-      else if(c==1){
-        #if maxit reached, then we automatically refit
+    while(a >= b){
+      if(c==1 | c == 10){
+        #if maxit reached or degeneracy, then we automatically refit
         hawkes.par <- constrOptim(par = vec, fn = negloglik_hp, 
                          events = events, end = max(events), 
                          control = list(maxit = 1000),
@@ -68,9 +69,7 @@ fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
       }
       else{
         #if maxit not reached but a>=b, 
-        # then we tell the user that we are refitting
-        message("A stationary hawkes process requires alpha < beta. 
-                Now refitting.")
+        # then we refit
         hawkes.par <- constrOptim(par = vec, fn = negloglik_hp, 
                                   events = events, end = max(events), 
                                   control = list(maxit = 1000),
@@ -82,8 +81,8 @@ fithp <- function(events, end = max(events), vec = c(0.1, 0.2, 0.3)){
         c <- hawkes.par$convergence[1]
       }
       i <- i + 1
-      if(i>10){
-        stop("Refitting exceeded 10 times. Try a different initial vector. ")
+      if(i > 10){
+        stop("No solution after 10 attempts. Try a different initial vector")
       }
     }
     hp_object <-  list(lambda0 = hawkes.par$par[1], 
