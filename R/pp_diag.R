@@ -33,6 +33,8 @@ pp_diag.default <- function(object, events) {
 #' @export
 pp_diag.hp<-function(object, events){
   r <- pp_compensator(object, events)
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2),
          heights = c(2, 2),
          widths = c(2, 2))
@@ -52,6 +54,8 @@ pp_diag.hp<-function(object, events){
 #' @export
 pp_diag.mmhp <- function(object, events){
   r <- pp_compensator(object, events)
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
@@ -70,6 +74,8 @@ pp_diag.mmhp <- function(object, events){
 #' @export
 pp_diag.mmpp <- function(object, events){
   r <- pp_compensator(object, events)
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   layout(mat = matrix(c(1,2), nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))
@@ -88,6 +94,8 @@ pp_diag.mmpp <- function(object, events){
 #' @export
 pp_diag.hpp<-function(object, events){
   r <- pp_compensator(object, events)
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   par(mar = c(2, 2, 1, 1))

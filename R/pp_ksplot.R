@@ -22,6 +22,8 @@ pp_ksplot <- function(r, ...) {
   if(min(r) < 0) {
     stop("Incorrect interevent times provided")
   }
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par <- list(...)
   if ("title" %in% names(par)) {
     title <- par$title
