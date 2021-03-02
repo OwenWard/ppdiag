@@ -13,11 +13,9 @@
 #'  and raw residuals.
 #' @export
 #' @examples 
-#' \donttest{
 #' hpp_obj <- pp_hpp(lambda = 1)
-#' events <- pp_simulate(hpp_obj, end=10)
+#' events <- pp_simulate(hpp_obj, end=50)
 #' pp_diag(hpp_obj, events)
-#' }
 
 pp_diag <- function(object, events) {
   UseMethod("pp_diag")

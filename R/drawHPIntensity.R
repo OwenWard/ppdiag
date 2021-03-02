@@ -112,7 +112,7 @@ drawHPIntensity <- function(hp = NULL , events,
                    ylab = "Intensity",main = int_title)
     if(plot_events==TRUE){
       for(j in seq_along(events)){
-        graphics::points(x=events[j],y=0,pch=1,col="blue")
+        graphics::points(x=events[j],y = 0, pch = 1, col = "blue")
       }
     }
     
@@ -130,11 +130,14 @@ drawHPIntensity <- function(hp = NULL , events,
       }
     } else {
       if (i == 1) {
+        lambda.n <- function(s) lambda0 + 
+          alpha * sum(exp(-beta * (rep(s, m) - history)))
+        new.lambda.n <- Vectorize(lambda.n)
         graphics::segments(x0 = start, x1 = events[1], 
                            y0 = lambda0, col = color)
         segments(x0 = events[1],
                  y0 = lambda0,
-                 y1 = lambda0 + alpha,
+                 y1 = lambda.n(end),
                  col = color)
       } else {
         lambda.n <- function(s) lambda0 + 
@@ -146,7 +149,7 @@ drawHPIntensity <- function(hp = NULL , events,
                         to = events[1], add = TRUE, col = color)
         segments(x0 = events[1], 
                  y0 = lambda.n(events[1]),
-                 y1 = lambda.n(events[1]) + alpha, col = color)
+                 y1 = lambda.n(events[1]) + alpha, col =  color)
       }
       if (n > 1) {
         for (j in 1:(n - 1)) {
@@ -156,7 +159,8 @@ drawHPIntensity <- function(hp = NULL , events,
           curve(new.lambda.n, from = events[j], to = events[j + 1],
                 add = TRUE, col = color)
           segments(x0 = events[j + 1], y0 = lambda.n(events[j + 1]),
-                   y1 = lambda.n(events[j + 1]) + alpha, col = color)
+                   y1 = lambda.n(events[j + 1]) + alpha, 
+                   col = color)
         }
       }
       lambda.n <- function(s) lambda0 + 
@@ -164,13 +168,6 @@ drawHPIntensity <- function(hp = NULL , events,
       new.lambda.n <- Vectorize(lambda.n)
       curve(new.lambda.n, from = events[n], to = end, add = TRUE, col = color)
       segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
-      # if (t[n]==end){
-      #   max=c(max,new.lambda.n(end))
-      # }
-      # else{
-      #   max=c(max,optimize(new.lambda.n, interval=c(t[n], end),
-      # maximum=TRUE)$objective)
-      # }
     }
     legend("topleft", c("Events", "Intensity"),
            col = c("blue", "black"), 
@@ -197,10 +194,14 @@ drawHPIntensity <- function(hp = NULL , events,
       }
     } else {
       if (i == 1) {
+        lambda.n <- function(s) lambda0 + 
+          alpha * sum(exp(-beta * (rep(s, m) - history)))
+        new.lambda.n <- Vectorize(lambda.n)
         graphics::segments(x0 = start, x1 = events[1],
                            y0 = lambda0, col = color)
         segments(x0 = events[1], y0 = lambda0,
-                 y1 = lambda0 + alpha, col = color)
+                 y1 = lambda0 + alpha,
+                 col = color)
       } else {
         lambda.n <- function(s) lambda0 + 
           alpha * sum(exp(-beta * (rep(s, m) - history)))
@@ -209,8 +210,9 @@ drawHPIntensity <- function(hp = NULL , events,
                  lty = 2, col = color)
         graphics::curve(new.lambda.n, from = start, to = events[1],
                         add = TRUE, col = color)
-        segments(x0 = events[1], y0 = lambda.n(events[1]),
-                 y1 = lambda.n(events[1]) + alpha, col = color)
+        segments(x0 = events[1],
+                 y0 = lambda.n(events[1]),
+                 y1 = lambda.n(events[1]) + 2*alpha, col = color)
       }
       if (n > 1) {
         for (j in 1:(n - 1)) {
@@ -220,16 +222,29 @@ drawHPIntensity <- function(hp = NULL , events,
           curve(new.lambda.n, from = events[j], to = events[j + 1],
                 add = TRUE, col = color)
           segments(x0 = events[j + 1], y0 = lambda.n(events[j + 1]),
-                   y1 = lambda.n(events[j + 1]) + alpha, col = color)
+                   y1 = lambda.n(events[j + 1]) + alpha,
+                   col = color)
         }
+        lambda.n <- function(s) lambda0 + 
+          alpha * sum(exp(-beta * (rep(s, m + 1) - c(history, events[1]))))
+        new.lambda.n <- Vectorize(lambda.n)
+        segments(x0 = events[1], y0 = lambda0,
+                 y1 = lambda.n(events[1]), col = color)
       }
       lambda.n <- function(s) lambda0 + 
         alpha * sum(exp(-beta * (rep(s, m + n) - c(history, events[1:n]))))
       new.lambda.n <- Vectorize(lambda.n)
-      curve(new.lambda.n, from = events[n], to = end, add = TRUE, col = color)
-      segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, 
-               lty = 2, col = color)
+      curve(new.lambda.n, from = events[n], to = end,
+            add = TRUE,
+            col = color)
+      if(n == 1) {
+        segments(x0 = events[n], y0 = lambda0 + alpha,
+                 y1 = lambda.n(events[n]), col = color) 
+      }
+      segments(x0 = end, y0 = lambda.n(end),
+               y1 = lambda0, 
+               lty = 2,
+               col = color)
     }
   }
-  
 }
