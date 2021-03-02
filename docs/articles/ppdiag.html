@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppdiag</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
 
       
 
-      </header><script src="ppdiag_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="ppdiag_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>
@@ -299,18 +299,15 @@
 <p><code><a href="../reference/drawHPPIntensity.html">drawHPPIntensity(hpp, events)</a></code> plots the intensity of a homogeneous Poisson process.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events <span class="op">=</span> <span class="va">hpp_events</span>,
-                 color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
-<span class="co">#&gt; Using the hpp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+                 color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-11-1.png" width="384"></p>
 <p>Similarly, <code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, events)</a></code> plots the intensity of a Hawkes process.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">)</span>
-<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-12-1.png" width="384"></p>
 <p>To plot the fitted intensity on the input events, set <code>fit=TRUE</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">hp_events</span>, fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Fitting provided events.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">hp_events</span>, fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-13-1.png" width="384"></p>
 <p>Similarly, <code><a href="../reference/drawUniMMHPIntensity.html">drawUniMMHPIntensity(mmhp, mmhp_events)</a></code> plots the intensity of a Markov modulated Hawkes process, with a similar function for Markov modulated Poisson processes. This requires both the point process object and the output from <code>pp_simulate</code> which describes the latent process.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -328,12 +325,11 @@
 <code>intensityqqplot</code> displays the estimated intensity of a given point process along with a QQ-plot of the rescaled inter-event times. These together can often be useful in identifying issues with model fit for a chosen point process.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span> <span class="op">)</span>
-<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span> <span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/intensityqqplot-1.png" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># this gives an error currently</span>
-<span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">mmhp_obj</span>, events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">mmhp_obj</span>, markov_states <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="residual-analysis" class="section level3">
 <h3 class="hasAnchor">
