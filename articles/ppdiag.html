@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,12 +39,6 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/ppdiag.html">Get started</a>
 </li>
@@ -77,7 +73,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>
 <code>ppdiag</code>, diagnostic tools for temporal Point Processes</h1>
-                        <h4 class="author">Sally Sun, Owen G. Ward, Xiaoxi Zhao, Jing Wu, Tian Zheng.</h4>
+                        <h4 data-toc-skip class="author">Sally Sun, Owen G. Ward, Xiaoxi Zhao, Jing Wu, Tian Zheng.</h4>
             
       
       
@@ -89,7 +85,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># remotes::install_github("OwenWard/ppdiag")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span></code></pre></div>
 <p>This vignette provides an introduction to the functions available in <code>ppdiag</code> to evaluate the fit of univariate temporal point processes.</p>
 <p>To achieve this, we currently include a range of functions which allow a user to:</p>
 <ul>
@@ -141,9 +137,9 @@
 <li>Markov Modulated Poisson Process: <code><a href="../reference/pp_mmpp.html">pp_mmpp(lambda0, lambda1, alpha, beta, Q, delta)</a></code> creates an <code>mmpp</code> object.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">mmpp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmpp.html">pp_mmpp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
+<span class="va">mmpp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmpp.html">pp_mmpp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
           lambda0 <span class="op">=</span> <span class="fl">0.8</span>,
           c <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span>
 
@@ -172,7 +168,7 @@
 </ul>
 <p><code><a href="../reference/pp_mmhp.html">pp_mmhp(lambda0, lambda1, alpha, beta, Q, delta)</a></code> creates an <code>mmhp</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmhp.html">pp_mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
+<code class="sourceCode R"><span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_mmhp.html">pp_mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
           lambda0 <span class="op">=</span> <span class="fl">0.2</span>,
           lambda1 <span class="op">=</span> <span class="fl">.75</span>,
           alpha <span class="op">=</span> <span class="fl">0.1</span>,
@@ -212,14 +208,12 @@
 <p>For example, we can simulate events up to a specified end time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hpp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; Simulating up to endtime. To simulate n events specify n.</span>
 <span class="va">hpp_events</span>
 <span class="co">#&gt; [1] 1.178415 2.534481 3.128104 6.003689 6.761803 7.487947 7.695707 8.689093</span>
 <span class="co">#&gt; [9] 9.293207</span></code></pre></div>
 <p>Alternatively, we can specify the number of events we wish to simulate.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-<span class="co">#&gt; 20 events simulated. To simulate up to endtime set n=NULL.</span>
 <span class="va">hp_events</span>
 <span class="co">#&gt;  [1]  0.9400185  1.1191265  2.1612737  2.5946876  3.5797847  3.9387649</span>
 <span class="co">#&gt;  [7]  4.2368953  4.4670930  5.8820189  7.0152093  7.0853348  7.1232218</span>
@@ -274,7 +268,6 @@
 <p>Similarly, <code><a href="../reference/fithp.html">fithp(hp_events)</a></code> returns an object of class <code>hp</code>, estimating the three parameters of the Hawkes process from <code>hp_events</code> using <code>constrOptim</code>. This ensures that the returned solution (if one can be obtained), satisfies the stationary condition of a Hawkes process.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, n <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="co">#&gt; 500 events simulated. To simulate up to endtime set n=NULL.</span>
 <span class="va">fit_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithp.html">fithp</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">)</span>
 <span class="va">fit_hp</span><span class="op">$</span><span class="va">lambda0</span>
 <span class="co">#&gt; [1] 0.4666573</span>
@@ -299,18 +292,15 @@
 <p><code><a href="../reference/drawHPPIntensity.html">drawHPPIntensity(hpp, events)</a></code> plots the intensity of a homogeneous Poisson process.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/drawHPPIntensity.html">drawHPPIntensity</a></span><span class="op">(</span><span class="va">fit_hpp</span>, events <span class="op">=</span> <span class="va">hpp_events</span>,
-                 color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
-<span class="co">#&gt; Using the hpp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+                 color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-11-1.png" width="384"></p>
 <p>Similarly, <code><a href="../reference/drawHPIntensity.html">drawHPIntensity(hp, events)</a></code> plots the intensity of a Hawkes process.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">)</span>
-<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-12-1.png" width="384"></p>
 <p>To plot the fitted intensity on the input events, set <code>fit=TRUE</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">hp_events</span>, fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Fitting provided events.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">hp_events</span>, fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/unnamed-chunk-13-1.png" width="384"></p>
 <p>Similarly, <code><a href="../reference/drawUniMMHPIntensity.html">drawUniMMHPIntensity(mmhp, mmhp_events)</a></code> plots the intensity of a Markov modulated Hawkes process, with a similar function for Markov modulated Poisson processes. This requires both the point process object and the output from <code>pp_simulate</code> which describes the latent process.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -328,8 +318,7 @@
 <code>intensityqqplot</code> displays the estimated intensity of a given point process along with a QQ-plot of the rescaled inter-event times. These together can often be useful in identifying issues with model fit for a chosen point process.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span> <span class="op">)</span>
-<span class="co">#&gt; Using the hp object. Set fit=TRUE to fit events provided.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/intensityqqplot.html">intensityqqplot</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_hp</span>, events <span class="op">=</span> <span class="va">hp_events</span> <span class="op">)</span></code></pre></div>
 <p><img src="ppdiag_files/figure-html/intensityqqplot-1.png" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># this gives an error currently</span>
@@ -423,11 +412,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
+  <p></p>
+<p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
@@ -435,6 +426,8 @@
 
   
 
+
+  
 
   </body>
 </html>
