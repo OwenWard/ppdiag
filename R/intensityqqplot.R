@@ -22,6 +22,8 @@ intensityqqplot.default <- function(object, events, markov_states) {
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hp <- function(object, events, markov_states = NULL) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))     
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2), heights = c(2, 2),
          widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
@@ -36,7 +38,8 @@ intensityqqplot.hp <- function(object, events, markov_states = NULL) {
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.hpp <- function(object, events, markov_states = NULL) {
-	
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar)) 
   layout(mat = matrix(c(1, 2), nrow = 1, ncol = 2),
          heights = c(2, 2), widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
@@ -52,6 +55,8 @@ intensityqqplot.hpp <- function(object, events, markov_states = NULL) {
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.mmpp <- function(object, events = markov_states$events, markov_states) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar)) 
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  
@@ -65,6 +70,8 @@ intensityqqplot.mmpp <- function(object, events = markov_states$events, markov_s
 #' @rdname intensityqqplot
 #' @export
 intensityqqplot.mmhp <- function(object, events = markov_states$events, markov_states) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar)) 
   layout(mat = matrix(c(1,2),nrow = 1, ncol = 2),
          heights = c(2, 2),widths = c(2, 2))
   r <- pp_compensator(object = object, events = events)  

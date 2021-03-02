@@ -42,11 +42,14 @@ for drawUniMMHPIntensity}
 
 \item{plot_events}{indicate whether events will be plotted}
 }
+\value{
+A plot of the estimated intensity function.
+}
 \description{
 Draw the intensity of a Hawkes Process
 }
 \examples{
-\dontrun{
+\donttest{
 hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
 events <- pp_simulate(hp_obj, start = 0, end = 20)
 drawHPIntensity(hp_obj,events)
