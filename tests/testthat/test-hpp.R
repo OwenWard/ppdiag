@@ -27,9 +27,11 @@ test_that("test hpp", {
                "n must be positive for simulation.")
   
   #test for messages
-  expect_message(simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3, n = 9),
+  expect_message(simulatehpp(pp_hpp(lambda = 1),
+                             start = 2, end = 3, n = 9, verbose = TRUE),
                  "9 events simulated. To simulate up to an endtime set n=NULL.")
-  expect_message(simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3),
+  expect_message(simulatehpp(pp_hpp(lambda = 1), start = 2,
+                             end = 3, verbose = TRUE),
                  "Simulating up to endtime. To simulate n events specify n.")
   set.seed(100)
   y <- simulatehpp(pp_hpp(lambda = 1), start = 2, end = 3, n = 9)

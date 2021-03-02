@@ -212,14 +212,12 @@
 <p>For example, we can simulate events up to a specified end time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hpp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hpp_obj</span>, end <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; Simulating up to endtime. To simulate n events specify n.</span>
 <span class="va">hpp_events</span>
 <span class="co">#&gt; [1] 1.178415 2.534481 3.128104 6.003689 6.761803 7.487947 7.695707 8.689093</span>
 <span class="co">#&gt; [9] 9.293207</span></code></pre></div>
 <p>Alternatively, we can specify the number of events we wish to simulate.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, start <span class="op">=</span> <span class="fl">0</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-<span class="co">#&gt; 20 events simulated. To simulate up to endtime set n=NULL.</span>
 <span class="va">hp_events</span>
 <span class="co">#&gt;  [1]  0.9400185  1.1191265  2.1612737  2.5946876  3.5797847  3.9387649</span>
 <span class="co">#&gt;  [7]  4.2368953  4.4670930  5.8820189  7.0152093  7.0853348  7.1232218</span>
@@ -274,7 +272,6 @@
 <p>Similarly, <code><a href="../reference/fithp.html">fithp(hp_events)</a></code> returns an object of class <code>hp</code>, estimating the three parameters of the Hawkes process from <code>hp_events</code> using <code>constrOptim</code>. This ensures that the returned solution (if one can be obtained), satisfies the stationary condition of a Hawkes process.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, n <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="co">#&gt; 500 events simulated. To simulate up to endtime set n=NULL.</span>
 <span class="va">fit_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithp.html">fithp</a></span><span class="op">(</span><span class="va">hp_events</span><span class="op">)</span>
 <span class="va">fit_hp</span><span class="op">$</span><span class="va">lambda0</span>
 <span class="co">#&gt; [1] 0.4666573</span>

@@ -9,17 +9,17 @@
 \alias{pp_simulate.mmhp}
 \title{Simulate events from a temporal point process}
 \usage{
-pp_simulate(object, start = 0, end = 1, n = NULL)
+pp_simulate(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 
-\method{pp_simulate}{default}(object, start = 0, end = 1, n = NULL)
+\method{pp_simulate}{default}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 
-\method{pp_simulate}{hpp}(object, start = 0, end = 1, n = NULL)
+\method{pp_simulate}{hpp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 
-\method{pp_simulate}{hp}(object, start = 0, end = 1, n = NULL)
+\method{pp_simulate}{hp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 
-\method{pp_simulate}{mmpp}(object, start = 0, end = 1, n = NULL)
+\method{pp_simulate}{mmpp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 
-\method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL)
+\method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 }
 \arguments{
 \item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
@@ -31,6 +31,8 @@ models}
 
 \item{n}{number of events simulated. Required for Markov modulated models, 
 optional otherwise}
+
+\item{verbose}{whether to output informative messages as running}
 }
 \value{
 a vector of event times for all models. For Markov modulated models,

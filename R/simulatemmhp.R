@@ -14,6 +14,7 @@
 #'              - z: the states of Markov Process,
 #'              - x: time of each transition of Markov process
 #'              - ending: preset ending time for the process
+#' @param verbose whether to output informative messages as running
 #' @param ... other arguments.
 #' @importFrom stats rexp
 #'
@@ -28,7 +29,7 @@
 #'  alpha = 0.8, beta = 1.2)
 #' simulatemmhp(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
-                         states = NULL, ...) {
+                         states = NULL, verbose = FALSE, ...) {
   # if(!is.null(mmhp$events)){
   #   stop("Event time already in the mmhp object.")
   # }
@@ -49,7 +50,9 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
   
   old_events <- mmhp$events
   if(!is.null(old_events)){
-    message("Events in the mmhp object will be overwritten by simulated events.")
+    if(verbose == TRUE) {
+      message("Events in the mmhp object will be overwritten by simulated events.") 
+    }
   }
   
   if(alpha > beta) {
@@ -110,7 +113,6 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
           j <- j + length(hp)
-          ## should this increment regardless?
         }
       }
 
@@ -186,7 +188,7 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
         }
       }
     }
-    message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
+    # message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     mmhp$events <- events[1:(j - 1)][events[1:(j - 1)] <= ending]
     return(list(events = mmhp$events,
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending])

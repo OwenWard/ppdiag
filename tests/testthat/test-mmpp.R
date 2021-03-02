@@ -16,7 +16,8 @@ test_that("test mmpp", {
   Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
   x <- pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
   x$events <- c(0,1,2)
-  expect_message(simulatemmpp(x, n = 10),"Events in the mmpp object will be overwritten by simulated events.")
+  expect_message(simulatemmpp(x, n = 10, verbose = TRUE),
+                 "Events in the mmpp object will be overwritten by simulated events.")
   
   # invalid delta
   Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)

@@ -14,6 +14,7 @@
 #'              - z: the states of Markov Process,
 #'              - x: time of each transition of Markov process
 #'              - ending: preset ending time for the process
+#' @param verbose whether to output informative messages as running
 #' @param ... other arguments.
 #' @importFrom stats rexp
 #'
@@ -27,7 +28,7 @@
 #' x <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.2)
 #' simulatemmpp(x, n = 10)
 simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
-                         states = NULL, ...) {
+                         states = NULL, verbose = FALSE, ...) {
   ## check c > 0
   # if(!is.null(mmhp$events)){
   #   stop("Event time already in the mmhp object.")
@@ -48,7 +49,9 @@ simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
   
   old_events <- mmpp$events
   if(!is.null(old_events)){
-    message("Events in the mmpp object will be overwritten by simulated events.")
+    if(verbose == TRUE) {
+      message("Events in the mmpp object will be overwritten by simulated events.") 
+    }
   }
   if(is.null(Q)) {
     stop("No Q matrix specified")
@@ -162,7 +165,8 @@ simulatemmpp <- function(mmpp, n = 1, start = 0, given_state = FALSE,
         }
       }
     }
-    message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
+    # old message
+    # message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     mmpp$events <- events[1:(j - 1)][events[1:(j - 1)] <= ending]
     return(list(events = mmpp$events,
                 zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending]) )

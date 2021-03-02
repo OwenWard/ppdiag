@@ -1,13 +1,14 @@
 test_that("test pp_simulate", {
   
   ## tests for hpp
-  expect_message(pp_simulate(pp_hpp(lambda = 1), start = 2,end = 3, n = 5),
+  expect_message(pp_simulate(pp_hpp(lambda = 1), start = 2,
+                             end = 3, n = 5, verbose = TRUE),
                  "5 events simulated. To simulate up to an endtime set n=NULL.")
-  expect_message(pp_simulate(pp_hpp(lambda = 1), start = 2, end = 3),
+  expect_message(pp_simulate(pp_hpp(lambda = 1), start = 2, end = 3, verbose = TRUE),
                  "Simulating up to endtime. To simulate n events specify n.")
   expect_message(pp_simulate(pp_hpp(lambda = 1, events = c(1)),
                              start = 2, 
-                             end = 3),
+                             end = 3, verbose = TRUE),
                  "Events in the hpp object will be overwritten by simulated events.")
   expect_null(pp_simulate(pp_hpp(lambda = 1), start = 0, end = -1))
   expect_null(pp_simulate(pp_hpp(lambda = 1), start = 0, end = 0))
@@ -20,9 +21,9 @@ test_that("test pp_simulate", {
   
   ## tests for hp
   hp_obj <- pp_hp(1.5, 0.1, 0.2)
-  expect_message(pp_simulate(hp_obj, start = 2, end = 3, n = 10),
+  expect_message(pp_simulate(hp_obj, start = 2, end = 3, n = 10, verbose = TRUE),
                  "10 events simulated. To simulate up to endtime set n=NULL.")
-  expect_message(pp_simulate(hp_obj,start = 2, end = 3),
+  expect_message(pp_simulate(hp_obj,start = 2, end = 3, verbose = TRUE),
                  "Simulating up to endtime. To simulate n events specify n.")
   expect_null(pp_simulate(hp_obj, start = 2, end = 2))
   expect_null(pp_simulate(hp_obj, start = 2, end = 1))
@@ -52,7 +53,7 @@ test_that("test pp_simulate", {
                                 alpha = 0.1, beta = 0.5, delta = c(0.5, 0.5),
                                 Q = matrix(c(-0.4, 0.4, 0.2, -0.2),
                                            ncol = 2, byrow = TRUE),
-                                events = c(1,2,3))),
+                                events = c(1,2,3)), verbose = TRUE),
                "Events in the mmhp object will be overwritten by simulated events.")
   
   

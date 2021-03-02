@@ -4,6 +4,7 @@
 #' @param start start time of events simulated
 #' @param end end time of events simulated
 #' @param n number of events
+#' @param verbose whether to output informative messages as running
 #' @importFrom stats runif
 #' @importFrom stats rpois
 #' @return a vector of length n
@@ -14,10 +15,12 @@
 #'
 
 simulatehpp <- function(hpp, start = 0,
-                        end = NULL, n = NULL){
+                        end = NULL, n = NULL, verbose = FALSE){
   old_events <- hpp$events
   if(!is.null(old_events)){
-    message("Events in the hpp object will be overwritten by simulated events.")
+    if(verbose == TRUE) {
+      message("Events in the hpp object will be overwritten by simulated events.") 
+    }
   }
   
   if(!is.null(start) && !is.null(end)){
@@ -33,8 +36,10 @@ simulatehpp <- function(hpp, start = 0,
       stop("n must be positive for simulation.")
     }
     if(!is.null(end)){
-      message(paste(n, " events simulated. To simulate up to an endtime set n=NULL.",
-                    sep=""))
+      if(verbose == TRUE) {
+        message(paste(n, " events simulated. To simulate up to an endtime set n=NULL.",
+                      sep="")) 
+      }
     }
     events <- cumsum(c(0,-log(runif(n))/lambda))
     hpp$events <- events[2:length(events)]
@@ -43,8 +48,9 @@ simulatehpp <- function(hpp, start = 0,
     if(is.null(end)){
       stop("Specify either endtime or n to simulate events. ")
     }else{
-      message("Simulating up to endtime. To simulate n events specify n.")
-      
+      if(verbose == TRUE) {
+        message("Simulating up to endtime. To simulate n events specify n.") 
+      }
       u <- runif(1)
       while(u==0){
         u <- runif(1)
@@ -62,6 +68,5 @@ simulatehpp <- function(hpp, start = 0,
       hpp$events <- sort(events)
       return (hpp$events)
     }
-
   }
 }

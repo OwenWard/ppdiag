@@ -23,7 +23,8 @@ test_that("test mmhp", {
   x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
                alpha = 0.8, beta = 1.2)
   x$events <- c(0,1,2)
-  expect_message(simulatemmhp(x, n = 10),"Events in the mmhp object will be overwritten by simulated events.")
+  expect_message(simulatemmhp(x, n = 10, verbose = TRUE),
+                 "Events in the mmhp object will be overwritten by simulated events.")
   
   # invalid delta
   x <- pp_mmhp(Q, delta = c(1 / 3, 1 / 3), lambda0 = 0.9, lambda1 = 1.1,

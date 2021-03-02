@@ -10,6 +10,7 @@
 #' @param start start time of the Hawkes process
 #' @param end end time of the Hawkes process
 #' @param n number of events
+#' @param verbose whether to output informative messages as running
 #' @importFrom stats runif
 #' @return simulated Hawkes Process
 #' @noRd
@@ -19,10 +20,12 @@
 
 simulatehp <- function(hp, start = 0,
                        end = NULL, history = NULL,
-                       n = NULL) {
+                       n = NULL, verbose = FALSE) {
   old_events <- hp$events
   if(!is.null(old_events)){
-    message("Events in the hp object will be overwritten by simulated events.")
+    if(verbose == TRUE) {
+      message("Events in the hp object will be overwritten by simulated events.") 
+    }
   }
   lambda0 <- hp$lambda0
   alpha <- hp$alpha
@@ -59,7 +62,9 @@ simulatehp <- function(hp, start = 0,
       stop("n must be positive for simulation.")
     }
     if(!is.null(end)){
-      message(paste(n,"events simulated. To simulate up to endtime set n=NULL."))
+      if(verbose == TRUE) {
+        message(paste(n,"events simulated. To simulate up to endtime set n=NULL.")) 
+      }
     }
     repeat {
       if (i > n) {
@@ -102,7 +107,9 @@ simulatehp <- function(hp, start = 0,
     if(is.null(end)){
       stop("Specify either endtime or n to simulate events. ")
     }else{
-      message("Simulating up to endtime. To simulate n events specify n.")
+      if(verbose == TRUE) {
+        message("Simulating up to endtime. To simulate n events specify n.") 
+      }
     }
     repeat {
       if (ti > end) {
