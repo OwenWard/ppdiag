@@ -17,6 +17,7 @@
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom graphics points
+#' @return no return value, intensity plot of Hawkes process
 #' @export
 #' @examples
 #' \dontrun{

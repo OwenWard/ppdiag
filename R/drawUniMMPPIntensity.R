@@ -15,7 +15,7 @@
 #' @importFrom graphics plot
 #' @importFrom graphics points
 #' @importFrom graphics legend
-
+#' @return no return value, intensity plot of Markov-modulated Poisson process
 #' @export
 #' @examples
 #' \dontrun{

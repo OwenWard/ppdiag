@@ -7,7 +7,7 @@
 #' @param ... other arguments for plots
 #' @importFrom stats ecdf
 #' @importFrom stats pexp
-
+#' @return no return value, KS plot for rescaled-inter-event-times and exponential cdf curve
 #' @export
 
 pp_ksplot <- function(r, ...) {

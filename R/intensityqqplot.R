@@ -8,6 +8,7 @@
 #' @param markov_states only for mmhp and mmpp, markov states simulation output 
 #' @importFrom graphics par
 #' @importFrom graphics layout
+#' @return no return value, intensity and qq-plot in a single plot
 #' @export
 intensityqqplot <- function(object, events, markov_states){
 	UseMethod("intensityqqplot")

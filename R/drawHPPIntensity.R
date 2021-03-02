@@ -2,7 +2,7 @@
 #'
 #' Draw the intensity for a homogeneous Poisson process
 #'
-#' @param hpp object for homogeneous poisson process
+#' @param hpp object for homogeneous Poisson process
 #' @param events event times input
 #' @param color a specification for the default plotting color.
 #' @param plot_events a boolean indicating whether input events will be plotted
@@ -15,6 +15,7 @@
 #' @importFrom graphics plot
 #' @importFrom graphics abline
 #' @importFrom graphics points
+#' @return no return value, intensity plot of homogeneous Poisson process
 #' @export
 #' @examples
 #' \dontrun{

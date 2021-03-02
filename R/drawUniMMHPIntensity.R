@@ -17,7 +17,7 @@
 #' @importFrom graphics points
 #' @importFrom graphics legend
 #' @importFrom graphics segments
-
+#' @return no return value, intensity plot of Markov-modulated Hawkes process
 #' @export
 #' @examples
 #' \dontrun{

@@ -31,6 +31,9 @@ for the limits and log-scaling of the x-axis from the previous plot.
  Taken as FALSE (with a warning if a different value is supplied) 
  if no graphics device is open.}
 }
+\value{
+no return value, intensity plot of Markov-modulated Hawkes process
+}
 \description{
 Take a mmhp object and draw its intensity accordingly
 }

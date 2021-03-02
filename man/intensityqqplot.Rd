@@ -28,6 +28,9 @@ intensityqqplot(object, events, markov_states)
 
 \item{markov_states}{only for mmhp and mmpp, markov states simulation output}
 }
+\value{
+no return value, intensity and qq-plot in a single plot
+}
 \description{
 Draw the intensity and q-q plot for models
 }

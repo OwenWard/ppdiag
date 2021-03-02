@@ -30,6 +30,9 @@ for the limits and log-scaling of the x-axis from the previous plot.
 
 \item{int_title}{title of the plot.}
 }
+\value{
+no return value, intensity plot of Markov-modulated Poisson process
+}
 \description{
 Take a mmpp object and draw its intensity accordingly
 }
