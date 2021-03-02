@@ -15,15 +15,13 @@
 #' @importFrom graphics plot
 #' @importFrom graphics points
 #' @importFrom graphics legend
-
+#' @return no return value, intensity plot of Markov-modulated Poisson process
 #' @export
 #' @examples
-#' \dontrun{
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.2)
 #' y <- pp_simulate(x, n = 10)
 #' drawUniMMPPIntensity(x, y)
-#' }
 drawUniMMPPIntensity <- function(mmpp, simulation, 
                                  add = FALSE, color = 1, fit = FALSE,
                                  int_title = "Intensity Plot of MMPP") {

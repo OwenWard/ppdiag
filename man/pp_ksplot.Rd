@@ -11,6 +11,9 @@ pp_ksplot(r, ...)
 
 \item{...}{other arguments for plots}
 }
+\value{
+no return value, KS plot for rescaled-inter-event-times and exponential cdf curve
+}
 \description{
 Plot empirical cdf plot for rescaled-inter-event-times and
  exponential cdf as a reference curve

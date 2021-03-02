@@ -2,8 +2,14 @@
 
 This is a resubmission. In this version I have:
 
-* Updated the URL in readme which had been moved.
-* Added a reference in Description describing the method used more clearly.
+* Completed the changes requested by Gregor Sayer.
+* Added missing return value for all plotting functions.
+* Removed \dontrun{} around corresponding plotting examples
+* Introduced a verbose option where needed so that all
+non stop messages in functions are
+only printed to the console if verbose is TRUE (default FALSE)
+* used on.exit to restore user par options are not changed outside of functions
+where it is required.
 
 
 ## Test environments

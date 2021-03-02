@@ -7,7 +7,7 @@
 #' @param ... other arguments for plots
 #' @importFrom stats ecdf
 #' @importFrom stats pexp
-
+#' @return no return value, KS plot for rescaled-inter-event-times and exponential cdf curve
 #' @export
 
 pp_ksplot <- function(r, ...) {
@@ -22,6 +22,8 @@ pp_ksplot <- function(r, ...) {
   if(min(r) < 0) {
     stop("Incorrect interevent times provided")
   }
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par <- list(...)
   if ("title" %in% names(par)) {
     title <- par$title

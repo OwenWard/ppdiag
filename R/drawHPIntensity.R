@@ -12,18 +12,18 @@
 #' @param i state number, used only for drawUniMMHPIntensity
 #' @param add whether to add the hawkes intensity to an existing plot, used
 #' for drawUniMMHPIntensity
-#' @param plot_events indicate whether events will be plotted
 #' @param fit a boolean indicating whether to fit a new HP to events
+#' @param plot_events indicate whether events will be plotted
+#' @param verbose whether to output informative messages as running
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom graphics points
+#' @return no return value, intensity plot of Hawkes process
 #' @export
 #' @examples
-#' \dontrun{
 #' hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
 #' events <- pp_simulate(hp_obj, start = 0, end = 20)
 #' drawHPIntensity(hp_obj,events)
-#' }
 drawHPIntensity <- function(hp = NULL , events,
                             int_title = "Hawkes Intensity",
                             start = 0,
@@ -33,7 +33,8 @@ drawHPIntensity <- function(hp = NULL , events,
                             i = 1,
                             add = FALSE,
                             fit = FALSE,
-                            plot_events = TRUE) {
+                            plot_events = TRUE,
+                            verbose = FALSE) {
   n <- length(events)
   m <- length(history)
   old_events <- hp$events
@@ -48,7 +49,9 @@ drawHPIntensity <- function(hp = NULL , events,
         stop("Events must be provided either in the object or in the events argument. ")
       }
       if(fit==TRUE){
-        message("Fitting provided events.")
+        if(verbose == TRUE) {
+          message("Fitting provided events.") 
+        }
         hp <- fithp(events)
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
@@ -57,14 +60,18 @@ drawHPIntensity <- function(hp = NULL , events,
         if(is.null(hp)){
           stop("No object provided, set fit=TRUE to fit the events provided.")
         }
-        message("Using the hp object. Set fit = TRUE to fit events provided.")
+        if(verbose == TRUE) {
+          message("Using the hp object. Set fit = TRUE to fit events provided.") 
+        }
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
       }
     }else{
       if(is.null(events)){
-        message("No events provided. Using the hp object.")
+        if(verbose == TRUE) {
+          message("No events provided. Using the hp object.") 
+        }
         lambda0 <- hp$lambda0
         alpha <- hp$alpha
         beta <- hp$beta
@@ -75,7 +82,9 @@ drawHPIntensity <- function(hp = NULL , events,
         end <- max(events)
       }else{
         if(fit==TRUE){
-          message("Fitting provided events. Set events=NULL to use the events in object.")
+          if(verbose == TRUE) {
+            message("Fitting provided events. Set events=NULL to use the events in object.") 
+          }
           hp_obj <- fithp(events)
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
@@ -84,7 +93,9 @@ drawHPIntensity <- function(hp = NULL , events,
           if(is.null(hp)){
             stop("No object provided, set fit=TRUE to fit the events provided.")
           }
-          message("Using the hp object. Set fit=TRUE to fit events provided. ")
+          if(verbose == TRUE) {
+            message("Using the hp object. Set fit=TRUE to fit events provided.") 
+          }
           lambda0 <- hp$lambda0
           alpha <- hp$alpha
           beta <- hp$beta
