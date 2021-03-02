@@ -31,11 +31,14 @@ for the limits and log-scaling of the x-axis from the previous plot.
  Taken as FALSE (with a warning if a different value is supplied) 
  if no graphics device is open.}
 }
+\value{
+no return value, intensity plot of Markov-modulated Hawkes process
+}
 \description{
 Take a mmhp object and draw its intensity accordingly
 }
 \examples{
-\dontrun{
+\donttest{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
  alpha = 0.8, beta = 1.2)

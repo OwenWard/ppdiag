@@ -11,6 +11,9 @@ pp_qqexp(r, ...)
 
 \item{...}{other arguments for plots}
 }
+\value{
+no return value, quantile-quantile plot for rescaled-inter-event-times
+}
 \description{
 Generate Quantile-quantile plot for rescaled-inter-event-times,
 which are independently 

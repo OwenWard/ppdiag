@@ -43,7 +43,7 @@ for drawUniMMHPIntensity}
 \item{plot_events}{indicate whether events will be plotted}
 }
 \value{
-A plot of the estimated intensity function.
+no return value, intensity plot of Hawkes process
 }
 \description{
 Draw the intensity of a Hawkes Process

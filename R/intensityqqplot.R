@@ -8,6 +8,7 @@
 #' @param markov_states only for mmhp and mmpp, markov states simulation output 
 #' @importFrom graphics par
 #' @importFrom graphics layout
+#' @return no return value, intensity and qq-plot in a single plot
 #' @export
 intensityqqplot <- function(object, events, markov_states){
 	UseMethod("intensityqqplot")
@@ -29,7 +30,6 @@ intensityqqplot.hp <- function(object, events, markov_states = NULL) {
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)
-  par(mar = c(2, 2, 1, 1))
   drawHPIntensity(object, start = 0, end = max(events),
                   events = events, add = FALSE, plot_events = TRUE)
 }
@@ -45,7 +45,6 @@ intensityqqplot.hpp <- function(object, events, markov_states = NULL) {
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
-  par(mar = c(2, 2, 1, 1))
   drawHPPIntensity(object, events = events,
                    plot_events = TRUE, 
                    int_title = "Intensity plot of HPP")  
@@ -62,7 +61,6 @@ intensityqqplot.mmpp <- function(object, events = markov_states$events, markov_s
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
-  par(mar = c(2, 2, 1, 1))
   drawUniMMPPIntensity(mmpp = object, simulation = markov_states,
                        add=FALSE)  
 }
@@ -77,7 +75,6 @@ intensityqqplot.mmhp <- function(object, events = markov_states$events, markov_s
   r <- pp_compensator(object = object, events = events)  
   par(mar = c(2, 2, 1, 1))
   pp_qqexp(r)  
-  par(mar = c(2, 2, 1, 1))
   drawUniMMHPIntensity(mmhp = object, simulation = markov_states,
                        add=FALSE)  
 }

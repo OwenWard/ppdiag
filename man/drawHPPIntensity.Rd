@@ -17,7 +17,7 @@ drawHPPIntensity(
 )
 }
 \arguments{
-\item{hpp}{object for homogeneous poisson process}
+\item{hpp}{object for homogeneous Poisson process}
 
 \item{events}{event times input}
 
@@ -36,11 +36,14 @@ use the passed object}
 
 \item{add}{whether to add the hpp intensity to an existing plot}
 }
+\value{
+no return value, intensity plot of homogeneous Poisson process
+}
 \description{
 Draw the intensity for a homogeneous Poisson process
 }
 \examples{
-\dontrun{
+\donttest{
 pois_y <- pp_hpp(lambda = 1)
 drawHPPIntensity(pois_y, events = pp_simulate(pois_y,end=10), color = "red")
 }

@@ -30,11 +30,14 @@ for the limits and log-scaling of the x-axis from the previous plot.
 
 \item{int_title}{title of the plot.}
 }
+\value{
+no return value, intensity plot of Markov-modulated Poisson process
+}
 \description{
 Take a mmpp object and draw its intensity accordingly
 }
 \examples{
-\dontrun{
+\donttest{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 x <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, c = 1.2)
 y <- pp_simulate(x, n = 10)

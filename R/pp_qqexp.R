@@ -11,7 +11,7 @@
 #' @importFrom stats quantile
 #' @importFrom stats qexp
 #' @importFrom stats qqline
-
+#' @return no return value, quantile-quantile plot for rescaled-inter-event-times
 #' @export
 
 

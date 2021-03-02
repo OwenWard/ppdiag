@@ -17,7 +17,7 @@
 #' @importFrom graphics curve
 #' @importFrom graphics segments
 #' @importFrom graphics points
-#' @return A plot of the estimated intensity function.
+#' @return no return value, intensity plot of Hawkes process
 #' @export
 #' @examples
 #' \donttest{
