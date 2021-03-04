@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R build status](https://github.com/OwenWard/ppdiag/workflows/R-CMD-check/badge.svg)](https://github.com/OwenWard/ppdiag/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/ppdiag)](https://CRAN.R-project.org/package=ppdiag)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Codecov test coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
 <!-- badges: end -->
@@ -34,13 +35,13 @@ several diagnostic tools
 
 # Installation
 
-<!-- You can install the released version of ppdiag from [CRAN](https://CRAN.R-project.org) with: -->
+You can install the released version of ppdiag from [CRAN](https://CRAN.R-project.org) with:
 
-<!-- ``` r -->
-<!-- install.packages("ppdiag") -->
-<!-- ``` -->
+```{r, eval=FALSE}
+install.packages("ppdiag")
+```
 
-The current version of this
+The current development version of this
 package is available from [GitHub](https://github.com/OwenWard/ppdiag) with:
 
 ```{r, eval=FALSE}
