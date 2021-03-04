@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ppdiag</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.900</span>
       </span>
     </div>
 
@@ -126,65 +126,70 @@
 <ul>
 <li>R</li>
 <li>Diagnostics</li>
+<li>Goodness of fit</li>
 <li>Temporal Point Processes authors:</li>
-<li>name: Sally Sun
-#affiliation: 1 # (Multiple affiliations must be quoted)</li>
-<li>name: Owen G. Ward
-#orcid: 0000-0002-9678-3542
-#affiliation: 1</li>
-<li>name: Xiaoxi Zhao</li>
-<li>name: Jing Wu</li>
-<li>name: Tian Zheng affiliations:</li>
-<li>name: Columbia University citation_author: Sun et. al. date: “2021-02-12” year: 2020 bibliography: paper.bib output: rticles::joss_article csl: apa.csl journal: JOSS —</li>
+<li>name: Sally Sun affiliation: 1 # (Multiple affiliations must be quoted)</li>
+<li>name: Owen G. Ward orcid: 0000-0002-9678-3542 affiliation: 1</li>
+<li>name: Jing Wu affiliation: 1</li>
+<li>name: Lihao Xiao affiliation: 1</li>
+<li>name: Xiaoxi Zhao affiliation: 1</li>
+<li>name: Tian Zheng affiliation: “1,2” affiliations:</li>
+<li>name: Department of Statistics, Columbia University index: 1</li>
+<li>name: Data Science Institute, Columbia University index: 2 citation_author: Sun et. al. date: “2021-03-04” year: 2021 bibliography: paper.bib output: rticles::joss_article csl: apa.csl journal: JOSS —</li>
 </ul>
 <div id="summary" class="section level1">
 
-<p>Temporal Point Processes are widely used to model phenomena in many fields, such as finance and neuroscience. However, tools to evaluate the fit of these point processes to data, and to identify reasons for lack of fit, are not readily implemented in common software. Here we provide <code>ppdiag</code>, an <code>R</code> package containing a selection of statistically motivated tools to analyse the goodness of fit of point processes to data, as have been utilised in @wu2020diagnostics.</p>
+<p>Temporal Point Processes are widely used to model phenomena in many fields, such as finance and neuroscience. However, tools to evaluate the fit of these point processes to data, and to identify reasons for lack of fit, are not readily implemented in common software. Here we provide <code>ppdiag</code>, an <code>R</code> package containing a selection of statistically motivated tools to analyse the goodness of fit of point processes to data, as have been described in @wu2020diagnostics.</p>
 </div>
 <div id="statement-of-need" class="section level1">
 <h1 class="hasAnchor">
 <a href="#statement-of-need" class="anchor"></a>Statement of Need</h1>
 <p>This package provides functions to evaluate the fit of univariate temporal point processes. These functions allow:</p>
 <ul>
-<li><p>Simulation of data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes Process.</p></li>
+<li><p>Simulation of data from a range of common univariate point processes including Homogeneous Poisson Process, Hawkes Process, and Markov-modulated Hawkes and Poisson Processes.</p></li>
 <li><p>Fitting common univariate point processes to data, and plotting the intensity function over data.</p></li>
-<li><p>After fitting a point process model to data, evaluating the ability of that model to capture the temporal structure present in data. Methods for diagnostics include raw and Pearson residuals, a Kolmogrov-Smirnov test and corresponding diagnostic plots.</p></li>
+<li><p>After fitting a point process model to data, evaluating the ability of that model to capture the temporal structure present in data. Methods for diagnostics include computing raw and Pearson residuals, a Kolmogrov-Smirnov test (based on the time rescaling theorem) and corresponding diagnostic plots. These diagnostics can be used to compare the fit of multiple point processes to data and to identify reasons for lack of fit of a process to data.</p></li>
 </ul>
+<p>Though there are some existing packages that contain functions for simulating point processes, [@hawkes_14],[@Markov_17], and for computing some simple residuals [@PtProcess2010], to the best of our knowledge, there are no existing packages that provide methods for diagnostics of different temporal point processes and for comparing the fit of these point processes. These diagnostic tools are useful to identify problems in model fitting and understand the causes of this lack of fit.</p>
 </div>
-<div id="demonstration" class="section level1">
+<div id="example" class="section level1">
 <h1 class="hasAnchor">
-<a href="#demonstration" class="anchor"></a>Demonstration</h1>
-<p>We illustrate the use of this functionality with a simple example of readily available email data [@openintro_20].</p>
+<a href="#example" class="anchor"></a>Example</h1>
+<p>We illustrate the use of this functionality with a simple example, using earthquake after-shock data [@PtProcess2010]. We consider all after shocks within a year of the original Phuket earthquake and wish to see if they can be described by a temporal point process.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/openintro">openintro</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
-<span class="va">first</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">time</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,tz<span class="op">=</span><span class="st">"EST"</span><span class="op">)</span>
-<span class="va">second</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">time</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,tz<span class="op">=</span><span class="st">"EST"</span><span class="op">)</span>
-<span class="va">time</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as.duration.html">as.duration</a></span><span class="op">(</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/interval.html">interval</a></span><span class="op">(</span><span class="va">first</span>,
-                    <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">time</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>,tz<span class="op">=</span><span class="st">"EST"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">300</span><span class="op">]</span>
-<span class="va">time_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>We can fit a homogeneous Poisson process and look at the goodness of fit of this model to the data.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2021</span><span class="op">)</span> 
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppdiag</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.statsresearch.co.nz/dsh/sslib/">PtProcess</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Phuket"</span><span class="op">)</span>
+<span class="va">end</span> <span class="op">&lt;-</span> <span class="fl">365</span>
+<span class="va">event_times</span> <span class="op">&lt;-</span> <span class="va">Phuket</span><span class="op">$</span><span class="va">time</span><span class="op">[</span><span class="va">Phuket</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;</span> <span class="va">end</span><span class="op">]</span></code></pre></div>
+<p>We can fit a homogeneous Poisson process and look at the goodness of fit of this model to the data. From the resulting diagnostics it is clear that a homogeneous Poisson process is not suitable for modelling the temporal patterns in this data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">time_data</span><span class="op">)</span>
-<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hpp</span>, events <span class="op">=</span> <span class="va">time_data</span><span class="op">)</span>
-<span class="co">#&gt; Please input the right model. Select from hp, hpp, mmpp and mmhp.</span></code></pre></div>
-<p>Similarly, we can fit a self exciting Hawkes process to this data and examine the results of that fit.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">time_data</span><span class="op">)</span>
-<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">email_hp</span>, <span class="va">time_data</span><span class="op">)</span>
-<span class="co">#&gt; Please input the right model. Select from hp, hpp, mmpp and mmhp.</span></code></pre></div>
-<p>Examining the results of the Kolmogrov-Smirnov test, based on the time rescaling theorem [@brown2002time], indicates that a Hawkes process better describes these events.</p>
-<p>We can then examine the estimated intensity of this Hawkes process to this data.</p>
+<code class="sourceCode R"><span class="va">shock_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">event_times</span>, end <span class="op">=</span> <span class="va">end</span><span class="op">)</span>
+<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">shock_hpp</span>, events <span class="op">=</span> <span class="va">event_times</span><span class="op">)</span></code></pre></div>
+<p><embed src="paper_files/figure-latex/fit_hpp-1.pdf"></embed><!-- --></p>
+<pre><code>#&gt; 
+#&gt; Raw residual: 0.07176529
+#&gt; Pearson residual: 0.08470523
+#&gt; 
+#&gt;  One-sample Kolmogorov-Smirnov test
+#&gt; 
+#&gt; data:  r
+#&gt; D = 0.78626, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: two-sided</code></pre>
+<p>We can fit a self exciting Hawkes process to this data and examine the results of that fit. We see that from our diagnostic tools a Hawkes process is much more capable of describing the temporal structure of this data. <!-- Examining the results of the Kolmogrov-Smirnov test, based --> <!-- on the time rescaling theorem [@brown2002time], indicates that --> <!-- a Hawkes process better describes these events. --></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/drawHPIntensity.html">drawHPIntensity</a></span><span class="op">(</span><span class="va">email_hp</span>, events <span class="op">=</span> <span class="va">time_data</span>, 
-                plot_events <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><embed src="paper_files/figure-latex/hawkes%20intensity-1.pdf"></embed><!-- --></p>
-</div>
-<div id="comparison-with-other-packages" class="section level1">
-<h1 class="hasAnchor">
-<a href="#comparison-with-other-packages" class="anchor"></a>Comparison with Other Packages</h1>
-<p>Though there are some packages that contain functions for simulating point processes, [@hawkes_14],[@Markov_17], to the best of our knowledge, there are no existing packages that provide methods for diagnostics of different temporal point processes and for comparing the fit of these point processes.</p>
+<code class="sourceCode R"><span class="va">shock_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">event_times</span>, end <span class="op">=</span> <span class="va">end</span><span class="op">)</span>
+<span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">shock_hp</span>, events <span class="op">=</span> <span class="va">event_times</span><span class="op">)</span></code></pre></div>
+<p><embed src="paper_files/figure-latex/fit_hawkes-1.pdf"></embed><!-- --></p>
+<pre><code>#&gt; Raw residual: 1.026715
+#&gt; Pearson residual: -3.715193
+#&gt; 
+#&gt;  One-sample Kolmogorov-Smirnov test
+#&gt; 
+#&gt; data:  r
+#&gt; D = 0.0357, p-value = 0.8922
+#&gt; alternative hypothesis: two-sided</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
