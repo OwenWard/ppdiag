@@ -73,7 +73,7 @@ identify reasons for lack of fit of a process to data.
 
 Though there are some existing 
 packages that contain functions for simulating point 
-processes, [@hawkes_14],[@Markov_17],
+processes, [@hawkes_14; @Markov_17],
 and for computing some 
 simple residuals [@PtProcess2010],
 to the best of our knowledge, 
