@@ -5,7 +5,7 @@
 #' @param zt inferred latent state of events
 #' @return list of the states of the Markov process (z.hat)
 #' and the times of the transitions between these times (x.hat).
-#' @noRd
+#' @keywords internal
 #'
 #' @examples
 #' Q <- matrix(c(-0.04, 0.04, 0.02, -0.02), ncol = 2, byrow = TRUE)

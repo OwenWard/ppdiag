@@ -7,8 +7,7 @@
 #' @param events vector containing event times.
 #' @param end the end time of event times.
 #' 
-#' @keywords Internal
-#' @noRd
+#' @keywords internal
 
 
 negloglik_hp <- function(vec, events, end = max(events)){
