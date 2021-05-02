@@ -22,7 +22,7 @@ pp_simulate(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 \method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 }
 \arguments{
-\item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
+\item{object}{point process model object of type hpp, hp, mmhp, or mmpp}
 
 \item{start}{start time of events simulated. Not used for Markov modulated
 models}

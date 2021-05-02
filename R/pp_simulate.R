@@ -3,7 +3,7 @@
 #' Currently available point processes are homogeneous Poisson,
 #' Hawkes with exponential kernel, MMHP and MMPP
 #'
-#' @param object point process model object of type hpp, hp, mmpp, mmhp, or mmpp
+#' @param object point process model object of type hpp, hp, mmhp, or mmpp
 #' @param start start time of events simulated. Not used for Markov modulated
 #' models
 #' @param end end time of events simulated. Not used for Markov modulated models
