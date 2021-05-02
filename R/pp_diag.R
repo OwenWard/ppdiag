@@ -46,6 +46,7 @@ pp_diag.hp<-function(object, events){
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
+  return(NULL)
 }
 
 #' @rdname pp_diag
@@ -66,6 +67,7 @@ pp_diag.mmhp <- function(object, events){
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
+  return(NULL)
 }
 
 #' @rdname pp_diag
@@ -86,6 +88,7 @@ pp_diag.mmpp <- function(object, events){
   cat("Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
+  return(NULL)
 }
 
 #' @rdname pp_diag
@@ -107,4 +110,5 @@ pp_diag.hpp<-function(object, events){
   cat("\n","Raw residual: ", rr, "\n",sep = "")
   cat("Pearson residual: ", pr, "\n",sep = "")
   print(ks)
+  return(NULL)
 }

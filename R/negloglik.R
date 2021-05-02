@@ -7,8 +7,7 @@
 #' @param events vector containing the event times.
 #' @param end the end time of event times
 #' @return a scalar indicating the negative log likelihood
-#' @keywords Internal
-#' @noRd
+#' @keywords internal
 
 
 negloglik <- function(object, events, end) {

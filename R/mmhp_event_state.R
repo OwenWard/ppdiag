@@ -10,15 +10,14 @@
 #'
 #' @return probability of being in state 1 (active state) at each event,
 #' along with most likely state
-#' @noRd
-#'
+#' @keywords internal
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9,
 #'  lambda1 = 1.1,
 #'  alpha = 0.8, beta = 1.2)
 #'  ## evaluate at some fake event times
-#'  mmhp_event_state(params = mmhp_obj, events = c(1, 2, 3, 5)) 
+#'  ppdiag:::mmhp_event_state(params = mmhp_obj, events = c(1, 2, 3, 5)) 
 mmhp_event_state <- function(params = 
                                list(lambda0,
                                     lambda1,

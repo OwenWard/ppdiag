@@ -4,8 +4,7 @@
 #' @param events events for Hawkes process.
 #'
 #' @return max of intensity
-#' @noRd
-#' @keywords Internal
+#' @keywords internal
 #' 
 hawkes_max_intensity <- function(object, events) {
   alpha <- object$alpha
