@@ -11,10 +11,6 @@
 #' @return probability of being in state 1 (active state) at each event,
 #' along with most likely state
 #' @keywords internal
-<<<<<<< HEAD
-=======
-#'
->>>>>>> 65e989eb88e26f51e49902a862972347792ee219
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' mmhp_obj <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9,
