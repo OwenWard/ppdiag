@@ -11,15 +11,15 @@
 #' @export
 
 pp_ksplot <- function(r, ...) {
-  if(is.null(r)) {
+  if (is.null(r)) {
     stop("No rescaled interevent times provided")
   }
-  if(length(r) == 1) {
-    if(r == 0) {
-      stop("No rescaled interevent times provided") 
+  if (length(r) == 1) {
+    if (r == 0) {
+      stop("No rescaled interevent times provided")
     }
   }
-  if(min(r) < 0) {
+  if (min(r) < 0) {
     stop("Incorrect interevent times provided")
   }
   oldpar <- par(no.readonly = TRUE)
@@ -41,8 +41,10 @@ pp_ksplot <- function(r, ...) {
     ylab <- "CDF"
   }
   f <- ecdf(r)
-  plot(f, verticals = TRUE, do.points = FALSE,
-       xlim = c(min(r), max(r)), main = title, xlab = xlab, ylab = ylab)
+  plot(f,
+    verticals = TRUE, do.points = FALSE,
+    xlim = c(min(r), max(r)), main = title, xlab = xlab, ylab = ylab
+  )
   curve(pexp, add = T, col = 2)
   legend("bottomright", c("Exponential CDF", "Empirical CDF"),
     lty = 1, lwd = 2, col = c("Red", "Black"),

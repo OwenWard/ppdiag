@@ -24,6 +24,5 @@ Estimate Latent process of MMPP
 Q <- matrix(c(-0.04, 0.04, 0.02, -0.02), ncol = 2, byrow = TRUE)
 mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 1, c = 1)
 ppdiag:::mmpp_latent(params = mmpp_obj, events = c(1, 2, 3), zt = c(2, 1, 1))
-
 }
 \keyword{internal}

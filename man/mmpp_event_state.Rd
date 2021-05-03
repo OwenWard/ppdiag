@@ -24,9 +24,11 @@ with the probability of being in the active state.
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-mmpp_obj <- pp_mmpp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9,
- c = 1.1)
- ## evaluate at some fake event times
- ppdiag:::mmpp_event_state(params = mmpp_obj, events = c(1, 2, 3, 5)) 
+mmpp_obj <- pp_mmpp(Q,
+  delta = c(1 / 3, 2 / 3), lambda0 = 0.9,
+  c = 1.1
+)
+## evaluate at some fake event times
+ppdiag:::mmpp_event_state(params = mmpp_obj, events = c(1, 2, 3, 5))
 }
 \keyword{internal}

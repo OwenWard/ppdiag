@@ -7,7 +7,7 @@
 negloglik_hp(vec, events, end = max(events))
 }
 \arguments{
-\item{vec}{vector containing initial values for the 
+\item{vec}{vector containing initial values for the
 object parameters (lambda0,alpha,beta) to be optimized.}
 
 \item{events}{vector containing event times.}

@@ -1,14 +1,14 @@
 #' Simulate a Markov Modulated Hawkes Process
 #'
-#' Simulate Markov Modulated Hawkes Process (including all the history) 
+#' Simulate Markov Modulated Hawkes Process (including all the history)
 #' according to a mmhp object
 #'
-#' @param mmhp a mmhp object including its Q, delta, events, lambda0, 
+#' @param mmhp a mmhp object including its Q, delta, events, lambda0,
 #' lambda1, beta and alpha.
 #' @param n number of points to simulate.
 #' @param start start time for simulation
 #' @param given_state if the hidden state trajectory is given.
-#'  If `TRUE`, then simulate according to the given state. 
+#'  If `TRUE`, then simulate according to the given state.
 #'  Default to `FALSE`
 #' @param states an object containing:
 #'              - z: the states of Markov Process,
@@ -18,15 +18,17 @@
 #' @param ... other arguments.
 #' @importFrom stats rexp
 #'
-#' @return simulated Markov Modulated Hawkes Process, 
-#' including states of Markov Process, time of each 
+#' @return simulated Markov Modulated Hawkes Process,
+#' including states of Markov Process, time of each
 #' transition of Markov Process, state at each event,
 #'  times of events.
 #' @noRd
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' x <- pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
-#'  alpha = 0.8, beta = 1.2)
+#' x <- pp_mmhp(Q,
+#'   delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#'   alpha = 0.8, beta = 1.2
+#' )
 #' simulatemmhp(x, n = 10)
 simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
                          states = NULL, verbose = FALSE, ...) {
@@ -47,18 +49,18 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
   lambda1 <- mmhp$lambda1
   alpha <- mmhp$alpha
   beta <- mmhp$beta
-  
+
   old_events <- mmhp$events
-  if(!is.null(old_events)){
-    if(verbose == TRUE) {
-      message("Events in the mmhp object will be overwritten by simulated events.") 
+  if (!is.null(old_events)) {
+    if (verbose == TRUE) {
+      message("Events in the mmhp object will be overwritten by simulated events.")
     }
   }
-  
-  if(alpha > beta) {
+
+  if (alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
   }
-  if(is.null(Q)) {
+  if (is.null(Q)) {
     stop("No Q matrix specified")
   }
 
@@ -92,23 +94,28 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        hp_obj <- list(lambda0 = lambda1,
-                       alpha = alpha,
-                       beta = beta)
+        hp_obj <- list(
+          lambda0 = lambda1,
+          alpha = alpha,
+          beta = beta
+        )
         class(hp_obj) <- "hp"
-        simulate.result <- suppressMessages( simulatehp(hp_obj, start = x[i - 1],
-                                      end = x[i],
-                                      history = events[1:(j - 1)]) )
+        simulate.result <- suppressMessages(simulatehp(hp_obj,
+          start = x[i - 1],
+          end = x[i],
+          history = events[1:(j - 1)]
+        ))
         # while (is.null(simulate.result$events)){
         #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
         #                                 history=events[1:(j - 1)])
         # }
         hp <- simulate.result$events
-        if( is.null(hp)) {
+        if (is.null(hp)) {
           hp <- 0
         }
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
-                             lambda.max, simulate.result$lambda.max)
+          lambda.max, simulate.result$lambda.max
+        )
         if (!hp[1] == 0) {
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
@@ -135,9 +142,11 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     # events <- round(events,3)
     # message(paste(n,"events simulated. To simulate up to endtime set given_states=TRUE and provide states."))
     mmhp$events <- events[1:(n + 1)]
-    return(list(x = x[1:i], z = z[1:i], 
-                events = mmhp$events, zt = zt[1:(n + 1)],
-                lambda.max = lambda.max, start = x[1], end = x[i]))
+    return(list(
+      x = x[1:i], z = z[1:i],
+      events = mmhp$events, zt = zt[1:(n + 1)],
+      lambda.max = lambda.max, start = x[1], end = x[i]
+    ))
   } else {
     x <- states$x
     z <- states$z
@@ -155,17 +164,20 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
 
       if (z[i - 1] == 1) {
         #   sim times of Hawkes Poisson events
-        hp_obj <- list(lambda0=lambda1,alpha=alpha,beta=beta)
+        hp_obj <- list(lambda0 = lambda1, alpha = alpha, beta = beta)
         class(hp_obj) <- "hp"
-        simulate.result <- suppressMessages( simulatehp(hp_obj, start=x[i - 1], end=x[i],
-                                      history=events[1:(j - 1)]) )
+        simulate.result <- suppressMessages(simulatehp(hp_obj,
+          start = x[i - 1], end = x[i],
+          history = events[1:(j - 1)]
+        ))
         # while (is.null(simulate.result$events)){
         #   simulate.result <- simulatehp(hp_obj, start=x[i - 1], end=x[i],
         #                                 history=events[1:(j - 1)])
         # }
         hp <- simulate.result$events
         lambda.max <- ifelse(lambda.max > simulate.result$lambda.max,
-                             lambda.max, simulate.result$lambda.max)
+          lambda.max, simulate.result$lambda.max
+        )
         if (!hp[1] == 0) {
           events[j:(j + length(hp) - 1)] <- hp
           zt[j:(j + length(hp) - 1)] <- z[i - 1]
@@ -190,9 +202,12 @@ simulatemmhp <- function(mmhp, n = 1, start = 0, given_state = FALSE,
     }
     # message("Simulating up to endtime. To simulate desired length of events set given_states=FALSE and states=NULL.")
     mmhp$events <- events[1:(j - 1)][events[1:(j - 1)] <= ending]
-    return(list(events = mmhp$events,
-                zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending])
-                # lambda.max = lambda.max)
-    )  
+    return(
+      list(
+        events = mmhp$events,
+        zt = zt[1:(j - 1)][events[1:(j - 1)] <= ending]
+      )
+      # lambda.max = lambda.max)
+    )
   }
 }

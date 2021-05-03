@@ -19,6 +19,4 @@ Hawkes with exponential kernel, MMHP and MMPP
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
 pp_print(hpp_obj)
-
-
 }
