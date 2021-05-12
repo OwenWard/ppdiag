@@ -13,9 +13,9 @@ pp_hp(lambda0, alpha, beta, events = NULL)
 
 \item{beta}{exponential decay of intensity}
 
-\item{events}{vector containing the event times. 
-Note that the first event is at time zero. 
-Alternatively, events could be specified as NULL, 
+\item{events}{vector containing the event times.
+Note that the first event is at time zero.
+Alternatively, events could be specified as NULL,
 meaning that the data will be added later (e.g. simulated).}
 }
 \value{
@@ -29,5 +29,5 @@ If events are missing, then it means that data will be
 added later(simulated from this process)
 }
 \examples{
-pp_hp(lambda0 = 0.1,alpha = 0.45,beta = 0.5)
+pp_hp(lambda0 = 0.1, alpha = 0.45, beta = 0.5)
 }

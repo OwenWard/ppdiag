@@ -1,14 +1,14 @@
 #' Create a Markov-modulated Hawkes Process(MMHP) object
 #'
-#' Create a Markov-modulated Hawkes Process(MMHP) model 
-#' according to the given parameters: lambda0, lambda1, 
+#' Create a Markov-modulated Hawkes Process(MMHP) model
+#' according to the given parameters: lambda0, lambda1,
 #' alpha, beta, event times and transition probability matrix.
 #' If event time events is missing,
 #'  then it means that data will be added later(e.g. simulated)
 #'
 #' @param Q transition probability matrix.
-#' @param events vector containing the event times. 
-#' Note that the first event is at time zero. 
+#' @param events vector containing the event times.
+#' Note that the first event is at time zero.
 #' Alternatively, events could be specified as NULL,
 #'  meaning that the data will be added later (e.g. simulated).
 #' @param lambda0 intensity for homogeneous Poisson process.
@@ -21,16 +21,38 @@
 #' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-#' pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
-#'  alpha = 0.8, beta = 1.2)
+#' pp_mmhp(Q,
+#'   delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+#'   alpha = 0.8, beta = 1.2
+#' )
 pp_mmhp <- function(lambda0, lambda1, alpha, beta, Q = NULL,
-                 delta = NULL, events = NULL) {
-  y <- c(list(Q = Q, delta = delta,
-              events = events, lambda0 = lambda0, 
-              lambda1 = lambda1, alpha = alpha, beta = beta))
+                    delta = NULL, events = NULL) {
+  y <- c(list(
+    Q = Q, delta = delta,
+    events = events, lambda0 = lambda0,
+    lambda1 = lambda1, alpha = alpha, beta = beta
+  ))
   class(y) <- "mmhp"
-  if(alpha > beta) {
+  if (alpha > beta) {
     stop("Require alpha less than beta for a stationary process")
   }
   return(y)
+}
+
+
+#' @export
+print.mmhp <- function(x, ...) {
+  cat("Markov Modulated Hawkes Process \n")
+  cat("lambda0 ", x$lambda0, "\n")
+  cat("lambda1 ", x$lambda1, "\n")
+  cat("alpha ", x$alpha, "\n")
+  cat("beta ", x$beta, "\n")
+  cat("Q ", x$Q, "\n")
+  if(!(is.null(x$delta))) {
+    cat("delta", x$delta, "\n") 
+  }
+  if(!(is.null(x$events))) {
+    cat("events", x$events, "\n") 
+  }
+  invisible(NULL)
 }

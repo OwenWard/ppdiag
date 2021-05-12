@@ -27,16 +27,16 @@ pp_diag(object, events)
 \item{events}{event times}
 }
 \value{
-Display QQ-plot and KS plot, along with printing Pearson
- and raw residuals.
+Invisibly returns NULL. Outputs plots and summary of diagnostics to
+console
 }
 \description{
-Generate diagnostic tools for different point process models, 
-including quantile-quantile plot, ks plot, 
+Generate diagnostic tools for different point process models,
+including quantile-quantile plot, ks plot,
 raw residual and pearson residual.
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
-events <- pp_simulate(hpp_obj, end=50)
+events <- pp_simulate(hpp_obj, end = 50)
 pp_diag(hpp_obj, events)
 }

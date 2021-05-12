@@ -81,10 +81,11 @@ pp_diag(hp_est, events = sim_hp)
 ```
 
 
-## MMHP Example
+## Markov Modulated Hawkes Process Example
 
 This is particularly useful for more complex point processes, such as the 
-Markov Modulated Hawkes Process. We can simulate events from this model
+Markov Modulated Hawkes Process (MMHP).
+We can simulate events from this model
 and examine the fit of simpler point processes to this data.
 
 ```{r mmhp example}

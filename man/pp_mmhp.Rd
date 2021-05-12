@@ -19,8 +19,8 @@ pp_mmhp(lambda0, lambda1, alpha, beta, Q = NULL, delta = NULL, events = NULL)
 
 \item{delta}{initial state probability.}
 
-\item{events}{vector containing the event times. 
-Note that the first event is at time zero. 
+\item{events}{vector containing the event times.
+Note that the first event is at time zero.
 Alternatively, events could be specified as NULL,
  meaning that the data will be added later (e.g. simulated).}
 }
@@ -28,14 +28,16 @@ Alternatively, events could be specified as NULL,
 mmhp object
 }
 \description{
-Create a Markov-modulated Hawkes Process(MMHP) model 
-according to the given parameters: lambda0, lambda1, 
+Create a Markov-modulated Hawkes Process(MMHP) model
+according to the given parameters: lambda0, lambda1,
 alpha, beta, event times and transition probability matrix.
 If event time events is missing,
  then it means that data will be added later(e.g. simulated)
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-pp_mmhp(Q, delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
- alpha = 0.8, beta = 1.2)
+pp_mmhp(Q,
+  delta = c(1 / 3, 2 / 3), lambda0 = 0.9, lambda1 = 1.1,
+  alpha = 0.8, beta = 1.2
+)
 }

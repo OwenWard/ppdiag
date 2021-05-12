@@ -13,6 +13,8 @@ status](https://www.r-pkg.org/badges/version/ppdiag)](https://CRAN.R-project.org
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Codecov test
 coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
+[![Contributor 
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-1.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 `ppdiag` is an `R` package which provides a collection of tools which
@@ -54,14 +56,17 @@ library(ppdiag)
 hp_obj <- pp_hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
 sim_hp <- pp_simulate(hp_obj, end = 200)
 sim_hp
-#>  [1]   7.581703   7.998168   8.614021   8.941138  10.648613  15.364071
-#>  [7]  17.800640  25.491057  28.127978  32.123344  36.650980  40.393909
-#> [13]  46.739837  47.395302  50.294564  62.837118  65.235044  66.340397
-#> [19]  71.383948  77.309497  91.678156  91.905564  95.553557 102.090414
-#> [25] 108.745371 120.906119 122.660710 123.562649 126.055677 149.457071
-#> [31] 156.214770 156.991597 162.095315 162.099438 167.096198 167.398154
-#> [37] 171.239529 174.824605 174.964051 175.205379 175.454114 175.808449
-#> [43] 177.648504 179.547997 187.674615 196.690195 198.482319
+#>  [1]   0.9028774   2.1440211  12.5023753  13.1117594  15.2125103  16.4468785
+#>  [7]  22.0673950  28.0077200  28.7309437  28.8399044  29.8898289  31.2596296
+#> [13]  32.9789068  33.0952675  47.3363303  47.4550222  52.2806143  52.7807790
+#> [19]  53.8471582  70.6502357  71.2346665  71.9704604  74.2900289  77.9300598
+#> [25]  86.2557153  86.9531752  92.3820592 102.7484174 103.2037018 103.2931602
+#> [31] 103.6600985 106.2132004 110.6646722 114.5946863 116.0299836 116.1304621
+#> [37] 116.2030573 116.2219153 116.5640912 116.5834268 116.7923988 117.1433428
+#> [43] 117.3212496 118.2355304 122.7278904 123.5293785 123.9301859 126.7675328
+#> [49] 136.4601124 162.4423253 162.5968625 162.9340964 165.1812875 176.5825227
+#> [55] 180.7287522 185.5611023 185.7220408 186.5938809 190.1311457 192.9218856
+#> [61] 193.2152954 196.3592700
 ```
 
 We can readily evaluate the fit of a homogeneous Poisson process to this
@@ -71,17 +76,20 @@ data.
 est_hpp <- fithpp(sim_hp)
 est_hpp
 #> $lambda
-#> [1] 0.2367969
+#> [1] 0.3157478
 #> 
 #> $events
-#>  [1]   7.581703   7.998168   8.614021   8.941138  10.648613  15.364071
-#>  [7]  17.800640  25.491057  28.127978  32.123344  36.650980  40.393909
-#> [13]  46.739837  47.395302  50.294564  62.837118  65.235044  66.340397
-#> [19]  71.383948  77.309497  91.678156  91.905564  95.553557 102.090414
-#> [25] 108.745371 120.906119 122.660710 123.562649 126.055677 149.457071
-#> [31] 156.214770 156.991597 162.095315 162.099438 167.096198 167.398154
-#> [37] 171.239529 174.824605 174.964051 175.205379 175.454114 175.808449
-#> [43] 177.648504 179.547997 187.674615 196.690195 198.482319
+#>  [1]   0.9028774   2.1440211  12.5023753  13.1117594  15.2125103  16.4468785
+#>  [7]  22.0673950  28.0077200  28.7309437  28.8399044  29.8898289  31.2596296
+#> [13]  32.9789068  33.0952675  47.3363303  47.4550222  52.2806143  52.7807790
+#> [19]  53.8471582  70.6502357  71.2346665  71.9704604  74.2900289  77.9300598
+#> [25]  86.2557153  86.9531752  92.3820592 102.7484174 103.2037018 103.2931602
+#> [31] 103.6600985 106.2132004 110.6646722 114.5946863 116.0299836 116.1304621
+#> [37] 116.2030573 116.2219153 116.5640912 116.5834268 116.7923988 117.1433428
+#> [43] 117.3212496 118.2355304 122.7278904 123.5293785 123.9301859 126.7675328
+#> [49] 136.4601124 162.4423253 162.5968625 162.9340964 165.1812875 176.5825227
+#> [55] 180.7287522 185.5611023 185.7220408 186.5938809 190.1311457 192.9218856
+#> [61] 193.2152954 196.3592700
 #> 
 #> attr(,"class")
 #> [1] "hpp"
@@ -93,12 +101,12 @@ pp_diag(est_hpp, events = sim_hp)
 
     #> 
     #> Raw residual: 0
-    #> Pearson residual: 1.421085e-14
+    #> Pearson residual: -1.421085e-14
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.097578, p-value = 0.7253
+    #> D = 0.21699, p-value = 0.004829
     #> alternative hypothesis: two-sided
 
 ``` r
@@ -108,20 +116,20 @@ pp_diag(hp_est, events = sim_hp)
 
 <img src="man/figures/README-fit_hp-1.png" width="75%" />
 
-    #> Raw residual: -0.008636336
-    #> Pearson residual: -0.07027012
+    #> Raw residual: -0.004365144
+    #> Pearson residual: -0.2098432
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.086768, p-value = 0.8409
+    #> D = 0.064756, p-value = 0.9422
     #> alternative hypothesis: two-sided
 
-## MMHP Example
+## Markov Modulated Hawkes Process Example
 
 This is particularly useful for more complex point processes, such as
-the Markov Modulated Hawkes Process. We can simulate events from this
-model and examine the fit of simpler point processes to this data.
+the Markov Modulated Hawkes Process (MMHP). We can simulate events from
+this model and examine the fit of simpler point processes to this data.
 
 ``` r
 Q <- matrix(c(-0.2, 0.2, 0.1, -0.1), ncol = 2, byrow = TRUE)
@@ -173,12 +181,12 @@ pp_diag(est_hpp,mmhp_events$events)
 
     #> 
     #> Raw residual: -1
-    #> Pearson residual: -1.653811
+    #> Pearson residual: -1.450621
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.21174, p-value = 0.01909
+    #> D = 0.206, p-value = 0.02446
     #> alternative hypothesis: two-sided
 
 Similarly for a Hawkes process.
@@ -190,13 +198,13 @@ pp_diag(est_hp,mmhp_events$events)
 
 <img src="man/figures/README-fit_hp_to_mmhp-1.png" width="75%" />
 
-    #> Raw residual: -0.4721489
-    #> Pearson residual: -1.887457
+    #> Raw residual: -0.6342256
+    #> Pearson residual: -1.830059
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.083692, p-value = 0.8461
+    #> D = 0.093848, p-value = 0.7352
     #> alternative hypothesis: two-sided
 
 We can then compare to the true point process model.
@@ -207,13 +215,13 @@ pp_diag(mmhp_obj, mmhp_events$events)
 
 <img src="man/figures/README-fit_mmhp-1.png" width="75%" />
 
-    #> Raw residual: 6.08402
-    #> Pearson residual: 7.619131
+    #> Raw residual: 13.07489
+    #> Pearson residual: 21.01997
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.11113, p-value = 0.5309
+    #> D = 0.17639, p-value = 0.07852
     #> alternative hypothesis: two-sided
 
 # Getting help and contributing
