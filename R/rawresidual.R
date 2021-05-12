@@ -10,7 +10,6 @@
 #' @param steps number of steps for numeric integration (if needed)
 #' @return the raw residual
 #' @keywords internal
-#' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q,
@@ -18,20 +17,18 @@
 #'   lambda1 = 1.1, alpha = 0.8, beta = 1.2
 #' )
 #' y <- pp_simulate(x, n = 10)
-#' ppdiag:::rawresidual(x, events = y$events[-1])
+# ppdiag:::rawresidual.mmhp(x, events = y$events[-1])
 rawresidual <- function(object, events, start, end, steps = 1000) {
   UseMethod("rawresidual")
 }
 
 #' @keywords internal
-#' @export
 rawresidual.default <- function(object, events, start = 0,
                                 end = max(events), steps) {
   cat("Please input the right model. Select from hp, hpp and mmhp.")
 }
 
 #' @keywords internal
-#' @export
 rawresidual.hp <- function(object, events, start = 0,
                            end = max(events), steps = 1000) {
   if (end != max(events)) {
@@ -58,7 +55,6 @@ rawresidual.hp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 rawresidual.mmhp <- function(object, events, start = 0,
                              end = max(events), steps = 1000) {
   if (end != max(events)) {
@@ -82,7 +78,6 @@ rawresidual.mmhp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 rawresidual.hpp <- function(object, events, start = 0,
                             end = max(events), steps = 1000) {
   if (events[1] == 0) {
@@ -98,7 +93,6 @@ rawresidual.hpp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 rawresidual.mmpp <- function(object, events, start = 0,
                              end = max(events), steps = 1000) {
   if (end != max(events)) {

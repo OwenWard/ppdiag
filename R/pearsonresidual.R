@@ -11,7 +11,6 @@
 #' @return the Pearson residual
 #' @importFrom stats integrate
 #' @keywords internal
-#' @export
 #' @examples
 #' Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
 #' x <- pp_mmhp(Q,
@@ -19,20 +18,18 @@
 #'   lambda1 = 1.1, alpha = 0.8, beta = 1.2
 #' )
 #' y <- pp_simulate(x, n = 10)
-#' ppdiag:::pearsonresidual(x, events = y$events[-1])
+#' ppdiag:::pearsonresidual.mmhp(x, events = y$events[-1])
 pearsonresidual <- function(object, events, start, end, steps = 1000) {
   UseMethod("pearsonresidual")
 }
 
 #' @keywords internal
-#' @export
 pearsonresidual.default <- function(object, events, start = 0,
                                     end = max(events), steps = 1000) {
   cat("Please input the right model. Select from hp, hpp, mmpp and mmhp. ")
 }
 
 #' @keywords internal
-#' @export
 pearsonresidual.mmhp <- function(object, events, start = 0,
                                  end = max(events), steps = 1000) {
   if (end != max(events)) {
@@ -62,7 +59,6 @@ pearsonresidual.mmhp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 pearsonresidual.hp <- function(object, events, start = 0,
                                end = max(events), steps = 1000) {
   if (end != max(events)) {
@@ -132,7 +128,6 @@ pearsonresidual.hp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 pearsonresidual.hpp <- function(object, events, start = 0,
                                 end = max(events), steps = 1000) {
   if (end != max(events)) {
@@ -149,7 +144,6 @@ pearsonresidual.hpp <- function(object, events, start = 0,
 }
 
 #' @keywords internal
-#' @export
 pearsonresidual.mmpp <- function(object, events, start = 0,
                                  end = max(events), steps = 1000) {
   if (end != max(events)) {
