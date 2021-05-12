@@ -156,7 +156,7 @@ Hawkes with exponential kernel, MMHP and MMPP</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>point process model object of type hpp, hp, mmpp, mmhp, or mmpp</p></td>
+      <td><p>point process model object of type hpp, hp, mmhp, or mmpp</p></td>
     </tr>
     <tr>
       <th>start</th>
@@ -169,7 +169,7 @@ models</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>number of events simulated. Required for Markov modulated models, 
+      <td><p>number of events simulated. Required for Markov modulated models,
 optional otherwise</p></td>
     </tr>
     <tr>
@@ -185,9 +185,7 @@ also returns details on the underlying latent process</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>hpp_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_hpp.html'>pp_hpp</a></span><span class='op'>(</span>lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'>pp_simulate</span><span class='op'>(</span><span class='va'>hpp_obj</span>, n<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span>
-
-
+<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'>pp_simulate</span><span class='op'>(</span><span class='va'>hpp_obj</span>, n <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

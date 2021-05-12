@@ -115,14 +115,8 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hpp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_hpp.html">pp_hpp</a></span><span class="op">(</span>lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="va">hpp_obj</span>
-<span class="co">#&gt; $lambda</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; NULL</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hpp"</span></code></pre></div>
+<span class="co">#&gt; Homogeneous Poisson Process </span>
+<span class="co">#&gt; lambda</span></code></pre></div>
 <ul>
 <li>Hawkes Process:</li>
 </ul>
@@ -130,20 +124,10 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_hp.html">pp_hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, beta <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 <span class="va">hp_obj</span>
-<span class="co">#&gt; $lambda0</span>
-<span class="co">#&gt; [1] 0.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $alpha</span>
-<span class="co">#&gt; [1] 0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $beta</span>
-<span class="co">#&gt; [1] 0.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; NULL</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hp"</span></code></pre></div>
+<span class="co">#&gt; Hawkes Process </span>
+<span class="co">#&gt; lambda0  0.5 </span>
+<span class="co">#&gt; alpha  0.2 </span>
+<span class="co">#&gt; beta  0.5</span></code></pre></div>
 <ul>
 <li>Markov Modulated Poisson Process: <code><a href="../reference/pp_mmpp.html">pp_mmpp(lambda0, lambda1, alpha, beta, Q, delta)</a></code> creates an <code>mmpp</code> object.</li>
 </ul>
@@ -155,25 +139,11 @@
           c <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span>
 
 <span class="va">mmpp_obj</span>
-<span class="co">#&gt; $c</span>
-<span class="co">#&gt; [1] 1.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; NULL</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lambda0</span>
-<span class="co">#&gt; [1] 0.8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Q</span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,] -0.4  0.4</span>
-<span class="co">#&gt; [2,]  0.2 -0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $delta</span>
-<span class="co">#&gt; [1] 0.3333333 0.6666667</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "mmpp"</span></code></pre></div>
+<span class="co">#&gt; Markov Modulated Poisson Process </span>
+<span class="co">#&gt; lambda0  0.8 </span>
+<span class="co">#&gt; c  1.2 </span>
+<span class="co">#&gt; Q  -0.4 0.2 0.4 -0.2 </span>
+<span class="co">#&gt; delta 0.3333333 0.6666667</span></code></pre></div>
 <ul>
 <li>Markov-Modulated Hawkes Process:</li>
 </ul>
@@ -186,31 +156,13 @@
           beta <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>
 
 <span class="va">mmhp_obj</span>
-<span class="co">#&gt; $Q</span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,] -0.4  0.4</span>
-<span class="co">#&gt; [2,]  0.2 -0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $delta</span>
-<span class="co">#&gt; [1] 0.3333333 0.6666667</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; NULL</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lambda0</span>
-<span class="co">#&gt; [1] 0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lambda1</span>
-<span class="co">#&gt; [1] 0.75</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $alpha</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $beta</span>
-<span class="co">#&gt; [1] 0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "mmhp"</span></code></pre></div>
+<span class="co">#&gt; Markov Modulated Hawkes Process </span>
+<span class="co">#&gt; lambda0  0.2 </span>
+<span class="co">#&gt; lambda1  0.75 </span>
+<span class="co">#&gt; alpha  0.1 </span>
+<span class="co">#&gt; beta  0.2 </span>
+<span class="co">#&gt; Q  -0.4 0.2 0.4 -0.2 </span>
+<span class="co">#&gt; delta 0.3333333 0.6666667</span></code></pre></div>
 </div>
 <div id="simulating-data" class="section level2">
 <h2 class="hasAnchor">
@@ -267,15 +219,9 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">hpp_events</span><span class="op">)</span>
 <span class="va">fit_hpp</span>
-<span class="co">#&gt; $lambda</span>
-<span class="co">#&gt; [1] 0.9684493</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; [1] 1.178415 2.534481 3.128104 6.003689 6.761803 7.487947 7.695707 8.689093</span>
-<span class="co">#&gt; [9] 9.293207</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hpp"</span></code></pre></div>
+<span class="co">#&gt; Homogeneous Poisson Process </span>
+<span class="co">#&gt; lambda  </span>
+<span class="co">#&gt; events 1.178415 2.534481 3.128104 6.003689 6.761803 7.487947 7.695707 8.689093 9.293207</span></code></pre></div>
 <p>Similarly, <code><a href="../reference/fithp.html">fithp(hp_events)</a></code> returns an object of class <code>hp</code>, estimating the three parameters of the Hawkes process from <code>hp_events</code> using <code>constrOptim</code>. This ensures that the returned solution (if one can be obtained), satisfies the stationary condition of a Hawkes process.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, n <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
