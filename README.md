@@ -13,6 +13,8 @@ status](https://www.r-pkg.org/badges/version/ppdiag)](https://CRAN.R-project.org
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Codecov test
 coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
+[![Contributor 
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-1.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 `ppdiag` is an `R` package which provides a collection of tools which

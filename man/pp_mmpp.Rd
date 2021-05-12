@@ -14,7 +14,7 @@ pp_mmpp(lambda0, c, Q, events = NULL, delta = NULL)
 \item{Q}{transition probability matrix}
 
 \item{events}{vector containing the event times.
-Note that the first event is often specified as zero. 
+Note that the first event is often specified as zero.
 Alternatively, events could be specified as NULL,
  meaning that the data will be added later (e.g. simulated).}
 
@@ -26,10 +26,10 @@ mmpp object
 \description{
 Create a Markov-modulated Poisson Process(MMPP) model
  according to the given parameters: lambda0, c, q1, q2 and event times.
-If event time tau is missing, 
+If event time tau is missing,
 then it means that data will be added later(e.g. simulated)
 }
 \examples{
 Q <- matrix(c(-0.4, 0.4, 0.2, -0.2), ncol = 2, byrow = TRUE)
-pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1/3, 2/3))
+pp_mmpp(Q = Q, lambda0 = 1, c = 1.5, delta = c(1 / 3, 2 / 3))
 }

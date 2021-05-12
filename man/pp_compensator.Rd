@@ -34,6 +34,6 @@ Computes the compensator for included point processes
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
-events <- pp_simulate(hpp_obj, end=10)
+events <- pp_simulate(hpp_obj, end = 10)
 comp <- pp_compensator(hpp_obj, events)
 }

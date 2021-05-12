@@ -7,8 +7,7 @@
 #' @param events vector containing the event times.
 #' @param end the end time of event times
 #' @return a scalar indicating the negative log likelihood
-#' @keywords Internal
-#' @noRd
+#' @keywords internal
 
 
 negloglik <- function(object, events, end) {
@@ -65,9 +64,9 @@ negloglik.mmhp <- function(object, events, end) {
   interevent <- events[-1] - events[-(n + 1)]
 
   forward <- matrix(0, ncol = 2, nrow = n)
-  probs_1 <- matrix(0, ncol = 2, nrow = n) 
+  probs_1 <- matrix(0, ncol = 2, nrow = n)
   # Probability vector for transition to state 1 (active state)
-  probs_2 <- matrix(0, ncol = 2, nrow = n) 
+  probs_2 <- matrix(0, ncol = 2, nrow = n)
   # Probability vector for transition to state 2 (inactive state)
   r <- rep(0, n)
 
@@ -87,14 +86,14 @@ negloglik.mmhp <- function(object, events, end) {
     integ2 <- interevent[i] * lambda0
     r[i] <- exp(-beta * interevent[i]) * (r[i - 1] + 1)
     a <- min(forward[i - 1, ] + probs_1[i - 1, ])
-    forward[i, 1] <- a + log(sum(exp(forward[i - 1, ] + 
-                                       probs_1[i - 1, ] - a))) + 
-      log(lambda1 + 
-            alpha * exp(-beta * interevent[i]) * (r[i - 1] + 1)) - integ1 +
+    forward[i, 1] <- a + log(sum(exp(forward[i - 1, ] +
+      probs_1[i - 1, ] - a))) +
+      log(lambda1 +
+        alpha * exp(-beta * interevent[i]) * (r[i - 1] + 1)) - integ1 +
       alpha / beta * (r[i] - r[i - 1] - 1)
     a <- min(forward[i - 1, ] + probs_2[i - 1, ])
-    forward[i, 2] <- a + log(sum(exp(forward[i - 1, ] + 
-                                       probs_2[i - 1, ] - a))) + 
+    forward[i, 2] <- a + log(sum(exp(forward[i - 1, ] +
+      probs_2[i - 1, ] - a))) +
       log(lambda0) - integ2
   }
   return(-sum(forward[n, ]))

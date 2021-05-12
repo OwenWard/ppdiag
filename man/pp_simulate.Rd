@@ -22,14 +22,14 @@ pp_simulate(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 \method{pp_simulate}{mmhp}(object, start = 0, end = 1, n = NULL, verbose = FALSE)
 }
 \arguments{
-\item{object}{point process model object of type hpp, hp, mmpp, mmhp, or mmpp}
+\item{object}{point process model object of type hpp, hp, mmhp, or mmpp}
 
 \item{start}{start time of events simulated. Not used for Markov modulated
 models}
 
 \item{end}{end time of events simulated. Not used for Markov modulated models}
 
-\item{n}{number of events simulated. Required for Markov modulated models, 
+\item{n}{number of events simulated. Required for Markov modulated models,
 optional otherwise}
 
 \item{verbose}{whether to output informative messages as running}
@@ -44,7 +44,5 @@ Hawkes with exponential kernel, MMHP and MMPP
 }
 \examples{
 hpp_obj <- pp_hpp(lambda = 1)
-s <- pp_simulate(hpp_obj, n=50)
-
-
+s <- pp_simulate(hpp_obj, n = 50)
 }

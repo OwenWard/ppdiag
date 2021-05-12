@@ -16,7 +16,7 @@ no return value, quantile-quantile plot for rescaled-inter-event-times
 }
 \description{
 Generate Quantile-quantile plot for rescaled-inter-event-times,
-which are independently 
+which are independently
 and identically distributed as exponential random variables with rate 1
 under the true point process.
 }
