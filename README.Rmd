@@ -128,7 +128,9 @@ pp_diag(mmhp_obj, mmhp_events$events)
 Please file any issues [here](https://github.com/OwenWard/ppdiag/issues). 
 Similarly, we would be delighted if anyone would like to contribute to
 this package (such as adding other point processes, kernel functions). 
-Feel free to reach out.
+Feel free to take a look
+[here](https://github.com/OwenWard/ppdiag/blob/main/CONTRIBUTING.md)
+and reach out with any questions.
 
 # References
 
