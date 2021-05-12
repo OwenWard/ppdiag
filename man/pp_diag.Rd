@@ -27,8 +27,8 @@ pp_diag(object, events)
 \item{events}{event times}
 }
 \value{
-Display QQ-plot and KS plot, along with printing Pearson
- and raw residuals.
+Invisibly returns NULL. Outputs plots and summary of diagnostics to
+console
 }
 \description{
 Generate diagnostic tools for different point process models,

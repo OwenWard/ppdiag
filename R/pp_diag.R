@@ -9,8 +9,8 @@
 #' @importFrom stats ks.test
 #' @importFrom graphics par
 #' @importFrom graphics layout
-#' @return Display QQ-plot and KS plot, along with printing Pearson
-#'  and raw residuals.
+#' @return Invisibly returns NULL. Outputs plots and summary of diagnostics to
+#' console
 #' @export
 #' @examples
 #' hpp_obj <- pp_hpp(lambda = 1)
@@ -47,7 +47,7 @@ pp_diag.hp <- function(object, events) {
   cat("Raw residual: ", rr, "\n", sep = "")
   cat("Pearson residual: ", pr, "\n", sep = "")
   print(ks)
-  return(NULL)
+  invisible(NULL)
 }
 
 #' @rdname pp_diag
@@ -70,7 +70,7 @@ pp_diag.mmhp <- function(object, events) {
   cat("Raw residual: ", rr, "\n", sep = "")
   cat("Pearson residual: ", pr, "\n", sep = "")
   print(ks)
-  return(NULL)
+  invisible(NULL)
 }
 
 #' @rdname pp_diag
@@ -93,7 +93,7 @@ pp_diag.mmpp <- function(object, events) {
   cat("Raw residual: ", rr, "\n", sep = "")
   cat("Pearson residual: ", pr, "\n", sep = "")
   print(ks)
-  return(NULL)
+  invisible(NULL)
 }
 
 #' @rdname pp_diag
@@ -117,5 +117,5 @@ pp_diag.hpp <- function(object, events) {
   cat("\n", "Raw residual: ", rr, "\n", sep = "")
   cat("Pearson residual: ", pr, "\n", sep = "")
   print(ks)
-  return(NULL)
+  invisible(NULL)
 }

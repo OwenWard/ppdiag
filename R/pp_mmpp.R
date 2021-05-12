@@ -29,3 +29,18 @@ pp_mmpp <- function(lambda0, c, Q, events = NULL, delta = NULL) {
   class(y) <- "mmpp"
   return(y)
 }
+
+#' @export
+print.mmpp <- function(x, ...) {
+  cat("Markov Modulated Poisson Process \n")
+  cat("lambda0 ", x$lambda0, "\n")
+  cat("c ", x$c, "\n")
+  cat("Q ", x$Q, "\n")
+  if(!(is.null(x$delta))) {
+    cat("delta", x$delta, "\n") 
+  }
+  if(!(is.null(x$events))) {
+    cat("events", x$events, "\n") 
+  }
+  invisible(NULL)
+}

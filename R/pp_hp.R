@@ -29,3 +29,16 @@ pp_hp <- function(lambda0, alpha, beta, events = NULL) {
   class(y) <- "hp"
   return(y)
 }
+
+
+#' @export
+print.hp <- function(x, ...) {
+  cat("Hawkes Process \n")
+  cat("lambda0 ", x$lambda0, "\n")
+  cat("alpha ", x$alpha, "\n")
+  cat("beta ", x$beta, "\n")
+  if(!(is.null(x$events))) {
+    cat("events", x$events, "\n") 
+  }
+  invisible(NULL)
+}

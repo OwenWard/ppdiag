@@ -38,3 +38,21 @@ pp_mmhp <- function(lambda0, lambda1, alpha, beta, Q = NULL,
   }
   return(y)
 }
+
+
+#' @export
+print.mmhp <- function(x, ...) {
+  cat("Markov Modulated Hawkes Process \n")
+  cat("lambda0 ", x$lambda0, "\n")
+  cat("lambda1 ", x$lambda1, "\n")
+  cat("alpha ", x$alpha, "\n")
+  cat("beta ", x$beta, "\n")
+  cat("Q ", x$Q, "\n")
+  if(!(is.null(x$delta))) {
+    cat("delta", x$delta, "\n") 
+  }
+  if(!(is.null(x$events))) {
+    cat("events", x$events, "\n") 
+  }
+  invisible(NULL)
+}

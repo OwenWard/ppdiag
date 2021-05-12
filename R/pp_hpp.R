@@ -16,3 +16,14 @@ pp_hpp <- function(lambda, events = NULL) {
   class(y) <- "hpp"
   return(y)
 }
+
+
+#' @export
+print.hpp <- function(x, ...) {
+  cat("Homogeneous Poisson Process \n")
+  cat("lambda ", x$lambda0, "\n")
+  if(!(is.null(x$events))) {
+    cat("events", x$events, "\n") 
+  }
+  invisible(NULL)
+}
