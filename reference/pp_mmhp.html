@@ -40,13 +40,11 @@
 
 
 <meta property="og:title" content="Create a Markov-modulated Hawkes Process(MMHP) object — pp_mmhp" />
-<meta property="og:description" content="Create a Markov-modulated Hawkes Process(MMHP) model 
-according to the given parameters: lambda0, lambda1, 
+<meta property="og:description" content="Create a Markov-modulated Hawkes Process(MMHP) model
+according to the given parameters: lambda0, lambda1,
 alpha, beta, event times and transition probability matrix.
 If event time events is missing,
  then it means that data will be added later(e.g. simulated)" />
-
-
 
 
 
@@ -62,15 +60,9 @@ If event time events is missing,
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -91,6 +83,12 @@ If event time events is missing,
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../articles/ppdiag.html">Get started</a>
 </li>
 <li>
@@ -135,8 +133,8 @@ If event time events is missing,
     </div>
 
     <div class="ref-description">
-    <p>Create a Markov-modulated Hawkes Process(MMHP) model 
-according to the given parameters: lambda0, lambda1, 
+    <p>Create a Markov-modulated Hawkes Process(MMHP) model
+according to the given parameters: lambda0, lambda1,
 alpha, beta, event times and transition probability matrix.
 If event time events is missing,
  then it means that data will be added later(e.g. simulated)</p>
@@ -173,8 +171,8 @@ If event time events is missing,
     </tr>
     <tr>
       <th>events</th>
-      <td><p>vector containing the event times. 
-Note that the first event is at time zero. 
+      <td><p>vector containing the event times.
+Note that the first event is at time zero.
 Alternatively, events could be specified as NULL,
  meaning that the data will be added later (e.g. simulated).</p></td>
     </tr>
@@ -186,33 +184,17 @@ Alternatively, events could be specified as NULL,
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.4</span>, <span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='op'>-</span><span class='fl'>0.2</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>pp_mmhp</span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>,
- alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $Q
-#&gt;      [,1] [,2]
-#&gt; [1,] -0.4  0.4
-#&gt; [2,]  0.2 -0.2
-#&gt; 
-#&gt; $delta
-#&gt; [1] 0.3333333 0.6666667
-#&gt; 
-#&gt; $events
-#&gt; NULL
-#&gt; 
-#&gt; $lambda0
-#&gt; [1] 0.9
-#&gt; 
-#&gt; $lambda1
-#&gt; [1] 1.1
-#&gt; 
-#&gt; $alpha
-#&gt; [1] 0.8
-#&gt; 
-#&gt; $beta
-#&gt; [1] 1.2
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "mmhp"</div></pre>
+<span class='fu'>pp_mmhp</span><span class='op'>(</span><span class='va'>Q</span>,
+  delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; Markov Modulated Hawkes Process 
+#&gt; lambda0  0.9 
+#&gt; lambda1  1.1 
+#&gt; alpha  0.8 
+#&gt; beta  1.2 
+#&gt; Q  -0.4 0.2 0.4 -0.2 
+#&gt; delta 0.3333333 0.6666667 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -224,11 +206,11 @@ Alternatively, events could be specified as NULL,
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p></p>
+  <p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -236,8 +218,6 @@ Alternatively, events could be specified as NULL,
 
   
 
-
-  
 
   </body>
 </html>

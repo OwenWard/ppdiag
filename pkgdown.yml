@@ -1,10 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1.9000
-pkgdown_sha: 9c95f00d2505ddd83c4722e019202370715d3a3d
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   fitting_markov_modulated: fitting_markov_modulated.html
   ppdiag: ppdiag.html
-last_built: 2021-03-04T23:42Z
+last_built: 2021-05-13T18:55Z
 urls:
   reference: https://owenward.github.io/ppdiag/reference
   article: https://owenward.github.io/ppdiag/articles

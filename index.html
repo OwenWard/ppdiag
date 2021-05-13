@@ -26,8 +26,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -46,6 +44,12 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="articles/ppdiag.html">Get started</a>
 </li>
@@ -101,57 +105,39 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>You can install the released version of ppdiag from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<p>You can install the released version of ppdiag from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ppdiag"</span><span class="op">)</span></code></pre></div>
-<p>The current development version of this package is available from <a href="https://github.com/OwenWard/ppdiag" class="external-link">GitHub</a> with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ppdiag"</span><span class="op">)</span></code></pre></div>
+<p>The current development version of this package is available from <a href="https://github.com/OwenWard/ppdiag">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"OwenWard/ppdiag"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"OwenWard/ppdiag"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h1>
 <p>To illustrate some of the basic functionality of this package, we can simulate data from a specified Hawkes process and examine our diagnostic results when we fit a homogeneous Poisson process to this data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://owenward.github.io/ppdiag/">ppdiag</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://owenward.github.io/ppdiag/">ppdiag</a></span><span class="op">)</span>
 
 <span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_hp.html">pp_hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.35</span>, beta <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="va">sim_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, end <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
 <span class="va">sim_hp</span>
-<span class="co">#&gt;  [1]   0.9028774   2.1440211  12.5023753  13.1117594  15.2125103  16.4468785</span>
-<span class="co">#&gt;  [7]  22.0673950  28.0077200  28.7309437  28.8399044  29.8898289  31.2596296</span>
-<span class="co">#&gt; [13]  32.9789068  33.0952675  47.3363303  47.4550222  52.2806143  52.7807790</span>
-<span class="co">#&gt; [19]  53.8471582  70.6502357  71.2346665  71.9704604  74.2900289  77.9300598</span>
-<span class="co">#&gt; [25]  86.2557153  86.9531752  92.3820592 102.7484174 103.2037018 103.2931602</span>
-<span class="co">#&gt; [31] 103.6600985 106.2132004 110.6646722 114.5946863 116.0299836 116.1304621</span>
-<span class="co">#&gt; [37] 116.2030573 116.2219153 116.5640912 116.5834268 116.7923988 117.1433428</span>
-<span class="co">#&gt; [43] 117.3212496 118.2355304 122.7278904 123.5293785 123.9301859 126.7675328</span>
-<span class="co">#&gt; [49] 136.4601124 162.4423253 162.5968625 162.9340964 165.1812875 176.5825227</span>
-<span class="co">#&gt; [55] 180.7287522 185.5611023 185.7220408 186.5938809 190.1311457 192.9218856</span>
-<span class="co">#&gt; [61] 193.2152954 196.3592700</span></code></pre></div>
+<span class="co">#&gt;  [1]   1.251803   2.585288  15.660522  16.424361  19.852963  20.115283</span>
+<span class="co">#&gt;  [7]  36.749777  36.813473  54.757570  56.583400  59.564868  60.272463</span>
+<span class="co">#&gt; [13]  60.884895  84.771774  88.260163  88.423628  89.601849  90.061292</span>
+<span class="co">#&gt; [19]  90.370334  90.621778  90.694123  92.143117  93.395489  93.687936</span>
+<span class="co">#&gt; [25]  94.588896 113.160732 121.785596 122.646369 122.770419 123.035607</span>
+<span class="co">#&gt; [31] 125.550267 125.561861 130.788192 133.921184 137.518573 139.761132</span>
+<span class="co">#&gt; [37] 145.099685 155.317533 161.611297 176.427144 178.593037 178.923897</span>
+<span class="co">#&gt; [43] 179.170059 184.217712 184.422784 190.509601</span></code></pre></div>
 <p>We can readily evaluate the fit of a homogeneous Poisson process to this data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">sim_hp</span><span class="op">)</span>
 <span class="va">est_hpp</span>
-<span class="co">#&gt; $lambda</span>
-<span class="co">#&gt; [1] 0.3157478</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt;  [1]   0.9028774   2.1440211  12.5023753  13.1117594  15.2125103  16.4468785</span>
-<span class="co">#&gt;  [7]  22.0673950  28.0077200  28.7309437  28.8399044  29.8898289  31.2596296</span>
-<span class="co">#&gt; [13]  32.9789068  33.0952675  47.3363303  47.4550222  52.2806143  52.7807790</span>
-<span class="co">#&gt; [19]  53.8471582  70.6502357  71.2346665  71.9704604  74.2900289  77.9300598</span>
-<span class="co">#&gt; [25]  86.2557153  86.9531752  92.3820592 102.7484174 103.2037018 103.2931602</span>
-<span class="co">#&gt; [31] 103.6600985 106.2132004 110.6646722 114.5946863 116.0299836 116.1304621</span>
-<span class="co">#&gt; [37] 116.2030573 116.2219153 116.5640912 116.5834268 116.7923988 117.1433428</span>
-<span class="co">#&gt; [43] 117.3212496 118.2355304 122.7278904 123.5293785 123.9301859 126.7675328</span>
-<span class="co">#&gt; [49] 136.4601124 162.4423253 162.5968625 162.9340964 165.1812875 176.5825227</span>
-<span class="co">#&gt; [55] 180.7287522 185.5611023 185.7220408 186.5938809 190.1311457 192.9218856</span>
-<span class="co">#&gt; [61] 193.2152954 196.3592700</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "hpp"</span>
+<span class="co">#&gt; Homogeneous Poisson Process </span>
+<span class="co">#&gt; lambda  </span>
+<span class="co">#&gt; events 1.251803 2.585288 15.66052 16.42436 19.85296 20.11528 36.74978 36.81347 54.75757 56.5834 59.56487 60.27246 60.8849 84.77177 88.26016 88.42363 89.60185 90.06129 90.37033 90.62178 90.69412 92.14312 93.39549 93.68794 94.5889 113.1607 121.7856 122.6464 122.7704 123.0356 125.5503 125.5619 130.7882 133.9212 137.5186 139.7611 145.0997 155.3175 161.6113 176.4271 178.593 178.9239 179.1701 184.2177 184.4228 190.5096</span>
 
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">est_hpp</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hpp-1.png" width="75%"></p>
@@ -162,59 +148,41 @@
 <span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; </span></span>
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; D = 0.21699, p-value = 0.004829</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; D = 0.22652, p-value = 0.01481</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span>
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">hp_est</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&gt; Raw residual: -0.004365144</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; Pearson residual: -0.2098432</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&gt; Raw residual: -0.00519921</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; Pearson residual: 0.06798623</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; </span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; </span></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; D = 0.064756, p-value = 0.9422</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; D = 0.10346, p-value = 0.67</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <div id="markov-modulated-hawkes-process-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markov-modulated-hawkes-process-example" class="anchor"></a>Markov Modulated Hawkes Process Example</h2>
 <p>This is particularly useful for more complex point processes, such as the Markov Modulated Hawkes Process (MMHP). We can simulate events from this model and examine the fit of simpler point processes to this data.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_mmhp.html">pp_mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
+<span class="va">mmhp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_mmhp.html">pp_mmhp</a></span><span class="op">(</span><span class="va">Q</span>, delta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">3</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>, 
           lambda0 <span class="op">=</span> <span class="fl">0.2</span>,
           lambda1 <span class="op">=</span> <span class="fl">.75</span>,
           alpha <span class="op">=</span> <span class="fl">0.4</span>,
           beta <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 
 <span class="va">mmhp_obj</span>
-<span class="co">#&gt; $Q</span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,] -0.2  0.2</span>
-<span class="co">#&gt; [2,]  0.1 -0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $delta</span>
-<span class="co">#&gt; [1] 0.3333333 0.6666667</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $events</span>
-<span class="co">#&gt; NULL</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lambda0</span>
-<span class="co">#&gt; [1] 0.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lambda1</span>
-<span class="co">#&gt; [1] 0.75</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $alpha</span>
-<span class="co">#&gt; [1] 0.4</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $beta</span>
-<span class="co">#&gt; [1] 0.8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "mmhp"</span>
+<span class="co">#&gt; Markov Modulated Hawkes Process </span>
+<span class="co">#&gt; lambda0  0.2 </span>
+<span class="co">#&gt; lambda1  0.75 </span>
+<span class="co">#&gt; alpha  0.4 </span>
+<span class="co">#&gt; beta  0.8 </span>
+<span class="co">#&gt; Q  -0.2 0.1 0.2 -0.1 </span>
+<span class="co">#&gt; delta 0.3333333 0.6666667</span>
 <span class="va">mmhp_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
 <p>We can easily fit a homogeneous Poisson process and visualise the goodness of fit.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -223,50 +191,50 @@
 <p><img src="reference/figures/README-fit_hpp_to_mmhp-1.png" width="75%"></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#&gt; </span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; Raw residual: -1</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; Pearson residual: -1.450621</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; Pearson residual: -1.684459</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; </span></span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt; </span></span>
 <span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; D = 0.206, p-value = 0.02446</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; D = 0.27786, p-value = 0.0006626</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>Similarly for a Hawkes process.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">est_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">est_hp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp_to_mmhp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#&gt; Raw residual: -0.6342256</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Pearson residual: -1.830059</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#&gt; Raw residual: -0.6181052</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Pearson residual: -2.221529</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; </span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a><span class="co">#&gt; </span></span>
 <span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; D = 0.093848, p-value = 0.7352</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; D = 0.078371, p-value = 0.8949</span></span>
 <span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>We can then compare to the true point process model.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_mmhp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; Raw residual: 13.07489</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Pearson residual: 21.01997</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; Raw residual: 5.381804</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Pearson residual: 2.85359</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; </span></span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; </span></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; D = 0.17639, p-value = 0.07852</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; D = 0.12924, p-value = 0.344</span></span>
 <span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 </div>
 </div>
 <div id="getting-help-and-contributing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-help-and-contributing" class="anchor"></a>Getting help and contributing</h1>
-<p>Please file any issues <a href="https://github.com/OwenWard/ppdiag/issues" class="external-link">here</a>. Similarly, we would be delighted if anyone would like to contribute to this package (such as adding other point processes, kernel functions). Feel free to reach out.</p>
+<p>Please file any issues <a href="https://github.com/OwenWard/ppdiag/issues">here</a>. Similarly, we would be delighted if anyone would like to contribute to this package (such as adding other point processes, kernel functions). Feel free to take a look <a href="https://github.com/OwenWard/ppdiag/blob/main/CONTRIBUTING.md">here</a> and reach out with any questions.</p>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <ul>
-<li>Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, <a href="https://arxiv.org/abs/2001.09359" class="external-link uri">https://arxiv.org/abs/2001.09359</a>
+<li>Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, <a href="https://arxiv.org/abs/2001.09359" class="uri">https://arxiv.org/abs/2001.09359</a>
 </li>
 </ul>
 </div>
@@ -275,7 +243,7 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2 data-toc-skip>Links</h2>
+<h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=ppdiag">https://​cloud.r-project.org/​package=ppdiag</a>
 </li>
@@ -285,50 +253,51 @@
 </li>
 </ul>
 </div>
-
 <div class="license">
-<h2 data-toc-skip>License</h2>
+<h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
-
-
+<div class="community">
+<h2>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 <div class="developers">
-<h2 data-toc-skip>Developers</h2>
+<h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Sally Sun <br><small class="roles"> Author </small>  </li>
 <li>Owen G. Ward <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-9678-3542" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Jing Wu <br><small class="roles"> Author </small>  </li>
 <li>Xiaoxi Zhao <br><small class="roles"> Author </small>  </li>
 <li>Tian Zheng <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">More on authors...</a></li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
+  <div class="dev-status">
+<h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/OwenWard/ppdiag/actions" class="external-link"><img src="https://github.com/OwenWard/ppdiag/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=ppdiag" class="external-link"><img src="https://www.r-pkg.org/badges/version/ppdiag" alt="CRAN status"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://codecov.io/gh/OwenWard/ppdiag?branch=main" class="external-link"><img src="https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/OwenWard/ppdiag/actions"><img src="https://github.com/OwenWard/ppdiag/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=ppdiag"><img src="https://www.r-pkg.org/badges/version/ppdiag" alt="CRAN status"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://codecov.io/gh/OwenWard/ppdiag?branch=main"><img src="https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
-
-  </div>
+</div>
 </div>
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
+  <p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -336,8 +305,6 @@
 
   
 
-
-  
 
   </body>
 </html>

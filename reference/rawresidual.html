@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Compute raw residuals for point process models — rawresidual" />
-<meta property="og:description" content="Compute raw residuals for for point processes 
+<meta property="og:description" content="Compute raw residuals for for point processes
 with specified parameters and events." />
 
 
@@ -73,7 +73,7 @@ with specified parameters and events." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppdiag</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.900</span>
       </span>
     </div>
 
@@ -105,7 +105,12 @@ with specified parameters and events." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/OwenWard/ppdiag/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -120,12 +125,12 @@ with specified parameters and events." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute raw residuals for point process models</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/R/rawresidual.R'><code>R/rawresidual.R</code></a></small>
     <div class="hidden name"><code>rawresidual.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute raw residuals for for point processes 
+    <p>Compute raw residuals for for point processes
 with specified parameters and events.</p>
     </div>
 
@@ -162,11 +167,12 @@ with specified parameters and events.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.4</span>, <span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='op'>-</span><span class='fl'>0.2</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_mmhp.html'>pp_mmhp</a></span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>, 
-lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>, alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_mmhp.html'>pp_mmhp</a></span><span class='op'>(</span><span class='va'>Q</span>,
+  delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>0.9</span>,
+  lambda1 <span class='op'>=</span> <span class='fl'>1.1</span>, alpha <span class='op'>=</span> <span class='fl'>0.8</span>, beta <span class='op'>=</span> <span class='fl'>1.2</span>
+<span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>10 events simulated. To simulate up to endtime set given_states=TRUE and provide states.</span></div><div class='input'><span class='fu'><a href='pearsonresidual.html'>pearsonresidual</a></span><span class='op'>(</span><span class='va'>x</span>, events <span class='op'>=</span> <span class='va'>y</span><span class='op'>$</span><span class='va'>events</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1.279156</div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

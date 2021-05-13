@@ -40,11 +40,9 @@
 
 
 <meta property="og:title" content="Summarise diagnostics for point process models — pp_diag" />
-<meta property="og:description" content="Generate diagnostic tools for different point process models, 
-including quantile-quantile plot, ks plot, 
+<meta property="og:description" content="Generate diagnostic tools for different point process models,
+including quantile-quantile plot, ks plot,
 raw residual and pearson residual." />
-
-
 
 
 
@@ -60,15 +58,9 @@ raw residual and pearson residual." />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -89,6 +81,12 @@ raw residual and pearson residual." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../articles/ppdiag.html">Get started</a>
 </li>
 <li>
@@ -133,8 +131,8 @@ raw residual and pearson residual." />
     </div>
 
     <div class="ref-description">
-    <p>Generate diagnostic tools for different point process models, 
-including quantile-quantile plot, ks plot, 
+    <p>Generate diagnostic tools for different point process models,
+including quantile-quantile plot, ks plot,
 raw residual and pearson residual.</p>
     </div>
 
@@ -170,21 +168,21 @@ raw residual and pearson residual.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Display QQ-plot and KS plot, along with printing Pearson
- and raw residuals.</p>
+    <p>Invisibly returns NULL. Outputs plots and summary of diagnostics to
+console</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>hpp_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_hpp.html'>pp_hpp</a></span><span class='op'>(</span>lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>hpp_obj</span>, end<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span>
+<span class='va'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>hpp_obj</span>, end <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
 <span class='fu'>pp_diag</span><span class='op'>(</span><span class='va'>hpp_obj</span>, <span class='va'>events</span><span class='op'>)</span>
 </div><div class='img'><img src='pp_diag-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; Raw residual: -4.260702
-#&gt; Pearson residual: -4.260702
+#&gt; Raw residual: 0.2583418
+#&gt; Pearson residual: 0.2583418
 #&gt; 
 #&gt; 	One-sample Kolmogorov-Smirnov test
 #&gt; 
 #&gt; data:  r
-#&gt; D = 0.12453, p-value = 0.4653
+#&gt; D = 0.11131, p-value = 0.5289
 #&gt; alternative hypothesis: two-sided
 #&gt; </div></pre>
   </div>
@@ -198,11 +196,11 @@ raw residual and pearson residual.</p>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p></p>
+  <p>Developed by Sally Sun, Owen G. Ward, Jing Wu, Xiaoxi Zhao, Tian Zheng.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -210,8 +208,6 @@ raw residual and pearson residual.</p>
 
   
 
-
-  
 
   </body>
 </html>

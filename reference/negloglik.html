@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute negative log likelihood for social network models — negloglik • ppdiag</title>
+<title>Compute negative log likelihood for point process models — negloglik • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Compute negative log likelihood for social network models — negloglik" />
-<meta property="og:description" content="Compute negative log likelihood for social network models
+<meta property="og:title" content="Compute negative log likelihood for point process models — negloglik" />
+<meta property="og:description" content="Compute negative log likelihood for point process models
  with model specified time events or simulated time events" />
 
 
@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppdiag</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.900</span>
       </span>
     </div>
 
@@ -91,9 +91,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/fitting_markov_modulated.html">Fitting Markov Modulated Point Process Models</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/OwenWard/ppdiag/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,36 +124,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute negative log likelihood for social network models</h1>
-    
+    <h1>Compute negative log likelihood for point process models</h1>
+    <small class="dont-index">Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/R/negloglik.R'><code>R/negloglik.R</code></a></small>
     <div class="hidden name"><code>negloglik.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute negative log likelihood for social network models
+    <p>Compute negative log likelihood for point process models
  with model specified time events or simulated time events</p>
     </div>
 
-    <pre class="usage"><span class='fu'>negloglik</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>t</span>, <span class='va'>end</span><span class='op'>)</span>
-
-<span class='co'># S3 method for default</span>
-<span class='fu'>negloglik</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>t</span>, <span class='va'>end</span><span class='op'>)</span>
-
-<span class='co'># S3 method for hp</span>
-<span class='fu'>negloglik</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>t</span>, <span class='va'>end</span><span class='op'>)</span>
-
-<span class='co'># S3 method for mmhp</span>
-<span class='fu'>negloglik</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>t</span>, <span class='va'>end</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>negloglik</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>events</span>, <span class='va'>end</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>social network model contating the parameters</p></td>
+      <td><p>point process object containing the parameters</p></td>
     </tr>
     <tr>
-      <th>t</th>
+      <th>events</th>
       <td><p>vector containing the event times.</p></td>
     </tr>
     <tr>

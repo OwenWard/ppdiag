@@ -22,7 +22,31 @@
     <loc>https://owenward.github.io/ppdiag/reference/fithpp.html</loc>
   </url>
   <url>
+    <loc>https://owenward.github.io/ppdiag/reference/hawkes_max_intensity.html</loc>
+  </url>
+  <url>
     <loc>https://owenward.github.io/ppdiag/reference/intensityqqplot.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/interpolate_mmhp_latent.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/mmhp_event_state.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/mmpp_event_state.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/mmpp_latent.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/negloglik.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/negloglik_hp.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/pearsonresidual.html</loc>
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/pp_compensator.html</loc>
@@ -53,6 +77,9 @@
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/pp_simulate.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/rawresidual.html</loc>
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/articles/fitting_markov_modulated.html</loc>
