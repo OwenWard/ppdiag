@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.23)  4 MAR 2021 09:15
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.8)  13 MAY 2021 15:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf
+L3 programming layer <2021-05-07> (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf
 -dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -51,7 +51,7 @@ Package graphics Info: Driver file: xetex.def on input line 105.
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex
 .def
-File: xetex.def 2020/08/26 v5.0i Graphics/color driver for xetex
+File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen139
 \Gin@req@width=\dimen140
@@ -430,7 +430,7 @@ File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.
 sty
-Package: hyperref 2021-02-10 v7.00j Hypertext links for LaTeX
+Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.
 sty
@@ -486,11 +486,11 @@ Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.de
 f
-File: pd1enc.def 2021-02-10 v7.00j Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-
 langpatches.def
-File: hyperref-langpatches.def 2021-02-10 v7.00j Hyperref: patches for babel la
+File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
 nguages
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.
@@ -504,7 +504,7 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 \Hy@SavedSpaceFactor=\count281
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2021-02-10 v7.00j Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
 )
 Package hyperref Info: Hyper figures OFF on input line 4192.
 Package hyperref Info: Link nesting OFF on input line 4197.
@@ -557,7 +557,7 @@ Package hyperref Info: Driver (autodetected): hxetex.
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.de
 f
-File: hxetex.def 2021-02-10 v7.00j Hyperref driver for XeTeX
+File: hxetex.def 2021-02-27 v7.00k Hyperref driver for XeTeX
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/string
 enc.sty
@@ -1017,11 +1017,11 @@ sty
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
 xparse.sty
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2021-02-18 L3 programming layer (loader) 
+Package: expl3 2021-05-07 L3 programming layer (loader) 
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backen
 d-xetex.def
-File: l3backend-xetex.def 2021-02-18 L3 backend support: XeTeX
+File: l3backend-xetex.def 2021-05-07 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count436
 \l__color_backend_stack_int=\count437
@@ -1177,7 +1177,7 @@ Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
 Package biblatex Info: Document encoding is UTF8 ....
 Package biblatex Info: ... and expl3
-(biblatex)             2021-02-18 L3 programming layer (loader) 
+(biblatex)             2021-05-07 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 
@@ -1261,12 +1261,14 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 344.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 347.
 [1
 
 ]
 File: paper_files/figure-latex/fit_hpp-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/fit_hpp-1.pdf>
+File: paper_files/figure-latex/fit_hawkes-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/fit_hawkes-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1280,8 +1282,6 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 [2]
-File: paper_files/figure-latex/fit_hawkes-1.pdf Graphic file (type pdf)
-<use paper_files/figure-latex/fit_hawkes-1.pdf>
 File: C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/jo
 ss/resources/JOSS-logo.png Graphic file (type bmp)
 <C:/Users/owenw/Documents/R/win-library/4.0/rticles/rmarkdown/templates/joss/re
@@ -1302,12 +1302,12 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33432 strings out of 478931
- 676334 string characters out of 5865404
- 1457484 words of memory out of 5000000
- 52770 multiletter control sequences out of 15000+600000
+ 33557 strings out of 478774
+ 679715 string characters out of 5862713
+ 1446517 words of memory out of 5000000
+ 53049 multiletter control sequences out of 15000+600000
  410286 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 95i,12n,103p,738b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,12n,95p,738b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on paper.pdf (3 pages).

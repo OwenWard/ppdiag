@@ -37,7 +37,7 @@ journal: JOSS
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.height = 3,
+  fig.height = 2.5,
   fig.width = 5,
   message=FALSE,
   warning=FALSE
@@ -59,11 +59,16 @@ tools to analyse the goodness of fit of point processes to
 data, as have been described in @wu2020diagnostics.
 
 # Statement of Need
+Temporal point processes can be used to model data arising in a wide
+variety of fields, including but not limited to neuroscience, seismology
+and finance. As such, tools for analysing the fit of 
+point processes to data can be used by many practitioners.
 This package provides functions to evaluate the fit of
 univariate temporal point processes. These functions allow: 
 
 - Simulation 
-of data from a range of common univariate point processes including Homogeneous 
+of data from a range of common univariate point processes,
+including Homogeneous 
 Poisson Process, Hawkes Process, and Markov-modulated Hawkes and Poisson
 Processes. 
 

@@ -25,7 +25,7 @@ affiliations:
  - name: Data Science Institute, Columbia University
    index: 2
 citation_author: Sun et. al.
-date: "2021-03-04"
+date: "2021-05-13"
 year: 2021
 bibliography: paper.bib
 output: rticles::joss_article
@@ -49,11 +49,16 @@ tools to analyse the goodness of fit of point processes to
 data, as have been described in @wu2020diagnostics.
 
 # Statement of Need
+Temporal point processes can be used to model data arising in a wide
+variety of fields, including but not limited to neuroscience, seismology
+and finance. As such, tools for analysing the fit of 
+point processes to data can be used by many practitioners.
 This package provides functions to evaluate the fit of
 univariate temporal point processes. These functions allow: 
 
 - Simulation 
-of data from a range of common univariate point processes including Homogeneous 
+of data from a range of common univariate point processes,
+including Homogeneous 
 Poisson Process, Hawkes Process, and Markov-modulated Hawkes and Poisson
 Processes. 
 
@@ -73,7 +78,7 @@ identify reasons for lack of fit of a process to data.
 
 Though there are some existing 
 packages that contain functions for simulating point 
-processes, [@hawkes_14; @Markov_17],
+processes, [@hawkes_14],[@Markov_17],
 and for computing some 
 simple residuals [@PtProcess2010],
 to the best of our knowledge, 
