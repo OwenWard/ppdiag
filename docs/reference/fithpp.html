@@ -155,18 +155,11 @@ process for the given events.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>pois_y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_hpp.html'>pp_hpp</a></span><span class='op'>(</span>lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>pois_y</span>, end<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_simulate.html'>pp_simulate</a></span><span class='op'>(</span><span class='va'>pois_y</span>, end <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'>fithpp</span><span class='op'>(</span><span class='va'>events</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $lambda
-#&gt; [1] 1.394449
-#&gt; 
-#&gt; $events
-#&gt;  [1] 0.06384256 0.28539348 0.56239463 1.19244465 1.79610809 4.14028105
-#&gt;  [7] 5.08612997 6.84434700 7.21435928 7.60709302 7.66229410 9.29081534
-#&gt; [13] 9.32268017
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "hpp"</div></pre>
+</div><div class='output co'>#&gt; Homogeneous Poisson Process 
+#&gt; lambda  
+#&gt; events 0.4879321 0.5307325 1.26847 1.554607 5.437887 7.204159 7.650499 9.452439 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

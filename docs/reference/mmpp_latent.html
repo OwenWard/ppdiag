@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot QQ-plot for rescaled-inter-event-times of fitted point process — pp_qqexp • ppdiag</title>
+<title>Estimate Latent process of MMPP — mmpp_latent • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot QQ-plot for rescaled-inter-event-times of fitted point process — pp_qqexp" />
-<meta property="og:description" content="Generate Quantile-quantile plot for rescaled-inter-event-times,
-which are independently
-and identically distributed as exponential random variables with rate 1
-under the true point process." />
+<meta property="og:title" content="Estimate Latent process of MMPP — mmpp_latent" />
+<meta property="og:description" content="Estimate Latent process of MMPP" />
 
 
 
@@ -126,37 +123,49 @@ under the true point process." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot QQ-plot for rescaled-inter-event-times of fitted point process</h1>
-    <small class="dont-index">Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/R/pp_qqexp.R'><code>R/pp_qqexp.R</code></a></small>
-    <div class="hidden name"><code>pp_qqexp.Rd</code></div>
+    <h1>Estimate Latent process of MMPP</h1>
+    <small class="dont-index">Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/R/mmpp_latent.R'><code>R/mmpp_latent.R</code></a></small>
+    <div class="hidden name"><code>mmpp_latent.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generate Quantile-quantile plot for rescaled-inter-event-times,
-which are independently
-and identically distributed as exponential random variables with rate 1
-under the true point process.</p>
+    <p>Estimate Latent process of MMPP</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pp_qqexp</span><span class='op'>(</span><span class='va'>r</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mmpp_latent</span><span class='op'>(</span>params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>lambda0</span>, <span class='va'>c</span>, <span class='va'>Q</span><span class='op'>)</span>, <span class='va'>events</span>, <span class='va'>zt</span>, start <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>r</th>
-      <td><p>rescaled-inter-event-times</p></td>
+      <th>params</th>
+      <td><p>parameters of the MMPP, an MMPP object</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>other arguments for plots</p></td>
+      <th>events</th>
+      <td><p>events (not including 0, but assumes start at 0)</p></td>
+    </tr>
+    <tr>
+      <th>zt</th>
+      <td><p>inferred latent state of events</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>no return value, quantile-quantile plot for rescaled-inter-event-times</p>
+    <p>list of the states of the Markov process (z.hat)
+and the times of the transitions between these times (x.hat).</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.04</span>, <span class='fl'>0.04</span>, <span class='fl'>0.02</span>, <span class='op'>-</span><span class='fl'>0.02</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>mmpp_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pp_mmpp.html'>pp_mmpp</a></span><span class='op'>(</span><span class='va'>Q</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>, lambda0 <span class='op'>=</span> <span class='fl'>1</span>, c <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>ppdiag</span><span class='fu'>:::</span><span class='fu'>mmpp_latent</span><span class='op'>(</span>params <span class='op'>=</span> <span class='va'>mmpp_obj</span>, events <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, zt <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $x.hat
+#&gt; [1] 2
+#&gt; 
+#&gt; $z.hat
+#&gt; [1] 2 1
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

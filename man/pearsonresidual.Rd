@@ -31,6 +31,6 @@ x <- pp_mmhp(Q,
   lambda1 = 1.1, alpha = 0.8, beta = 1.2
 )
 y <- pp_simulate(x, n = 10)
-ppdiag:::pearsonresidual(x, events = y$events[-1])
+ppdiag:::pearsonresidual.mmhp(x, events = y$events[-1])
 }
 \keyword{internal}

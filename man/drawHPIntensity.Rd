@@ -52,6 +52,7 @@ no return value, intensity plot of Hawkes process
 Draw the intensity of a Hawkes Process
 }
 \examples{
+set.seed(100)
 hp_obj <- pp_hp(lambda0 = 0.5, alpha = 0.45, beta = 0.5)
 events <- pp_simulate(hp_obj, start = 0, end = 20)
 drawHPIntensity(hp_obj, events)
