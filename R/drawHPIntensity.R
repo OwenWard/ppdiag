@@ -198,6 +198,7 @@ drawHPIntensity <- function(hp = NULL, events,
       new.lambda.n <- Vectorize(lambda.n)
       curve(new.lambda.n, from = events[n], to = end, add = TRUE, col = color)
       segments(x0 = end, y0 = lambda.n(end), y1 = lambda0, lty = 2, col = color)
+      segments(x0 = events[1], y0 = lambda0+alpha, y1 = lambda0, lty = 2, col = color)
     }
     legend("topleft", c("Events", "Intensity"),
       col = c("blue", "black"),
