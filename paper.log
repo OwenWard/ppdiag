@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.8)  13 MAY 2021 15:25
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.17)  20 MAY 2021 08:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-05-07> (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf
+L3 programming layer <2021-05-11> (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf
 -dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -134,9 +134,9 @@ futil-latex.def
 frcs.code.tex
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision
 .tex)
-Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
 ))
-Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf
 core.sty
@@ -144,7 +144,7 @@ core.sty
 fsys.sty
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsys.code.tex
-Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
 fkeys.code.tex
@@ -178,37 +178,37 @@ fkeysfiltered.code.tex
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgf.cfg
-File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
 )
 Driver file for pgf: pgfsys-xetex.def
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsys-xetex.def
-File: pgfsys-xetex.def 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfsys-xetex.def 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsys-dvipdfmx.def
-File: pgfsys-dvipdfmx.def 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfsys-dvipdfmx.def 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsys-common-pdf.def
-File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
 )
 \pgfsys@objnum=\count196
 )))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsyssoftpath.code.tex
-File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfsyssoftpath@smallbuffer@items=\count197
 \pgfsyssoftpath@bigbuffer@items=\count198
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
 pgfsysprotocol.code.tex
-File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 ))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcore.code.tex
-Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
 .code.tex
@@ -251,7 +251,7 @@ float.code.tex
 code.tex)
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorepoints.code.tex
-File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@picminx=\dimen161
 \pgf@picmaxx=\dimen162
 \pgf@picminy=\dimen163
@@ -269,19 +269,19 @@ File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorepathconstruct.code.tex
-File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorepathconstruct.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@path@lastx=\dimen175
 \pgf@path@lasty=\dimen176
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorepathusage.code.tex
-File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorepathusage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@shorten@end@additional=\dimen177
 \pgf@shorten@start@additional=\dimen178
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorescopes.code.tex
-File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfpic=\box50
 \pgf@hbox=\box51
 \pgf@layerbox@main=\box52
@@ -289,83 +289,83 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoregraphicstate.code.tex
-File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgflinewidth=\dimen179
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoretransformations.code.tex
-File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoretransformations.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@pt@x=\dimen180
 \pgf@pt@y=\dimen181
 \pgf@pt@temp=\dimen182
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorequick.code.tex
-File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorequick.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoreobjects.code.tex
-File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoreobjects.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorepathprocessing.code.tex
-File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorepathprocessing.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorearrows.code.tex
-File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfarrowsep=\dimen183
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoreshade.code.tex
-File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@max=\dimen184
 \pgf@sys@shading@range@num=\count268
 \pgf@shadingcount=\count269
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoreimage.code.tex
-File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoreexternal.code.tex
-File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoreexternal.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfexternal@startupbox=\box53
 ))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorelayers.code.tex
-File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorelayers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcoretransparency.code.tex
-File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcoretransparency.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorepatterns.code.tex
-File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorepatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
 gfcorerdf.code.tex
-File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfcorerdf.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
 oduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfmoduleshapes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfnodeparttextbox=\box54
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
 oduleplot.code.tex
-File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfmoduleplot.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/
 pgfcomp-version-0-65.sty
-Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgfcomp-version-0-65 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@nodesepstart=\dimen185
 \pgf@nodesepend=\dimen186
 )
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/
 pgfcomp-version-1-18.sty
-Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
 ))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgff
 or.sty
@@ -379,7 +379,7 @@ ty
 .code.tex))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
 ffor.code.tex
-Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
 .code.tex)
@@ -390,11 +390,11 @@ Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
 ))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlaye
 r/tikz/tikz.code.tex
-Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
+Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pg
 flibraryplothandlers.code.tex
-File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@plot@mark@count=\count270
 \pgfplotmarksize=\dimen189
 )
@@ -417,7 +417,7 @@ File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
 odulematrix.code.tex
-File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfmatrixcurrentrow=\count275
 \pgfmatrixcurrentcolumn=\count276
 \pgf@matrix@numberofcolumns=\count277
@@ -426,7 +426,7 @@ File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlaye
 r/tikz/libraries/tikzlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )))
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.
 sty
@@ -1017,7 +1017,7 @@ sty
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
 xparse.sty
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2021-05-07 L3 programming layer (loader) 
+Package: expl3 2021-05-11 L3 programming layer (loader) 
 
 (c:/Users/owenw/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backen
 d-xetex.def
@@ -1177,7 +1177,7 @@ Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
 Package biblatex Info: Document encoding is UTF8 ....
 Package biblatex Info: ... and expl3
-(biblatex)             2021-05-07 L3 programming layer (loader) 
+(biblatex)             2021-05-11 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 
@@ -1302,10 +1302,10 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33557 strings out of 478774
- 679715 string characters out of 5862713
- 1446517 words of memory out of 5000000
- 53049 multiletter control sequences out of 15000+600000
+ 33573 strings out of 478764
+ 680163 string characters out of 5862279
+ 1446885 words of memory out of 5000000
+ 53071 multiletter control sequences out of 15000+600000
  410286 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,12n,95p,738b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
