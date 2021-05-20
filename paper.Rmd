@@ -56,7 +56,7 @@ Here we provide `ppdiag`, an `R`
 package containing a 
 selection of statistically motivated
 tools to analyse the goodness of fit of point processes to
-data, as have been described in @wu2020diagnostics.
+data, as have been described in @wu2021diagnostics.
 
 # Statement of Need
 Temporal point processes can be used to model data arising in a wide
