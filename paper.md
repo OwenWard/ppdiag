@@ -25,7 +25,7 @@ affiliations:
  - name: Data Science Institute, Columbia University
    index: 2
 citation_author: Sun et. al.
-date: "2021-05-20"
+date: "2021-05-21"
 year: 2021
 bibliography: paper.bib
 output: rticles::joss_article
