@@ -24,13 +24,8 @@ affiliations:
    index: 1
  - name: Data Science Institute, Columbia University
    index: 2
-citation_author: Sun et. al.
 date: "2021-05-21"
-year: 2021
 bibliography: paper.bib
-output: rticles::joss_article
-csl: apa.csl
-journal: JOSS
 ---
 
 
@@ -38,7 +33,7 @@ journal: JOSS
 # Summary
 
 Temporal Point Processes are widely used to model
-phenomena in many fields, such as finance and neuroscience.
+phenomena in many fields, such as finance, seismology, and neuroscience.
 However, tools to evaluate the fit of these point
 processes to data, and to identify reasons for lack of
 fit, are not readily implemented in common software.
@@ -49,9 +44,7 @@ tools to analyse the goodness of fit of point processes to
 data, as have been described in @wu2021diagnostics.
 
 # Statement of Need
-Temporal point processes can be used to model data arising in a wide
-variety of fields, including but not limited to neuroscience, seismology
-and finance. As such, tools for analysing the fit of 
+Given the broad application of Temporal Point Processes, tools for analysing the fit of 
 point processes to data can be used by many practitioners.
 This package provides functions to evaluate the fit of
 univariate temporal point processes. These functions allow: 
@@ -78,7 +71,7 @@ identify reasons for lack of fit of a process to data.
 
 Though there are some existing 
 packages that contain functions for simulating point 
-processes, [@hawkes_14],[@Markov_17],
+processes, [@hawkes_14;@Markov_17],
 and for computing some 
 simple residuals [@PtProcess2010],
 to the best of our knowledge, 
@@ -158,9 +151,5 @@ pp_diag(shock_hp, events = event_times)
 #> D = 0.0357, p-value = 0.8922
 #> alternative hypothesis: two-sided
 ```
-
-
-
-
 
 # References
