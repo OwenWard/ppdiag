@@ -123,21 +123,24 @@
 <span class="va">hp_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_hp.html">pp_hp</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.35</span>, beta <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="va">sim_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pp_simulate.html">pp_simulate</a></span><span class="op">(</span><span class="va">hp_obj</span>, end <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
 <span class="va">sim_hp</span>
-<span class="co">#&gt;  [1]   1.251803   2.585288  15.660522  16.424361  19.852963  20.115283</span>
-<span class="co">#&gt;  [7]  36.749777  36.813473  54.757570  56.583400  59.564868  60.272463</span>
-<span class="co">#&gt; [13]  60.884895  84.771774  88.260163  88.423628  89.601849  90.061292</span>
-<span class="co">#&gt; [19]  90.370334  90.621778  90.694123  92.143117  93.395489  93.687936</span>
-<span class="co">#&gt; [25]  94.588896 113.160732 121.785596 122.646369 122.770419 123.035607</span>
-<span class="co">#&gt; [31] 125.550267 125.561861 130.788192 133.921184 137.518573 139.761132</span>
-<span class="co">#&gt; [37] 145.099685 155.317533 161.611297 176.427144 178.593037 178.923897</span>
-<span class="co">#&gt; [43] 179.170059 184.217712 184.422784 190.509601</span></code></pre></div>
+<span class="co">#&gt;  [1]   2.186230   3.565304   3.902349   3.964491   6.925180   7.550459</span>
+<span class="co">#&gt;  [7]  11.661489  13.546240  14.708947  18.504127  21.884172  28.200651</span>
+<span class="co">#&gt; [13]  32.725824  32.948553  34.321960  34.336526  35.798993  42.058508</span>
+<span class="co">#&gt; [19]  49.942025  54.593947  63.020692  63.910373  64.643690  65.032153</span>
+<span class="co">#&gt; [25]  65.657198  75.292857  76.692171  79.951074  81.007021  88.885178</span>
+<span class="co">#&gt; [31]  90.571610 109.024238 109.833981 111.815871 124.703088 125.471931</span>
+<span class="co">#&gt; [37] 125.570883 127.091988 129.062818 129.689934 130.604303 132.338776</span>
+<span class="co">#&gt; [43] 140.664296 146.341383 151.822010 152.475271 152.680939 153.386389</span>
+<span class="co">#&gt; [49] 153.642172 153.962057 153.982753 154.104694 154.112463 154.172057</span>
+<span class="co">#&gt; [55] 154.723903 157.320462 170.445160 172.078151 172.694431 173.266803</span>
+<span class="co">#&gt; [61] 185.638459 185.807981 185.928880 186.485358 198.104800 198.281929</span></code></pre></div>
 <p>We can readily evaluate the fit of a homogeneous Poisson process to this data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">est_hpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithpp.html">fithpp</a></span><span class="op">(</span><span class="va">sim_hp</span><span class="op">)</span>
 <span class="va">est_hpp</span>
 <span class="co">#&gt; Homogeneous Poisson Process </span>
 <span class="co">#&gt; lambda  </span>
-<span class="co">#&gt; events 1.251803 2.585288 15.66052 16.42436 19.85296 20.11528 36.74978 36.81347 54.75757 56.5834 59.56487 60.27246 60.8849 84.77177 88.26016 88.42363 89.60185 90.06129 90.37033 90.62178 90.69412 92.14312 93.39549 93.68794 94.5889 113.1607 121.7856 122.6464 122.7704 123.0356 125.5503 125.5619 130.7882 133.9212 137.5186 139.7611 145.0997 155.3175 161.6113 176.4271 178.593 178.9239 179.1701 184.2177 184.4228 190.5096</span>
+<span class="co">#&gt; events 2.18623 3.565304 3.902349 3.964491 6.92518 7.550459 11.66149 13.54624 14.70895 18.50413 21.88417 28.20065 32.72582 32.94855 34.32196 34.33653 35.79899 42.05851 49.94203 54.59395 63.02069 63.91037 64.64369 65.03215 65.6572 75.29286 76.69217 79.95107 81.00702 88.88518 90.57161 109.0242 109.834 111.8159 124.7031 125.4719 125.5709 127.092 129.0628 129.6899 130.6043 132.3388 140.6643 146.3414 151.822 152.4753 152.6809 153.3864 153.6422 153.9621 153.9828 154.1047 154.1125 154.1721 154.7239 157.3205 170.4452 172.0782 172.6944 173.2668 185.6385 185.808 185.9289 186.4854 198.1048 198.2819</span>
 
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">est_hpp</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hpp-1.png" width="75%"></p>
@@ -148,19 +151,19 @@
 <span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; </span></span>
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; D = 0.22652, p-value = 0.01481</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; D = 0.19214, p-value = 0.01312</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hp_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span>
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">hp_est</span>, events <span class="op">=</span> <span class="va">sim_hp</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&gt; Raw residual: -0.00519921</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; Pearson residual: 0.06798623</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&gt; Raw residual: 0.002371998</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; Pearson residual: -0.1398567</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; </span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; </span></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; D = 0.10346, p-value = 0.67</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; D = 0.064213, p-value = 0.9321</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <div id="markov-modulated-hawkes-process-example" class="section level2">
 <h2 class="hasAnchor">
@@ -191,37 +194,37 @@
 <p><img src="reference/figures/README-fit_hpp_to_mmhp-1.png" width="75%"></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#&gt; </span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; Raw residual: -1</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; Pearson residual: -1.684459</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; Pearson residual: -1.419605</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; </span></span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt; </span></span>
 <span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; D = 0.27786, p-value = 0.0006626</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; D = 0.16743, p-value = 0.1078</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>Similarly for a Hawkes process.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">est_hp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fithp.html">fithp</a></span><span class="op">(</span>events <span class="op">=</span> <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span>
 <span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">est_hp</span>,<span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_hp_to_mmhp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#&gt; Raw residual: -0.6181052</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Pearson residual: -2.221529</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#&gt; Raw residual: -0.8106565</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Pearson residual: -1.359046</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; </span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a><span class="co">#&gt; </span></span>
 <span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; D = 0.078371, p-value = 0.8949</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; D = 0.077559, p-value = 0.9016</span></span>
 <span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 <p>We can then compare to the true point process model.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pp_diag.html">pp_diag</a></span><span class="op">(</span><span class="va">mmhp_obj</span>, <span class="va">mmhp_events</span><span class="op">$</span><span class="va">events</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-fit_mmhp-1.png" width="75%"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; Raw residual: 5.381804</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Pearson residual: 2.85359</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; Raw residual: 11.18297</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Pearson residual: 20.98349</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; </span></span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt;  One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; </span></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; data:  r</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; D = 0.12924, p-value = 0.344</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; D = 0.10866, p-value = 0.5595</span></span>
 <span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span></code></pre></div>
 </div>
 </div>
@@ -234,6 +237,8 @@
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <ul>
+<li>Sun et al., (2021). ppdiag: Diagnostic Tools for Temporal Point Processes. Journal of Open Source Software, 6(61), 3133, <a href="https://doi.org/10.21105/joss.03133" class="uri">https://doi.org/10.21105/joss.03133</a>
+</li>
 <li>Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, <a href="https://arxiv.org/abs/2001.09359" class="uri">https://arxiv.org/abs/2001.09359</a>
 </li>
 </ul>
@@ -286,6 +291,7 @@
 <li><a href="https://CRAN.R-project.org/package=ppdiag"><img src="https://www.r-pkg.org/badges/version/ppdiag" alt="CRAN status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://codecov.io/gh/OwenWard/ppdiag?branch=main"><img src="https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://doi.org/10.21105/joss.03133"><img src="https://joss.theoj.org/papers/10.21105/joss.03133/status.svg" alt="DOI"></a></li>
 </ul>
 </div>
 </div>
