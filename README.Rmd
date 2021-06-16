@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/ppdiag)](https://CRAN.R-project.org/package=ppdiag)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Codecov test coverage](https://codecov.io/gh/OwenWard/ppdiag/branch/main/graph/badge.svg)](https://codecov.io/gh/OwenWard/ppdiag?branch=main)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.03133/status.svg)](https://doi.org/10.21105/joss.03133)
 <!-- badges: end -->
 
 
@@ -134,4 +135,6 @@ and reach out with any questions.
 
 # References
 
+- Sun et al., (2021). ppdiag: Diagnostic Tools for Temporal Point Processes. Journal of Open Source Software, 6(61), 3133, https://doi.org/10.21105/joss.03133
 - Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, https://arxiv.org/abs/2001.09359
+
