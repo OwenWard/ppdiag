@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Markov-modulated Poisson Process(MMPP) object — pp_mmpp • ppdiag</title>
+<title>Changelog • ppdiag</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,7 @@
 
 
 
-<meta property="og:title" content="Create a Markov-modulated Poisson Process(MMPP) object — pp_mmpp" />
-<meta property="og:description" content="Create a Markov-modulated Poisson Process(MMPP) model
- according to the given parameters: lambda0, c, q1, q2 and event times.
-If event time tau is missing,
-then it means that data will be added later(e.g. simulated)" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -62,7 +58,7 @@ then it means that data will be added later(e.g. simulated)" />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -129,66 +125,29 @@ then it means that data will be added later(e.g. simulated)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Markov-modulated Poisson Process(MMPP) object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/R/pp_mmpp.R'><code>R/pp_mmpp.R</code></a></small>
-    <div class="hidden name"><code>pp_mmpp.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/OwenWard/ppdiag/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>Create a Markov-modulated Poisson Process(MMPP) model
- according to the given parameters: lambda0, c, q1, q2 and event times.
-If event time tau is missing,
-then it means that data will be added later(e.g. simulated)</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>pp_mmpp</span><span class='op'>(</span><span class='va'>lambda0</span>, <span class='va'>c</span>, <span class='va'>Q</span>, events <span class='op'>=</span> <span class='cn'>NULL</span>, delta <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>lambda0</th>
-      <td><p>parameters for Poisson process.</p></td>
-    </tr>
-    <tr>
-      <th>c</th>
-      <td><p>the proportion of intensity 1 over intensity 2</p></td>
-    </tr>
-    <tr>
-      <th>Q</th>
-      <td><p>transition probability matrix</p></td>
-    </tr>
-    <tr>
-      <th>events</th>
-      <td><p>vector containing the event times.
-Note that the first event is often specified as zero.
-Alternatively, events could be specified as NULL,
- meaning that the data will be added later (e.g. simulated).</p></td>
-    </tr>
-    <tr>
-      <th>delta</th>
-      <td><p>initial state probability.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>mmpp object</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.4</span>, <span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='op'>-</span><span class='fl'>0.2</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>pp_mmpp</span><span class='op'>(</span>Q <span class='op'>=</span> <span class='va'>Q</span>, lambda0 <span class='op'>=</span> <span class='fl'>1</span>, c <span class='op'>=</span> <span class='fl'>1.5</span>, delta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>3</span>, <span class='fl'>2</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Markov Modulated Poisson Process 
-#&gt; lambda0  1 
-#&gt; c  1.5 
-#&gt; Q  -0.4 0.2 0.4 -0.2 
-#&gt; delta 0.3333333 0.6666667 </div></pre>
+    <div id="ppdiag-011" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#ppdiag-011" class="anchor"></a>ppdiag 0.1.1<small> Unreleased </small>
+</h1>
+<p>Some small updates which arose from the JOSS review process which</p>
+<ul>
+<li>added print methods for point process objects</li>
+<li>tidy up the returned information for diagnostic functions</li>
+</ul>
+<p>Also updated a citation in the description to published version.</p>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
