@@ -55,17 +55,17 @@ library(ppdiag)
 hp_obj <- pp_hp(lambda0 = 0.2, alpha = 0.35, beta = 0.8)
 sim_hp <- pp_simulate(hp_obj, end = 200)
 sim_hp
-#>  [1]   2.186230   3.565304   3.902349   3.964491   6.925180   7.550459
-#>  [7]  11.661489  13.546240  14.708947  18.504127  21.884172  28.200651
-#> [13]  32.725824  32.948553  34.321960  34.336526  35.798993  42.058508
-#> [19]  49.942025  54.593947  63.020692  63.910373  64.643690  65.032153
-#> [25]  65.657198  75.292857  76.692171  79.951074  81.007021  88.885178
-#> [31]  90.571610 109.024238 109.833981 111.815871 124.703088 125.471931
-#> [37] 125.570883 127.091988 129.062818 129.689934 130.604303 132.338776
-#> [43] 140.664296 146.341383 151.822010 152.475271 152.680939 153.386389
-#> [49] 153.642172 153.962057 153.982753 154.104694 154.112463 154.172057
-#> [55] 154.723903 157.320462 170.445160 172.078151 172.694431 173.266803
-#> [61] 185.638459 185.807981 185.928880 186.485358 198.104800 198.281929
+#>  [1]   1.275239   4.783765   5.594645   8.598805  12.615358  13.236031
+#>  [7]  16.646178  17.963423  18.111810  22.084071  26.666076  34.308807
+#> [13]  34.356333  34.495016  34.951780  35.092074  36.397702  37.473565
+#> [19]  37.846293  37.999420  54.822306  54.960122  55.721565  56.161485
+#> [25]  56.825700  57.272058  59.441202  67.259184  67.951046  73.067622
+#> [31]  73.376321  73.864017  74.351076  78.675743  84.520527  86.082185
+#> [37]  86.547380  89.036582  99.411569 100.220569 101.941447 104.265342
+#> [43] 106.553315 115.496473 126.077235 126.679327 126.705392 130.829836
+#> [49] 134.226466 135.613464 135.633740 149.809218 156.366308 156.732731
+#> [55] 157.273463 160.788531 161.764239 166.976330 187.590412 187.737997
+#> [61] 187.994724 195.153693
 ```
 
 We can readily evaluate the fit of a homogeneous Poisson process to this
@@ -76,7 +76,7 @@ est_hpp <- fithpp(sim_hp)
 est_hpp
 #> Homogeneous Poisson Process 
 #> lambda  
-#> events 2.18623 3.565304 3.902349 3.964491 6.92518 7.550459 11.66149 13.54624 14.70895 18.50413 21.88417 28.20065 32.72582 32.94855 34.32196 34.33653 35.79899 42.05851 49.94203 54.59395 63.02069 63.91037 64.64369 65.03215 65.6572 75.29286 76.69217 79.95107 81.00702 88.88518 90.57161 109.0242 109.834 111.8159 124.7031 125.4719 125.5709 127.092 129.0628 129.6899 130.6043 132.3388 140.6643 146.3414 151.822 152.4753 152.6809 153.3864 153.6422 153.9621 153.9828 154.1047 154.1125 154.1721 154.7239 157.3205 170.4452 172.0782 172.6944 173.2668 185.6385 185.808 185.9289 186.4854 198.1048 198.2819
+#> events 1.275239 4.783765 5.594645 8.598805 12.61536 13.23603 16.64618 17.96342 18.11181 22.08407 26.66608 34.30881 34.35633 34.49502 34.95178 35.09207 36.3977 37.47357 37.84629 37.99942 54.82231 54.96012 55.72156 56.16149 56.8257 57.27206 59.4412 67.25918 67.95105 73.06762 73.37632 73.86402 74.35108 78.67574 84.52053 86.08219 86.54738 89.03658 99.41157 100.2206 101.9414 104.2653 106.5533 115.4965 126.0772 126.6793 126.7054 130.8298 134.2265 135.6135 135.6337 149.8092 156.3663 156.7327 157.2735 160.7885 161.7642 166.9763 187.5904 187.738 187.9947 195.1537
 
 pp_diag(est_hpp, events = sim_hp)
 ```
@@ -84,13 +84,13 @@ pp_diag(est_hpp, events = sim_hp)
 <img src="man/figures/README-fit_hpp-1.png" width="75%" />
 
     #> 
-    #> Raw residual: 0
-    #> Pearson residual: -1.421085e-14
+    #> Raw residual: -7.105427e-15
+    #> Pearson residual: 1.421085e-14
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.19214, p-value = 0.01312
+    #> D = 0.20838, p-value = 0.007712
     #> alternative hypothesis: two-sided
 
 ``` r
@@ -100,13 +100,13 @@ pp_diag(hp_est, events = sim_hp)
 
 <img src="man/figures/README-fit_hp-1.png" width="75%" />
 
-    #> Raw residual: 0.002371998
-    #> Pearson residual: -0.1398567
+    #> Raw residual: -0.002513104
+    #> Pearson residual: 0.2040545
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.064213, p-value = 0.9321
+    #> D = 0.075428, p-value = 0.846
     #> alternative hypothesis: two-sided
 
 ## Markov Modulated Hawkes Process Example
@@ -147,12 +147,12 @@ pp_diag(est_hpp,mmhp_events$events)
 
     #> 
     #> Raw residual: -1
-    #> Pearson residual: -1.419605
+    #> Pearson residual: -1.270479
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.16743, p-value = 0.1078
+    #> D = 0.30169, p-value = 0.000156
     #> alternative hypothesis: two-sided
 
 Similarly for a Hawkes process.
@@ -164,13 +164,13 @@ pp_diag(est_hp,mmhp_events$events)
 
 <img src="man/figures/README-fit_hp_to_mmhp-1.png" width="75%" />
 
-    #> Raw residual: -0.8106565
-    #> Pearson residual: -1.359046
+    #> Raw residual: -0.3695538
+    #> Pearson residual: -1.850818
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.077559, p-value = 0.9016
+    #> D = 0.081193, p-value = 0.87
     #> alternative hypothesis: two-sided
 
 We can then compare to the true point process model.
@@ -181,13 +181,13 @@ pp_diag(mmhp_obj, mmhp_events$events)
 
 <img src="man/figures/README-fit_mmhp-1.png" width="75%" />
 
-    #> Raw residual: 11.18297
-    #> Pearson residual: 20.98349
+    #> Raw residual: 6.507162
+    #> Pearson residual: 3.326864
     #> 
     #>  One-sample Kolmogorov-Smirnov test
     #> 
     #> data:  r
-    #> D = 0.10866, p-value = 0.5595
+    #> D = 0.1025, p-value = 0.6324
     #> alternative hypothesis: two-sided
 
 # Getting help and contributing
@@ -205,5 +205,8 @@ reach out with any questions.
 -   Sun et al., (2021). ppdiag: Diagnostic Tools for Temporal Point
     Processes. Journal of Open Source Software, 6(61), 3133,
     <https://doi.org/10.21105/joss.03133>
--   Wu et al., Diagnostics and Visualization of Point Process Models for
-    Event Times on a Social Network, <https://arxiv.org/abs/2001.09359>
+-   Wu et al. (2021), Diagnostics and Visualization of Point Process
+    Models for Event Times on a Social Network, In Applied Modeling
+    Techniques and Data Analysis 1 (eds Y. Dimotikalis, A.
+    Karagrigoriou, C. Parpoula and C.H. Skiadas).
+    <https://doi.org/10.1002/9781119821588.ch7>

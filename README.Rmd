@@ -136,5 +136,7 @@ and reach out with any questions.
 # References
 
 - Sun et al., (2021). ppdiag: Diagnostic Tools for Temporal Point Processes. Journal of Open Source Software, 6(61), 3133, https://doi.org/10.21105/joss.03133
-- Wu et al., Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, https://arxiv.org/abs/2001.09359
+- Wu et al. (2021), Diagnostics and Visualization of Point Process Models for Event Times on a Social Network, 
+In Applied Modeling Techniques and Data Analysis 1 (eds Y. Dimotikalis, A. Karagrigoriou, C. Parpoula and C.H. Skiadas).
+https://doi.org/10.1002/9781119821588.ch7
 

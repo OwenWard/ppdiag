@@ -1,1 +1,7 @@
 url: https://owenward.github.io/ppdiag
+
+home:
+  strip_header: true
+  links:
+  - text: Read JOSS Article
+    href: https://joss.theoj.org/papers/10.21105/joss.03133
