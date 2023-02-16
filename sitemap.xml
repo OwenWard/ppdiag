@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://owenward.github.io/ppdiag/404.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/articles/fitting_markov_modulated.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/articles/ppdiag.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/authors.html</loc>
+  </url>
+  <url>
     <loc>https://owenward.github.io/ppdiag/index.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/news/index.html</loc>
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/drawHPIntensity.html</loc>
@@ -23,6 +53,9 @@
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/hawkes_max_intensity.html</loc>
+  </url>
+  <url>
+    <loc>https://owenward.github.io/ppdiag/reference/index.html</loc>
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/intensityqqplot.html</loc>
@@ -80,11 +113,5 @@
   </url>
   <url>
     <loc>https://owenward.github.io/ppdiag/reference/rawresidual.html</loc>
-  </url>
-  <url>
-    <loc>https://owenward.github.io/ppdiag/articles/fitting_markov_modulated.html</loc>
-  </url>
-  <url>
-    <loc>https://owenward.github.io/ppdiag/articles/ppdiag.html</loc>
   </url>
 </urlset>
