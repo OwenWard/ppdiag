@@ -1,0 +1,15 @@
+citHeader("To cite ppdiag in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "ppdiag: Diagnostic Tools for Temporal Point Processes",
+  author   = "Sally Sun, Owen G. Ward, Jing Wu, Lihao Xiao, Xiaoxi Zhao, Tian Zheng ",
+  journal  = "Journal of Open Source Software",
+  year     = "2021",
+  volume   = 6,
+  number   = 61,
+  pages    = 3133,
+  url      = "10.21105/joss.03133",
+  textVersion = "Sun et al., (2021). ppdiag: Diagnostic Tools for Temporal Point Processes. Journal of Open Source Software, 6(61), 3133, https://doi.org/10.21105/joss.03133"
+)
+
